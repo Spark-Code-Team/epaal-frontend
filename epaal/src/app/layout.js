@@ -4,6 +4,7 @@ import { Vazirmatn } from "next/font/google"
 
 // css
 import "./globals.css";
+import Layout from "@/components/layout/Layout";
 
 export const metadata = {
   title: "EPAAL",
@@ -21,7 +22,9 @@ export default function RootLayout({ children }) {
       <body
         className={vazirmatn.className}
       >
-        {children}
+        <Layout>
+          {children}
+        </Layout>
       </body>
     </html>
   );
