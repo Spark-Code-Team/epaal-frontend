@@ -1,11 +1,13 @@
-
-
+import Carousel from "../elements/carousel";
+import Search from "../elements/search";
 
 export default function HomePage() {
-
-    return (
-        <h1>
-            ایپال
-        </h1>
-    )
+  return (
+    <>
+      <Search />
+      <div className="container">
+        <Carousel />
+      </div>
+    </>
+  );
 }
