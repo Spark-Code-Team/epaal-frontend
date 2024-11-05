@@ -1,13 +1,15 @@
 "use client";
 
-import test1 from "@/../public/test/test(1).jpg";
-import test2 from "@/../public/test/test(2).jpg";
-import test3 from "@/../public/test/test(3).jpg";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import SwipeReact from "swipe-react";
-export default function Carousel() {
-  const images = [test1, test2, test3];
+
+export default function Carousel({
+  images = [],
+  seconds = 3,
+  height = "18rem",
+}) {
+  // placeholder data
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -25,6 +27,11 @@ export default function Carousel() {
     left: prevSlide,
     right: nextSlide,
   });
+  useEffect(() => {
+    const interval = setInterval(() => nextSlide(), seconds * 1000);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
   return (
     <div className="relative w-full sm:max-w-sm md:max-w-md lg:max-w-lg">
       {/* Image part */}
@@ -34,12 +41,16 @@ export default function Carousel() {
           style={{ transform: `translateX(${currentIndex * 100}%)` }}
         >
           {images.map((src, index) => (
-            <div key={index} className="w-full flex-shrink-0">
+            <div
+              key={index}
+              className={`w-full flex-shrink-0 relative h-[${height}]`}
+            >
               <Image
                 src={src}
                 alt={`Carousel image ${index + 1}`}
-                sizes="100"
-                className="object-cover w-full h-full"
+                className="object-cover w-full"
+                fill
+                placeholder="blur"
               />
             </div>
           ))}
@@ -66,7 +77,7 @@ export default function Carousel() {
           />
         </svg>
       </button>
-
+      {/* prev slide */}
       <button
         onClick={prevSlide}
         className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 text-gray-800 p-2 rounded-md shadow hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
