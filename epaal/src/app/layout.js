@@ -22,9 +22,9 @@ export default function RootLayout({ children }) {
       <body
         className={vazirmatn.className}
       >
-        <Layout>
+        {/* <Layout> */}
           {children}
-        </Layout>
+        {/* </Layout> */}
       </body>
     </html>
   );
