@@ -9,7 +9,7 @@ export default function Layout({ children }) {
 
     return (
         <>
-            <Header />
+            {/* <Header />
                 <div
                     className="
                         w-[390px]
@@ -18,7 +18,9 @@ export default function Layout({ children }) {
                 >
                     { children }
                 </div>
-            <Footer />
+            <Footer /> */}
+
+            {children}
         </>
     )
 }

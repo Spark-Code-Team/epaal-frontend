@@ -1,3 +1,119 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.custom-bg{
+    -webkit-appearance: none;
+    background-color: #dee2e5;
+    height: 6px;
+}
+
+
+input[type="range"] {
+    -webkit-appearance: none; /* برای Safari و Chrome */
+    appearance: none; /* برای Firefox */
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s;
+}
+
+/* استایل دهی به نوار پیشرفت در Chrome و Safari */
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: #f1f0f0; /* رنگ نوار پیشرفت */
+    border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: blue;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* استایل دهی به نوار پیشرفت در Firefox */
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    background: blue; /* رنگ نوار پیشرفت */
+    border-radius: 5px;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: blue;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+
+
+/*.custom-bg::-moz-range-thumb{*/
+/*    background-color: #009B9D;*/
+/*    width: 5%;*/
+/*    padding: 0 0;*/
+/*}*/
+
+
+/*input[type='range']{*/
+/*    height: 5px;*/
+/*    background-color: #dee2e5;*/
+/*}*/
+
+
+/*input[type='range']::-webkit-slider-runnable-track{*/
+/*    height: 3px;*/
+/*    margin-top: -10px;*/
+/*}*/
+
+
+/* استایل دهی به نوار پیشرفت در Chrome و Safari */
+/*input[type="range"]::-webkit-slider-runnable-track {*/
+/*    width: 100%;*/
+/*    height: 8px;*/
+/*    background: red; !* رنگ نوار پیشرفت *!*/
+/*    border-radius: 5px;*/
+/*}*/
+
+
+
+/*input[type="range"] {*/
+/*    -webkit-appearance: none; !* برای Safari و Chrome *!*/
+/*    appearance: none; !* برای Firefox *!*/
+/*    width: 100%;*/
+/*    height: 8px;*/
+/*    background: #ddd;*/
+/*    border-radius: 5px;*/
+/*    outline: none;*/
+/*    transition: background 0.3s;*/
+/*}*/
+
+/*input[type='range']::-webkit-slider-thumb{*/
+/*    background-color: #009B9D;*/
+/*}*/
+
+
+
+/*input[type="range"]::-moz-range-progress {*/
+/*    background-color: #009B9D;*/
+/*}*/
+/*input[type="range"]::-moz-range-track {*/
+/*    background-color: #dee2e5;*/
+/*}*/
+/*!* IE*!*/
+/*input[type="range"]::-ms-fill-lower {*/
+/*    background-color: #43e5f7;*/
+/*}*/
+/*input[type="range"]::-ms-fill-upper {*/
+/*    background-color: #9a905d;*/
+/*}*/
