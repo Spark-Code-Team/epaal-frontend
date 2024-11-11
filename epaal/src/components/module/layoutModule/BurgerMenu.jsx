@@ -5,7 +5,7 @@ import Image from "next/image";
 
 // IMG
 import burger from "../../../../public/icons/burgerMenu.svg";
-import logo from "../../../../public/image/evaam-logo.png"
+import logo from "../../../../public/image/evaam-logo.png";
 
 // React
 import { useState } from "react";
@@ -67,26 +67,27 @@ export default function BurgerMenu() {
               items-center
             "
           >
-            <Image 
+            <Image
               src={logo}
               width={26}
               height={26}
+              alt="evaam logo"
               className=" 
                 w-6
                 h-6  
                 ml-2
               "
             />
-          
-          <p
-            className="
+
+            <p
+              className="
               text-white
                 text-[16px]
             "
-          >
-            ایوام
-          </p>
-        </div>
+            >
+              ایوام
+            </p>
+          </div>
           <div
             className="
               w-full
@@ -125,7 +126,7 @@ export default function BurgerMenu() {
               border-slate-300
             "
           >
-              <Link href={"#"}>سوالات متداول</Link>
+            <Link href={"#"}>سوالات متداول</Link>
           </div>
         </div>
       </div>

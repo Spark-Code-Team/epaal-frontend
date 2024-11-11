@@ -1,9 +1,4 @@
-
-
-
-export default function ShopPage() {
-
-    return (
-        <h1>Shop</h1>
-    )
+import ShopPage from "@/components/template/ShopPage";
+export default function shop() {
+  return <ShopPage />;
 }

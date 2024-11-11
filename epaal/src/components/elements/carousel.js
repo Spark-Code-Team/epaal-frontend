@@ -4,13 +4,8 @@ import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import SwipeReact from "swipe-react";
 
-export default function Carousel({
-  images = [],
-  seconds = 3,
-  height = "18rem",
-}) {
+export default function Carousel({ images = [], seconds = 3 }) {
   // placeholder data
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = useCallback(() => {
@@ -41,10 +36,7 @@ export default function Carousel({
           style={{ transform: `translateX(${currentIndex * 100}%)` }}
         >
           {images.map((src, index) => (
-            <div
-              key={index}
-              className={`w-full flex-shrink-0 relative h-[${height}]`}
-            >
+            <div key={index} className={`w-full flex-shrink-0 relative h-72`}>
               <Image
                 src={src}
                 alt={`Carousel image ${index + 1}`}
