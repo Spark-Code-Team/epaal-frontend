@@ -4,14 +4,16 @@ import mobilesCategory from "@/../public/image/samsungZfold.png";
 import Link from "next/link";
 import { addCommas, digitsEnToFa } from "@persian-tools/persian-tools";
 function ProductCard({
-  header,
   title,
   image,
   price,
   discount,
   variant,
+  href="#",
   className = "",
 }) {
+
+  // configure placeholder data
   price = price > 0 ? digitsEnToFa(addCommas(price)) : null;
   discount = digitsEnToFa(discount || "");
   image = image || mobilesCategory;
@@ -62,6 +64,7 @@ function ProductCard({
         )}
       </div>
     );
+
   if (variant === "off")
     return (
       <div
@@ -110,6 +113,7 @@ function ProductCard({
         )}
       </div>
     );
+    
   if (variant === "new")
     return (
       <div
