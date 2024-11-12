@@ -19,7 +19,7 @@ export default function shop() {
       <div className="container">
         <Carousel images={images} />
       </div>
-      <div className="container grid grid-cols-3 gap-2 p-2 my-4">
+      <div className="container grid grid-cols-3 gap-2 p-2 my-4 ">
         <CategoryCard image={mobilesCategory} title={"موبایل"} />
         <CategoryCard image={digitalsCategory} title={"کالای دیجیتال"} />
         <CategoryCard image={homeCategory} title={"لوازم خانگی"} />
@@ -30,7 +30,7 @@ export default function shop() {
         <CategoryCard image={mobilesCategory} title={"موبایل"} />
         <CategoryCard image={digitalsCategory} title={"کالای دیجیتال"} />
       </div>
-      <div className="container grid grid-flow-col gap-4 p-2 overflow-scroll my-4">
+      <div className="container grid grid-flow-col gap-4 p-2 overflow-y-scroll my-4 no-scrollbar ">
         <ProductCard
           className="!bg-gradient-to-tl from-indigo-300 to-indigo-100"
           title={
