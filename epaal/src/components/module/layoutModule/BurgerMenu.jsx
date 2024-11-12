@@ -7,27 +7,29 @@ import Image from "next/image";
 import burger from "../../../../public/icons/burgerMenu.svg";
 import logo from "../../../../public/image/evaam-logo.png";
 
+
 // React
 import { useState } from "react";
 import Link from "next/link";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import EvaamLogo from "../../../../public/icons/evaam-icon";
 
-export default function BurgerMenu() {
+export default function BurgerMenu({ navColor}) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Image
-        src={burger}
-        width={24}
-        height={24}
-        className="
-          w-6
-          h-6
-          cursor-pointer
-          md:hidden
-        "
-        alt="burger menu logo"
-        onClick={() => setOpen(true)}
+      <Bars3Icon 
+        className={`
+            cursor-pointer
+            ${navColor ? "text-[#000]" : "text-[#fff]"}
+            w-6
+            h-6
+            ml-3
+            md:hidden
+          `}
+
+          onClick={() => setOpen(true)}
       />
       <div
         className={`
@@ -69,22 +71,13 @@ export default function BurgerMenu() {
               items-center
             "
           >
-            <Image
-              src={logo}
-              width={26}
-              height={26}
-              alt="evaam logo"
-              className=" 
-                w-6
-                h-6  
-                ml-2
-              "
-            />
+            <EvaamLogo color="#2852E4" width="30px" height="30px" />
 
             <p
               className="
-              text-white
+              text-[#2852E4]
                 text-[16px]
+                mr-2
             "
             >
               ایوام

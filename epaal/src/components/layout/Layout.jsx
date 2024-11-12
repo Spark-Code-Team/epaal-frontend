@@ -10,6 +10,7 @@ export default function Layout({ children }) {
         className="
           w-[390px]
           mx-auto
+          min-h-[1200px]
         "
       >
         {children}

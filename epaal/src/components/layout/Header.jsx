@@ -1,21 +1,55 @@
-import Image from "next/image";
+"use client"
+
+// components
 import BurgerMenu from "../module/layoutModule/BurgerMenu";
-import logo from "../../../public/image/evaam-logo.png";
 import NavElements from "../module/layoutModule/NavElements";
+
+// logo
 import EvaamLogo from "../../../public/icons/evaam-icon";
 
+//react
+import { useCallback, useEffect, useState } from "react";
+
 export default function Header() {
+
+  const [scrollY, setScrollY] = useState(0)
+  const [navColor, setNavColor] = useState(false)
+
+  const onScroll = useCallback(event => {
+    const { pageYOffset, scrollY } = window;
+    setScrollY(pageYOffset);
+    if(pageYOffset > 10) {
+      setNavColor(true)
+    } else {
+      setNavColor(false)
+    }
+  }, []);
+
+  useEffect(() => {
+      //add eventlistener to window
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      console.log(scrollY);
+      
+      // remove event on unmount to prevent a memory leak with the cleanup
+      return () => {
+        window.removeEventListener("scroll", onScroll, { passive: true });
+      }
+  }, []);
+
   return (
     <div
-      className="
+      className={`
         flex
         flex-col
+        sticky
+        top-0
         w-full
-        bg-[#2852E4]
+        ${navColor ? "bg-white" : "bg-[#2852E4]"}
         md:bg-white
         mx-auto
         max-w-full
-      "
+      `}
     >
       <div
         className="
@@ -30,22 +64,30 @@ export default function Header() {
               relative
               flex
               items-center
-              w-1/3
+              md:w-1/2
               justify-evenly
+              pr-3
           "
         >
-          <BurgerMenu />
-          {/* <Image
-            src={logo}
-            width={200}
-            height={200}
+          <BurgerMenu navColor={navColor}/>
+          <div
             className="
-                w-8
-                h-w-8
+              hidden
+              cursor-pointer
+              md:flex
             "
-            alt="evago"
-          /> */}
-          <EvaamLogo color="#1d1d1d" height="20px" width="30px"/>   
+          >
+            <EvaamLogo color="#2852E4" height="24px" width="24px"/>   
+          </div>
+          <div
+            className="
+              cursor-pointer
+              pr-3
+              md:hidden
+            "
+          >
+            <EvaamLogo color={navColor ? "#000" : "#ffff"} height="24px" width="24px"/>   
+          </div>
           <NavElements />
         </div>
         <div
@@ -53,13 +95,16 @@ export default function Header() {
           "
         >
           <div
-            className="
+            className={`
               text-xs
               px-[18px]
               py-[11.5px]
-            bg-white
+              ${navColor ? "bg-[#2852E4]" : "bg-white"}
+              ${navColor ? "text-white" : "text-black"}
+            md:bg-[#2852E4]
+            md:text-white  
               rounded-lg 
-            "
+            `}
           >
             ورود به حساب کاربری
           </div>
