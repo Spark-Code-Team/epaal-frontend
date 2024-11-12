@@ -5,7 +5,7 @@ function CategoryCard({ image, title, href = "#" }) {
   return (
     <Link
       href={href}
-      className="flex flex-col items-center relative h-36 w-full"
+      className="flex flex-col items-center relative h-36 w-full transition-all duration-300 ease-in-out hover:scale-[1.01] "
     >
       <Image
         src={image}
