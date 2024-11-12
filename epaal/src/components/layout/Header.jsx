@@ -49,6 +49,7 @@ export default function Header() {
         md:bg-white
         mx-auto
         max-w-full
+        z-10
       `}
     >
       <div
