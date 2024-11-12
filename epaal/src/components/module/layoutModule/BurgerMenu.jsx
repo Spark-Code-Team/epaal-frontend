@@ -24,6 +24,7 @@ export default function BurgerMenu() {
           w-6
           h-6
           cursor-pointer
+          md:hidden
         "
         alt="burger menu logo"
         onClick={() => setOpen(true)}
@@ -43,6 +44,7 @@ export default function BurgerMenu() {
           duration-500 
           ease-in-out 
           z-50
+          md:hidden
         `}
         onClick={() => setOpen(false)}
       >

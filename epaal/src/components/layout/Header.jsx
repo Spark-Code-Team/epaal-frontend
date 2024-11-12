@@ -1,7 +1,7 @@
 import Image from "next/image";
 import BurgerMenu from "../module/layoutModule/BurgerMenu";
-
 import logo from "../../../public/image/evaam-logo.png";
+import NavElements from "../module/layoutModule/NavElements";
 
 export default function Header() {
   return (
@@ -9,10 +9,11 @@ export default function Header() {
       className="
         flex
         flex-col
-        w-[390px]
+        w-full
         bg-[#2852E4]
+        md:bg-white
         mx-auto
-        max-w-[390px]
+        max-w-full
       "
     >
       <div
@@ -28,7 +29,7 @@ export default function Header() {
               relative
               flex
               items-center
-              w-1/4
+              w-1/3
               justify-evenly
           "
         >
@@ -43,6 +44,7 @@ export default function Header() {
             "
             alt="evago"
           />
+          <NavElements />
         </div>
         <div
           className="p-[12px]

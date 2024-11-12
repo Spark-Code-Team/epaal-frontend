@@ -8,9 +8,9 @@ export default function Layout({ children }) {
       <Header />
       <div
         className="
-                        w-[390px]
-                        mx-auto
-                    "
+          w-[390px]
+          mx-auto
+        "
       >
         {children}
       </div>
