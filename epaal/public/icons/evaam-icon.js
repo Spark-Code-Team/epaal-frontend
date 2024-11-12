@@ -4,7 +4,7 @@
 export default function EvaamLogo({ color, width, height }) {
 
     return (
-        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1962.74 1573.23" fill={color} width={width} height={height}>
+        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 500" fill={color} width={width} height={height}>
             <g id="Final">
                 <path class="cls-1" d="M425.81,25c34.46,0,62.5,28.04,62.5,62.5s-28.04,62.5-62.5,62.5-62.5-28.04-62.5-62.5,28.04-62.5,62.5-62.5M425.81,0c-48.32,0-87.5,39.18-87.5,87.5s39.18,87.5,87.5,87.5,87.5-39.18,87.5-87.5S474.14,0,425.81,0h0Z"/>
                 <g>
