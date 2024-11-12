@@ -2,6 +2,7 @@ import Image from "next/image";
 import BurgerMenu from "../module/layoutModule/BurgerMenu";
 import logo from "../../../public/image/evaam-logo.png";
 import NavElements from "../module/layoutModule/NavElements";
+import EvaamLogo from "../../../public/icons/evaam-icon";
 
 export default function Header() {
   return (
@@ -34,7 +35,7 @@ export default function Header() {
           "
         >
           <BurgerMenu />
-          <Image
+          {/* <Image
             src={logo}
             width={200}
             height={200}
@@ -43,7 +44,8 @@ export default function Header() {
                 h-w-8
             "
             alt="evago"
-          />
+          /> */}
+          <EvaamLogo color="#1d1d1d" height="20px" width="30px"/>   
           <NavElements />
         </div>
         <div
