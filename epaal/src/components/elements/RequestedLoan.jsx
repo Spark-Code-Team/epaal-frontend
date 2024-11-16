@@ -28,7 +28,7 @@ const RequestedLoan = ()=>{
 
         <>
         
-            <div className="w-[90%] lg:w-[80%] sm:w-[70%] sm:min-h-[300px] bg-white shadow-lg mx-auto flex flex-wrap">
+            <div className="w-[90%] lg:w-[80%] sm:w-[90%] sm:min-h-[300px] bg-white shadow-lg mx-auto flex flex-wrap">
 
                 <div className="w-full lg:w-1/2 sm:w-1/2">
 
@@ -88,7 +88,7 @@ const RequestedLoan = ()=>{
 
                     <div className="lg:w-[80%] lg:h-48 lg:mx-auto lg:mt-10 lg:pt-2 w-[90%] min-h-44 mx-auto mt-2 sm:w-[80%] sm:h-34 sm:mx-auto bg-[#eef2ff] rounded-lg">
 
-                        <div className="lg:w-[90%] lg:h-54 lg:mx-auto py-3 w-[90%] min-h-34 flex mx-auto mt-5 sm:w-[80%] sm:h-34 sm:mx-auto">
+                        <div className="lg:w-[90%] lg:h-54 lg:mx-auto w-[90%] min-h-34 flex mx-auto mt-5 sm:w-[80%] sm:h-34 sm:mx-auto">
 
                             <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm pt-[2px] text-sm text-[#2852E4]">مبلغ قسط نهایی</div>
                             <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-base text-sm text-left text-[#2852E4]">940,763 <span className="text-sm">تومان</span></div>
@@ -97,7 +97,7 @@ const RequestedLoan = ()=>{
 
                         <div className="lg:w-[90%] lg:h-54 lg:mx-auto py-3 w-[90%] min-h-34 flex mx-auto mt-2 sm:w-[80%] sm:h-34 sm:mx-auto">
 
-                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm text-xs lg:pt-0 pt-1 text-[#2852E4]">ما به تفاوت خرید نقدی و اقساطی</div>
+                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-[13px] text-xs lg:pt-0 pt-1 text-[#2852E4]">ما به تفاوت خرید نقدی و اقساطی</div>
                             <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm text-sm pt-[3px] text-left text-[#2852E4]">940,763 <span className="text-sm">تومان</span></div>
 
                         </div>
