@@ -11,7 +11,7 @@ const RequestedLoan = ()=>{
 
     const [currentIndex , setCurrentIndex] = useState(0);
 
-    const handleNext = ()=>{
+    const handleNext = () => {
         setCurrentIndex((prevIndex)=>prevIndex === items.length - 1 ? 0 : prevIndex + 1
         )
     }

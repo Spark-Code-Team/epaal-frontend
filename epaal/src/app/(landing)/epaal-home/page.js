@@ -1,10 +1,11 @@
-import HomePage from "@/components/template/HomePage";
+// template
+import LandingHome from "@/components/template/LandingHome";
 
 
 
 export default function Home() {
 
     return (
-        <HomePage />
+        <LandingHome />
     )
 }
