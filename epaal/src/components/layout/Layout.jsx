@@ -9,7 +9,7 @@ export default function Layout({ children }) {
       <Header />
         <div
           className="
-            w-[390px]
+            w-full
             mx-auto
             min-h-[1200px]
           "
