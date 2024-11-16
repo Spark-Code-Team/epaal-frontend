@@ -6,6 +6,7 @@ import LoanApplicationProcess from "../elements/LoanApplicationProcess";
 import LoanReceiptDocuments from "../elements/LoanReceiptDocuments";
 import ProductCategories from "../elements/ProductCategories";
 import RequestedLoan from "../elements/RequestedLoan";
+import Banner from "../module/landingModule/Banner";
 
 
 
@@ -13,6 +14,7 @@ export default function LandingHome()  {
 
     return (
         <>
+            <Banner />
             <RequestedLoan />
             <LoanApplicationGuide />
             <ProductCategories />
