@@ -16,6 +16,7 @@ export default function Banner() {
             bg-[#2852e4]
               w-full
               rounded-b-[34px]
+              min-h-0
             "
         >
             <div
