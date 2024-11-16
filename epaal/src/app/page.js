@@ -1,4 +1,3 @@
-
 // components
 import HomePage from "@/components/template/HomePage";
 
