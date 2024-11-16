@@ -7,17 +7,16 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
-      <div
-        className="
-          w-[390px]
-          mx-auto
-          min-h-[1200px]
-        "
-      >
-        {children}
-      </div>
+        <div
+          className="
+            w-full
+            mx-auto
+            min-h-[1200px]
+          "
+        >
+          {children}
+        </div>
       <Footer />
-
     </>
   );
 }

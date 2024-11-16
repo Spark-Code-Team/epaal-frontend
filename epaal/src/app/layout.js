@@ -1,9 +1,10 @@
 
 // css
 import "./globals.css";
+import { danaFont } from "@/utils/fonts";
 
 // fonts
-import { danaFont } from "@/utils/fonts";
+
 
 export const metadata = {
   title: "EPAAL",
