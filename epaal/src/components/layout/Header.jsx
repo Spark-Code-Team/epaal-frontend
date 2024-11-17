@@ -18,7 +18,7 @@ export default function Header() {
   const onScroll = useCallback(event => {
     const { pageYOffset, scrollY } = window;
     setScrollY(pageYOffset);
-    if(pageYOffset > 10) {
+    if(pageYOffset > 150) {
       setNavColor(true)
     } else {
       setNavColor(false)

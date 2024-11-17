@@ -28,7 +28,7 @@ const RequestedLoan = ()=>{
 
         <>
         
-            <div className="w-[90%] lg:w-[80%] sm:w-[90%] sm:min-h-[300px] bg-white shadow-lg mx-auto flex flex-wrap">
+            <div className="absolute bottom-[-260px] sm:bottom-[-45px] w-[90%] lg:w-[80%] sm:w-[90%] sm:min-h-[300px] bg-white shadow-lg mx-auto flex flex-wrap rounded-3xl">
 
                 <div className="w-full lg:w-1/2 sm:w-1/2">
 
