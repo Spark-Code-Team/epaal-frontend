@@ -5,7 +5,7 @@ import { GrFormPrevious } from "react-icons/gr";
 import {useState} from "react";
 
 
-const RequestedLoan = ()=>{
+const RequestedLoan = ({ isBanner }) =>{
 
     const items = ["6 ماه" , "12 ماه" , "24 ماه" , "36 ماه"];
 
@@ -28,7 +28,7 @@ const RequestedLoan = ()=>{
 
         <>
         
-            <div className="absolute bottom-[-260px] sm:bottom-[-45px] w-[90%] lg:w-[80%] sm:w-[90%] sm:min-h-[300px] bg-white shadow-lg mx-auto flex flex-wrap rounded-3xl">
+            <div className="lg:w-[80%] sm:w-[90%] sm:min-h-[300px] bg-white shadow-lg mx-auto flex flex-wrap rounded-3xl">
 
                 <div className="w-full lg:w-1/2 sm:w-1/2">
 

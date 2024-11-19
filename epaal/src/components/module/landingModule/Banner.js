@@ -15,11 +15,9 @@ export default function Banner() {
     return (
         <div
             className="
-            bg-[#2852e4]
               w-full
-              rounded-b-[34px]
               min-h-0
-              relative
+              md:my-14
             "
         >
             <div
@@ -27,11 +25,17 @@ export default function Banner() {
                     flex
                     flex-col
                     items-center
-                    sm:justify-between
+                    sm:justify-evenly
                     sm:flex-row
-                    md:justify-between
+                    md:justify-evenly
                     w-full
+                    bg-[#2852e4]
                     py-5
+                    relative
+                    rounded-b-[34px]
+                    md:rounded-t-[34px]
+                    md:rounded-b-[0px]
+                    sm:rounded-b-[0px]
                 "
             >
                 <div
@@ -54,7 +58,52 @@ export default function Banner() {
                     ">
                         دریافت وام و خرید اقساطی کالا
                     </p>
+                    <div
+                    className="
+                        hidden
+                        items-center
+                        justify-between
+                        gap-6
+                        md:flex
+                    "
+                >
+                    <div
+                        className="
+                            flex
+                            w-44
+                            py-[10px]
+                            px-[32.46px]
+                            items-center
+                            justify-center
+                            bg-white
+                            text-[14px]
+                            rounded-lg
+                            cursor-pointer
+                        "
+                    >
+                        ثبت درخواست وام
+                    </div>
+                    <div
+                        className="
+                            hidden
+                            w-44
+                            py-[10px]
+                            px-[32.46px]
+                            items-center
+                            justify-center
+                            rounded-lg
+                            border-white
+                            border-[2px]
+                            text-[14px]
+                            text-white
+                            cursor-pointer
+                        "
+                    >
+                        فروشگاه ایپال
+                    </div>
                 </div>
+                </div>
+
                 <div
                     className="
                         relative
@@ -91,12 +140,15 @@ export default function Banner() {
 
                     </div>
                 </div>
+
                 <div
                     className="
                         flex
                         items-center
                         justify-between
                         gap-6
+                        md:hidden
+                        sm:hidden
                     "
                 >
                     <div
@@ -143,6 +195,8 @@ export default function Banner() {
                         pt-5
                         text-white
                         text-[14.25px]
+                        md:hidden
+                        sm:hidden
                     "
                 >
                     <p>
@@ -150,14 +204,58 @@ export default function Banner() {
                     </p>
                     <Flash />
                 </div>
+
                 <div
-                    className="
-                        min-h-60
-                    "
-                >
+                        className="
+                            w-full
+                            h-56
+                            md:hidden
+                            sm:hidden
+                        "
+                    >
 
                 </div>
+
+            <div
+                className="
+                    items-center
+                    justify-center
+                    absolute
+                    bottom-[-270px]
+                    w-3/4
+                    md:bottom-[-320px]
+                    sm:bottom-[-340px]
+                "
+            >
+                <div 
+                    className="
+                        md:flex
+                        sm:flex
+                        flex-col
+                        items-center
+                        pt-5
+                        text-white
+                        text-[14.25px]
+                        hidden
+                    "
+                >
+                    <p>
+                        محاسبه اقساط دیجی شهر
+                    </p>
+                    <Flash />
+                </div>
                 <RequestedLoan />
+            </div>
+            </div>
+            <div
+                className="
+                    min-h-48
+                    w-full
+                    bg-[#2852e4]
+                    rounded-b-[34px]
+                "
+            >
+
             </div>
         </div>
     )
