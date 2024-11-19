@@ -85,7 +85,6 @@ export default function Banner() {
                     </div>
                     <div
                         className="
-                            hidden
                             w-44
                             py-[10px]
                             px-[32.46px]
@@ -253,6 +252,9 @@ export default function Banner() {
                     w-full
                     bg-[#2852e4]
                     rounded-b-[34px]
+                    hidden
+                    sm:flex
+                    md:flex
                 "
             >
 
