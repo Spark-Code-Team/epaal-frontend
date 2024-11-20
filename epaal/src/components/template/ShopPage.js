@@ -32,7 +32,7 @@ export default function shop() {
         <CategoryCard image={mobilesCategory} title={'موبایل'} />
         <CategoryCard image={digitalsCategory} title={'کالای دیجیتال'} />
       </div>
-      <div className='no-scrollbar container my-4 grid grid-flow-col gap-4 overflow-y-scroll'>
+      <div className='no-scrollbar container my-4 grid grid-flow-col gap-4 overflow-y-scroll bg-white p-4'>
         <ProductCard
           className='!bg-gradient-to-tl from-indigo-300 to-indigo-100'
           title={
