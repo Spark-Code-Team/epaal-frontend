@@ -7,6 +7,7 @@ import LoanReceiptDocuments from "../elements/LoanReceiptDocuments";
 import ProductCategories from "../elements/ProductCategories";
 import RequestedLoan from "../elements/RequestedLoan";
 import Banner from "../module/landingModule/Banner";
+import SoalatMotadavel from "../elements/SoalatMotadavel";
 
 
 
@@ -22,6 +23,7 @@ export default function LandingHome()  {
             <LoanReceiptDocuments />
             <InstallmentPurchase />
             <Articles />
+            <SoalatMotadavel/>
         </>
     )
 }

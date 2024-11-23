@@ -23,9 +23,9 @@ const LoanApplicationProcess = ()=>{
 
         <>
 
-            <div className="w-[90%] lg:w-[90%] mt-20 sm:w-[90%] bg-red-600 shadow-lg mx-auto">
+            <div className="w-[90%] lg:w-[90%] mt-20 sm:w-[90%] mx-auto">
 
-                <div className="w-full bg-yellow-400 text-center text-xl">مراحل درخواست وام</div>
+                <div className="w-full text-center text-xl">مراحل درخواست وام</div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 p-4 max-w-4xl mx-auto items-start mt-8">
                     {items.map((item, index) => (
