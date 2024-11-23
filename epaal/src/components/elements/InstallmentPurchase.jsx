@@ -29,7 +29,7 @@ const InstallmentPurchase = ()=>{
 
                     <div className="text-white rounded-lg p-4 flex items-center justify-evenly">
 
-                        <div className="bg-white p-2 rounded-lg w-16 h-16 flex justify-center h-full">
+                        <div className="bg-white p-2 rounded-lg w-16 h-16 flex justify-center">
                             <Image src={"/image/component 1.png"} alt={""} width={33} height={33}/>
                         </div>
 
@@ -42,7 +42,7 @@ const InstallmentPurchase = ()=>{
 
                     <div className="text-white rounded-lg p-4 flex items-center justify-evenly">
 
-                        <div className="bg-white p-2 rounded-lg w-16 h-16 flex justify-center justify-around">
+                        <div className="bg-white p-2 rounded-lg w-16 h-16 flex justify-center">
                             <Image src={"/image/component 1.png"} alt={""} width={33} height={33}/>
                         </div>
 

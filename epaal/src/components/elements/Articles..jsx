@@ -14,17 +14,17 @@ const Articles = ()=>{
 
                 <div className="w-full m-auto mt-10 flex justify-center flex-wrap pt-1">
 
-                    <div className="lg:w-1/3 w-full sm:w-80 sm:w-1/2 lg:mt-0 mt-6">
+                    <div className="lg:w-1/3 w-full sm:w-1/2 lg:mt-0 mt-6">
 
-                        <div className="lg:w-80 w-full h-full bg-white mx-auto pt-1 lg:pb-0 pb-4 rounded-xl">
+                        <div className="lg:w-80 w-full sm:w-80 bg-white h-full mx-auto pt-1 pb-4 text-zinc-800 rounded-xl">
 
                             <div className="lg:w-72 w-64 sm:w-72 m-auto mt-4">
-                                <Image src="/image/motor.webp" alt={""} width={400} height={200} class="rounded-xl m-auto"/>
+                                <Image src="/image/lavazem.webp" alt={""} width={400} height={200} class="rounded-xl m-auto"/>
                             </div>
 
-                            <div className="lg:w-72 w-full m-auto mt-4 pr-3 pl-3">راهنمای خرید موتور سیکلت</div>
+                            <div className="lg:w-72 w-full m-auto mt-4 pr-3 pl-3">چه لوازم را می‌توان از لیست جهیزیه حذف کرد؟</div>
 
-                            <div className="lg:w-72 w-full m-auto mt-4 text-sm pr-3 pl-3 text-zinc-800">&nbsp; تصمیم به خرید موتورسیکلت، آغاز یک ماجراجویی هیجان‌انگیز است. اما با تنوع بالای مدل‌ها و برندها، انتخاب بهترین گزینه می‌تواند چالش‌برانگیز باشد. اینجاست که یک راهنمای جامع خرید موتورسیکلت اینجاست که یک راهنمای جامع خرید موتورسیکلت </div>
+                            <div className="lg:w-72 w-full m-auto mt-4 text-sm pr-3 pl-3">تهیه جهیزیه، یکی از مراحل هیجان‌انگیز و درعین‌حال چالش‌برانگیز آغاز زندگی مشترک است. باتوجه‌به تنوع بالای لوازم‌خانگی و ظروف، انتخاب‌های زیادی پیش روی زوج‌ها قرار می‌گیرد. درگذشته، لیست جهیزیه بیشتر ... </div>
 
                             <div className="lg:72 w-full m-auto mt-6 text-base flex justify-end">
                                 <div className="flex items-center pr-3 pl-3 text-[#1D4ED8]">
