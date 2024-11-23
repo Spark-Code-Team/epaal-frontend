@@ -40,7 +40,7 @@ const SoalatMotadavel = ()=>{
                                     </button>
                                 </div>
                                 {openIndex === index && item.description && (
-                                    <p className="text-gray-600 mt-4 lg:mr-10 mr-0 text-[#707172] text-sm">{item.description}</p>
+                                    <p className="mt-4 lg:mr-10 mr-0 text-[#707172] text-sm">{item.description}</p>
                                 )}
                             </div>
                         </div>

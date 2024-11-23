@@ -5,7 +5,6 @@ import LoanApplicationGuide from "../elements/LoanApplicationGuide";
 import LoanApplicationProcess from "../elements/LoanApplicationProcess";
 import LoanReceiptDocuments from "../elements/LoanReceiptDocuments";
 import ProductCategories from "../elements/ProductCategories";
-import RequestedLoan from "../elements/RequestedLoan";
 import Banner from "../module/landingModule/Banner";
 import SoalatMotadavel from "../elements/SoalatMotadavel";
 
