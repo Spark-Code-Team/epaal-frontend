@@ -28,7 +28,7 @@ const Admin = ()=>{
                                 <div className="w-[25%] flex justify-around">
 
                                     <div className="w-10 h-10 bg-[#00397A] rounded-full flex justify-center items-center">
-                                        <Image src="/image/user.png" width={17} height={17}/>
+                                        <Image src="/image/user.png" width={17} height={17} alt=""/>
                                     </div>
 
                                     <div className="w-40 flex items-center">نام پذیرنده</div>
@@ -42,25 +42,25 @@ const Admin = ()=>{
 
                                         <div className="w-10 h-10 flex justify-center items-center">
                                             <button>
-                                                <Image src="/image/edit.png" width={23} height={23}/>
+                                                <Image src="/image/edit.png" width={23} height={23} alt=""/>
                                             </button>
                                         </div>
 
                                         <div className="w-10 h-10 flex justify-center items-center">
                                             <button>
-                                                <Image src="/image/info.png" width={23} height={23}/>
+                                                <Image src="/image/info.png" width={23} height={23} alt=""/>
                                             </button>
                                         </div>
 
                                         <div className="w-10 h-10 flex justify-center items-center">
                                             <button>
-                                                <Image src="/image/wallet.png" width={23} height={23}/>
+                                                <Image src="/image/wallet.png" width={23} height={23} alt=""/>
                                             </button>
                                         </div>
 
                                         <div className="w-10 h-10 flex justify-center items-center">
                                             <button>
-                                                <Image src="/image/delete.png" width={23} height={23}/>
+                                                <Image src="/image/delete.png" width={23} height={23} alt=""/>
                                             </button>
                                         </div>
 
