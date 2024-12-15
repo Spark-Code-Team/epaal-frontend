@@ -33,7 +33,7 @@ const SoalatMotadavel = ()=>{
                                 <div className="flex justify-between items-center">
                                     <div className="flex items-center mb-4 sm:mb-0 sm:mr-6">
                                         {/*<span className="text-xl">{item.icon}</span>*/}
-                                        <h3 className="text-lg font-bold mr-4 text-base text-[#1D4ED8]">{item.title}</h3>
+                                        <h3 className="font-bold mr-4 text-base text-[#1D4ED8]">{item.title}</h3>
                                     </div>
                                     <button onClick={() => toggleAccordion(index)} className="text-blue-500">
                                         {openIndex === index ? <FiChevronUp size={20} /> : <FiChevronDown size={20} />}
