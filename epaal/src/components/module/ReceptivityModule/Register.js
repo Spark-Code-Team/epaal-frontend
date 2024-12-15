@@ -1,84 +1,38 @@
+// react
 import { useState } from "react";
+
+// icons
 import UserDefault from "../../../../public/icons/UserDefault";
 
-const mapInput = [
-    {
-        labelName: "نام",
-        inputName: "name"
-    },
-    {
-        labelName: "شماره تماس",
-        inputName: "phone"
-    },
-    {
-        labelName: "ایمیل",
-        inputName: "email"
-    },
-    {
-        labelName: "جنسیت",
-        inputName: "sex"
-    },
-    {
-        labelName: "رمزعبور",
-        inputName: "password"
-    },
-    {
-        labelName: "تکرار رمز عبور",
-        inputName: "confirmPassword"
-    },
-]
+// map input
+import { mapInput, mapInputpaz } from "@/constant/AdminForm";
 
-const mapInputpaz = [
-    {
-        labelName: "حوزه فعالیت",
-        inputName: "faal"
-    },
-    {
-        labelName: "اسم فروشگاه",
-        inputName: "shop"
-    },
-    {
-        labelName: "استان",
-        inputName: "ostan"
-    },
-    {
-        labelName: "شهر",
-        inputName: "city"
-    },
-    {
-        labelName: "آدرس",
-        inputName: "address"
-    },
-    {
-        labelName: "تلفن ثابت",
-        inputName: "phone"
-    },
-]
 
 
 export default function Register({ register, receptivity, setReceptivity, setRegister }) {
 
-    const [showForm, setShowForm] = useState(false)
+    const [showForm, setShowForm] = useState(true)
 
 
     const handelRegister = (e) => {
 
         setRegister({...register, [e.target.name]: e.target.value})
 
-        console.log(register)
-        console.log(receptivity);
-        
-        
     }
 
     
     const handelRecptivity = (e) => {
 
         setReceptivity({...receptivity, [e.target.name]: e.target.value})
-        
-        console.log(receptivity);
-        console.log(register)
-        
+
+    }
+
+    const handelForms = async (item) => {
+        if(item == "register") {
+            setShowForm(false)
+        } else {
+            setShowForm(true)
+        }
     }
 
     return (
@@ -172,6 +126,8 @@ export default function Register({ register, receptivity, setReceptivity, setReg
                                             border-2
                                             border-[#00397A]
                                             bg-white
+                                            h-[44px]
+                                            p-2
                                         "
                                         name={item.inputName}
                                         type={(item.inputName == "confirmPassword" || item.inputName == "password") ? "password" : item.inputName == "email" ? "email" : "text"}
@@ -206,6 +162,8 @@ export default function Register({ register, receptivity, setReceptivity, setReg
                                         border-2
                                         border-[#00397A]
                                         bg-white
+                                        h-[44px]
+                                        p-2
                                     "
                                     name={item.inputName}
                                     onChange={(e) => handelRecptivity(e)}
@@ -229,7 +187,9 @@ export default function Register({ register, receptivity, setReceptivity, setReg
                             justify-center
                             text-white
                             mt-7
+                            cursor-pointer
                         "
+                        onClick={() => handelForms("register")}
                     >
                         ثبت نام
                     </div>
@@ -245,7 +205,9 @@ export default function Register({ register, receptivity, setReceptivity, setReg
                             justify-center
                             text-white
                             mt-7
+                            cursor-pointer
                         "
+                        onClick={() => handelForms()}
                     >
                         ثبت
                     </div>
