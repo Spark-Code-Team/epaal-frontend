@@ -22,6 +22,7 @@ export default function Carousel({ images = [], seconds = 3 }) {
     left: prevSlide,
     right: nextSlide,
   });
+  
   useEffect(() => {
     const interval = setInterval(() => nextSlide(), seconds * 1000);
     return () => clearInterval(interval);
