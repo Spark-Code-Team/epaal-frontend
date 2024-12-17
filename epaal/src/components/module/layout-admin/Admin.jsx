@@ -10,10 +10,10 @@ const Admin = ()=>{
 
             <div className="w-full pr-10 pl-10 flex justify-between">
 
-                <div className="w-[20%] h-[595px] bg-[#00397A]"> </div>
 
 
-                <div className="w-[78%]">
+
+                <div className="w-full">
 
                     <div className="w-full">
                         <button className="btn w-36 bg-[#00397A] text-white p-2 rounded-md mt-3">افزودن ادمین جدید</button>
