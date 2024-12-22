@@ -29,19 +29,19 @@ export default function Carousel({ images = [], seconds = 3 }) {
   }, [currentIndex]);
 
   return (
-    <div className="relative w-full sm:max-w-sm md:max-w-md lg:max-w-lg">
+    <div className="relative w-full h-[421px]">
       {/* Image part */}
-      <div className="overflow-hidden" {...SwipeReact.events}>
+      <div className="overflow-hidden w-full h-full" {...SwipeReact.events}>
         <div
           className="flex transition-transform duration-300 ease-in-out"
           style={{ transform: `translateX(${currentIndex * 100}%)` }}
         >
           {images.map((src, index) => (
-            <div key={index} className={`w-full flex-shrink-0 relative h-72`}>
+            <div key={index} className={`w-full  flex-shrink-0 relative h-[421px]`}>
               <Image
                 src={src}
                 alt={`Carousel image ${index + 1}`}
-                className="object-cover w-full"
+                className="object-cover w-full "
                 fill
                 placeholder="blur"
               />

@@ -2,7 +2,7 @@ import {  BuildingStorefrontIcon, ShoppingCartIcon, UserIcon } from "@heroicons/
 
 export default function BottomNavbar() {
     return (
-        <nav className="container sticky bottom-0 px-4 border-t border-t-gray-200 bg-white">
+        <nav className="container sticky bottom-0 px-4 border-t border-t-gray-200 bg-white sm:hidden">
             <ul className="list-none flex items-center justify-between p-4">
                 <li className="flex flex-col gap-2 items-center justify-center text-gray-500 h-12 w-16">
                     <UserIcon className="h-6 w-6 "/>

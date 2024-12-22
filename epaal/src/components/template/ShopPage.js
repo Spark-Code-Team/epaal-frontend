@@ -16,10 +16,10 @@ export default function shop() {
   return (
     <>
       <Search />
-      <div className="container">
+      <div className="w-full">
         <Carousel images={images} />
       </div>
-      <div className="container grid grid-cols-3 gap-2 p-2 my-4 ">
+      <div className=" grid grid-cols-3 sm:grid-cols-9 gap-2 p-2 my-4 place-items-center ">
         <CategoryCard image={mobilesCategory} title={"موبایل"} />
         <CategoryCard image={digitalsCategory} title={"کالای دیجیتال"} />
         <CategoryCard image={homeCategory} title={"لوازم خانگی"} />
