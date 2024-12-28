@@ -17,6 +17,22 @@ module.exports = {
       boxShadow: {
         '3xl': '0px 4px 15px 0px rgba(0, 0, 0, 0.25)',
       },
+
+      Keyframes: {
+        collapse: {
+          '0%': { height: '100px' },
+          '100%': { height: '0' },
+        },
+        expand: {
+          '0%': { height: '0' },
+          '100%': { height: '100px' },
+        },
+      },
+
+      animation: {
+        collapse: 'collapse 0.5s ease-in-out forward',
+        expand: 'expand 0.5s ease-in-out forward',
+      }
       
     },
   },

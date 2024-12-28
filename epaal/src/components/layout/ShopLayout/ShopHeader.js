@@ -24,7 +24,7 @@ const categories = [
 export default function ShopHeader() {
 
   const [scrollY, setScrollY] = useState(0)
-  const [navScroll, setNavScroll] = useState(true)
+  const [navScroll, setNavScroll] = useState(false)
 
   const onScroll = useCallback(event => {
     const { pageYOffset, scrollY } = window;
@@ -51,12 +51,9 @@ export default function ShopHeader() {
     return (
         <header
             className="
-                bg-white
                 sticky
                 top-0
                 z-10
-                transition-all
-                delay-[900ms]
             "
         >
             <div
@@ -66,6 +63,9 @@ export default function ShopHeader() {
                     justify-between
                     p-8
                     z-50
+                    transition-all
+                    delay-[900ms]
+                    bg-white
                 "
             >
 
@@ -150,8 +150,9 @@ export default function ShopHeader() {
                     p-2
                     z-0
                     transition-all
-                    delay-[800ms]
-                    ${navScroll ? "translate-y-0 opacity-100" : "translate-y-[-50%] opacity-0"}
+                    duration-300
+                    bg-white
+                    ${navScroll ? "translate-y-[0] opacity-100" : "translate-y-[-10%] opacity-0"}
                 `}
             >
                 
