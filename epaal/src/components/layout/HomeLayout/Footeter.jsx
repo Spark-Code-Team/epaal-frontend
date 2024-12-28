@@ -1,5 +1,5 @@
 "use client"
-import EvaamLogo from "../../../public/icons/evaam-icon"
+import EvaamLogo from "../../../../public/icons/evaam-icon"
 import Image from "next/image"
 import { RiInstagramFill } from "react-icons/ri";
 import { FaLinkedin } from "react-icons/fa";

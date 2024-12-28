@@ -15,7 +15,6 @@ export default function shop() {
   const images = [test1, test2, test3, test4, test5];
   return (
     <>
-      <Search />
       <div className="w-full">
         <Carousel images={images} />
       </div>

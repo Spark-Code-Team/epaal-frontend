@@ -1,11 +1,11 @@
 "use client"
 
 // components
-import BurgerMenu from "../module/layoutModule/BurgerMenu";
-import NavElements from "../module/layoutModule/NavElements";
+import BurgerMenu from "../../module/layoutModule/BurgerMenu";
+import NavElements from "../../module/layoutModule/NavElements";
 
 // logo
-import EvaamLogo from "../../../public/icons/evaam-icon";
+import EvaamLogo from "../../../../public/icons/evaam-icon";
 
 //react
 import { useCallback, useEffect, useState } from "react";

@@ -1,5 +1,5 @@
 // components
-import BottomNavbar from "../module/layoutModule/BottomNavbar";
+import BottomNavbar from "../../module/layoutModule/BottomNavbar";
 import Footer from "./Footeter";
 import Header from "./Header";
 
