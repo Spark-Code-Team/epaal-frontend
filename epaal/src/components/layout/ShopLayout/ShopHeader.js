@@ -1,6 +1,5 @@
 "use client"
 
-import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import CartIcon from "../../../../public/icons/Cart";
 import EvaamLogo from "../../../../public/icons/evaam-icon";
 import Search from "@/components/elements/search";
@@ -25,12 +24,14 @@ export default function ShopHeader() {
 
   const [scrollY, setScrollY] = useState(0)
   const [navScroll, setNavScroll] = useState(false)
+  const [showCategories, setShowCategories] = useState(true)
 
   const onScroll = useCallback(event => {
     const { pageYOffset, scrollY } = window;
     setScrollY(pageYOffset);
     if(pageYOffset > 20) {
         setNavScroll(false)
+        showCategories(false)
     } else {
         setNavScroll(true)
     }
@@ -39,8 +40,6 @@ export default function ShopHeader() {
   useEffect(() => {
       //add eventlistener to window
       window.addEventListener("scroll", onScroll, { passive: true });
-
-      console.log(scrollY);
       
       // remove event on unmount to prevent a memory leak with the cleanup
       return () => {
@@ -152,7 +151,8 @@ export default function ShopHeader() {
                     transition-all
                     duration-300
                     bg-white
-                    ${navScroll ? "translate-y-[0] opacity-100" : "translate-y-[-10%] opacity-0"}
+                    ${navScroll ? "translate-y-[0] opacity-100" : "translate-y-[-5%] opacity-0"}
+                    relative
                 `}
             >
                 
@@ -212,8 +212,51 @@ export default function ShopHeader() {
                 >
                     درخواست وام
                 </div>
-            </div>
+                
+                <div
+                    className={`
+                        ${showCategories ? " opacity-100" : "hidden"}
+                        ${navScroll ? "translate-y-[0] opacity-100" : "translate-y-[-50%] opacity-0"}
+                        transition-all
+                        min-w-full
+                        min-h-80
+                        absolute
+                        bottom-[-320px]
+                        right-0
+                        bg-blurbg
+                    `}
+                >
+                    <div
+                        className="
+                            w-[90%]
+                            mx-auto
+                            bg-white
+                            min-h-80
+                            flex
+                        "
+                    >
+                        <div
+                            className="
+                                w-[20%]
+                            "
+                        >
+                            
+                        </div>
+                        <div>
+                            {/* head categories */}
+                            <div>
 
+                            </div>
+
+
+                            {/* colums categories */}
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </header>
     )
