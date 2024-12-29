@@ -29,7 +29,7 @@ export default function Carousel({ images = [], seconds = 3 }) {
   }, [currentIndex]);
 
   return (
-    <div className="relative w-full h-[421px]">
+    <div className="relative w-full h-[300px]  md:h-[421px]">
       {/* Image part */}
       <div className="overflow-hidden w-full h-full" {...SwipeReact.events}>
         <div

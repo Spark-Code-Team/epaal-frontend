@@ -65,5 +65,4 @@ input[type="range"]::-moz-range-thumb {
     background: blue;
     border-radius: 50%;
     cursor: pointer;
-    background: rgba(117, 113, 113, 0.5);
 }

@@ -28,8 +28,6 @@ export default function Header() {
   useEffect(() => {
       //add eventlistener to window
       window.addEventListener("scroll", onScroll, { passive: true });
-
-      console.log(scrollY);
       
       // remove event on unmount to prevent a memory leak with the cleanup
       return () => {

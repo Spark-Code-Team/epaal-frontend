@@ -6,6 +6,10 @@ import Search from "@/components/elements/search";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
+import metroMan from "../../../../public/image/metroman.jpg"
+import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
 
 
 const categories = [
@@ -18,20 +22,134 @@ const categories = [
     "زیبایی و سلامت"
 ]
 
+const rightCategories = [
+    "گوشی موبایل",
+    "کالای دیجیتال",
+    "لوازم خانگی برقی",
+    "خانه و آشپزخانه",
+    "موتورسیکلت و لوازم جانبی خودرو",
+    "مد و پوشاک",
+    "زیبایی و سلامت",
+    "ابراز و تجهیزات صنعتی",
+    "ورزش و سفر"
+]
+
+const headCategories = [
+    0,
+    1,
+    2,
+    3,
+    4
+]
+
+const bottomCategories = [
+    {
+        title: "title",
+        children: [
+            "child1",
+            "child2",
+            "child3",
+            "child4",
+            "child5",
+        ]
+    },
+    {
+        title: "title",
+        children: [
+            "child1",
+            "child2",
+            "child3",
+            "child4",
+            "child5",
+        ]
+    },
+    {
+        title: "title",
+        children: [
+            "child1",
+            "child2",
+            "child3",
+            "child4",
+            "child5",
+        ]
+    },
+    {
+        title: "title",
+        children: [
+            "child1",
+            "child2",
+            "child3",
+            "child4",
+            "child5",
+        ]
+    },
+    {
+        title: "title",
+        children: [
+            "child1",
+            "child2",
+            "child3",
+            "child4",
+            "child5",
+        ]
+    },
+    {
+        title: "title",
+        children: [
+            "child1",
+            "child2",
+            "child3",
+            "child4",
+            "child5",
+        ]
+    },
+    {
+        title: "title",
+        children: [
+            "child1",
+            "child2",
+            "child3",
+            "child4",
+            "child5",
+        ]
+    },
+    {
+        title: "title",
+        children: [
+            "child1",
+            "child2",
+            "child3",
+            "child4",
+            "child5",
+        ]
+    },
+    {
+        title: "title",
+        children: [
+            "child1",
+            "child2",
+            "child3",
+            "child4",
+            "child5",
+        ]
+    },
+]
+
 
 
 export default function ShopHeader() {
 
   const [scrollY, setScrollY] = useState(0)
-  const [navScroll, setNavScroll] = useState(false)
-  const [showCategories, setShowCategories] = useState(true)
+  const [navScroll, setNavScroll] = useState(true)
+  const [showCategories, setShowCategories] = useState(false)
+  const [burgerMenu, setBurgerMenu] = useState(false)
 
   const onScroll = useCallback(event => {
     const { pageYOffset, scrollY } = window;
     setScrollY(pageYOffset);
     if(pageYOffset > 20) {
         setNavScroll(false)
-        showCategories(false)
+        setShowCategories(false)
     } else {
         setNavScroll(true)
     }
@@ -70,7 +188,8 @@ export default function ShopHeader() {
 
                 <div
                     className="
-                        w-[60%]
+                        md:w-[60%]
+                        w-[20%]
                         flex
                         gap-4
                     "
@@ -83,12 +202,28 @@ export default function ShopHeader() {
                             text-blue-800
                         "
                     >
+                        <RxHamburgerMenu 
+                            className="
+                                flex
+                                md:hidden
+                                w-6
+                                h-6
+                            "
+                            onClick={() => setBurgerMenu(true)}
+                        />
                         <EvaamLogo 
-                            width="50px"
-                            height="50px"
+                            width="45px"
+                            height="45px"
                             color="blue"
                         />
-                        <p>ایوام</p>
+                        <p
+                            className="
+                                hidden
+                                md:flex
+                            "
+                        >
+                            ایوام
+                        </p>
                     </div>
                     <Search />
                 </div>
@@ -98,7 +233,8 @@ export default function ShopHeader() {
                         flex
                         items-center
                         justify-between
-                        w-[12%]
+                        md:w-[12%]
+                        w-[45%]
                     "
                 >
                     <div
@@ -143,7 +279,8 @@ export default function ShopHeader() {
 
             <div
                 className={`
-                    flex
+                    hidden
+                    md:flex
                     items-center
                     justify-between
                     p-2
@@ -154,6 +291,7 @@ export default function ShopHeader() {
                     ${navScroll ? "translate-y-[0] opacity-100" : "translate-y-[-5%] opacity-0"}
                     relative
                 `}
+
             >
                 
                 <div
@@ -171,7 +309,9 @@ export default function ShopHeader() {
                             w-fit
                             p-2
                             rounded-xl
+                            cursor-pointer
                         "
+                        onClick={() => setShowCategories(true)}
                     >
                         دسته بندی کالاها
                     </div>
@@ -189,7 +329,9 @@ export default function ShopHeader() {
                                     items-center
                                     gap-1
                                     text-[13px]
+                                    cursor-pointer
                                 "
+                                onClick={() => setShowCategories(item)}
                             >
                                 <p>{item}</p>
                                 <IoIosArrowDown
@@ -213,16 +355,18 @@ export default function ShopHeader() {
                     درخواست وام
                 </div>
                 
+                {/* categories */}
                 <div
                     className={`
                         ${showCategories ? " opacity-100" : "hidden"}
-                        ${navScroll ? "translate-y-[0] opacity-100" : "translate-y-[-50%] opacity-0"}
+                        ${navScroll ? "" : "translate-y-[-50%] opacity-0"}
                         transition-all
                         min-w-full
-                        min-h-80
+                        min-h-screen
                         absolute
                         bottom-[-320px]
                         right-0
+                        top-14
                         bg-blurbg
                     `}
                 >
@@ -231,33 +375,248 @@ export default function ShopHeader() {
                             w-[90%]
                             mx-auto
                             bg-white
+                            h-3/4
                             min-h-80
                             flex
                         "
+                        onMouseLeave={() => setShowCategories(false)}
                     >
+
+                        {/* header categories */}
                         <div
                             className="
                                 w-[20%]
+                                flex
+                                flex-col
+                                justify-between
+                                bg-[#ecebeb]
+                                pr-2
+                                border-l
+                                border-l-[#d9d9d9]
                             "
                         >
-                            
+                            {
+                                rightCategories.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="
+                                            w-full
+                                            h-16
+                                            flex
+                                            items-center
+                                            justify-center
+                                            rounded-tr-xl
+                                            rounded-br-xl
+                                            bg-[#ecebeb]
+                                            cursor-pointer
+                                            hover:bg-white
+                                            transition-all
+                                            pl-0
+                                            border-l
+                                            border-l-[#d9d9d9]
+                                            mr-[1px]
+                                            hover:border
+                                            hover:border-[#d9d9d9]
+                                            hover:border-l-2
+                                            hover:border-l-white
+                                            mb-[5px]
+                                        "
+                                        onMouseEnter={() => setShowCategories(item)}
+                                    >
+                                        <p>{item}</p>
+                                    </div>
+                                ))
+                            }
                         </div>
-                        <div>
-                            {/* head categories */}
-                            <div>
 
+
+                        <div
+                            className="
+                                w-[80%]
+                                flex
+                                flex-col
+                            "
+                        >
+                            {/* head categories */}
+                            <div
+                                className="
+                                    w-[100%]
+                                    flex
+                                    flex-col
+                                    justify-between
+                                    mx-auto
+                                    gap-10
+                                    p-14
+                                "
+                            >
+                                <p
+                                    className="
+                                        text-blue-800
+                                    "
+                                >
+                                    همه محصولات
+                                </p>
+                                <div
+                                    className="
+                                        flex
+                                        w-[100%]
+                                        items-center
+                                        justify-between
+                                    "
+                                >
+                                    {
+                                        headCategories.map((item, index) => (
+                                            <div
+                                                key={index}
+                                                className="
+                                                    flex
+                                                    flex-col
+                                                    justify-center
+                                                    items-center
+                                                    gap-4
+                                                    hover:scale-110
+                                                    transition-all
+                                                    cursor-pointer
+                                                "
+                                            >
+                                                <Image 
+                                                    src={metroMan}
+                                                    width={300}
+                                                    height={300}
+                                                    className="
+                                                        w-32
+                                                        h-32
+                                                        rounded-xl
+                                                        border
+                                                        hover:border-blue-800
+                                                        hover:border-[2px]
+                                                        transition-all
+                                                    "
+                                                    alt="alt"
+                                                />
+                                                <p>
+                                                    دسته بندی
+                                                </p>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
                             </div>
 
 
                             {/* colums categories */}
-                            <div>
+                            <div
+                                className="
+                                    flex
+                                    w-[100%]
+                                    mx-auto
+                                    justify-around
+                                    flex-wrap
+                                    overflow-y-scroll
+                                    h-full
+                                    p-2
+                                    gap-11
+                                "
+                            >
+                                {
+                                    bottomCategories.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            className="
+                                                w-[20%]
+                                            "
+                                        >
+                                            <p>
+                                                { item.title }
+                                            </p>
+                                            <div
+                                                className="
+                                                    border-b
+                                                    border-b-[#d9d9d9]
+                                                "
+                                            >
+                                                <div
+                                                    className="
+                                                        w-2/5
+                                                        h-1
+                                                        bg-[#afaeae]
+                                                    "
+                                                >
 
+                                                </div>
+                                            </div>
+                                            <div
+                                                className="
+                                                    flex
+                                                    flex-col
+                                                    gap-3
+                                                "
+                                            >
+                                                {
+                                                    item.children.map((item, index) => (
+                                                        <p
+                                                            key={index}
+                                                        >
+                                                            { item }
+                                                        </p>
+                                                    ))
+                                                }
+                                            </div>
+                                        </div>
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div
+                className={`
+                    w-screen
+                    h-screen
+                    md:hidden
+                    bg-[#0a0a0a4d]   
+                    absolute
+                    top-0
+                    ${burgerMenu ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}
+                    transition-all
+                    duration-300
+                    flex
+                    justify-between
+                `}
+            >
+                <div
+                    className="
+                        w-[55%]
+                        h-full
+                        bg-white
+                    "
+                >
+
+                </div>
+
+                <div
+                    className="
+                        bg-white
+                        h-fit
+                        m-8
+                        p-2
+                        rounded-lg
+                        cursor-pointer
+                    "
+                    onClick={() => setBurgerMenu(false)}
+                >
+                    <RxCross2 
+                        fill="red"
+                        className="
+                            w-6
+                            h-6
+                            text-red-700
+                        "
+                    />
+                </div>
+            </div>
         </header>
     )
 }
