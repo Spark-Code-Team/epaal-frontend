@@ -10,6 +10,7 @@ import Image from "next/image";
 import metroMan from "../../../../public/image/metroman.jpg"
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
+import Link from "next/link";
 
 
 const categories = [
@@ -143,17 +144,18 @@ export default function ShopHeader() {
   const [navScroll, setNavScroll] = useState(true)
   const [showCategories, setShowCategories] = useState(false)
   const [burgerMenu, setBurgerMenu] = useState(false)
+  const [burgerChangeItems, setBurgerChangeItems] = useState(false)
 
   const onScroll = useCallback(event => {
     const { pageYOffset, scrollY } = window;
     setScrollY(pageYOffset);
-    if(pageYOffset > 20) {
+    if(scrollY > 120) {
         setNavScroll(false)
         setShowCategories(false)
     } else {
         setNavScroll(true)
     }
-  }, []);
+}, [scrollY]);
 
   useEffect(() => {
       //add eventlistener to window
@@ -178,7 +180,8 @@ export default function ShopHeader() {
                     flex
                     items-center
                     justify-between
-                    p-8
+                    md:p-2
+                    p-3
                     z-50
                     transition-all
                     delay-[900ms]
@@ -225,7 +228,16 @@ export default function ShopHeader() {
                             ایوام
                         </p>
                     </div>
-                    <Search />
+                    <div
+                        className="
+                            hidden
+                            md:flex
+                            w-full
+                            h-14
+                        "
+                    >
+                        <Search />
+                    </div>
                 </div>
 
                 <div
@@ -279,8 +291,7 @@ export default function ShopHeader() {
 
             <div
                 className={`
-                    hidden
-                    md:flex
+                    flex
                     items-center
                     justify-between
                     p-2
@@ -291,12 +302,23 @@ export default function ShopHeader() {
                     ${navScroll ? "translate-y-[0] opacity-100" : "translate-y-[-5%] opacity-0"}
                     relative
                 `}
-
             >
-                
                 <div
                     className="
                         flex
+                        md:hidden
+                        w-full
+                        mx-auto
+                        h-12
+                    "
+                >
+                    <Search />
+                </div>
+                
+                <div
+                    className="
+                        md:flex
+                        hidden
                         items-center
                         justify-between
                         w-[88%]
@@ -350,6 +372,8 @@ export default function ShopHeader() {
                         bg-[#c1def0]
                         p-2
                         rounded-xl
+                        md:flex
+                        hidden
                     "
                 >
                     درخواست وام
@@ -393,6 +417,7 @@ export default function ShopHeader() {
                                 pr-2
                                 border-l
                                 border-l-[#d9d9d9]
+                                
                             "
                         >
                             {
@@ -446,7 +471,8 @@ export default function ShopHeader() {
                                     justify-between
                                     mx-auto
                                     gap-10
-                                    p-14
+                                    px-14
+                                    pt-3
                                 "
                             >
                                 <p
@@ -484,8 +510,8 @@ export default function ShopHeader() {
                                                     width={300}
                                                     height={300}
                                                     className="
-                                                        w-32
-                                                        h-32
+                                                        w-24
+                                                        h-24
                                                         rounded-xl
                                                         border
                                                         hover:border-blue-800
@@ -516,6 +542,7 @@ export default function ShopHeader() {
                                     h-full
                                     p-2
                                     gap-11
+                                    pb-8
                                 "
                             >
                                 {
@@ -571,6 +598,7 @@ export default function ShopHeader() {
                 </div>
             </div>
 
+            {/* burger Menu */}
             <div
                 className={`
                     w-screen
@@ -588,19 +616,209 @@ export default function ShopHeader() {
             >
                 <div
                     className="
-                        w-[55%]
+                        w-[75%]
                         h-full
                         bg-white
                     "
                 >
 
+                    {/* logo  */}
+                    <div
+                        className="
+                            flex
+                            items-center
+                            justify-between
+                            p-4
+                            border-b
+                            border-[#d9d9d9]
+                        "
+                    >
+                        <div
+                            className="
+                                flex
+                                items-center
+                                gap-3
+                            "
+                        >
+                            <EvaamLogo 
+                                width="35px"
+                                height="35px"
+                                color="blue"
+                            />
+                            <p>
+                                ایپال      
+                            </p>
+                        </div>
+                        <div
+                            className="
+                                text-blue-800
+                                bg-[#c1def0]
+                                p-2
+                                rounded-xl
+                                flex
+                            "
+                        >
+                            درخواست وام
+                        </div>
+                    </div>
+
+                    {/* parts */}
+                    <div
+                        className="
+                            flex
+                            flex-col
+                            gap-6
+                        "
+                    >
+                            <Link 
+                                href="#"
+                                className="
+                                    border-b
+                                    border-[#d9d9d9]
+                                    p-3
+                                    flex
+                                    items-center
+                                    
+                                "
+                            >
+                                بلاگ
+                            </Link>
+                            <Link 
+                                href="#"
+                                className="
+                                    border-b
+                                    border-[#d9d9d9]
+                                    px-3
+                                    flex
+                                    items-center
+                                    pb-3
+                                "
+                            >
+                                سوالات متدوال
+                            </Link>
+                            <div
+                                className="
+                                    flex
+                                    w-full
+                                    items-center
+                                    justify-between
+                                    border-b
+                                    border-[#d9d9d9]
+                                    pb-3
+                                    px-3
+                                "
+                            >
+                                <p>سایر</p>
+                                <IoIosArrowDown />
+                            </div>
+
+                            <div
+                                className="
+                                    max-h-96
+                                    overflow-y-scroll
+                                "
+                            >
+                                <p
+                                    className={`
+                                        border-b
+                                        border-[#d9d9d9]
+                                        pb-5
+                                        px-3
+                                        text-blue-700
+                                        ${ burgerChangeItems ? "hidden" : "flex"}
+                                    `}
+                                >
+                                    دسته بندی محصولات
+                                </p>
+                                <div
+                                    onClick={() => setBurgerChangeItems(false)}
+                                >
+                                    <p
+                                        className={`
+                                            border-b
+                                            border-[#d9d9d9]
+                                            pb-5
+                                            px-3
+                                            text-blue-700
+                                            ${ burgerChangeItems ? "flex" : "hidden"}
+                                        `}
+                                    >
+                                        بازگشت به دسته بندی ها
+                                    </p>
+                                </div>
+                                {
+                                    burgerChangeItems ? (
+                                            <div
+                                                className="
+                                                    flex
+                                                    flex-col
+                                                    items-center
+                                                    justify-center
+                                                    gap-3
+                                                    overflow-y-scroll
+                                                "
+                                            >
+                                                {
+                                                    headCategories.map(item => (
+                                                        <div
+                                                            key={item}
+                                                            className="
+                                                                flex
+                                                                flex-col
+                                                                items-center
+                                                                justify-center
+                                                                hover:scale-110
+                                                                transition-all
+                                                            "
+                                                        >
+                                                            <Image 
+                                                                src={metroMan}
+                                                                width={300}
+                                                                height={300}
+                                                                className="
+                                                                    h-20
+                                                                    w-20
+                                                                    rounded-xl
+                                                                "
+                                                                alt="alt"
+                                                            />
+                                                            <p>
+                                                                دسته بندی
+                                                            </p>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                    ) : (
+                                        categories.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            className="
+                                                flex
+                                                items-center
+                                                justify-between
+                                                py-5
+                                                px-3
+                                                border-b
+                                                border-b-[#d9d9d9]
+                                            "
+                                            onClick={() => setBurgerChangeItems(item)}
+                                        >
+                                            <p>{item}</p>
+                                            <IoIosArrowDown />
+                                        </div>
+                                    )))
+                                }
+                            </div>
+                    </div>
                 </div>
 
+                {/* cross buttom */}
                 <div
                     className="
                         bg-white
                         h-fit
-                        m-8
+                        m-5
                         p-2
                         rounded-lg
                         cursor-pointer

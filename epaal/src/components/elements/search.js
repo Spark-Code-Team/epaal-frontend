@@ -13,12 +13,11 @@ function Search() {
       className={`
           w-full
           bg-slate-50
-          md:flex
+          flex
           items-center
           gap-3
           rounded-lg
           p-2
-          hidden
         `}
     >
       <SearchIcon
