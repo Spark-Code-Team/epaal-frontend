@@ -6,8 +6,6 @@ import SidebarAdmin from "./SidebarAdmin";
 export default function LayoutAdmin({ children }) {
 
     return (
-        <>
-        <HeaderAdmin />
         <div
             className="
                 flex
@@ -16,21 +14,38 @@ export default function LayoutAdmin({ children }) {
             <div
                 className="
                     w-[20%]
-                    bg-slate-900
+                    bg-blue-700
                 "
             >
                 <SidebarAdmin />
                 A
             </div>
+
             <div
                 className="
+                    flex
+                    flex-col
                     w-[80%]
-                    bg-emerald-500
                 "
             >
-                { children }
+                <div
+                    className="
+                        w-full
+                        bg-slate-600
+                    "
+                >
+                    <HeaderAdmin />
+                    A
+                </div>
+                <div
+                    className="
+                        w-full
+                        bg-orange-500
+                    "
+                >
+                    { children }
+                </div>
             </div>
         </div>
-        </>
     )
 }
