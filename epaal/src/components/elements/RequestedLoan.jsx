@@ -56,7 +56,7 @@ const RequestedLoan = ({ isBanner }) =>{
                         <div className="w-[93%] h-24 mx-auto flex">
 
                             <div className="w-1/4 flex items-center">
-                                <div className="w-12 h-12 bg-[#2852E4] text-lg rounded-md">
+                                <div className="w-12 h-12 bg-[#1D434C] text-lg rounded-md">
                                     <button onClick={handleNext} className="text-white">
                                         <MdOutlineNavigateNext size={50}/>
                                     </button>
@@ -65,12 +65,12 @@ const RequestedLoan = ({ isBanner }) =>{
 
                             <div className="w-1/2 flex justify-center items-center">
                                 <div className="flex justify-center">
-                                    <button className="bg-blue-200 rounded-lg p-2 font-bold w-28 border-2 border-[#2852E4] text-[#2852E4]">{items[currentIndex]}</button>
+                                    <button className="bg-blue-200 rounded-lg p-2 font-bold w-28 border-2 border-[#1D434C] text-[#1D434C]">{items[currentIndex]}</button>
                                 </div>
                             </div>
 
                             <div className="w-1/4 flex justify-end items-center">
-                                <div className="w-12 h-12 bg-[#2852E4] text-lg rounded-md">
+                                <div className="w-12 h-12 bg-[#1D434C] text-lg rounded-md">
                                     <button onClick={handlePrevious} className="text-white">
                                         <GrFormPrevious size={50}/>
                                     </button>
@@ -90,28 +90,28 @@ const RequestedLoan = ({ isBanner }) =>{
 
                         <div className="lg:w-[90%] lg:h-54 lg:mx-auto w-[90%] min-h-34 flex mx-auto mt-5 sm:w-[80%] sm:h-34 sm:mx-auto">
 
-                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm pt-[2px] text-sm text-[#2852E4]">مبلغ قسط نهایی</div>
-                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-base text-sm text-left text-[#2852E4]">940,763 <span className="text-sm">تومان</span></div>
+                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm pt-[2px] text-sm text-[#1D434C]">مبلغ قسط نهایی</div>
+                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-base text-sm text-left text-[#1D434C]">940,763 <span className="text-sm">تومان</span></div>
 
                         </div>
 
                         <div className="lg:w-[90%] lg:h-54 lg:mx-auto py-3 w-[90%] min-h-34 flex mx-auto mt-2 sm:w-[80%] sm:h-34 sm:mx-auto">
 
-                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-[13px] text-xs lg:pt-0 pt-1 text-[#2852E4]">ما به تفاوت خرید نقدی و اقساطی</div>
-                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm text-sm pt-[3px] text-left text-[#2852E4]">940,763 <span className="text-sm">تومان</span></div>
+                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-[13px] text-xs lg:pt-0 pt-1 text-[#1D434C]">ما به تفاوت خرید نقدی و اقساطی</div>
+                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm text-sm pt-[3px] text-left text-[#1D434C]">940,763 <span className="text-sm">تومان</span></div>
 
                         </div>
 
                         <div className="lg:w-[90%] lg:h-54 lg:mx-auto py-3 w-[90%] min-h-34 flex mx-auto mt-2 sm:w-[80%] sm:h-34 sm:mx-auto">
 
-                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm text-xs lg:pt-0 pt-1 text-[#2852E4]">اعتبار کیف پول فروشگاه</div>
-                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm text-sm pt-[3px] text-left text-[#2852E4]">940,763 <span className="text-sm">تومان</span></div>
+                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm text-xs lg:pt-0 pt-1 text-[#1D434C]">اعتبار کیف پول فروشگاه</div>
+                            <div className="lg:w-1/2 w-1/2 sm:w-1/2 lg:text-sm text-sm pt-[3px] text-left text-[#1D434C]">940,763 <span className="text-sm">تومان</span></div>
 
                         </div>
 
                     </div>
 
-                    <button type="button" className="bg-[#2852E4] text-white mx-auto block lg:w-[80%] p-1 lg:mb-0 mb-3 mt-4 rounded-md w-[85%]">درخواست وام</button>
+                    <button type="button" className="bg-[#1D434C] text-white mx-auto block lg:w-[80%] p-1 lg:mb-0 mb-3 mt-4 rounded-md w-[85%]">درخواست وام</button>
 
                 </div>
 

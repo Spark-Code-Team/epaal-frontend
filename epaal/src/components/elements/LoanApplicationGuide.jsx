@@ -24,7 +24,7 @@ const LoanApplicationGuide = ()=>{
 
                     <div className="lg:w-[422px] w-full m-auto mt-10 text-[15px] flex justify-right">
                         <Link href={""} className="text-[#2852E4] flex items-center space-x-4">
-                            <span className="me-1">صفحه راهنمای دیجی شهر</span>
+                            <span className="me-1">صفحه راهنمای ایپال</span>
                             <MdOutlineArrowBackIosNew size={20} />
                         </Link>
                     </div>

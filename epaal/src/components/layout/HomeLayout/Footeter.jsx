@@ -74,7 +74,7 @@ export default function Footer() {
 
            <div className="flex items-center bg-[#E2E8F0] w-full h-[65px] pb-[30px] justify-between px-[30px]">
             <div>
-                <p className="text-[#475569] font-[600] text-[12px]">کلیه حقوق مادی و معنوی متعلق به شرکت نوآوران تجارت گستر فرین (دیجی‌شهر) می باشد.</p>
+                <p className="text-[#475569] font-[600] text-[12px]">کلیه حقوق مادی و معنوی متعلق به  ایپال می باشد.</p>
             </div>
 
             <div className="text-[#475569] font-[600] text-[13px] border-[1px] rounded-[8px] py-[5px] px-[10px] border-gray-700 flex">

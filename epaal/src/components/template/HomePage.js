@@ -3,6 +3,8 @@
 // react
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import LottiePlayer from "@/utils/LottiePlayer";
+import LoadingAnimation from "../../../public/lottie/LoadingAnimation.json"
 
 
 export default function HomePage() {
@@ -16,6 +18,15 @@ export default function HomePage() {
     }, [])
 
     return (
-        <></>
+      <div
+          className="
+              w-full
+              h-full
+          "
+      >
+          <LottiePlayer 
+                animation={LoadingAnimation}
+          />
+      </div>
     )
 }
