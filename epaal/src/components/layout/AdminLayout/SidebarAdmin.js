@@ -42,6 +42,7 @@ export default function SidebarAdmin() {
                 max-h-screen
                 bg-[#33B1AC]
                 overflow-y-scroll
+                
             "
         >
 
