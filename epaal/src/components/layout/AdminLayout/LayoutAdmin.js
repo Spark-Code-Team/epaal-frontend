@@ -18,7 +18,7 @@ export default function LayoutAdmin({ children }) {
                 "
             >
                 <SidebarAdmin />
-                A
+                
             </div>
 
             <div
@@ -35,7 +35,7 @@ export default function LayoutAdmin({ children }) {
                     "
                 >
                     <HeaderAdmin />
-                    A
+                    
                 </div>
                 <div
                     className="
