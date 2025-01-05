@@ -5,7 +5,7 @@ export default function HeaderAdmin() {
 
     return (
         <header>
-            A
+            fateme
         </header>
     )
 }
