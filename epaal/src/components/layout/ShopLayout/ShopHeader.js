@@ -13,27 +13,365 @@ import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 
 
+// images:
+import BeautyProduct from "@/../public/image/beauty.png"
+import BeautyService from "@/../public/image/beauty-service.jpg"
+
+
 const categories = [
-    "گوشی موبایل",
-    "کالای دیجیتال",
-    "لوازم خانگی برقی",
-    "خانه و آشپزخانه",
-    "موتورسیکلت و لوازم جانبی خودرو",
-    "مد و پوشاک",
-    "زیبایی و سلامت"
+    {
+        id: 1,
+        name: "گوشی موبایل",
+        productImage: BeautyProduct,
+        serviceImage: BeautyService,
+        categories: [
+            {id: 1 , name: "پرچمدار"},
+            {id: 2, name: "اپل"},
+            {id: 3, name: "سامسونگ"},
+            {id: 4, name: "شیائومی"},
+        ],
+        subCategories: [
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+        ]
+    },
+    {
+        id: 2,
+        name:  "کالای دیجیتال",
+        categories: [
+            {id: 1 , name: "لپ تاپ"},
+            {id: 2, name: "کنسول"},
+            {id: 3, name: "موبایل"},
+            {id: 4, name: "کامپیوتر"},
+        ]
+        ,
+        subCategories: [
+            {   
+                id: 1,
+                title: 'goshi',
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+        ]
+        
+    },
+    {
+        id: 3,
+        name: "لوازم خانگی برقی",
+        categories: [
+            {id: 1 , name: "جاروبرقی"},
+            {id: 2, name: "ماکرویو"},
+            {id: 3, name: "یخچال"},
+            {id: 4, name: "قهوه ساز"},
+        ]
+        ,
+        subCategories: [
+            {   
+                id: 1,
+                title: "barghi",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+        ]
+    },
+    {
+        id: 4,
+        name: "خانه و آشپزخانه",
+        categories: [
+            {id: 1 , name: "مبلمان"},
+            {id: 2, name: "فرش و قالیچه"},
+            {id: 3, name: "تلویزیون"},
+            {id: 4, name: "ظروف آشپزخانه"},
+        ],
+        subCategories: [
+            {   
+                id: 1,
+                title: "khaneh",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+        ]
+    },
+    {
+        id: 5,
+        name: "موتورسیکلت و لوازم خودرو",
+        categories: [
+            {id: 1 , name: "هوندا"},
+            {id: 2, name: "لنت ترمز"},
+            {id: 3, name: "کویر"},
+            {id: 4, name: "آینه"},
+        ],
+        subCategories: [
+            {   
+                id: 1,
+                title: "mmotor",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+        ]
+    },
+    {
+        id: 6,
+        name:  "مد و پوشاک",
+        categories: [
+            {id: 1 , name: "پیراهن و تیشرت"},
+            {id: 2, name: "شلوار"},
+            {id: 3, name: "کت و شلوار"},
+            {id: 4, name: "کفش"},
+        ],
+        subCategories: [
+            {   
+                id: 1,
+                title: "lebas",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+        ]
+    },
+    {
+        id: 7,
+        name:  "زیبایی و سلامت",
+        categories: [
+            {id: 1 , name: "مرطوب کننده ها"},
+            {id: 2, name: "پاک کننده آرایش"},
+            {id: 3, name: "عطر و ادکلن"},
+            {id: 4, name: "مکمل های غذایی"},
+        ],
+        subCategories: [
+            {   
+                id: 1,
+                title: "zibaii",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+            {   
+                id: 1,
+                title: "لپ تاپ",
+                children: [
+                    "ایسوس",
+                    "مک",
+                    "لنوو",
+                    "دل",
+                    "ایسر",
+                ]
+            },
+        ]
+    },   
+   
 ]
 
-const rightCategories = [
-    "گوشی موبایل",
-    "کالای دیجیتال",
-    "لوازم خانگی برقی",
-    "خانه و آشپزخانه",
-    "موتورسیکلت و لوازم جانبی خودرو",
-    "مد و پوشاک",
-    "زیبایی و سلامت",
-    "ابراز و تجهیزات صنعتی",
-    "ورزش و سفر"
-]
+// const rightCategories = [
+//     {
+//         id: 1,
+//         name: "گوشی موبایل",
+//     },
+//     {
+//         id: 2,
+//         name:  "کالای دیجیتال",
+//     },
+//     {
+//         id: 3,
+//         name: "لوازم خانگی برقی",
+//     },
+//     {
+//         id: 4,
+//         name: "خانه و آشپزخانه",
+//     },
+//     {
+//         id: 5,
+//         name: "موتورسیکلت و خودرو",
+//     },
+//     {
+//         id: 6,
+//         name:  "مد و پوشاک",
+//     },
+//     {
+//         id: 7,
+//         name:  "زیبایی و سلامت"
+//     },   
+// ]
 
 const headCategories = [
     0,
@@ -43,99 +381,107 @@ const headCategories = [
     4
 ]
 
-const bottomCategories = [
-    {
-        title: "title",
-        children: [
-            "child1",
-            "child2",
-            "child3",
-            "child4",
-            "child5",
-        ]
-    },
-    {
-        title: "title",
-        children: [
-            "child1",
-            "child2",
-            "child3",
-            "child4",
-            "child5",
-        ]
-    },
-    {
-        title: "title",
-        children: [
-            "child1",
-            "child2",
-            "child3",
-            "child4",
-            "child5",
-        ]
-    },
-    {
-        title: "title",
-        children: [
-            "child1",
-            "child2",
-            "child3",
-            "child4",
-            "child5",
-        ]
-    },
-    {
-        title: "title",
-        children: [
-            "child1",
-            "child2",
-            "child3",
-            "child4",
-            "child5",
-        ]
-    },
-    {
-        title: "title",
-        children: [
-            "child1",
-            "child2",
-            "child3",
-            "child4",
-            "child5",
-        ]
-    },
-    {
-        title: "title",
-        children: [
-            "child1",
-            "child2",
-            "child3",
-            "child4",
-            "child5",
-        ]
-    },
-    {
-        title: "title",
-        children: [
-            "child1",
-            "child2",
-            "child3",
-            "child4",
-            "child5",
-        ]
-    },
-    {
-        title: "title",
-        children: [
-            "child1",
-            "child2",
-            "child3",
-            "child4",
-            "child5",
-        ]
-    },
-]
-
+// const bottomCategories = [
+//     {   
+//         id: 1,
+//         title: "لپ تاپ",
+//         children: [
+//             "ایسوس",
+//             "مک",
+//             "لنوو",
+//             "دل",
+//             "ایسر",
+//         ]
+//     },
+//     {
+//         id:2,
+//         title: "title",
+//         children: [
+//             "child1",
+//             "child2",
+//             "child3",
+//             "child4",
+//             "child5",
+//         ]
+//     },
+//     {
+//         id:3,
+//         title: "title",
+//         children: [
+//             "child1",
+//             "child2",
+//             "child3",
+//             "child4",
+//             "child5",
+//         ]
+//     },
+//     {
+//         id:4,
+//         title: "title",
+//         children: [
+//             "child1",
+//             "child2",
+//             "child3",
+//             "child4",
+//             "child5",
+//         ]
+//     },
+//     {
+//         id:5,
+//         title: "title",
+//         children: [
+//             "child1",
+//             "child2",
+//             "child3",
+//             "child4",
+//             "child5",
+//         ]
+//     },
+//     {
+//         id:6,
+//         title: "title",
+//         children: [
+//             "child1",
+//             "child2",
+//             "child3",
+//             "child4",
+//             "child5",
+//         ]
+//     },
+//     {
+//         id:7,
+//         title: "title",
+//         children: [
+//             "child1",
+//             "child2",
+//             "child3",
+//             "child4",
+//             "child5",
+//         ]
+//     },
+//     {
+//         id:8,
+//         title: "title",
+//         children: [
+//             "child1",
+//             "child2",
+//             "child3",
+//             "child4",
+//             "child5",
+//         ]
+//     },
+//     {   
+//         id:9,
+//         title: "title",
+//         children: [
+//             "child1",
+//             "child2",
+//             "child3",
+//             "child4",
+//             "child5",
+//         ]
+//     },
+// ]
 
 
 export default function ShopHeader() {
@@ -145,6 +491,15 @@ export default function ShopHeader() {
   const [showCategories, setShowCategories] = useState(false)
   const [burgerMenu, setBurgerMenu] = useState(false)
   const [burgerChangeItems, setBurgerChangeItems] = useState(false)
+
+  const [selectedCategory, setSelectedCategory] = useState(0)
+  const [selectCategoryName, setSelectCategoryName] = useState("")
+  const [selectedSubCategory, setSelectedSubCategory] = useState([])
+  const [selectedSub2Category, setSelectedSub2Category] = useState([])
+  const [selectServices, setSelectServices] = useState(false)
+  const [selectServicesProdcutImage, setSelectServicesProdcutImage] = useState("")
+  const [selectServicesImage, setSelectServicesImage] = useState("")
+  
 
   const onScroll = useCallback(event => {
     const { pageYOffset, scrollY } = window;
@@ -332,6 +687,9 @@ export default function ShopHeader() {
                             p-2
                             rounded-xl
                             cursor-pointer
+                            hover:bg-green-200
+                            transition-all
+                            ease-in-out
                         "
                         onClick={() => setShowCategories(true)}
                     >
@@ -352,10 +710,23 @@ export default function ShopHeader() {
                                     gap-1
                                     text-[13px]
                                     cursor-pointer
+                                    hover:bg-green-200
+                                    transition-all
+                                    ease-in-out
+                                    p-3
+                                    rounded-lg
                                 "
-                                onClick={() => setShowCategories(item)}
+                                onClick={() => {
+                                setShowCategories(true)
+                                setSelectedCategory(item.id)
+                                setSelectedSubCategory(item.categories)
+                                setSelectedSub2Category(item.subCategories)
+                                setSelectCategoryName(item.name)
+                                setSelectServicesImage(item.serviceImage)
+                                setSelectServicesProdcutImage(item.productImage)
+                                }}
                             >
-                                <p>{item}</p>
+                                <p>{item.name}</p>
                                 <IoIosArrowDown
                                     width={24}
                                     height={24}
@@ -368,8 +739,8 @@ export default function ShopHeader() {
 
                 <div
                     className="
-                        text-blue-800
-                        bg-[#c1def0]
+                        text-green-600
+                        bg-green-200
                         p-2
                         rounded-xl
                         md:flex
@@ -395,20 +766,55 @@ export default function ShopHeader() {
                     `}
                 >
                     <div
-                        className="
+                        className={`
                             w-[90%]
                             mx-auto
-                            bg-white
+                            bg-[#ecebeb]
                             h-3/4
                             min-h-80
-                            flex
-                        "
-                        onMouseLeave={() => setShowCategories(false)}
+                            ${selectServices ? 'flex' : 'flex flex-row'}
+                        `}
+                        onMouseLeave={() => {setShowCategories(false)
+                            setSelectServices(false)
+                        }}
                     >
 
                         {/* header categories */}
+                        {/* select type of service */}
                         <div
-                            className="
+                            className={`
+                                ${selectServices ? 'w-[20%] flex flex-col justify-evenly bg-[#ecebeb] pr-2 border-l border-l-[#d9d9d9]' : 'w-[100%] flex flex-row items-center justify-evenly'}
+                            `}
+                        >
+                           <div className="h-60 w-60 bg-green-300 flex flex-col items-center justify-evenly" onClick={()=>setSelectServices(false)}>
+                            
+                            <Image
+                                src={selectServicesImage}
+                                height={300}
+                                width={300}
+                                alt='service image'
+                            />
+                            خدمات {selectCategoryName}</div>
+                                        
+                           <div className="h-60 w-60 bg-green-300 flex flex-col items-center justify-evenly" onClick={()=>setSelectServices(true)} >
+                            
+                            <Image
+                                src={selectServicesProdcutImage}
+                                height={100}
+                                width={100}
+                                alt='service image'
+                            />
+                            کالای {selectCategoryName}</div>
+                                  
+                                
+                            
+                        </div>
+                        {/* select type of service */}
+                        <div
+                            className=
+                            {  
+                                `
+                                ${selectServices ? 'block' : 'hidden'}
                                 w-[20%]
                                 flex
                                 flex-col
@@ -416,25 +822,25 @@ export default function ShopHeader() {
                                 bg-[#ecebeb]
                                 pr-2
                                 border-l
-                                border-l-[#d9d9d9]
-                                
-                            "
+                                border-l-[#d9d9d9]`
+                            }
+                            
                         >
                             {
-                                rightCategories.map((item, index) => (
+                                categories.map((item, index) => (
                                     <div
                                         key={index}
-                                        className="
+                                        className={`
+                                            ${selectServices ? 'block' : 'hidden'}
                                             w-full
                                             h-16
                                             flex
                                             items-center
                                             justify-center
-                                            rounded-tr-xl
+                                            rousnded-tr-xl
                                             rounded-br-xl
-                                            bg-[#ecebeb]
+                                            ${item.id === selectedCategory ? "bg-[#d9d9d9]" : "bg-none"}
                                             cursor-pointer
-                                            hover:bg-white
                                             transition-all
                                             pl-0
                                             border-l
@@ -445,10 +851,17 @@ export default function ShopHeader() {
                                             hover:border-l-2
                                             hover:border-l-white
                                             mb-[5px]
-                                        "
-                                        onMouseEnter={() => setShowCategories(item)}
+                                        `}
+                                        onMouseEnter={() => {
+                                            setShowCategories(item.name)
+                                setSelectedCategory(item.id)
+                                setSelectedSubCategory(item.categories)
+                                setSelectedSub2Category(item.subCategories)
+                                        }
+                                        
+                                        }
                                     >
-                                        <p>{item}</p>
+                                        <p>{item.name}</p>
                                     </div>
                                 ))
                             }
@@ -456,11 +869,12 @@ export default function ShopHeader() {
 
 
                         <div
-                            className="
+                            className={`
+                                ${selectServices ? 'block': 'hidden'}
                                 w-[80%]
                                 flex
                                 flex-col
-                            "
+                            `}
                         >
                             {/* head categories */}
                             <div
@@ -491,7 +905,8 @@ export default function ShopHeader() {
                                     "
                                 >
                                     {
-                                        headCategories.map((item, index) => (
+                                        
+                                        selectedSubCategory.map((item, index) => (
                                             <div
                                                 key={index}
                                                 className="
@@ -521,7 +936,7 @@ export default function ShopHeader() {
                                                     alt="alt"
                                                 />
                                                 <p>
-                                                    دسته بندی
+                                                    {item.name}
                                                 </p>
                                             </div>
                                         ))
@@ -546,7 +961,7 @@ export default function ShopHeader() {
                                 "
                             >
                                 {
-                                    bottomCategories.map((item, index) => (
+                                    selectedSub2Category.map((item, index) => (
                                         <div
                                             key={index}
                                             className="
@@ -802,9 +1217,9 @@ export default function ShopHeader() {
                                                 border-b
                                                 border-b-[#d9d9d9]
                                             "
-                                            onClick={() => setBurgerChangeItems(item)}
+                                            onClick={() => setBurgerChangeItems(item.name)}
                                         >
-                                            <p>{item}</p>
+                                            <p>{item.name}</p>
                                             <IoIosArrowDown />
                                         </div>
                                     )))
