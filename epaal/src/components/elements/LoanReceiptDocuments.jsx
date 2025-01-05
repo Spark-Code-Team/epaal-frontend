@@ -6,7 +6,7 @@ const LoanReceiptDocuments = ()=>{
 
         <>
 
-            <div className="w-[90%] lg:w-[90%] mt-20 sm:w-[90%] bg-green-600 shadow-lg mx-auto">
+            <div className="w-[90%] lg:w-[90%] mt-20 sm:w-[90%] mx-auto">
 
                 <div className="w-full text-center text-xl">مدارک لازم برای دریافت وام</div>
 
