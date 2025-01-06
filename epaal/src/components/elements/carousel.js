@@ -41,7 +41,7 @@ export default function Carousel({ images = [], seconds = 3 }) {
               <Image
                 src={src}
                 alt={`Carousel image ${index + 1}`}
-                className="object-cover w-full "
+                className="object-fill w-full "
                 fill
                 placeholder="blur"
               />
