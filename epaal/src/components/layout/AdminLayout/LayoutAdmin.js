@@ -14,7 +14,7 @@ export default function LayoutAdmin({ children }) {
             <div
                 className="
                     w-[20%]
-                    h-100vh
+                    min-h-[100vh]
                     bg-blue-600
                 "
             >
