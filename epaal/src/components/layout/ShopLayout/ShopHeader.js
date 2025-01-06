@@ -437,12 +437,12 @@ export default function ShopHeader() {
     <header className="sticky top-0 z-10">
       <div className="z-50 flex items-center justify-between bg-white p-3 transition-all delay-[900ms] md:p-2">
         <div className="flex w-[20%] gap-4 md:w-[60%]">
-          <div className="flex items-center gap-5 text-blue-800">
+          <div className="flex items-center gap-5 text-green-700">
             <RxHamburgerMenu
               className="flex h-6 w-6 md:hidden"
               onClick={() => setBurgerMenu(true)}
             />
-            <EvaamLogo width="45px" height="45px" color="blue" />
+            <EvaamLogo width="45px" height="45px" color="#166534" />
             <p className="hidden md:flex">ایوام</p>
           </div>
           <div className="hidden h-14 w-full md:flex">

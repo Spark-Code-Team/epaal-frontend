@@ -15,14 +15,14 @@ export default function LandingHome()  {
     return (
         <>
             <Banner />
-            <LoanApplicationGuide />
+            {/* <LoanApplicationGuide /> */}
             <ProductCategories />
-            <CreditConditions />
-            <LoanApplicationProcess />
+            {/* <CreditConditions /> */}
+            {/* <LoanApplicationProcess /> */}
             <LoanReceiptDocuments />
             <InstallmentPurchase />
-            <Articles />
-            <SoalatMotadavel/>
+            {/* <Articles /> */}
+            {/* <SoalatMotadavel/> */}
         </>
     )
 }

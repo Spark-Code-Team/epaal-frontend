@@ -100,7 +100,7 @@ export default function Banner() {
                             cursor-pointer
                         "
                     >
-                        فروشگاه ایپال
+                        فروشگاه ایوام
                     </div>
                 </div>
                 </div>
@@ -184,7 +184,7 @@ export default function Banner() {
                             cursor-pointer
                         "
                     >
-                        فروشگاه ایپال
+                        فروشگاه ایوام
                     </div>
                 </div>
 
@@ -201,7 +201,7 @@ export default function Banner() {
                     "
                 >
                     <p>
-                        محاسبه اقساط ایپال
+                        محاسبه اقساط ایوام
                     </p>
                     <Flash />
                 </div>
@@ -241,7 +241,7 @@ export default function Banner() {
                     "
                 >
                     <p>
-                        محاسبه اقساط ایپال
+                        محاسبه اقساط ایوام
                     </p>
                     <Flash />
                 </div>
