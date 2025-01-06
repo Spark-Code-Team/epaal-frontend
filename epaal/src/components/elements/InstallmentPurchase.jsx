@@ -7,9 +7,9 @@ const InstallmentPurchase = ()=>{
 
         <>
 
-            <div className="w-full lg:h-96 min-h-80 lg:pb-0 pb-24 sm:min-h-80 bg-[#224cc2] mt-20 rounded-b-[260px] pt-1">
+            <div className="w-full lg:h-96 min-h-80 lg:pb-0 pb-24 sm:min-h-80 bg-gradient-to-b from-[#1D434C] to-[#41B1AC] mt-20 rounded-b-[260px] pt-1">
 
-                <div className="lg:w-[90%] w-[85%] m-auto text-center text-xl text-white lg:mt-10 mt-8">مزایای خرید قسطی از دیجی‌شهر</div>
+                <div className="lg:w-[90%] w-[85%] m-auto text-center text-xl text-white lg:mt-10 mt-8">مزایای خرید قسطی از ایپال</div>
 
                 <div className="w-[95%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:mt-24 mt-10 text-center">
 

@@ -9,16 +9,16 @@ export default function LayoutAdmin({ children }) {
         <div
             className="
                 flex
+                max-h-full
             "
         >
             <div
                 className="
                     w-[20%]
-                    bg-blue-700
+                    h-[1024px]
                 "
             >
                 <SidebarAdmin />
-                A
             </div>
 
             <div
