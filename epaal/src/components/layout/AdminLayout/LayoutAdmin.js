@@ -16,6 +16,8 @@ export default function LayoutAdmin({ children }) {
                 className="
                     w-[20%]
                     h-[1024px]
+                    min-h-[100vh]
+                    bg-blue-600
                 "
             >
                 <SidebarAdmin />
@@ -40,7 +42,7 @@ export default function LayoutAdmin({ children }) {
                 <div
                     className="
                         w-full
-                        bg-orange-500
+                        bg-white
                     "
                 >
                     { children }
