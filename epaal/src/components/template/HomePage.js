@@ -20,13 +20,26 @@ export default function HomePage() {
     return (
       <div
           className="
-              w-full
-              h-full
+              w-screen
+              h-screen
+              overflow-hidden
+              flex
+              justify-center
+              items-center
           "
       >
-          <LottiePlayer 
-                animation={LoadingAnimation}
-          />
+        <div
+          className="
+            w-1/2
+            h-1/2
+            mx-auto
+            overflow-hidden
+          "
+        >
+            <LottiePlayer 
+                  animation={LoadingAnimation}
+            />
+        </div>
       </div>
     )
 }

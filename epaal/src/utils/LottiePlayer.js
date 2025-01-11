@@ -12,8 +12,8 @@ export default function LottiePlayer({ animation }) {
             loop
             play
             className="
-                w-full
-                h-full
+                w-[80%]
+                h-[80%]
             "
         />
     )
