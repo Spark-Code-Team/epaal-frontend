@@ -5,7 +5,11 @@ import Link from "next/link";
 
 const SellersAdmin = ()=>{
 
-    const items = [1 , 2 , 3 , 4 , 5 , 6];
+    const items = [
+        { id: 1, name: 'فروشنده ۱' },
+        { id: 2, name: 'فروشنده ۲' },
+        { id: 3, name: 'فروشنده ۳' },
+    ];
 
     return(
 
@@ -39,7 +43,7 @@ const SellersAdmin = ()=>{
 
                         <div className="w-1/2 flex justify-end">
 
-                            <button className="bg-[#054366] text-white p-2 flex justify-around items-center rounded-md text-[15px]">
+                            <button className="bg-[#D1D0D0] p-2 flex justify-around items-center rounded-md text-[15px]">
                                 افزودن فروشنده جدید
                                 <FaPlus/>
                             </button>
@@ -75,7 +79,7 @@ const SellersAdmin = ()=>{
 
                                 <div className="w-1/2 flex justify-end items-center">
 
-                                    <Link href="#" className="bg-[#054366] text-white block w-32 h-9 text-center flex justify-center items-center ml-3 rounded-md">مشاهده جزئیات</Link>
+                                    <Link href={`/admin/sellers/${item.id}`} className="bg-[#054366] text-white block w-32 h-9 text-center flex justify-center items-center ml-3 rounded-md">مشاهده جزئیات</Link>
                                     <Link href="#" className="bg-[#054366] text-white block w-32 h-9 text-center flex justify-center items-center rounded-md">تسویه حساب</Link>
 
                                 </div>
