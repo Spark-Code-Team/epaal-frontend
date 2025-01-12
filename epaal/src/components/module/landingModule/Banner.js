@@ -29,7 +29,9 @@ export default function Banner() {
                     sm:flex-row
                     md:justify-evenly
                     w-full
-                    bg-[#2852e4]
+                    bg-gradient-to-r
+                    from-[#41B1AC]
+                    to-[#FFD037]
                     py-5
                     relative
                     rounded-b-[34px]
@@ -98,7 +100,7 @@ export default function Banner() {
                             cursor-pointer
                         "
                     >
-                        فروشگاه ایپال
+                        فروشگاه ایوام
                     </div>
                 </div>
                 </div>
@@ -182,7 +184,7 @@ export default function Banner() {
                             cursor-pointer
                         "
                     >
-                        فروشگاه ایپال
+                        فروشگاه ایوام
                     </div>
                 </div>
 
@@ -199,7 +201,7 @@ export default function Banner() {
                     "
                 >
                     <p>
-                        محاسبه اقساط دیجی شهر
+                        محاسبه اقساط ایوام
                     </p>
                     <Flash />
                 </div>
@@ -239,7 +241,7 @@ export default function Banner() {
                     "
                 >
                     <p>
-                        محاسبه اقساط دیجی شهر
+                        محاسبه اقساط ایوام
                     </p>
                     <Flash />
                 </div>
@@ -250,7 +252,9 @@ export default function Banner() {
                 className="
                     min-h-48
                     w-full
-                    bg-[#2852e4]
+                    bg-gradient-to-r
+                    from-[#41B1AC]
+                    to-[#FFD037]
                     rounded-b-[34px]
                     hidden
                     sm:flex
