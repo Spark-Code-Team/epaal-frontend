@@ -23,7 +23,7 @@ export default function Footer() {
            </div>
 
            <div className="flex justify-center items-center ">
-           <p className="ml-4 text-sm py-[28px] ">تلفن پشتیبانی: 021-91001022</p>
+           <p className="ml-4 text-sm py-[28px] ">تلفن پشتیبانی: 02126612872</p>
            <RiInstagramFill color="#748297" size={24}/>
            <span className="mr-[20px]"><FaLinkedin color="#748297" size={24}/></span>
            </div>
@@ -33,7 +33,7 @@ export default function Footer() {
                <div className="flex justify-between sm:w-[150%]">
                    <div className="w-[50%] pr-[40px]">
                        <ul className="text-[13px] text-[#334155] font-[400] leading-8">
-                           <li className="text-[14px] text-[#334155] font-[600]">ایپال</li>
+                           <li className="text-[14px] text-[#334155] font-[600]">ایوام</li>
                            <li>درباره ما</li>
                            <li>فرست‌های شغلی</li>
                            <li>تماس باما</li>
@@ -74,7 +74,7 @@ export default function Footer() {
 
            <div className="flex items-center bg-[#E2E8F0] w-full h-[65px] pb-[30px] justify-between px-[30px]">
             <div>
-                <p className="text-[#475569] font-[600] text-[12px]">کلیه حقوق مادی و معنوی متعلق به شرکت نوآوران تجارت گستر فرین (دیجی‌شهر) می باشد.</p>
+                <p className="text-[#475569] font-[600] text-[12px]">کلیه حقوق مادی و معنوی متعلق به  ایوام می باشد.</p>
             </div>
 
             <div className="text-[#475569] font-[600] text-[13px] border-[1px] rounded-[8px] py-[5px] px-[10px] border-gray-700 flex">

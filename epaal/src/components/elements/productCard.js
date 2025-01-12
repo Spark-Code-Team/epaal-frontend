@@ -9,10 +9,9 @@ function ProductCard({
   price,
   discount,
   variant,
-  href="#",
+  href = "#",
   className = "",
 }) {
-
   // configure placeholder data
   price = price > 0 ? digitsEnToFa(addCommas(price)) : null;
   discount = digitsEnToFa(discount || "");
@@ -113,7 +112,7 @@ function ProductCard({
         )}
       </div>
     );
-    
+
   if (variant === "new")
     return (
       <div

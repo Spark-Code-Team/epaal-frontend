@@ -43,7 +43,7 @@ export default function Header() {
         sticky
         top-0
         w-full
-        ${navColor ? "bg-white" : "bg-[#2852E4]"}
+        ${navColor ? "bg-white" : "bg-gradient-to-r from-[#41B1AC] to-[#FFD037] md:bg-gradient-to-r md:from-white md:to-white"}
         md:bg-white
         mx-auto
         max-w-full
@@ -76,7 +76,7 @@ export default function Header() {
               md:flex
             "
           >
-            <EvaamLogo color="#2852E4" height="24px" width="24px"/>   
+            <EvaamLogo color="#1D434C" height="24px" width="24px"/>   
           </div>
           <div
             className="
@@ -98,11 +98,10 @@ export default function Header() {
               text-xs
               px-[18px]
               py-[11.5px]
-              ${navColor ? "bg-[#2852E4]" : "bg-white"}
-              ${navColor ? "text-white" : "text-black"}
-            md:bg-[#2852E4]
-            md:text-white  
+              text-white
+              bg-[#1D434C]
               rounded-lg 
+              cursor-pointer
             `}
           >
             ورود به حساب کاربری
