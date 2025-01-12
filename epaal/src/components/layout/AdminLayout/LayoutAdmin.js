@@ -19,11 +19,6 @@ export default function LayoutAdmin({ children }) {
                 "
             >
                 <SidebarAdmin />
-<<<<<<< HEAD
-                
-                
-=======
->>>>>>> b31feb3f67f5819114602d8c0f78c09f030fb0bf
             </div>
 
             <div
