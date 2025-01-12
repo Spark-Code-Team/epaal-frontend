@@ -31,7 +31,7 @@ export default function LayoutAdmin({ children }) {
                 <div
                     className="
                         w-full
-                        bg-slate-600
+                        bg-white
                     "
                 >
                     <HeaderAdmin />
