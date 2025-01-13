@@ -102,7 +102,7 @@ export default function NameInput() {
                     flex
                     items-center
                     justify-between
-                    p-3
+                    p-2
                 "
             >
                 {
@@ -230,7 +230,7 @@ export default function NameInput() {
                     flex
                     items-center
                     justify-between
-                    p-3
+                    p-2
                 "
             >
                 {
@@ -265,6 +265,24 @@ export default function NameInput() {
                         </div>
                     ))
                 }
+            </div>
+            <div
+                className="
+                    w-full
+                    flex
+                    justify-end
+                "
+            >
+                <p
+                    className="
+                        text-white
+                        bg-[#054366]
+                        p-2
+                        rounded-xl
+                    "
+                >
+                    ایجاد فروشنده
+                </p>
             </div>
         </>
     )

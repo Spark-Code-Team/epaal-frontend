@@ -2,10 +2,15 @@ import {IoIosArrowBack, IoIosArrowForward, IoMdSearch} from "react-icons/io";
 import {FaPlus} from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
+import Pagination from "../../elements/Pagination";
 
 const SellersAdmin = ()=>{
 
-    const items = [1 , 2 , 3 , 4 , 5 , 6];
+    const items = [
+        { id: 1, name: 'فروشنده ۱' },
+        { id: 2, name: 'فروشنده ۲' },
+        { id: 3, name: 'فروشنده ۳' },
+    ];
 
     return(
 
@@ -39,7 +44,7 @@ const SellersAdmin = ()=>{
 
                         <div className="w-1/2 flex justify-end">
 
-                            <button className="bg-[#054366] text-white p-2 flex justify-around items-center rounded-md text-[15px]">
+                            <button className="bg-[#D1D0D0] p-2 flex justify-around items-center rounded-md text-[15px]">
                                 افزودن فروشنده جدید
                                 <FaPlus/>
                             </button>
@@ -59,7 +64,7 @@ const SellersAdmin = ()=>{
 
                             <div key={index} className="w-full mx-auto p-3 flex border-b-[1.3px] border-[#8A8B8D]">
 
-                                <div className="w-1/2 flex flex items-center">
+                                <div className="w-1/2 flex items-center">
 
                                     <div className="w-9 h-9 border-[1px] border-[#8A8B8D] rounded-md flex justify-center items-center">1</div>
 
@@ -75,8 +80,8 @@ const SellersAdmin = ()=>{
 
                                 <div className="w-1/2 flex justify-end items-center">
 
-                                    <Link href="#" className="bg-[#054366] text-white block w-32 h-9 text-center flex justify-center items-center ml-3 rounded-md">مشاهده جزئیات</Link>
-                                    <Link href="#" className="bg-[#054366] text-white block w-32 h-9 text-center flex justify-center items-center rounded-md">تسویه حساب</Link>
+                                    <Link href={`/admin/sellers/${item.id}`} className="bg-[#054366] text-white  w-32 h-9 text-center flex justify-center items-center ml-3 rounded-md">مشاهده جزئیات</Link>
+                                    <Link href="#" className="bg-[#054366] text-white  w-32 h-9 text-center flex justify-center items-center rounded-md">تسویه حساب</Link>
 
                                 </div>
 
@@ -86,35 +91,7 @@ const SellersAdmin = ()=>{
                 }
 
 
-
-
-
-                {/*  pagination  */}
-                <div className="w-full bg-[#E2E2E2] pr-10 pl-10 pt-3 pb-3 mx-auto mt-10 flex mb-3 rounded-md">
-
-                    <div className="w-1/3 mx-auto flex justify-start">
-
-                        <button className="p-1 flex justify-between items-center border-[1px] bg-white border-[#57585A] text-[#57585A] rounded-md">
-                            <IoIosArrowForward/>
-                            صفحه قبلی
-                        </button>
-
-                    </div>
-
-                    <div className="w-1/3 mx-auto flex justify-center items-center text-[#57585A]">
-                        صفحه 1 از 10
-                    </div>
-
-                    <div className="w-1/3 mx-auto flex justify-end">
-
-                        <button className="p-1 text-[#57585A] flex justify-between items-center border-[1px] bg-white border-[#57585A] rounded-md">
-                            صفحه بعدی
-                            <IoIosArrowBack/>
-                        </button>
-
-                    </div>
-
-                </div>
+                <Pagination />
 
 
             </div>
