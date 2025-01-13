@@ -1,3 +1,4 @@
+import Pagination from "@/components/elements/Pagination";
 import Arrows from "../../../../../public/icons/Arrows";
 
 const TableSettlement = () => {
@@ -166,7 +167,7 @@ const TableSettlement = () => {
 
       </table>
 
-      
+      <Pagination/>
 
     </div>
   );
