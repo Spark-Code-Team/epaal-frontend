@@ -64,7 +64,7 @@ const SellersAdmin = ()=>{
 
                             <div key={index} className="w-full mx-auto p-3 flex border-b-[1.3px] border-[#8A8B8D]">
 
-                                <div className="w-1/2 flex flex items-center">
+                                <div className="w-1/2 flex items-center">
 
                                     <div className="w-9 h-9 border-[1px] border-[#8A8B8D] rounded-md flex justify-center items-center">1</div>
 
@@ -80,8 +80,8 @@ const SellersAdmin = ()=>{
 
                                 <div className="w-1/2 flex justify-end items-center">
 
-                                    <Link href={`/admin/sellers/${item.id}`} className="bg-[#054366] text-white block w-32 h-9 text-center flex justify-center items-center ml-3 rounded-md">مشاهده جزئیات</Link>
-                                    <Link href="#" className="bg-[#054366] text-white block w-32 h-9 text-center flex justify-center items-center rounded-md">تسویه حساب</Link>
+                                    <Link href={`/admin/sellers/${item.id}`} className="bg-[#054366] text-white  w-32 h-9 text-center flex justify-center items-center ml-3 rounded-md">مشاهده جزئیات</Link>
+                                    <Link href="#" className="bg-[#054366] text-white  w-32 h-9 text-center flex justify-center items-center rounded-md">تسویه حساب</Link>
 
                                 </div>
 
@@ -91,7 +91,7 @@ const SellersAdmin = ()=>{
                 }
 
 
-                <Pagination/>
+                <Pagination />
 
 
             </div>
