@@ -1,4 +1,4 @@
-import LevelCategory from "../../../../../components/elements/LevelCategory";
+import LevelCategoryPage from "@/components/template/LevelCategoryPage";
 
 const LevelOneCategory = ()=>{
 
@@ -6,7 +6,7 @@ const LevelOneCategory = ()=>{
 
         <>
 
-            <LevelCategory/>
+            <LevelCategoryPage/>
 
         </>
 
