@@ -74,10 +74,22 @@ export const sidebarOptions = [
             link: "#",
             icon: <CateIcon />,
             children: [
-                "سطح یک",
-                "سطح دو",
-                "سطح سه",
-                "سطح چهار"
+                {
+                    title: "سطح یک",
+                    link: "/admin/sellers"
+                },
+                {
+                    title: "سطح دو",
+                    link: "/admin/sellers"
+                },
+                {
+                    title:"سطح سه",
+                    link: "/admin/sellers"
+                },
+                {
+                    title: "سطح چهار",
+                    link: "/admin/sellers"
+                },
             ]
         },
         {
@@ -85,8 +97,14 @@ export const sidebarOptions = [
             link: "#",
             icon: <MannageIcon />,
             children: [
-                "اتصال",
-                "اطلاعات ارایه دهنده"
+                {
+                    title: "اتصال",
+                    link: "/admin/sellers"
+                },
+                {
+                    title: "اطلاعات ارایه دهنده",
+                    link: "/admin/sellers"
+                },
             ]
         },
         {
@@ -94,8 +112,15 @@ export const sidebarOptions = [
             link: "#",
             icon: <FroshandeIcon />,
             children: [
-                "فروشندگان",
-                "تسویه"
+                {
+                    title: "فروشندگان",
+                    link: "/admin/sellers"
+                },
+                {
+                    title: "تسویه",
+                    link: "/admin/settlement-seller"
+                }
+                
             ]
         },
         {
@@ -103,9 +128,18 @@ export const sidebarOptions = [
             link: "#",
             icon: <FieldIcon />,
             children: [
-                "سطح یک",
-                "سطح دو",
-                "سطح سه",
+                {
+                    title: "سطح یک",
+                    link: "/admin/sellers"
+                },
+                {
+                    title: "سطح دو",
+                    link: "/admin/sellers"
+                },
+                {
+                    title: "سطح سه",
+                    link: "/admin/sellers"
+                },
             ]
         },
         {

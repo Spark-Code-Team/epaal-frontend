@@ -44,10 +44,10 @@ const SellersAdmin = ()=>{
 
                         <div className="w-1/2 flex justify-end">
 
-                            <button className="bg-[#D1D0D0] p-2 flex justify-around items-center rounded-md text-[15px]">
+                            <Link href="/admin/sellers/create-seller" className="bg-[#D1D0D0] p-2 flex justify-around items-center rounded-md text-[15px]">
                                 افزودن فروشنده جدید
                                 <FaPlus/>
-                            </button>
+                            </Link>
 
                         </div>
 

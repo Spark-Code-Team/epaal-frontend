@@ -130,13 +130,13 @@ export default function SidebarAdmin() {
                                 item.children.map((item, index) => (
                                     <Link
                                         key={index}
-                                        href=""
+                                        href={item.link}
                                         className="
                                             hover:text-[#054366]
                                             text-[14px]
                                         "
                                     >
-                                        {item}
+                                        {item.title}
                                     </Link>
                                 ))
                               }  
