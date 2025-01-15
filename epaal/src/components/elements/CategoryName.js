@@ -15,7 +15,6 @@ export default function CategoryName() {
                 pt-[49px]
                 flex
                 flex-col
-
             "
         >
             <label

@@ -1,9 +1,25 @@
+"use client"
+
+import { useState } from "react";
 import CheckDefaultCategory from "../../../../../public/icons/Admin/CheckDefaultCategory";
 import CheckTrueCategory from "../../../../../public/icons/Admin/CheckTrueCategory";
 
 
 
 export default function TypeProduct() {
+
+    const [kalaToggle, setKalaToggle] = useState({
+        kala: false,
+        khadamat: false
+    })
+
+    const changeToggleKala = (name) => {
+        if(kalaToggle[name] == true) {
+            setKalaToggle(last => ({...last, [name]: false }))
+        } else {
+            setKalaToggle(last => ({...last, [name]: true }))
+        }
+    }
 
     return (
         <div
@@ -28,9 +44,10 @@ export default function TypeProduct() {
             <div
                 className="
                     flex
-                    w-[20%]
+                    w-[25%]
                     justify-between
                     items-center
+                    gap-2
                 "
             >
                 <div
@@ -40,6 +57,7 @@ export default function TypeProduct() {
                         gap-2
                         cursor-pointer
                     "
+                    onClick={() => changeToggleKala("kala")}
                 >
                     <p
                         className="
@@ -49,7 +67,13 @@ export default function TypeProduct() {
                     >
                         کالا
                     </p>
-                    <CheckTrueCategory />
+                    {
+                        kalaToggle.kala ? (
+                            <CheckTrueCategory />
+                        ) : (
+                            <CheckDefaultCategory />
+                        )
+                    }
                 </div>
                 <div
                     className="
@@ -58,6 +82,7 @@ export default function TypeProduct() {
                         gap-2
                         cursor-pointer
                     "
+                    onClick={() => changeToggleKala("khadamat")}
                 >
                     <p
                         className="
@@ -67,7 +92,13 @@ export default function TypeProduct() {
                     >
                         خدمات
                     </p>
-                    <CheckDefaultCategory />
+                    {
+                        kalaToggle.khadamat ? (
+                            <CheckTrueCategory />
+                        ) : (
+                            <CheckDefaultCategory />
+                        )
+                    }
                 </div>
             </div>
         </div>

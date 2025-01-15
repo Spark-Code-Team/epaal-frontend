@@ -12,9 +12,9 @@ export default function SelectValed() {
                 w-full
                 pr-8
                 pt-8
-                relative
                 flex
                 justify-between
+                relative
             "
         >
             <Dropdown 
@@ -22,14 +22,27 @@ export default function SelectValed() {
                     <div
                         className="
                             w-full
-                            flex
-                            justify-between
-                            gap-3
-                            mx-auto
+                            px-0
+                            mx-0
                         "
                     >
-                        <p>fsbvsv</p>
-                        <p>visfjvion</p>
+                        <div
+                            className="
+                                w-[300px]
+                                text-[20px]
+                                font-normal
+                            "
+                        >
+
+                            <p
+                                className="
+                                    w-1/2
+                                    h-1/2
+                                "
+                            >
+                                انتخاب دسته والد
+                            </p>
+                        </div>
                     </div>
                 } 
                 as="div"
@@ -40,16 +53,20 @@ export default function SelectValed() {
                     borderRadius: "12px",
                     color: "black",
                     display: "flex",
-                    alignItems: "center",
+                    flexDirection: "column",
                     justifyContent: "space-between",
+                    padding: "0px",
+                    margin: "0px",
                     fontSize: "16px",
-                    fontWeight: "600"
+                    fontWeight: "600",
+                    cursor: "pointer",
+                    position:"relative"
                 }}
-                arrowIcon={false}
+                arrowIcon={true}
                 placement="top"
                 className="
                     bg-white
-                      w-full
+                    w-[80%]
                 "
             >
                 <div

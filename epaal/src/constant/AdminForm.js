@@ -71,24 +71,24 @@ export const sidebarOptions = [
         },
         {
             title: "مدیریت دسته بندی ها",
-            link: "#",
+            link: "",
             icon: <CateIcon />,
             children: [
                 {
                     title: "سطح یک",
-                    link: "/admin/sellers"
+                    link: "/admin/categories/level-one"
                 },
                 {
                     title: "سطح دو",
-                    link: "/admin/sellers"
+                    link: "/admin/categories/create-level-tow"
                 },
                 {
                     title:"سطح سه",
-                    link: "/admin/sellers"
+                    link: "/admin/categories/create-level-three"
                 },
                 {
                     title: "سطح چهار",
-                    link: "/admin/sellers"
+                    link: "/admin/categories/create-level-four"
                 },
             ]
         },

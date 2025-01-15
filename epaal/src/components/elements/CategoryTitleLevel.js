@@ -25,7 +25,7 @@ export default function CategoryTitleLevel({ level }) {
                         font-medium
                     "
                 >
-                    افزودن دسته جدید (سطح دو )
+                    افزودن دسته جدید ({ level })
                 </span>
             </p>
         </div>
