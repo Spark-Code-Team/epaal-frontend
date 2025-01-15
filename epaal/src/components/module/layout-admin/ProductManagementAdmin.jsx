@@ -3,7 +3,7 @@ import { FiDownload } from "react-icons/fi";
 
 const ProductManagementAdmin = () => {
 
-    const items = [1 , 2 , 3 , 4 , 5 , 6];
+    const items = [1, 2, 3, 4, 5, 6];
 
 
     return (
@@ -20,7 +20,14 @@ const ProductManagementAdmin = () => {
 
                     <div className="w-[76%] flex justify-between items-center">
 
-                        
+
+                        <div className="w-[23%] text-[#054366] text-[14px] flex justify-center items-center">
+                            <button className="flex justify-between items-center">
+                                <FiDownload className="ml-2" /> دریافت خروجی اکسل
+                            </button>
+                        </div>
+
+
                         <div className="w-[33%] h-8 flex justify-around border-[1.5px] border-[#C5C5C6] rounded-md">
 
                             <div className="w-[32px] h-[32px] flex justify-center items-center pr-3">
@@ -30,13 +37,7 @@ const ProductManagementAdmin = () => {
                             <input type="text" name="" className="w-52 h-8 bg-transparent border-[1px] border-none outline-none focus:ring-0 text-sm text-[#57585A]" placeholder="جست و جو بین دسته ها" />
 
                         </div>
-                    
 
-                        <div className="w-[23%] text-[#054366] text-[14px] flex justify-center items-center">
-                            <button className="flex justify-between items-center">
-                                <FiDownload className="ml-2"/> دریافت خروجی اکسل
-                            </button>
-                        </div>
 
                         <div className="w-[37%] flex bg-white border-[1.5px] border-[#C5C5C6] rounded-md justify-around items-center pt-[4px] pb-[4px]">
                             <button className="p-2 rounded-md text-sm">در انتظار تایید</button>
@@ -71,7 +72,7 @@ const ProductManagementAdmin = () => {
                         <tbody>
 
                             {
-                                items.map((item , index)=>(
+                                items.map((item, index) => (
                                     <tr key={index}>
                                         <td className="border-b px-4 py-5 text-center">۱۴۰۲/۰۲/۱۵ ۲۰:۲۱:۴۵</td>
                                         <td className="border-b px-4 py-5 text-center">شامپو</td>
