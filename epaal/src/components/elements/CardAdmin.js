@@ -5,7 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import DeleteAdmin from "../../../public/icons/DeleteAdmin";
+import EditAdmin from "../../../public/icons/EditAdmin";
+// import { RiDeleteBin5Line } from "react-icons/ri";
+// import DeleteIcon from "../../../public/icons/DeleteIcon";
 
 
 
@@ -14,7 +17,7 @@ export default function CardAdmin() {
     const [openModal, setOpenModal] = useState({
         delete: false,
         edit: false,
-    })
+    });
 
     const handelModal = (name) => {
         if(openModal[name]) {
@@ -29,27 +32,27 @@ export default function CardAdmin() {
         
             <div className="w-1/4 mt-4">
 
-                <div className="w-[95%] bg-white border-2 rounded-xl border-[#E1E6EF] m-auto p-3">
+                <div className="w-[95%] h-[256px] bg-white flex flex-wrap justify-around border-2 rounded-xl border-[#E1E6EF] m-auto p-3">
 
                     <Image src="/image/image-admin.png" alt="" width={226} height={122}/>
 
-                    <div className="w-full text-center mt-3">کالای دیجیتال</div>
+                    <div className="w-full text-center mt-4">کالای دیجیتال</div>
 
                     <div className="w-full flex justify-between mt-3">
 
-                        <div className="w-[21%] flex justify-center border-2 border-[#EB1C24] p-1 rounded-md"
+                        <div className="w-[48px] h-[42px] flex justify-center mt-2 items-center border-2 border-[#EB1C24] p-1 rounded-md"
                             onClick={() => handelModal("delete")}
                         >
                             <Link href="#">
-                                <RiDeleteBin5Line size={23} color={"#EB1C24"}/>
+                               <DeleteAdmin/>
                             </Link>
                         </div>
 
                         <div className="w-[67%] flex justify-center items-center">
 
                             <div className="w-[83%] flex">
-                                <Link href="#" className="w-full flex justify-center items-center bg-[#054366] p-1 rounded-md text-white">
-                                    ویرایش <FaEdit size={19}/>
+                                <Link href="#" className="w-[160px] h-[42px] flex justify-around items-center bg-[#054366] p-1 rounded-md text-white">
+                                    ویرایش <EditAdmin/>
                                 </Link>
                             </div>
 

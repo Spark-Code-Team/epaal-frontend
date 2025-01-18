@@ -1,21 +1,21 @@
 "use client"
 
-import {FaPlus} from "react-icons/fa6";
 import CardAdmin from "./CardAdmin";
 import { Modal } from "flowbite-react";
 import { useRef, useState } from "react";
 import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
 import Image from "next/image";
+import PlusAdmin from "../../../public/icons/PlusAdmin";
 
 const LevelCategory = ()=>{
 
-    const [categoryModal, setCategoryModal] = useState(false)
+    const [categoryModal, setCategoryModal] = useState(false);
     const [addCategory, setAddCategory] = useState({
         name: "",
         image: ""
     })
-    const [img,setImg] = useState("")
+    const [img,setImg] = useState("");
 
     const items = [1 , 2 , 3 , 4 , 5 , 6 , 7 , 8];
 
@@ -51,11 +51,11 @@ const LevelCategory = ()=>{
 
                     <div className="w-1/2 flex justify-end">
 
-                        <button className="bg-[#054366] text-white p-2 flex justify-around items-center rounded-md text-[15px]"
+                        <button className="w-[166px] bg-[#054366] text-white p-2 flex justify-around items-center rounded-md text-[15px]"
                             onClick={() => setCategoryModal(true)}
                         >
                             افزودن دسته جدید
-                            <FaPlus />
+                            <PlusAdmin/>
                         </button>
 
                     </div>
