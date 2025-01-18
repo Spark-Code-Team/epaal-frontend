@@ -4,6 +4,7 @@ import { FaPlus } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Pagination from "@/components/elements/Pagination";
+import FieldCard from "../adminModule/FieldManagment/FieldCard";
 
 const FieldManagementAdmin = () => {
 
@@ -58,33 +59,9 @@ const FieldManagementAdmin = () => {
 
                 {
                     items.map((item, index) => (
-
-                        <div key={index} className="w-full mx-auto p-3 flex justify-between border-b-[1.5px] border-[#E1E6EF]">
-
-                            <div className="flex items-center p-2">
-                                <p className="text-[#57585A]">1 - </p>
-
-                                <p className="mr-2 text-[#57585A]">نام فیلد</p>
-                            </div>
-
-                            <div className="flex items-center">
-
-                                <div className="w-10 h-9 border-[1.5px] border-black flex items-center justify-center ml-3 rounded-md">
-                                    <Link href="#">
-                                        <FaEdit size={23} />
-                                    </Link>
-                                </div>
-
-                                <div className="w-10 h-9 border-[1.5px] border-[#EB1C24] flex items-center justify-center rounded-md">
-                                    <Link href="#">
-                                        <RiDeleteBin5Line size={23} color="#EB1C24" />
-                                    </Link>
-                                </div>
-
-                            </div>
-
-                        </div>
-
+                        <FieldCard 
+                            key={index}
+                        />
                     ))
                 }
 
