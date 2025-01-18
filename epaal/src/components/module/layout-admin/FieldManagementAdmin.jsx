@@ -4,10 +4,6 @@ import { FaPlus } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Pagination from "@/components/elements/Pagination";
-import SearchAdmin from "../../../../public/icons/SearchAdmin";
-import PlusAdmin from "../../../../public/icons/PlusAdmin";
-import DeleteAdmin from "../../../../public/icons/DeleteAdmin";
-import EditAdminBlack from "../../../../public/icons/EditAdminBlack";
 
 const FieldManagementAdmin = () => {
 
@@ -35,10 +31,10 @@ const FieldManagementAdmin = () => {
                             <div className="w-60 h-8 flex justify-around border-[1.5px] border-[#C5C5C6] rounded-md">
 
                                 <div className="w-[32px] h-[32px] flex justify-center items-center pr-3">
-                                    <SearchAdmin/>
+                                    <IoMdSearch size={25} color={"#57585A"} />
                                 </div>
 
-                                <input type="text" name="" className="w-52 h-8 bg-transparent border-[1px] border-none outline-none focus:ring-0 text-sm text-[#57585A]" placeholder="جست و جو بین فیلدها" />
+                                <input type="text" name="" className="w-52 h-8 bg-transparent border-[1px] border-none outline-none focus:ring-0 text-sm text-[#57585A]" placeholder="جست و جو بین دسته ها" />
 
                             </div>
 
@@ -47,9 +43,9 @@ const FieldManagementAdmin = () => {
 
                         <div className="w-1/2 flex justify-end">
 
-                            <Link href="#" className="w-[156px] bg-[#054366] text-white p-2 flex justify-around items-center rounded-md text-[15px]">
+                            <Link href="#" className="bg-[#054366] text-white p-2 flex justify-around items-center rounded-md text-[15px]">
                                 افزودن فیلد جدید
-                                <PlusAdmin/>
+                                <FaPlus />
                             </Link>
 
                         </div>
@@ -75,13 +71,13 @@ const FieldManagementAdmin = () => {
 
                                 <div className="w-10 h-9 border-[1.5px] border-black flex items-center justify-center ml-3 rounded-md">
                                     <Link href="#">
-                                        <EditAdminBlack/>
+                                        <FaEdit size={23} />
                                     </Link>
                                 </div>
 
                                 <div className="w-10 h-9 border-[1.5px] border-[#EB1C24] flex items-center justify-center rounded-md">
                                     <Link href="#">
-                                        <DeleteAdmin/>
+                                        <RiDeleteBin5Line size={23} color="#EB1C24" />
                                     </Link>
                                 </div>
 
