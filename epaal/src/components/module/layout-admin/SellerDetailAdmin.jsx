@@ -4,6 +4,8 @@ import { IoFilterOutline } from "react-icons/io5";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import {useParams} from "next/navigation";
 import Pagination from "../../elements/Pagination";
+import SearchAdmin from "../../../../public/icons/SearchAdmin";
+import FilterAdmin from "../../../../public/icons/FilterAdmin";
 
 
 const SellerDetailAdmin = ()=>{
@@ -70,7 +72,7 @@ const SellerDetailAdmin = ()=>{
                         <div className="w-60 h-8 bg-[#E1E6EF] flex justify-around rounded-md">
 
                             <div className="w-[32px] h-[32px] flex justify-center items-center pr-3">
-                                <IoMdSearch size={25} color={"#57585A"}/>
+                                <SearchAdmin/>
                             </div>
 
                             <input type="text" name="" className="w-52 h-8 bg-transparent border-[1px] border-none outline-none focus:ring-0 text-sm text-[#57585A]" placeholder="جست و جو توسط شناسه ..."/>
@@ -81,8 +83,8 @@ const SellerDetailAdmin = ()=>{
 
                         <div>
 
-                            <button className="flex items-center justify-center rounded-md bg-[#054366] text-white d-block w-20 text-center p-2">
-                                فیلتر <IoFilterOutline/>
+                            <button className="flex items-center justify-around rounded-md bg-[#054366] text-white d-block w-20 text-center p-2">
+                                <FilterAdmin/>فیلتر
                             </button>
 
                         </div>

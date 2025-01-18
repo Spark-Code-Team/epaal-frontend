@@ -1,8 +1,8 @@
-import {IoIosArrowBack, IoIosArrowForward, IoMdSearch} from "react-icons/io";
-import {FaPlus} from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import Pagination from "../../elements/Pagination";
+import PlusAdminWhite from "../../../../public/icons/PlusAdminWhite";
+import SearchAdmin from "../../../../public/icons/SearchAdmin";
 
 const SellersAdmin = ()=>{
 
@@ -32,10 +32,10 @@ const SellersAdmin = ()=>{
                             <div className="w-60 h-8 flex justify-around border-[1.5px] border-[#C5C5C6] rounded-md">
 
                                 <div className="w-[32px] h-[32px] flex justify-center items-center pr-3">
-                                    <IoMdSearch size={25} color={"#57585A"}/>
+                                    <SearchAdmin/>
                                 </div>
 
-                                <input type="text" name="" className="w-52 h-8 bg-transparent border-[1px] border-none outline-none focus:ring-0 text-sm text-[#57585A]" placeholder="جست و جو بین دسته ها"/>
+                                <input type="text" name="" className="w-52 h-8 bg-transparent border-[1px] border-none outline-none focus:ring-0 text-sm text-[#57585A]" placeholder="جست و جو بین فروشندگان"/>
 
                             </div>
 
@@ -44,9 +44,9 @@ const SellersAdmin = ()=>{
 
                         <div className="w-1/2 flex justify-end">
 
-                            <Link href="/admin/sellers/create-seller" className="bg-[#D1D0D0] p-2 flex justify-around items-center rounded-md text-[15px]">
+                            <Link href="/admin/sellers/create-seller" className="w-[176px] bg-[#D1D0D0] p-2 flex justify-around items-center rounded-md text-[15px]">
                                 افزودن فروشنده جدید
-                                <FaPlus/>
+                                <PlusAdminWhite/>
                             </Link>
 
                         </div>
