@@ -71,24 +71,24 @@ export const sidebarOptions = [
         },
         {
             title: "مدیریت دسته بندی ها",
-            link: "#",
+            link: "",
             icon: <CateIcon />,
             children: [
                 {
                     title: "سطح یک",
-                    link: "/admin/sellers"
+                    link: "/admin/categories/level-one"
                 },
                 {
                     title: "سطح دو",
-                    link: "/admin/sellers"
+                    link: "/admin/categories/create-level-tow"
                 },
                 {
                     title:"سطح سه",
-                    link: "/admin/sellers"
+                    link: "/admin/categories/create-level-three"
                 },
                 {
                     title: "سطح چهار",
-                    link: "/admin/sellers"
+                    link: "/admin/categories/create-level-four"
                 },
             ]
         },
@@ -99,7 +99,7 @@ export const sidebarOptions = [
             children: [
                 {
                     title: "اتصال",
-                    link: "/admin/sellers"
+                    link: "/admin/providers"
                 },
                 {
                     title: "اطلاعات ارایه دهنده",
@@ -129,16 +129,16 @@ export const sidebarOptions = [
             icon: <FieldIcon />,
             children: [
                 {
-                    title: "سطح یک",
-                    link: "/admin/sellers"
-                },
-                {
                     title: "سطح دو",
-                    link: "/admin/sellers"
+                    link: "/admin/field-management/level-tow"
                 },
                 {
                     title: "سطح سه",
-                    link: "/admin/sellers"
+                    link: "/admin/field-management/level-three"
+                },
+                {
+                    title: "سطح چهار",
+                    link: "/admin/field-management/level-four"
                 },
             ]
         },

@@ -167,7 +167,7 @@ const TableSettlement = () => {
 
       </table>
 
-        <Pagination/>
+      <Pagination/>
 
     </div>
   );
