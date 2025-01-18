@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Pagination from "../../elements/Pagination";
-import PlusAdminWhite from "../../../../public/icons/PlusAdminWhite";
+import PlusAdminBlack from "../../../../public/icons/PlusAdminBlack";
 import SearchAdmin from "../../../../public/icons/SearchAdmin";
 
 const SellersAdmin = ()=>{
@@ -46,7 +46,7 @@ const SellersAdmin = ()=>{
 
                             <Link href="/admin/sellers/create-seller" className="w-[176px] bg-[#D1D0D0] p-2 flex justify-around items-center rounded-md text-[15px]">
                                 افزودن فروشنده جدید
-                                <PlusAdminWhite/>
+                                <PlusAdminBlack/>
                             </Link>
 
                         </div>

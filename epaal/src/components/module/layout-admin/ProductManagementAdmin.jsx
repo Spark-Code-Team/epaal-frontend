@@ -1,5 +1,5 @@
-import { IoMdSearch } from "react-icons/io";
-import { FiDownload } from "react-icons/fi";
+import ExportAdmin from "../../../../public/icons/ExportAdmin";
+import SearchAdmin from "../../../../public/icons/SearchAdmin";
 
 const ProductManagementAdmin = () => {
 
@@ -22,8 +22,8 @@ const ProductManagementAdmin = () => {
 
 
                         <div className="w-[23%] text-[#054366] text-[14px] flex justify-center items-center">
-                            <button className="flex justify-between items-center">
-                                <FiDownload className="ml-2" /> دریافت خروجی اکسل
+                            <button className="w-[160px] flex justify-around items-center">
+                                <ExportAdmin/> دریافت خروجی اکسل
                             </button>
                         </div>
 
@@ -31,10 +31,10 @@ const ProductManagementAdmin = () => {
                         <div className="w-[33%] h-8 flex justify-around border-[1.5px] border-[#C5C5C6] rounded-md">
 
                             <div className="w-[32px] h-[32px] flex justify-center items-center pr-3">
-                                <IoMdSearch size={25} color={"#57585A"} />
+                                <SearchAdmin/>
                             </div>
 
-                            <input type="text" name="" className="w-52 h-8 bg-transparent border-[1px] border-none outline-none focus:ring-0 text-sm text-[#57585A]" placeholder="جست و جو بین دسته ها" />
+                            <input type="text" name="" className="w-52 h-8 bg-transparent border-[1px] border-none outline-none focus:ring-0 text-sm text-[#57585A]" placeholder="جست و جو بین محصولات" />
 
                         </div>
 
