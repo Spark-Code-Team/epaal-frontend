@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
 import Image from "next/image";
+import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 
 
 
@@ -57,26 +58,51 @@ export default function PhotoSelect () {
                         flex
                         items-center
                         justify-center
-                        cursor-pointer
                         w-full
                         h-full
                     "
-                    onClick={() => inputRef.current.click()}
                 >
                     {
                         img ? (
-                            <Image 
-                                src={img}
-                                width={300}
-                                height={300}
+                            <div
                                 className="
-                                    w-[300px]
-                                    h-full
+                                    relative
                                 "
-                                alt="alt"
-                            />
+                            >
+                                <div
+                                    className="
+                                        absolute
+                                        top-[-10px]
+                                        right-[-10px]
+                                        bg-red-600
+                                        rounded-xl
+                                        cursor-pointer
+                                        z-10
+                                    "
+                                    onClick={() => setImg("")}
+                                >
+                                    <CrossIcon />
+                                </div>
+                                <Image 
+                                    src={img}
+                                    width={300}
+                                    height={300}
+                                    className="
+                                        w-[300px]
+                                        h-full
+                                    "
+                                    alt="alt"
+                                />
+                            </div>
                         ) : (
-                            <AddPicture />
+                            <div
+                                onClick={() => inputRef.current.click()}
+                                className="
+                                    cursor-pointer
+                                "
+                            >
+                                <AddPicture />
+                            </div>
                         )
                     }
                 </div>
