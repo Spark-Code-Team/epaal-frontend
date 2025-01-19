@@ -24,9 +24,13 @@ export default function HeaderAdmin() {
 
                 <div className=" w-1/2 flex items-center" >
 
-                <div className="w-[291px] flex items-center border-[1px] border-[#E1E6EF] rounded-[10px]">
-                <input type="text" id="search" name="search" placeholder="جستجو" className=" w-[90%] rounded-[10px] bg-white border-none focus:outline-none focus:ring-0  h-[44px]">
+                <div className="w-[291px] flex items-center border-[1px]
+                 border-[#E1E6EF] rounded-[10px]">
+                <input type="text" id="search" name="search" placeholder="جستجو" 
+                className=" w-[90%] rounded-[10px] bg-white border-none
+                 focus:outline-none focus:ring-0  h-[44px]">
                 </input>
+                
                 <span className="w-[10%] ">
                 <IconSearch color="#E1E6EF" size={24} width="20%"/>
                 </span>
