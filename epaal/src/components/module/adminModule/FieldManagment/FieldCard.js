@@ -8,6 +8,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import CrossIcon from "../../../../../public/icons/Admin/CrossIcon";
 import TickIcon from "../../../../../public/icons/Admin/TickIcon";
 import AddOption from "@/components/elements/AddOption";
+import PlusIcon from "../../../../../public/icons/Admin/PlusIcon";
 
 
 
@@ -27,6 +28,7 @@ export default function FieldCard() {
 
     const handelShowModal = (name) => {
 
+
         if(showModal[name]) {
             setShowModal(last => ({...last, [name]: false}))
         } else {
@@ -37,17 +39,11 @@ export default function FieldCard() {
     const handelSelective = (name) => {
 
         if(selectFilter[name]) {
-            setSelectFilter(last => ({...last, [name]: false}))
+            setSelectFilter(last => ({ [name]: false}))
         } else {
-            setSelectFilter(last => ({...last, [name]: true}))
+            setSelectFilter(last => ({ [name]: true}))
         }
     }
-
-    console.log(showModal);
-    console.log(option);
-    
-    
-    
 
     return (
         <>
@@ -328,17 +324,57 @@ export default function FieldCard() {
 
                 {
                     selectFilter.filter ? (
-                        <div>
+                        <div
+                            className="
+                                pt-9
+                                overflow-y-scroll
+                                max-h-[200px]
+                                no-scrollbar
+                            "
+                        >
                             {
                                 option.map((item, index) => (
                                     <AddOption 
-                                        option={item}
+                                        value={item}
+                                        option={option}
                                         index={index}
                                         setOption={setOption}
                                         key={index}
                                     />
                                 ))
                             }
+
+                            <div
+                                className="
+                                    w-full
+                                    flex
+                                    justify-end
+                                "
+                            >
+                                <div
+                                    className="
+                                        w-[365px]
+                                        h-[42px]
+                                        p-[10px]
+                                        border
+                                        border-[#E1E6EF]
+                                        text-[#054366]
+                                        flex
+                                        items-center
+                                        justify-center
+                                        rounded-xl
+                                        cursor-pointer
+                                    "
+
+                                    onClick={() => setOption(last => [...last, ""])}
+                                >
+                                    <p>
+                                        افزودن آپشن
+                                    </p>
+                                    <PlusIcon />
+                                </div>
+
+                            </div>
                         </div>
                     ) : null
                 }
@@ -352,7 +388,6 @@ export default function FieldCard() {
                         rounded-[10px]
                         text-center
                         mt-4
-                        mb-[26px]
                         h-9
                         text-white
                     "
