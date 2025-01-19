@@ -25,7 +25,7 @@ const ProvidersSection = () => {
     img: "",
   }]);
 
-  const [openModal , setOpenModal] = useState(true);
+  const [openModal , setOpenModal] = useState(false);
 
   const addBox = ()=>{
 
