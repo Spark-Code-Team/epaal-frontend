@@ -1,7 +1,6 @@
 "use client"
 
 import { IoMdSearch } from "react-icons/io";
-import { FaPlus } from "react-icons/fa6";
 import Pagination from "@/components/elements/Pagination";
 import FieldCard from "../adminModule/FieldManagment/FieldCard";
 import { useState } from "react";
@@ -10,6 +9,8 @@ import CrossIcon from "../../../../public/icons/Admin/CrossIcon";
 import TickIcon from "../../../../public/icons/Admin/TickIcon";
 import PlusIcon from "../../../../public/icons/Admin/PlusIcon";
 import AddOption from "@/components/elements/AddOption";
+import PlusAdmin from "../../../../public/icons/PlusAdmin";
+import SearchAdmin from "../../../../public/icons/SearchAdmin";
 
 const FieldManagementAdmin = () => {
 
@@ -52,7 +53,7 @@ const FieldManagementAdmin = () => {
                             <div className="w-60 h-8 flex justify-around border-[1.5px] border-[#C5C5C6] rounded-md">
 
                                 <div className="w-[32px] h-[32px] flex justify-center items-center pr-3">
-                                    <IoMdSearch size={25} color={"#57585A"} />
+                                    <SearchAdmin/>
                                 </div>
 
                                 <input type="text" name="" className="w-52 h-8 bg-transparent border-[1px] border-none outline-none focus:ring-0 text-sm text-[#57585A]" placeholder="جست و جو بین دسته ها" />
@@ -64,11 +65,11 @@ const FieldManagementAdmin = () => {
 
                         <div className="w-1/2 flex justify-end">
 
-                            <div className="bg-[#054366] text-white p-2 flex justify-around items-center rounded-md text-[15px]"
+                            <div className="w-[160px] bg-[#054366] text-white p-2 flex justify-around items-center rounded-md text-[15px]"
                                 onClick={() => setAddFillModal(true)}
                             >
                                 افزودن فیلد جدید
-                                <FaPlus />
+                                <PlusAdmin/>
                             </div>
 
                         </div>

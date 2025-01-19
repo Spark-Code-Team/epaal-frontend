@@ -3,12 +3,12 @@
 import { Modal } from "flowbite-react";
 import Link from "next/link";
 import { useState } from "react";
-import { FaEdit } from "react-icons/fa";
-import { RiDeleteBin5Line } from "react-icons/ri";
 import CrossIcon from "../../../../../public/icons/Admin/CrossIcon";
 import TickIcon from "../../../../../public/icons/Admin/TickIcon";
 import AddOption from "@/components/elements/AddOption";
 import PlusIcon from "../../../../../public/icons/Admin/PlusIcon";
+import DeleteAdmin from "../../../../../public/icons/DeleteAdmin";
+import EditAdminBlack from "../../../../../public/icons/EditAdminBlack";
 
 
 
@@ -60,13 +60,13 @@ export default function FieldCard() {
                 <div className="w-10 h-9 cursor-pointer border-[1.5px] border-black flex items-center justify-center ml-3 rounded-md"
                     onClick={() => handelShowModal("edit")}
                 >
-                        <FaEdit size={23} />
+                        <EditAdminBlack/>
                 </div>
 
                 <div className="w-10 h-9 border-[1.5px] border-[#EB1C24] flex items-center justify-center rounded-md cursor-pointer"
                     onClick={() => handelShowModal("delete")}
                 >
-                        <RiDeleteBin5Line size={23} color="#EB1C24" />
+                        <DeleteAdmin/>
                 </div>
 
             </div>
