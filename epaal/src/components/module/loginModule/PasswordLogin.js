@@ -1,16 +1,19 @@
+
 "use client"
 
 import Image from "next/image";
 import LogoEvaam from "../../../../public/image/logoevaam.png";
-import Phone from "../../../../public/icons/Phone";
+import KeyPassword from "../../../../public/icons/Key";
 
 
-const PhoneLogin = ({ setLoginState }) => {
 
-    return (
+const PasswordLogin = () => {
+    return(
+
+
         <>
-
-    <div className="h-screen relative">
+        
+        <div className="h-screen relative">
       
       <div className=" h-1/2 bg-[#054366] ">
       </div>
@@ -24,32 +27,32 @@ const PhoneLogin = ({ setLoginState }) => {
 
           <form>
 
-          <p className="py-6 text-[12px]">شماره تماس را وارد کنید</p>
+          <p className="py-6 text-[12px]"> رمز خود را وارد کنید </p>
 
             <div className="mb-4 flex border border-[#E1E6EF]
-            items-center rounded-xl ">
+            items-center rounded-xl">
               <input
               dir="ltr"
                 type="text"
-                placeholder="+98**********"
+                placeholder="**********"
                 className="w-full px-4 py-2
                 border-none
-                 focus:outline-none 
-                 focus:ring-2
+                 border border-[#E1E6EF] rounded-xl 
+                 focus:outline-none focus:ring-2
                 focus:ring-blue-100"
               />
+
               <span className="w-[10%] ">
-                <Phone color="#E1E6EF" size={24} width="20%"/>
+                <KeyPassword color="#E1E6EF" size={24} width="20%"/>
               </span>
 
             </div>
-            
             <button
               type="submit"
-              className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition"
-              onClick={() => setLoginState(1)}
+              className="w-full bg-[#E1E6EF] text-black py-2 px-4
+               rounded-xl hover:bg-blue-100 transition"
             >
-              دریافت کد
+               ورود
             </button>
           </form>
           <p className="text-gray-500 text-[12px] mb-10 mt-4 text-center">
@@ -61,8 +64,9 @@ const PhoneLogin = ({ setLoginState }) => {
       </div>
 
     </div>
-
+        
         </>
     )
 }
-export default PhoneLogin;
+
+export default PasswordLogin;
