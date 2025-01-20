@@ -41,6 +41,7 @@ export default function LayoutAdmin({ children }) {
                     className="
                         w-full
                         bg-white
+                        min-h-full
                     "
                 >
                     { children }

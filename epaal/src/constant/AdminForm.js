@@ -162,3 +162,86 @@ export const sidebarOptions = [
         },
 ]
 
+export const ShopSidebar = [
+    {
+        title: "داشبورد",
+        link: "#",
+        icon: <DashboardIcon />,
+        children: []
+    },
+    {
+        title: "مدیریت سفارشات ها",
+        link: "",
+        icon: <CateIcon />,
+        children: [
+            {
+                title: "سطح یک",
+                link: "/admin/categories/level-one"
+            },
+            {
+                title: "سطح دو",
+                link: "/admin/categories/create-level-tow"
+            },
+            {
+                title:"سطح سه",
+                link: "/admin/categories/create-level-three"
+            },
+            {
+                title: "سطح چهار",
+                link: "/admin/categories/create-level-four"
+            },
+        ]
+    },
+
+    {
+        title: "مدیریت سفارشات ها",
+        link: "#",
+        icon: <MannageIcon />,
+        children: [
+            {
+                title: "اتصال",
+                link: "/admin/providers"
+            },
+            {
+                title: "اطلاعات ارایه دهنده",
+                link: "/admin/sellers"
+            },
+        ]
+    },
+
+    {
+        title: "مدیریت فروشندگان",
+        link: "#",
+        icon: <FroshandeIcon />,
+        children: [
+            {
+                title: "فروشندگان",
+                link: "/admin/sellers"
+            },
+            {
+                title: "تسویه",
+                link: "/admin/settlement-seller"
+            }
+            
+        ]
+    },
+
+    {
+        title: "گزارش ها",
+        link: "#",
+        icon: <ChartIcon />,
+        children: []
+    },
+    {
+        title: "مدریت تخفیف ها",
+        link: "#",
+        icon: <TransActionIcon />,
+        children: []
+    },
+    {
+        title: "مدریت کاربران",
+        link: "#",
+        icon: <PeopleIcon />,
+        children: []
+    },
+]
