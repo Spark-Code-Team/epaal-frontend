@@ -10,14 +10,6 @@ import KeyPassword from "../../../../public/icons/Key";
 const PasswordLogin = () => {
     return(
 
-
-        <>
-        
-        <div className="h-screen relative">
-      
-      <div className=" h-1/2 bg-[#054366] ">
-      </div>
-
       <div className="bg-white p-6 rounded-xl shadow-lg w-[402px] h-[314px]
        absolute top-[33%] left-[33%]">
 
@@ -58,14 +50,7 @@ const PasswordLogin = () => {
           <p className="text-gray-500 text-[12px] mb-10 mt-4 text-center">
           ورود شما به معنای پذیرش شرایط ایوام و قوانین حریم خصوصی است 
           </p>
-        </div>
-      
-      <div className="h-1/2 bg-white  ">
       </div>
-
-    </div>
-        
-        </>
     )
 }
 
