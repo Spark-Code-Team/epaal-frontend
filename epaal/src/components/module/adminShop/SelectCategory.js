@@ -29,16 +29,25 @@ export default function SelectCategory() {
             >
                 لطفا یک دسته را انتخاب کنید
             </p>
-            <p
+            <div
                 className="
-                    text-[18px]
-                    font-normal
-                    text-[#054366]
-                    cursor-pointer
+                    hover:bg-[#C8E1EE]
+                    p-2
+                    transition-all
+                    rounded-[10px]
                 "
             >
-                انتخاب
-            </p>
+                <p
+                    className="
+                        text-[18px]
+                        font-normal
+                        text-[#054366]
+                        cursor-pointer
+                    "
+                >
+                    انتخاب
+                </p>
+            </div>
         </div>
     )
 }
