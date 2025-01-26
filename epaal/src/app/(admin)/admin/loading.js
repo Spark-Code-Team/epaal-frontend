@@ -9,11 +9,12 @@ export default function AdminLoading() {
     return (
         <div
             className="
-                w-full
-                h-full
+                w-[80%]
+                h-[80%]
                 flex
                 items-center
                 justify-center
+                overflow-hidden
             "
         >
             <div

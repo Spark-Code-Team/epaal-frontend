@@ -6,6 +6,7 @@ import Image from "next/image";
 import banner from "../../../../public/image/landing-banner.png"
 import Flash from "../../../../public/icons/flash";
 import RequestedLoan from "@/components/elements/RequestedLoan";
+import Link from "next/link";
 
 
 
@@ -85,7 +86,8 @@ export default function Banner() {
                     >
                         ثبت درخواست وام
                     </div>
-                    <div
+                    <Link
+                        href="/shopping-evaam"
                         className="
                             w-44
                             py-[10px]
@@ -101,7 +103,7 @@ export default function Banner() {
                         "
                     >
                         فروشگاه ایوام
-                    </div>
+                    </Link>
                 </div>
                 </div>
 
@@ -168,7 +170,8 @@ export default function Banner() {
                     >
                         ثبت درخواست وام
                     </div>
-                    <div
+                    <Link
+                        href="/shopping-evaam"
                         className="
                             flex
                             w-44
@@ -185,7 +188,7 @@ export default function Banner() {
                         "
                     >
                         فروشگاه ایوام
-                    </div>
+                    </Link>
                 </div>
 
                 <div 

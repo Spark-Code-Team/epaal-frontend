@@ -47,6 +47,7 @@ import Xiami from "@/../public/image/xiami.jpg";
 
 import IphoneProduct from "@/../public/image/iphone-prod.png";
 
+
 export default function shop() {
   const images = [test1, test2, test3];
   return (
@@ -60,57 +61,57 @@ export default function shop() {
 
           <div className="m-auto mt-8 flex w-full flex-wrap justify-around lg:mt-10">
             <div className="">
-              <Link href="">
+              <Link href="#">
                 <Image src="/image/2.webp" alt={""} width={130} height={130} />
                 <p className="mt-1 text-center text-base">موبایل</p>
               </Link>
             </div>
 
             <div className="">
-              <Link href="">
-                <Image src="/image/3.webp" alt={""} width={130} height={130} />
+              <Link href="#">
+                <Image src="/image/3.webp" alt="alt" width={130} height={130} />
                 <p className="mt-1 text-center text-base">زیورآلات</p>
               </Link>
             </div>
 
             <div className="">
-              <Link href="">
-                <Image src="/image/4.webp" alt={""} width={130} height={130} />
+              <Link href="#">
+                <Image src="/image/4.webp" alt="alt" width={130} height={130} />
                 <p className="mt-1 text-center text-base">کالای دیجیتال</p>
               </Link>
             </div>
 
             <div className="">
-              <Link href="">
-                <Image src="/image/5.webp" alt={""} width={130} height={130} />
+              <Link href="#">
+                <Image src="/image/5.webp" alt="alt" width={130} height={130} />
                 <p className="mt-1 text-center text-base">موتور سیکلت</p>
               </Link>
             </div>
 
             <div className="">
-              <Link href="">
-                <Image src="/image/6.webp" alt={""} width={130} height={130} />
+              <Link href="#">
+                <Image src="/image/6.webp" alt="alt" width={130} height={130} />
                 <p className="mt-1 text-center text-base">لوازم خانگی</p>
               </Link>
             </div>
 
             <div className="">
-              <Link href="">
-                <Image src="/image/7.webp" alt={""} width={130} height={130} />
+              <Link href="#">
+                <Image src="/image/7.webp" alt="alt" width={130} height={130} />
                 <p className="mt-1 text-center text-base">ابزار صنعتی</p>
               </Link>
             </div>
 
             <div className="">
-              <Link href="">
-                <Image src="/image/8.webp" alt={""} width={130} height={130} />
+              <Link href="#">
+                <Image src="/image/8.webp" alt="alt" width={130} height={130} />
                 <p className="mt-1 text-center text-base">آرایشی بهداشتی</p>
               </Link>
             </div>
 
             <div className="">
-              <Link href="">
-                <Image src="/image/9.webp" alt={""} width={130} height={130} />
+              <Link href="#">
+                <Image src="/image/9.webp" alt="alt" width={130} height={130} />
                 <p className="mt-1 text-center text-base">ورزش و سفر</p>
               </Link>
             </div>
@@ -121,6 +122,7 @@ export default function shop() {
         src={banner1}
         alt="banner1"
         width={1000}
+        height={1000}
         className="lg:h-auto lg:w-full"
       />
 
@@ -132,6 +134,7 @@ export default function shop() {
             <Image
               src={Xiami}
               width={150}
+              height={150}
               className="rounded-lg transition-all ease-in-out hover:shadow-lg"
               alt="phone-photo"
             />
@@ -141,6 +144,7 @@ export default function shop() {
             <Image
               src={Iphone}
               width={150}
+              height={150}
               className="rounded-lg transition-all ease-in-out hover:shadow-lg"
               alt="phone-photo"
             />
@@ -150,6 +154,7 @@ export default function shop() {
             <Image
               src={Samsung}
               width={150}
+              height={150}
               className="rounded-lg transition-all ease-in-out hover:shadow-lg"
               alt="phone-photo"
             />
@@ -162,10 +167,10 @@ export default function shop() {
       {/* tow banners */}
       <div className="justify-evenl mt-10 flex flex-row items-center gap-5 lg:w-full">
         <div>
-          <Image src={banner2} width={1000} className="" />
+          <Image src={banner2} width={1000} height={1000} className="" alt="alt" />
         </div>
         <div>
-          <Image src={banner3} width={1000} className="" />
+          <Image src={banner3} width={1000} height={1000} className="" alt="alt" />
         </div>
       </div>
       {/* tow banners */}

@@ -7,8 +7,8 @@ import { danaFont } from "@/utils/fonts";
 
 
 export const metadata = {
-  title: "EPAAL",
-  description: "Epaal",
+  title: "EVAAM",
+  description: "EVAAM",
 };
 
 

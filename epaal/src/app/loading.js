@@ -8,20 +8,24 @@ export default function Loading() {
     return (
       <div
           className="
-              w-screen
+              w-[80%]
               h-screen
               overflow-hidden
               flex
               justify-center
               items-center
+              mx-auto
           "
       >
         <div
           className="
             w-1/2
-            h-1/2
+            h-full
             mx-auto
             overflow-hidden
+            flex
+            justify-center
+            items-center
           "
         >
             <LottiePlayer 
