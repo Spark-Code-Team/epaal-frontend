@@ -84,6 +84,37 @@ export default function ProductDetails({ details }) {
                     ))
                 }
             </div>
+            
+            <div
+                className="
+                    w-full
+                "
+            >
+                {
+                    details[0].ram.length ? (
+                        <select
+                            className="
+                                w-full
+                                rounded-lg
+                            "
+                        >
+                            {
+                                details[0].ram.map(item => (
+                                    <option
+                                        className="
+                                            focus:bg-green-200
+                                        "
+                                    >
+                                        {
+                                            item.ram
+                                        }
+                                    </option>
+                                ))
+                            }
+                        </select>
+                    ) : null
+                }
+            </div>
 
         </div>
     )
