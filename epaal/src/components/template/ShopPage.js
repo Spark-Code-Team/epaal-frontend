@@ -46,6 +46,7 @@ import Samsung from "@/../public/image/samsung.jpg";
 import Xiami from "@/../public/image/xiami.jpg";
 
 import IphoneProduct from "@/../public/image/iphone-prod.png";
+import { StaticData } from "../../../public/staticData/StaticData";
 
 
 export default function shop() {
@@ -178,7 +179,7 @@ export default function shop() {
       {/* apple products */}
       <div>
         <div className="mt-10 pr-5 text-green-700">محصولات اپل</div>
-        <div className="no-scrollbar container my-4 mt-4 grid grid-flow-col gap-4 overflow-y-scroll p-2">
+        <div className="no-scrollbar container my-4 mt-4 grid grid-flow-col gap-2 overflow-y-scroll p-2">
           <ProductCard
             image={IphoneProduct}
             className="!bg-gradient-to-tl from-green-600 to-yellow-200"
@@ -188,36 +189,19 @@ export default function shop() {
               </button>
             }
           />
-          <ProductCard
-            variant="new"
-            discount={15}
-            price={6700000}
-            image={iwatch2}
-            title="ساعت هوشمند اپل مدل SE 2023 Aluminum Case 44mm
-"
-          />
-          <ProductCard
-            price={8000000}
-            image={iwatch3}
-            title="ساعت هوشمند اپل مدل Ultra 2 Titanium Case Trail Loop 49mm
-"
-          />
-          <ProductCard
-            variant="off"
-            discount={15}
-            price={12700000}
-            image={airpod}
-            title="هدفون بلوتوثی اپل مدل AirPods Pro 2nd Generation 2023 Type-C
-"
-          />
-          <ProductCard
-            variant="off"
-            discount={15}
-            price={119700000}
-            image={m3}
-            title="لپ تاپ 13.3 اینچی اپل مدل MacBook Air MGN63 2020
-"
-          />
+
+          {
+            StaticData.map(item => (
+              <ProductCard 
+                variant="new"
+                title={item.title}
+                image={item.image}
+                price={item.price}
+                key={item.id}
+                href={`/shopping-evaam/products/${item.id}`}
+              />
+            ))
+          }
         </div>
       </div>
       {/* apple products */}

@@ -3,6 +3,7 @@ import LeftAroowBlur from "../../../../public/icons/Admin/AdminShop/LeftAroowBlu
 
 
 export default function ProductDetails({ details }) {
+    
 
     return (
         <div
@@ -84,7 +85,38 @@ export default function ProductDetails({ details }) {
                     ))
                 }
             </div>
-            
+            <div
+                className="
+                    w-full
+                    my-7
+                "
+            >
+                {
+                    details[0].memmory.length ? (
+                        <div>
+                            <p>حافظه :</p>
+                            <select
+                                className="
+                                    w-full
+                                    rounded-lg
+                                "
+                            >
+                                {
+                                    details[0].memmory.map((item, index )=> (
+                                        <option
+                                            key={index}
+                                        >
+                                            {
+                                                item
+                                            }
+                                        </option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                    ) : null
+                }
+            </div>       
             <div
                 className="
                     w-full
@@ -92,26 +124,30 @@ export default function ProductDetails({ details }) {
             >
                 {
                     details[0].ram.length ? (
-                        <select
-                            className="
-                                w-full
-                                rounded-lg
-                            "
-                        >
-                            {
-                                details[0].ram.map(item => (
-                                    <option
-                                        className="
-                                            focus:bg-green-200
-                                        "
-                                    >
-                                        {
-                                            item.ram
-                                        }
-                                    </option>
-                                ))
-                            }
-                        </select>
+                        <div>
+                            <p>RAM :</p>
+                            <select
+                                className="
+                                    w-full
+                                    rounded-lg
+                                "
+                            >
+                                {
+                                    details[0].ram.map((item, index )=> (
+                                        <option
+                                            key={index}
+                                            className="
+                                                focus:bg-green-200
+                                            "
+                                        >
+                                            {
+                                                item.ram
+                                            }
+                                        </option>
+                                    ))
+                                }
+                            </select>
+                        </div>
                     ) : null
                 }
             </div>

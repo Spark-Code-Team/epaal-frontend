@@ -224,7 +224,16 @@ export const StaticData = [
                 mojod: false
             }
         ],
-        ram: []
+        ram: [
+            {
+                ram: "12 گیگابایت",
+                mojod: true
+            },
+            {
+                ram: "8 گیگابایت",
+                mojod: true
+            }
+        ]
     },
     {
         title: "labtop dell",

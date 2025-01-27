@@ -25,6 +25,8 @@ function ProductCard({
           "container flex h-80 w-48 cursor-pointer flex-col gap-2 rounded-xl bg-white p-2 py-4 shadow-sm transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-md sm:h-80 sm:w-60 " +
           className
         }
+
+
       >
         {/* Image */}
         <div className="relative h-full w-full">
@@ -37,9 +39,9 @@ function ProductCard({
         </div>
 
         {/* Title */}
-        <Link href={"#"} className="mb-4 text-center text-sm">
+        <p className="mb-4 text-center text-sm">
           {title}
-        </Link>
+        </p>
 
         {/* Price */}
         {price && (
@@ -115,7 +117,8 @@ function ProductCard({
 
   if (variant === "new")
     return (
-      <div
+      <Link
+        href={href}
         className={
           "container flex h-80 w-48 cursor-pointer flex-col gap-2 rounded-xl bg-white p-2 shadow-sm transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-md sm:w-60 " +
           className
@@ -138,9 +141,9 @@ function ProductCard({
         </div>
 
         {/* Title */}
-        <Link href={"#"} className="mb-4 text-sm">
+        <p className="mb-4 text-sm">
           {title}
-        </Link>
+        </p>
 
         {/* Price */}
         <div className="flex justify-between">
@@ -160,7 +163,7 @@ function ProductCard({
             </div>
           </div>
         )}
-      </div>
+      </Link>
     );
 }
 

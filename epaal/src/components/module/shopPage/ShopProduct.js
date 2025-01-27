@@ -1,7 +1,12 @@
+"use client"
 
+import { increment } from "@/redux/features/shopCart/shopCart"
+import { useDispatch } from "react-redux"
 
 
 export default function ShopProduct ({ price }) {
+
+    const dispatch = useDispatch()
 
     return (
         <div
@@ -51,6 +56,7 @@ export default function ShopProduct ({ price }) {
                         transition-all
                         cursor-pointer
                     "
+                    onClick={() => dispatch(increment(1))}
                 >
                     افزودن به سبد خرید
                 </div>
