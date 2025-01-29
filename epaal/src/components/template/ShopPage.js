@@ -62,7 +62,7 @@ export default function shop() {
 
           <div className="m-auto mt-8 flex w-full flex-wrap justify-around lg:mt-10">
             <div className="">
-              <Link href="#">
+              <Link href="shopping-evaam/phone">
                 <Image src="/image/2.webp" alt={""} width={130} height={130} />
                 <p className="mt-1 text-center text-base">موبایل</p>
               </Link>
@@ -76,9 +76,9 @@ export default function shop() {
             </div>
 
             <div className="">
-              <Link href="#">
+              <Link href="shopping-evaam/labtop">
                 <Image src="/image/4.webp" alt="alt" width={130} height={130} />
-                <p className="mt-1 text-center text-base">کالای دیجیتال</p>
+                <p className="mt-1 text-center text-base">لپ تاپ</p>
               </Link>
             </div>
 
@@ -90,9 +90,9 @@ export default function shop() {
             </div>
 
             <div className="">
-              <Link href="#">
+              <Link href="shopping-evaam/console">
                 <Image src="/image/6.webp" alt="alt" width={130} height={130} />
-                <p className="mt-1 text-center text-base">لوازم خانگی</p>
+                <p className="mt-1 text-center text-base">کنسول بازی</p>
               </Link>
             </div>
 
