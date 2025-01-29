@@ -147,7 +147,6 @@ export default function ShopHeader() {
   const [burgerChangeItems, setBurgerChangeItems] = useState(false)
 
   const store = useSelector(store => store)
-  console.log(store);
   
 
   const onScroll = useCallback(event => {
@@ -282,9 +281,9 @@ export default function ShopHeader() {
                             justify-center
                         "
                     >
-                        <div
+                        <Link
+                            href="/shopping-evaam/products/shop-checkout"
                           className="
-                            cursor-pointer
                             relative
                           "
                         >
@@ -309,7 +308,7 @@ export default function ShopHeader() {
                             >
                               { store.counter.counter }
                             </div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>

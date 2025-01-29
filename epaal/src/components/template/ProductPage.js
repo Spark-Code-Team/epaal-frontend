@@ -42,7 +42,7 @@ export default function ProductPage ({ target }) {
                 <ProductDetails 
                     details={target}
                 />
-                <ShopProduct price={target[0].price} />
+                <ShopProduct product={target[0]} />
             </div>
         </>
     )
