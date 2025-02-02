@@ -7,7 +7,7 @@ const ProductCategories = ()=>{
 
         <>
 
-            <div className="w-[90%] lg:w-[90%] mt-44 sm:w-[90%] mx-auto ">
+            <div className="w-[90%] lg:w-[90%] mt-[500px] sm:w-[90%] mx-auto ">
 
                 <div className="w-full text-center text-xl">دسته بندی محصولات</div>
 
