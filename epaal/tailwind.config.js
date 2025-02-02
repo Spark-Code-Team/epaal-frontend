@@ -12,7 +12,8 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        blurbg: "#75717180"
+        blurbg: "#75717180",
+        evaamCyan: "#41B1AC"
       },
 
       boxShadow: {

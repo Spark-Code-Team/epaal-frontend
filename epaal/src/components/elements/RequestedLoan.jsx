@@ -81,7 +81,7 @@ const RequestedLoan = ({ isBanner }) => {
 
   return (
     <>
-      <div className="mx-auto flex flex-wrap rounded-3xl absolute bg-white pb-8 shadow-lg sm:min-h-[300px] sm:w-[90%] lg:h-auto lg:mt-[500px]">
+      <div className="absolute mx-auto flex flex-wrap rounded-3xl bg-white pb-8 shadow-lg sm:min-h-[300px] sm:w-[90%] lg:mt-[900px] lg:h-auto">
         <div className="w-full sm:w-1/2 lg:w-1/2">
           <div className="mt-10 flex w-full flex-wrap">
             <div className="w-1/2 pr-3 text-sm text-green-600 sm:w-1/2 sm:text-base lg:w-1/2 lg:text-lg">
@@ -103,11 +103,12 @@ const RequestedLoan = ({ isBanner }) => {
                 max={200000000}
                 defaultValue={10000000}
                 type="range"
-                className="my-4 w-full appearance-none rounded-lg bg-green-950"
+                className="my-4 w-full appearance-none rounded-lg bg-green-950 accent-black"
                 onChange={(e) => {
                   setInputValue(e.target.value);
                   calculatePrePayment(e.target.value);
                 }}
+  
               />
             </div>
 
