@@ -10,8 +10,6 @@ export default function ShopProduct ({ product }) {
     const dispatch = useDispatch()
     const store = useSelector(store => store)
 
-    console.log(store);
-
     const productIndex = store.counter.selected.findIndex(item => item.id == product.id)
     
 

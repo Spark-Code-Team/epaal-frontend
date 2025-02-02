@@ -5,18 +5,33 @@ import CartIcon from "../../../public/icons/Cart"
 import Image from "next/image";
 import { checkout } from "@/redux/features/shopCart/shopCart";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Modal } from "flowbite-react";
+import Phone from "../../../public/icons/Phone";
+import LogoEvaam from "../../../public/image/logoevaam.png";
+import OtpInput from "react18-input-otp";
 
 
 export default function ShopCartPage() {
 
     const store = useSelector(store => store)
+    const [openModal, setOpenModal] = useState(false)
+    const [checkout, setCheckout] = useState(1)
 
     const dispatch = useDispatch()
     const router = useRouter()
 
+    const[otp , setOtp] = useState("");
+    
+    const changeHandler = (enteredOtp) =>{
+        setOtp(enteredOtp);
+    };
+
     const handelCheckout = () => {
-        dispatch(checkout())
-        router.push("/shopping-evaam")
+        // dispatch(checkout())
+        // router.push("/shopping-evaam")
+
+        setOpenModal(true)
     }
     
 
@@ -128,6 +143,101 @@ export default function ShopCartPage() {
                     </div>
                 )
             }
+
+            <Modal
+                show={openModal}
+                onClose={() => {
+                    setOpenModal(false);
+                    setCheckout(1)
+                }}
+                size="md"
+                dismissible
+                className="
+                    flex
+                "
+            >
+                {
+                    checkout == 1 ? (
+                        <div className="bg-white p-6 rounded-xl shadow-lg">
+
+                            <div className="text-center mb-4">
+                                <Image src={LogoEvaam} alt="logo" width={150} height={150} />
+                            </div>
+        
+                            <form>
+        
+                            <p className="py-6 text-[12px]">شماره تماس را وارد کنید</p>
+        
+                                <div className="mb-4 flex border border-[#E1E6EF]
+                                items-center rounded-xl ">
+                                <input
+                                dir="ltr"
+                                    type="text"
+                                    placeholder="+98**********"
+                                    className="w-full px-4 py-2
+                                    border-none
+                                    focus:outline-none 
+                                    focus:ring-2
+                                    focus:ring-blue-100"
+                                />
+                                <span className="w-[10%] ">
+                                    <Phone color="#E1E6EF" size={24} width="20%"/>
+                                </span>
+        
+                                </div>
+                                
+                                <div
+                                className="w-full bg-[#E1E6EF] text-center cursor-pointer text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition"
+                                onClick={() => setCheckout(2)}
+                                >
+                                دریافت کد
+                                </div>
+                            </form>
+                        </div>
+                    ) : (
+                        <div className="bg-white p-6 rounded-xl shadow-lg w-[402px] h-[314px]">
+                 
+                           <div className="text-center mb-4">
+                             <Image src={LogoEvaam} alt="logo" width={150} height={150} />
+                           </div>
+                 
+                           <form>
+                 
+                           <p className="py-6 text-[12px]"> کد ارسال شده را وارد کنید </p>
+                 
+                             <div className="mb-4" dir="ltr">
+             
+                               
+                            <OtpInput
+                                value={otp}
+                                onChange={changeHandler}
+                                numInputs={8}
+                                
+                                inputStyle={
+                                    {
+                                        width:"35px",
+                                        height:"41px",
+                                        margin:"0 5px",
+                                        border:"1px solid #c6c6c6",
+                                        borderRadius:"10px"
+                                    }
+                                }
+                        
+                            />
+             
+                            </div>
+                                        <button
+                                        onClick={(e) => handelLogin(e)}
+                                        className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition"
+                                        >
+                                            پرداخت از کیف پول
+                                        
+                                        </button>
+                                    </form>
+                            </div>
+                    )
+                }
+            </Modal>
         </>
     )
 }

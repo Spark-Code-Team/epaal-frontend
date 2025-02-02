@@ -11,7 +11,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 
 const categories = [
@@ -150,6 +150,13 @@ export default function ShopHeader() {
 
 
   const store = useSelector(store => store)
+
+  const router = useRouter()
+
+  const handelCartShop = () => {
+    localStorage.setItem("selected", JSON.stringify(store.counter))
+    router.push("/shopping-evaam/products/shop-checkout")
+  }
   
 
   const onScroll = useCallback(event => {
@@ -290,11 +297,12 @@ export default function ShopHeader() {
                                     justify-center
                                 "
                             >
-                                <Link
-                                    href="/shopping-evaam/products/shop-checkout"
-                                className="
-                                    relative
-                                "
+                                <div
+                                    onClick={() => handelCartShop()}
+                                    className="
+                                        relative
+                                        cursor-pointer
+                                    "
                                 >
                                     <CartIcon 
                                         width="24px"
@@ -317,7 +325,7 @@ export default function ShopHeader() {
                                     >
                                     { store.counter.counter }
                                     </div>
-                                </Link>
+                                </div>
                             </div>
                             </>
                         ) : (
