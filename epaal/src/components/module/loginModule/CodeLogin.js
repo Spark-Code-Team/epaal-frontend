@@ -4,13 +4,24 @@ import OtpInput from "react18-input-otp";
 import Image from "next/image";
 import LogoEvaam from "../../../../public/image/logoevaam.png";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ReactOtpInput({setLoginState}){
-    const[otp , setOtp] = useState("");
+    
+  const[otp , setOtp] = useState("");
 
+  const router = useRouter()
     const changeHandler = (enteredOtp) =>{
         setOtp(enteredOtp);
     };
+
+    const handelLogin = (e) => {
+
+      e.preventDefault()
+
+      router.replace("/shopping-evaam")
+      localStorage.setItem("login", true)
+    }
 
     return (
       <div className="bg-white p-6 rounded-xl shadow-lg w-[402px] h-[314px]
@@ -43,10 +54,9 @@ export default function ReactOtpInput({setLoginState}){
 
     />
 
-                </div>
+      </div>
                 <button
-                  type="submit"
-                  onClick={() => setLoginState(2)}
+                  onClick={(e) => handelLogin(e)}
                   className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition"
                 >
                   ورود

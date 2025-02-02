@@ -11,6 +11,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 
 const categories = [
@@ -145,6 +146,8 @@ export default function ShopHeader() {
   const [showCategories, setShowCategories] = useState(false)
   const [burgerMenu, setBurgerMenu] = useState(false)
   const [burgerChangeItems, setBurgerChangeItems] = useState(false)
+  const [login, setLogin] = useState(false)
+
 
   const store = useSelector(store => store)
   
@@ -163,6 +166,8 @@ export default function ShopHeader() {
   useEffect(() => {
       //add eventlistener to window
       window.addEventListener("scroll", onScroll, { passive: true });
+
+      setLogin(localStorage.getItem("login"))
       
       // remove event on unmount to prevent a memory leak with the cleanup
       return () => {
@@ -252,64 +257,85 @@ export default function ShopHeader() {
                         w-[45%]
                     "
                 >
-                    <div
-                        className="
-                            h-[26px]
-                            flex
-                            items-center
-                            justify-center
-                            rounded-lg
-                            border-2
-                            p-4
-                            border-[#9ED6D9]
-                            text-[13px]
-                        "
-                    >
-                        حساب کاربری
-                    </div>
-                    
-                    <div
-                        className="
-                            w-[26px]
-                            h-[26px]
-                            rounded-lg
-                            border-2
-                            border-[#9ED6D9]
-                            flex
-                            p-4
-                            items-center
-                            justify-center
-                        "
-                    >
-                        <Link
-                            href="/shopping-evaam/products/shop-checkout"
-                          className="
-                            relative
-                          "
-                        >
-                            <CartIcon 
-                                width="24px"
-                                height="24px"
-                                color="#475569"
-                            />
+
+                    {
+                        login ? (
+                            <>
                             <div
-                              className={`
-                                w-5
-                                h-5
-                                absolute
-                                top-[-15px]
-                                left-[15px]
-                                bg-green-600
-                                text-white
-                                text-center
-                                rounded-lg
-                                ${ store.counter.counter == 0 ? "hidden" : null}
-                              `}
+                                className="
+                                    h-[26px]
+                                    flex
+                                    items-center
+                                    justify-center
+                                    rounded-lg
+                                    border-2
+                                    p-4
+                                    border-[#9ED6D9]
+                                    text-[13px]
+                                "
                             >
-                              { store.counter.counter }
+                                حساب کاربری
                             </div>
-                        </Link>
-                    </div>
+                            
+                            <div
+                                className="
+                                    w-[26px]
+                                    h-[26px]
+                                    rounded-lg
+                                    border-2
+                                    border-[#9ED6D9]
+                                    flex
+                                    p-4
+                                    items-center
+                                    justify-center
+                                "
+                            >
+                                <Link
+                                    href="/shopping-evaam/products/shop-checkout"
+                                className="
+                                    relative
+                                "
+                                >
+                                    <CartIcon 
+                                        width="24px"
+                                        height="24px"
+                                        color="#475569"
+                                    />
+                                    <div
+                                    className={`
+                                        w-5
+                                        h-5
+                                        absolute
+                                        top-[-15px]
+                                        left-[15px]
+                                        bg-green-600
+                                        text-white
+                                        text-center
+                                        rounded-lg
+                                        ${ store.counter.counter == 0 ? "hidden" : null}
+                                    `}
+                                    >
+                                    { store.counter.counter }
+                                    </div>
+                                </Link>
+                            </div>
+                            </>
+                        ) : (
+                            <Link
+                                href="/login"
+                                className="
+                                    w-fit
+                                    p-[5px]
+                                    text-center
+                                    border-[2px]
+                                    border-black
+                                    rounded-lg
+                                "
+                            >
+                                ورود / ثبت نام
+                            </Link>
+                        )
+                    }
                 </div>
             </div>
 
