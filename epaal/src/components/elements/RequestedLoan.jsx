@@ -3,6 +3,7 @@ import React from "react";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { useState } from "react";
+import Link from "next/link";
 
 // تابع برای فرمت‌دهی عدد
 const formatNumber = (number) => {
@@ -208,9 +209,9 @@ const RequestedLoan = ({ isBanner }) => {
         </div>
 
         <div className="mt-10 flex w-full flex-row items-center justify-center">
-          <button className="rounded-lg border-4 border-green-300 bg-green-900 p-3 px-16 text-white transition-all duration-300 ease-in-out hover:rounded-2xl">
+          <Link href="/authentication" className="rounded-lg border-4 border-green-300 bg-green-900 p-3 px-16 text-white transition-all duration-300 ease-in-out hover:rounded-2xl">
             درخواست اعتبار
-          </button>
+          </Link>
         </div>
       </div>
     </>

@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const BodyAuthAddress = () => {
 
     const items = [
+        { id: 8, name: "تهران", capital: "تهران" },
         { id: 1, name: "آذربایجان شرقی", capital: "تبریز" },
         { id: 2, name: "آذربایجان غربی", capital: "ارومیه" },
         { id: 3, name: "اردبیل", capital: "اردبیل" },
@@ -10,7 +12,6 @@ const BodyAuthAddress = () => {
         { id: 5, name: "البرز", capital: "کرج" },
         { id: 6, name: "ایلام", capital: "ایلام" },
         { id: 7, name: "بوشهر", capital: "بوشهر" },
-        { id: 8, name: "تهران", capital: "تهران" },
         { id: 9, name: "چهارمحال و بختیاری", capital: "شهرکرد" },
         { id: 10, name: "خراسان جنوبی", capital: "بیرجند" },
         { id: 11, name: "خراسان رضوی", capital: "مشهد" },
@@ -60,9 +61,9 @@ const BodyAuthAddress = () => {
                     </select>
 
                     <div className="absolute inset-y-0 left-10 top-6 flex items-center pointer-events-none">
-                        <div className="w-5 h-5">
+                        {/* <div className="w-5 h-5">
                             <Image src="/image/circle-bold.png" alt="" width={26} height={26} />
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>
@@ -76,12 +77,12 @@ const BodyAuthAddress = () => {
                         type="text"
                         id="nationalCode"
                         className="mt-1 block w-full h-[53px] border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                        placeholder="***********"
+                        placeholder="کد ده رقمی"
                     />
                     <div className="absolute inset-y-0 left-5 top-6 flex items-center pointer-events-none">
-                        <div className="w-5 h-5">
+                        {/* <div className="w-5 h-5">
                             <Image src="/image/circle-bold.png" alt="" width={26} height={26} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
@@ -95,9 +96,9 @@ const BodyAuthAddress = () => {
                     <textarea placeholder="آدرس را اینجا بنویسید" className="mt-1 block w-full h-[53px] border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
 
                     <div className="absolute inset-y-0 left-5 top-6 flex items-center pointer-events-none">
-                        <div className="w-5 h-5">
+                        {/* <div className="w-5 h-5">
                             <Image src="/image/circle-bold.png" alt="" width={26} height={26} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
@@ -115,9 +116,9 @@ const BodyAuthAddress = () => {
                             <input type="text" className="mt-1 block w-full h-[53px] border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
 
                             <div className="absolute inset-y-0 left-5 top-6 flex items-center pointer-events-none">
-                                <div className="w-5 h-5">
+                                {/* <div className="w-5 h-5">
                                     <Image src="/image/circle-bold.png" alt="" width={26} height={26} />
-                                </div>
+                                </div> */}
                             </div>
 
                         </div>
@@ -130,9 +131,9 @@ const BodyAuthAddress = () => {
                             <input type="text" className="mt-1 block w-full h-[53px] border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
 
                             <div className="absolute inset-y-0 left-5 top-6 flex items-center pointer-events-none">
-                                <div className="w-5 h-5">
+                                {/* <div className="w-5 h-5">
                                     <Image src="/image/circle-bold.png" alt="" width={26} height={26} />
-                                </div>
+                                </div> */}
                             </div>
 
                         </div>
@@ -152,12 +153,12 @@ const BodyAuthAddress = () => {
                         type="text"
                         id="nationalCode"
                         className="mt-1 block w-full h-[53px] border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                        placeholder="***************"
+                        placeholder=""
                     />
                     <div className="absolute inset-y-0 left-5 top-[-9px] flex items-center pointer-events-none">
-                        <div className="w-5 h-5">
+                        {/* <div className="w-5 h-5">
                             <Image src="/image/circle-bold.png" alt="" width={26} height={26} />
-                        </div>
+                        </div> */}
                     </div>
 
                     <p className="w-full mt-3 text-[13px]">شماره تلفن معتبر و مرتبط با کد پستی وارد کنید</p>
@@ -167,8 +168,8 @@ const BodyAuthAddress = () => {
 
 
                 <div className="w-[600px] m-auto relative mt-14 flex justify-between">
-                    <button className="w-[134px] h-[42px] border-2 border-[#1D434C] flex items-center justify-center rounded-md">مرحله قبلی</button>
-                    <button className="w-[134px] h-[42px] bg-[#A7A8A9] text-white flex items-center justify-center rounded-md">تایید و ادامه</button>
+                    <Link href="/auth-bank" className="w-[134px] h-[42px] border-2 border-[#1D434C] flex items-center justify-center rounded-md">مرحله قبلی</Link>
+                    <Link href="/authentication" className="w-[134px] h-[42px] bg-[#1D434C] text-white flex items-center justify-center rounded-md">تایید و ادامه</Link>
                 </div>
 
 
