@@ -3,13 +3,14 @@
 import { useDispatch, useSelector } from "react-redux"
 import CartIcon from "../../../public/icons/Cart"
 import Image from "next/image";
-import { checkout } from "@/redux/features/shopCart/shopCart";
+import { checkout as finalCheckout } from "@/redux/features/shopCart/shopCart";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Modal } from "flowbite-react";
 import Phone from "../../../public/icons/Phone";
 import LogoEvaam from "../../../public/image/logoevaam.png";
 import OtpInput from "react18-input-otp";
+import { Bounce, toast } from "react-toastify";
 
 
 export default function ShopCartPage() {
@@ -28,10 +29,24 @@ export default function ShopCartPage() {
     };
 
     const handelCheckout = () => {
-        // dispatch(checkout())
-        // router.push("/shopping-evaam")
-
         setOpenModal(true)
+    }
+
+    const payHandler = () => {
+        setOpenModal(false)
+        router.push("/shopping-evaam")
+        setCheckout(1)
+        dispatch(finalCheckout())
+
+        toast.success('پرداخت با موفقیت انجام شد', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
     }
     
 
@@ -136,9 +151,18 @@ export default function ShopCartPage() {
                         </div>
                     </div>
                 ) : (
-                    <div>
+                    <div
+                        className="
+                            w-full
+                            h-full
+                            flex
+                            justify-center
+                            items-center
+                            min-h-[50vh]
+                        "
+                    >
                         <h1>
-                            سبد شما خالی است 🤣😂
+                            سبد شما خالی است
                         </h1>
                     </div>
                 )
@@ -226,14 +250,14 @@ export default function ShopCartPage() {
                             />
              
                             </div>
-                                        <button
-                                        onClick={(e) => handelLogin(e)}
-                                        className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition"
-                                        >
+                                    <div
+                                        onClick={() => payHandler()}
+                                        className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition text-center cursor-pointer"
+                                    >
                                             پرداخت از کیف پول
                                         
-                                        </button>
-                                    </form>
+                                    </div>
+                                </form>
                             </div>
                     )
                 }

@@ -5,6 +5,7 @@ import Image from "next/image";
 import LogoEvaam from "../../../../public/image/logoevaam.png";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Bounce, toast } from "react-toastify";
 
 export default function ReactOtpInput({setLoginState}){
     
@@ -20,6 +21,15 @@ export default function ReactOtpInput({setLoginState}){
       e.preventDefault()
 
       router.replace("/shopping-evaam")
+      toast.success("ورود باا موفقیت انجام شد", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+    });
       localStorage.setItem("login", true)
     }
 

@@ -6,7 +6,6 @@ import Search from "@/components/elements/search";
 import { IoIosArrowDown } from "react-icons/io";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import metroMan from "../../../../public/image/metroman.jpg"
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
@@ -564,7 +563,7 @@ export default function ShopHeader() {
                                                 "
                                             >
                                                 <Image 
-                                                    src={metroMan}
+                                                    src="/"
                                                     width={300}
                                                     height={300}
                                                     className="
@@ -830,7 +829,7 @@ export default function ShopHeader() {
                                                             "
                                                         >
                                                             <Image 
-                                                                src={metroMan}
+                                                                src="/"
                                                                 width={300}
                                                                 height={300}
                                                                 className="
