@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const BodyAuthBank = () => {
 
     return (
@@ -16,7 +18,7 @@ const BodyAuthBank = () => {
                 <p className="w-full mt-5 text-center">سابقه شما در بازپرداخت اقساط تسهیلات بانکی</p>
                 <p className="w-full mt-3 text-center">نداشتن چک برگشتی</p>
 
-                <button className="w-[440px] h-[40px] bg-[#1D434C] m-auto block mt-12 text-white rounded-md text-center">شروع امکان سنجی</button>
+                <Link href="/bank-credit" className="w-[440px] f h-[40px] bg-[#1D434C] m-auto flex items-center justify-center mt-12 text-white rounded-md text-center">شروع امکان سنجی</Link>
 
             </div>
 

@@ -168,8 +168,8 @@ const BodyAuthAddress = () => {
 
 
                 <div className="w-[600px] m-auto relative mt-14 flex justify-between">
-                    <Link href="/auth-bank" className="w-[134px] h-[42px] border-2 border-[#1D434C] flex items-center justify-center rounded-md">مرحله قبلی</Link>
-                    <Link href="/authentication" className="w-[134px] h-[42px] bg-[#1D434C] text-white flex items-center justify-center rounded-md">تایید و ادامه</Link>
+                    <Link href="/authentication" className="w-[134px] h-[42px] border-2 border-[#1D434C] flex items-center justify-center rounded-md">مرحله قبلی</Link>
+                    <Link href="/auth-bank" className="w-[134px] h-[42px] bg-[#1D434C] text-white flex items-center justify-center rounded-md">تایید و ادامه</Link>
                 </div>
 
 
