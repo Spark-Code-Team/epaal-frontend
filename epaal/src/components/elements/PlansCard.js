@@ -16,6 +16,7 @@ export default function PlansCard({ plans }) {
                   height={100}
                   width={100}
                   className="h-10 w-10"
+                  alt={`${eachPlan.id} banner.png`}
                 />
               </div>
               <div>

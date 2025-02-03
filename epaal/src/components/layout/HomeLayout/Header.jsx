@@ -85,7 +85,7 @@ export default function Header() {
               md:hidden
             "
           >
-            <EvaamLogo color={navColor ? "#000" : "#ffff"} height="24px" width="24px"/>   
+            <EvaamLogo color={navColor ? "#000" : "#fff"} height="24px" width="24px"/>   
           </div>
           <NavElements />
         </div>

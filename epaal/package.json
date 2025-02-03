@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@persian-tools/persian-tools": "^3.5.2",
+    "@persian-tools/persian-tools": "^3.6.0",
     "@reduxjs/toolkit": "^2.5.1",
     "axios": "^1.7.9",
+    "framer-motion": "^12.0.9",
     "react": "^18",
     "react-datepicker2": "^3.3.13",
     "react-dom": "^18",

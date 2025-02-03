@@ -71,11 +71,11 @@ export default function BurgerMenu({ navColor}) {
               items-center
             "
           >
-            <EvaamLogo color="#2852E4" width="30px" height="30px" />
+            <EvaamLogo color="#1d434c" width="30px" height="30px" />
 
             <p
               className="
-              text-[#2852E4]
+              text-[#1d434c]
                 text-[16px]
                 mr-2
             "
@@ -91,7 +91,7 @@ export default function BurgerMenu({ navColor}) {
               border-slate-300
             "
           >
-            <Link href={"#"}>فروشگاه های ایوام</Link>
+            <Link href={"/shopping-evaam"}>فروشگاه های ایوام</Link>
           </div>
           <div
             className="

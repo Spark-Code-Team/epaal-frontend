@@ -4,7 +4,7 @@ import Link from "next/link";
 const ProductCategories = () => {
   return (
     <>
-      <div className="mx-auto mt-[430px] w-[90%] sm:w-[90%] lg:w-[90%] lg:mb-[100px]">
+      <div className="mx-auto mt-[700px] sm:mt-[430px] w-[90%] sm:w-[90%] lg:w-[90%] lg:mb-[100px]">
         <div className="w-full text-center text-xl">دسته بندی محصولات</div>
 
         <div className="m-auto mt-8 flex w-full flex-wrap justify-around lg:mt-10">
