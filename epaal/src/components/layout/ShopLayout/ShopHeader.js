@@ -228,19 +228,25 @@ export default function ShopHeader() {
                             "
                             onClick={() => setBurgerMenu(true)}
                         />
-                        <EvaamLogo 
-                            width="45px"
-                            height="45px"
-                            color="blue"
-                        />
-                        <p
+                        <Link
+                            href="/shopping-evaam"
+                        >
+                            <EvaamLogo 
+                                width="45px"
+                                height="45px"
+                                color="#0e9f6e"
+                            />
+                        </Link>
+                        <Link
+                            href="/shopping-evaam"
                             className="
                                 hidden
                                 md:flex
+                                text-green-500
                             "
                         >
                             ایوام
-                        </p>
+                        </Link>
                     </div>
                     <div
                         className="
