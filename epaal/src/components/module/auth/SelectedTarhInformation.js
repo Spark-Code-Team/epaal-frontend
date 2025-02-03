@@ -5,7 +5,7 @@ import Link from "next/link";
 
 
 
-export default function SelectedTarhInformation() {
+export default function SelectedTarhInformation({ setState }) {
 
     const [input, setInput] = useState("")
 
@@ -214,6 +214,7 @@ export default function SelectedTarhInformation() {
                             items-center 
                             justify-center 
                             rounded-md
+                            cursor-pointer
                         "
                     >
                         مرحله قبلی

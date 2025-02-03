@@ -19,7 +19,7 @@ export default function AlakiPage () {
                         setState={setState}
                     />
                 ) : (
-                    <SelectedTarhInformation />
+                    <SelectedTarhInformation setState={setState} />
                 )
             }
         </>
