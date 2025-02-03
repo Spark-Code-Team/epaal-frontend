@@ -1,6 +1,12 @@
 import { GrInstagram } from "react-icons/gr";
 import Image from "next/image";
 
+
+import IconOne from "@/../public/image/Component 2.svg"
+import IconTwo from "@/../public/image/Component 3.svg"
+import IconThree from "@/../public/image/Component 4.svg"
+import IconFour from "@/../public/image/Component 5.svg"
+
 const InstallmentPurchase = ()=>{
 
     return(
@@ -16,7 +22,7 @@ const InstallmentPurchase = ()=>{
                     <div className="text-white rounded-lg p-4 flex items-center justify-evenly">
 
                         <div className="bg-white p-2 rounded-lg w-16 h-16 flex justify-center">
-                            <Image src={"/image/component 1.png"} alt={""} width={33} height={33}/>
+                            <Image src={IconOne} alt={""} width={50} height={50}/>
                         </div>
 
                         <div className="flex flex-col flex-1 mr-3">
@@ -30,7 +36,7 @@ const InstallmentPurchase = ()=>{
                     <div className="text-white rounded-lg p-4 flex items-center justify-evenly">
 
                         <div className="bg-white p-2 rounded-lg w-16 h-16 flex justify-center">
-                            <Image src={"/image/component 1.png"} alt={""} width={33} height={33}/>
+                            <Image src={IconTwo} alt={""} width={50} height={50}/>
                         </div>
 
                         <div className="flex flex-col flex-1 mr-3">
@@ -43,7 +49,7 @@ const InstallmentPurchase = ()=>{
                     <div className="text-white rounded-lg p-4 flex items-center justify-evenly">
 
                         <div className="bg-white p-2 rounded-lg w-16 h-16 flex justify-center">
-                            <Image src={"/image/component 1.png"} alt={""} width={33} height={33}/>
+                            <Image src={IconThree} alt={""} width={60} height={60}/>
                         </div>
 
                         <div className="flex flex-col flex-1 mr-3">
@@ -57,7 +63,7 @@ const InstallmentPurchase = ()=>{
                     <div className="text-white rounded-lg p-4 flex items-center justify-evenly">
 
                         <div className="bg-white p-2 rounded-lg w-16 h-16 flex justify-center">
-                            <Image src={"/image/component 1.png"} alt={""} width={33} height={33}/>
+                            <Image src={IconFour} alt={""} width={50} height={50}/>
                         </div>
 
                         <div className="flex flex-col flex-1 mr-3">
