@@ -2,67 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-   /* Hide scrollbar for IE, Edge and Firefox */
-    .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
 
-.custom-bg{
-    -webkit-appearance: none;
-    background-color: #dee2e5;
-    height: 6px;
-}
-
-
+/* این استایل برای اعمال پس‌زمینه به input[type="range"] */
 input[type="range"] {
-    -webkit-appearance: none; /* برای Safari و Chrome */
-    appearance: none; /* برای Firefox */
-    width: 100%;
-    height: 8px;
-    background: #ddd;
-    border-radius: 5px;
-    outline: none;
-    transition: background 0.3s;
+  -webkit-appearance: none; /* Safari & Chrome */
+  appearance: none; /* Firefox */
+  width: 100%;
+  height: 8px;
+  border-radius: 10px;
+  background: #ddd;
+  outline: none;
+  transition: background 0.2s ease;
 }
 
-/* استایل دهی به نوار پیشرفت در Chrome و Safari */
+/* اعمال پس‌زمینه رنگی */
+input[type="range"]:focus {
+  background: linear-gradient(to right, #1d434c 0%, #e5e7eb 0%);
+}
+
 input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 8px;
-    background: #f1f0f0; /* رنگ نوار پیشرفت */
-    border-radius: 5px;
+  width: 100%;
+  height: 8px;
+  background: transparent; /* پس‌زمینه‌ای که از linear-gradient بهش میدیم */
 }
 
 input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: rgb(29, 114, 111);
-    border-radius: 50%;
-    cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: #1d434c 5px solid;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -5px;
 }
 
-/* استایل دهی به نوار پیشرفت در Firefox */
 input[type="range"]::-moz-range-track {
-    width: 100%;
-    height: 8px;
-    background: blue; /* رنگ نوار پیشرفت */
-    border-radius: 5px;
+  width: 100%;
+  height: 8px;
+  background: transparent; /* پس‌زمینه‌ای که از linear-gradient بهش میدیم */
 }
 
 input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: blue;
-    border-radius: 50%;
-    cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background: #1d434c;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
