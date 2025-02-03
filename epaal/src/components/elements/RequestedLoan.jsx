@@ -3,6 +3,8 @@ import React from "react";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { useState } from "react";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
+import { useRouter } from "next/navigation";
 
 // تابع برای فرمت‌دهی عدد
 const formatNumber = (number) => {
@@ -10,7 +12,10 @@ const formatNumber = (number) => {
 };
 
 const RequestedLoan = ({ isBanner }) => {
-  const items = [6, 12, 24, 36];
+
+  const router = useRouter()
+
+  const items = [6, 12, 18, 24];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -89,7 +94,7 @@ const RequestedLoan = ({ isBanner }) => {
 
   return (
     <>
-      <div className="absolute mx-auto flex flex-wrap rounded-3xl bg-white pb-8 shadow-lg sm:min-h-[300px] sm:w-[90%] md:mt-[800px] lg:mt-[900px] lg:h-auto lg:p-5">
+      <div className="absolute mx-auto flex flex-wrap rounded-3xl sm:mt-[800px] bg-white p-3 md:pb-8 shadow-lg sm:min-h-[300px] sm:w-[90%] md:mt-[800px] lg:mt-[900px] lg:h-auto lg:p-5">
         <div className="w-full sm:w-1/2 lg:w-1/2">
           <div className="mt-10 flex w-full flex-wrap">
             <div className="w-1/2 pr-3 text-sm text-green-600 sm:w-1/2 sm:text-base lg:w-1/2 lg:text-lg">
@@ -102,7 +107,7 @@ const RequestedLoan = ({ isBanner }) => {
 
           <div className="mt-10 flex w-full flex-wrap justify-around">
             <div className="text-[#64748B] lg:flex lg:w-auto lg:items-center lg:text-sm">
-              10 میلیون تومان
+              {digitsEnToFa("1")} میلیون تومان
             </div>
 
             <div className="flex justify-center lg:w-[65%]">
@@ -120,7 +125,7 @@ const RequestedLoan = ({ isBanner }) => {
             </div>
 
             <div className="text-sm text-[#64748B] lg:flex lg:w-auto lg:items-center">
-              200 میلیون تومان
+              {digitsEnToFa("100")} میلیون تومان
             </div>
           </div>
 
@@ -156,7 +161,7 @@ const RequestedLoan = ({ isBanner }) => {
         </div>
 
         <div className="w-full sm:w-1/2 lg:w-1/2">
-          <div className="sm:h-34 mx-auto mt-2 min-h-44 w-[90%] rounded-lg bg-green-100 sm:mx-auto sm:w-[80%] lg:mx-auto lg:mt-10 lg:h-auto lg:min-h-60 lg:w-[80%] lg:pb-8 lg:pt-2">
+          <div className="sm:h-34 mx-auto md:mt-2 min-h-44 w-[90%] rounded-lg md:bg-green-100 sm:mx-auto sm:w-[80%] lg:mx-auto lg:mt-10 lg:h-auto lg:min-h-60 lg:w-[80%] lg:pb-8 lg:pt-2 sm:bg-green-100 bg-green-100 mt-10 py-6 ">
             <div className="lg:h-54 min-h-34 sm:h-34 mx-auto mt-5 flex w-[90%] sm:mx-auto sm:w-[80%] lg:mx-auto lg:w-[90%]">
               <div className="w-1/2 pt-[2px] text-sm text-[#1D434C] sm:w-1/2 lg:w-1/2 lg:text-[12px]">
                 اصل تسهیلات ثبتی در بانک
@@ -195,7 +200,7 @@ const RequestedLoan = ({ isBanner }) => {
               </div>
             </div>
 
-            <div className="lg:h-54 min-h-34 sm:h-34 mx-auto mt-2 flex w-[90%] rounded-xl border-2 border-green-900 py-3 sm:mx-auto sm:w-[80%] lg:mx-auto lg:w-[95%] lg:px-3">
+            <div className="lg:h-54 min-h-34 sm:h-34 mx-auto mt-2 flex w-[90%] rounded-xl border-2 border-green-900 px-4 py-3 sm:mx-auto sm:w-[80%] lg:mx-auto lg:w-[95%] lg:px-3">
               <div className="w-1/2 pt-1 text-xs font-extrabold text-[#1D434C] sm:w-1/2 lg:w-1/2 lg:pt-0 lg:text-sm">
                 پرداخت ماهانه
               </div>
@@ -208,7 +213,9 @@ const RequestedLoan = ({ isBanner }) => {
         </div>
 
         <div className="mt-10 flex w-full flex-row items-center justify-center">
-          <button className="rounded-lg border-4 border-green-300 bg-green-900 p-3 px-16 text-white transition-all duration-300 ease-in-out hover:rounded-2xl">
+          <button onClick={()=>{
+            router.push("/bank-credit")
+          }} className="rounded-lg border-4 border-green-300 bg-green-900 p-3 px-16 text-white transition-all duration-300 ease-in-out hover:rounded-2xl">
             درخواست اعتبار
           </button>
         </div>

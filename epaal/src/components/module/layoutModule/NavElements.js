@@ -32,7 +32,7 @@ export default function NavElements() {
                     relative
                 "
             >
-                <Link href="/shopping-epaal" className="group-hover:text-blue-900 transition-all duration-300">فروشگاه ایوام</Link>
+                <Link href="/shopping-evaam" className="group-hover:text-blue-900 transition-all duration-300">فروشگاه ایوام</Link>
                 <div
                     className="
                         bg-blue-900

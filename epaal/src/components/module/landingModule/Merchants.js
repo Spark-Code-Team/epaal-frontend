@@ -5,7 +5,7 @@ import daric from "@/../public/image/daric.png"
 import zitro from "@/../public/image/zitro.png"
 import matin from "@/../public/image/matin.png"
 
-export default function Merchants (){
+export default function Merchants ({from}){
 
     const merchantsList = [
         {
@@ -37,7 +37,7 @@ export default function Merchants (){
 
     return(
         <>
-            <MerchantsCard merchants={merchantsList}/>
+            <MerchantsCard merchants={merchantsList} from={from}/>
         </>
     )
 }

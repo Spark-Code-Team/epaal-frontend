@@ -22,7 +22,7 @@ export default function LandingHome()  {
             {/* <CreditConditions /> */}
             {/* <LoanApplicationProcess /> */}
             {/* <LoanReceiptDocuments /> */}
-            <Merchants/>
+            <Merchants from="landing"/>
             <InstallmentPurchase />
             {/* <Articles /> */}
             {/* <SoalatMotadavel/> */}
