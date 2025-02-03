@@ -8,7 +8,6 @@ import RequestedLoan from "@/components/elements/RequestedLoan";
 import Link from "next/link";
 
 export default function Banner() {
-  let array = ["zitro", "matinkhodroo"];
 
   return (
     <div className="min-h-0 w-full md:my-14">
@@ -29,7 +28,7 @@ export default function Banner() {
               <button className="items-center justify-center rounded-lg bg-evaamCyan px-14 py-4 text-white transition-all duration-300 ease-in-out hover:rounded-xl">
                 ثبت درخواست وام
               </button>
-              <button className="items-center justify-center rounded-lg border-2 border-evaamCyan bg-none px-14 py-4 text-cyan-600 transition-all duration-300 ease-in-out hover:rounded-xl">
+              <button className="items-center justify-center rounded-lg border-2 border-evaamCyan bg-none px-14 py-4 text-cyan-600 transition-all duration-300 ease-in-out hover:rounded-xl hover:text-white hover:bg-evaamCyan">
                 فروشگاه ایوام
               </button>
             </div>

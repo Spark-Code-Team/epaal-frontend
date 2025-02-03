@@ -149,7 +149,7 @@ const RequestedLoan = ({ isBanner }) => {
         </div>
 
         <div className="w-full sm:w-1/2 lg:w-1/2">
-          <div className="sm:h-34 mx-auto mt-2 min-h-44 w-[90%] rounded-lg bg-green-100 sm:mx-auto sm:w-[80%] lg:mx-auto lg:mt-10 lg:h-auto lg:min-h-60 lg:w-[80%] lg:pt-2">
+          <div className="sm:h-34 mx-auto mt-2 min-h-44 w-[90%] rounded-lg bg-green-100 sm:mx-auto sm:w-[80%] lg:mx-auto lg:pb-8 lg:mt-10 lg:h-auto lg:min-h-60 lg:w-[80%] lg:pt-2">
             <div className="lg:h-54 min-h-34 sm:h-34 mx-auto mt-5 flex w-[90%] sm:mx-auto sm:w-[80%] lg:mx-auto lg:w-[90%]">
               <div className="w-1/2 pt-[2px] text-sm text-[#1D434C] sm:w-1/2 lg:w-1/2 lg:text-[12px]">
                 اصل تسهیلات ثبتی در بانک
@@ -188,11 +188,11 @@ const RequestedLoan = ({ isBanner }) => {
               </div>
             </div>
 
-            <div className="lg:h-54 min-h-34 sm:h-34 mx-auto mt-2 flex w-[90%] py-3 sm:mx-auto sm:w-[80%] lg:mx-auto lg:w-[90%]">
-              <div className="w-1/2 pt-1 text-xs text-[#1D434C] sm:w-1/2 lg:w-1/2 lg:pt-0 lg:text-sm">
+            <div className="lg:h-54 rounded-xl border-2 border-green-900 min-h-34 sm:h-34 mx-auto mt-2 flex w-[90%] py-3 sm:mx-auto sm:w-[80%] lg:mx-auto lg:w-[95%] lg:px-3 ">
+              <div className="w-1/2 pt-1 text-xs text-[#1D434C] font-extrabold sm:w-1/2 lg:w-1/2 lg:pt-0 lg:text-sm">
                 پرداخت ماهانه
               </div>
-              <div className="w-1/2 pt-[3px] text-left text-sm text-[#1D434C] sm:w-1/2 lg:w-1/2 lg:text-sm">
+              <div className="w-1/2 pt-[3px] text-left font-extrabold text-sm text-[#1D434C] sm:w-1/2 lg:w-1/2 lg:text-sm">
                 {formatNumber(calculatedPayment.paymentPerMounth)}{" "}
                 <span className="text-sm">تومان</span>
               </div>
