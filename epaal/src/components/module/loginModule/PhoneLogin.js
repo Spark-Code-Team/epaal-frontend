@@ -8,8 +8,8 @@ import Phone from "../../../../public/icons/Phone";
 const PhoneLogin = ({ setLoginState }) => {
 
     return (
-      <div className="bg-white p-6 rounded-xl shadow-lg w-[402px] h-[314px]
-       absolute top-[33%] left-[33%]">
+      <div className="bg-white p-6 m-6 rounded-xl shadow-lg w-auto h-[314px]
+       absolute sm:top-[33%] sm:left-[33%]">
 
           <div className="text-center mb-4">
             <Image src={LogoEvaam} alt="logo" width={150} height={150} />

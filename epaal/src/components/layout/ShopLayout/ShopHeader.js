@@ -709,7 +709,7 @@ export default function ShopHeader() {
                                 color="blue"
                             />
                             <p>
-                                ایپال      
+                                ایوام      
                             </p>
                         </div>
                         <div

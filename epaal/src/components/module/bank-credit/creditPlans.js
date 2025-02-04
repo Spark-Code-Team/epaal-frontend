@@ -16,6 +16,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Merchants from "../landingModule/Merchants";
+import { useRouter } from "next/navigation";
 
 const cards = [
   {
@@ -54,6 +55,8 @@ const cards = [
 ];
 
 export default function CreditPlans() {
+  const router = useRouter()
+
   const formatNumber = (number) => {
     return number.toLocaleString("fa-IR"); // نمایش عدد به فرمت فارسی
   };
@@ -326,7 +329,9 @@ export default function CreditPlans() {
             </div>
             <div className="flex w-full items-center justify-center lg:flex-row lg:px-14">
               <div>
-                <button className="bg-green-900 text-white lg:px-8 lg:py-3 rounded-lg transition-all ease-in-out duration-300 hover:rounded-xl hover:scale-105 hover:shadow-lg">درخواست اعتبار</button>
+                <button onClick={()=>{
+                  router.push('/complete-info')
+                }} className="bg-green-900 text-white lg:px-8 lg:py-3 rounded-lg transition-all ease-in-out duration-300 hover:rounded-xl hover:scale-105 hover:shadow-lg">درخواست اعتبار</button>
               </div>
             </div>
           </div>
