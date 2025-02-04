@@ -47,76 +47,23 @@ import Xiami from "@/../public/image/xiami.jpg";
 
 import IphoneProduct from "@/../public/image/iphone-prod.png";
 import { StaticData } from "../../../public/staticData/StaticData";
+import ProductCategories from "../elements/ProductCategories";
+import Banner from "../module/landingModule/Banner";
 
 
 export default function shop() {
   const images = [test1, test2, test3];
   return (
     <>
-      <div className="w-full">
+      <div className="hidden sm:block sm:w-full">
         <Carousel images={images} />
       </div>
-      <div className="my-4 grid grid-cols-3 place-items-center gap-2 p-2 sm:grid-cols-1">
-        <div className="mx-auto mt-20 w-[90%] sm:w-[90%] lg:w-[90%]">
-          <div className="w-full text-center text-xl">دسته بندی محصولات</div>
-
-          <div className="m-auto mt-8 flex w-full flex-wrap justify-around lg:mt-10">
-            <div className="">
-              <Link href="shopping-evaam/phone">
-                <Image src="/image/2.webp" alt={""} width={130} height={130} />
-                <p className="mt-1 text-center text-base">موبایل</p>
-              </Link>
-            </div>
-
-            <div className="">
-              <Link href="#">
-                <Image src="/image/3.webp" alt="alt" width={130} height={130} />
-                <p className="mt-1 text-center text-base">زیورآلات</p>
-              </Link>
-            </div>
-
-            <div className="">
-              <Link href="shopping-evaam/labtop">
-                <Image src="/image/4.webp" alt="alt" width={130} height={130} />
-                <p className="mt-1 text-center text-base">لپ تاپ</p>
-              </Link>
-            </div>
-
-            <div className="">
-              <Link href="#">
-                <Image src="/image/5.webp" alt="alt" width={130} height={130} />
-                <p className="mt-1 text-center text-base">موتور سیکلت</p>
-              </Link>
-            </div>
-
-            <div className="">
-              <Link href="shopping-evaam/console">
-                <Image src="/image/6.webp" alt="alt" width={130} height={130} />
-                <p className="mt-1 text-center text-base">کنسول بازی</p>
-              </Link>
-            </div>
-
-            <div className="">
-              <Link href="#">
-                <Image src="/image/7.webp" alt="alt" width={130} height={130} />
-                <p className="mt-1 text-center text-base">ابزار صنعتی</p>
-              </Link>
-            </div>
-
-            <div className="">
-              <Link href="#">
-                <Image src="/image/8.webp" alt="alt" width={130} height={130} />
-                <p className="mt-1 text-center text-base">آرایشی بهداشتی</p>
-              </Link>
-            </div>
-
-            <div className="">
-              <Link href="#">
-                <Image src="/image/9.webp" alt="alt" width={130} height={130} />
-                <p className="mt-1 text-center text-base">ورزش و سفر</p>
-              </Link>
-            </div>
-          </div>
+      <div className="block sm:hidden">
+        <Banner/>
+      </div>
+      <div className="w-auto -mt-[100px] sm:-mt-[300px]">
+        <div className="mx-auto full sm:w-[90%] lg:w-[90%]">
+          <ProductCategories/>
         </div>
       </div>
       <Image
