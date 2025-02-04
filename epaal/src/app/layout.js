@@ -5,8 +5,6 @@ import "./globals.css";
 import { danaFont } from "@/utils/fonts";
 import { Bounce, ToastContainer } from "react-toastify";
 
-// fonts
-
 
 export const metadata = {
   title: "EVAAM",

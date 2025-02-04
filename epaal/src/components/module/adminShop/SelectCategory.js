@@ -27,7 +27,7 @@ const optins = [
 export default function SelectCategory() {
 
     const [showModal, setShowModal] = useState(false)
-    const [modalState, setModalState] = useState(2)
+    const [modalState, setModalState] = useState(1)
 
     return (
         <>        
@@ -281,7 +281,170 @@ export default function SelectCategory() {
                                 }
                             </div>
                             </div>
-                        ) : null
+                        ) : modalState == 3 ? (
+                            <div
+                                className="
+                                    w-full
+                                    h-[300px]
+                                    overflow-y-scroll
+                                "
+                            >
+                                <div
+                                    className="
+                                        flex
+                                        items-center
+                                        gap-2
+                                        mt-5
+                                    "
+                                >
+                                    <p
+                                        className="
+                                            text-[#868383]
+                                            text-[12px]
+                                        "
+                                    >
+                                        کالای دیجیتال
+                                    </p>
+                                    <LeftAroowBlur />
+                                    <p
+                                        className="
+                                            text-[#868383]
+                                            text-[12px]
+                                        "
+                                    >
+                                        لپ تاپ
+                                    </p>
+                                    <LeftAroowBlur />
+                                </div>
+
+                                <div
+                                    className="
+                                        grid
+                                        grid-cols-2
+                                        gap-2
+                                        w-full
+                                        mt-[58px]
+                                        max-h-[300px]
+                                    "
+                                >
+                                        <div
+                                            className="
+                                                w-full
+                                                flex
+                                                items-center
+                                                justify-between
+                                                p-[18px]
+                                                border
+                                                rounded-xl
+                                            "
+                                        >
+                                            <p>
+                                                کالای دیجیتال
+                                            </p>
+                                            <div>
+                                                <AroowLeft />
+                                            </div>
+                                        </div>
+                                        <div
+                                            className="
+                                                w-full
+                                                flex
+                                                items-center
+                                                justify-between
+                                                p-[18px]
+                                                border
+                                                rounded-xl
+                                            "
+                                        >
+                                            <p>
+                                                کالای دیجیتال
+                                            </p>
+                                            <div>
+                                                <AroowLeft />
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div
+                                className="
+                                    w-full
+                                    h-[300px]
+                                    overflow-y-scroll
+                                "                      
+                            >
+                                <div      
+                                    className="
+                                        mt-8
+                                        mb-7
+                                    "
+                                >
+                                    <p
+                                        className="
+                                            text-[18px]
+                                            font-medium
+                                        "
+                                    >
+                                    برندهای موجود در گروه کالایی    
+                                    </p>
+                                </div>
+
+                                <div
+                                    className="
+                                        grid
+                                        grid-cols-2
+                                        gap-2
+                                        w-full
+                                        mt-[58px]
+                                        max-h-[300px]
+                                    "
+                                >
+                                    {
+                                        optins.map(item => (
+                                            <div
+                                            key={item}
+                                            className="
+                                                w-full
+                                                border-b
+                                                border-[#e1e6ef]
+                                                pb-[6px]
+                                                flex
+                                                gap-3
+                                            "
+                                        >
+                                            <div
+                                                className="
+                                                    w-[34px]
+                                                    h-[34px]
+                                                    bg-[#d9d9d9]
+                                                    rounded-full
+                                                "
+                                            >
+    
+                                            </div>
+                                            <div>
+                                                <p
+                                                    className="
+                                                        text-[14px]
+                                                    "
+                                                >
+                                                    نام برند
+                                                </p>
+                                                <p
+                                                    className="
+                                                        text-[10px]
+                                                        font-normal
+                                                    "
+                                                >
+                                                    کد برند
+                                                </p>
+                                            </div>
+                                        </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                        )
                     }
 
 
@@ -322,7 +485,14 @@ export default function SelectCategory() {
                             cursor-pointer
                             transition-all
                         "
-                        onClick={() => setModalState(last => last + 1)}
+                        onClick={() => {
+                            if(modalState == 4) {
+                                setShowModal(false)
+                                setModalState(1)
+                            } else {
+                                setModalState(last => last + 1)
+                            }
+                        }}
                     >
                         ادامه
                     </div>
