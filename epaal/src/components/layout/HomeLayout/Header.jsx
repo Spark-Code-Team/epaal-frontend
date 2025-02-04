@@ -9,8 +9,11 @@ import EvaamLogo from "../../../../public/icons/evaam-icon";
 
 //react
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+
+  const router = useRouter()
 
   const [scrollY, setScrollY] = useState(0)
   const [navColor, setNavColor] = useState(false)
@@ -94,6 +97,8 @@ export default function Header() {
           "
         >
           <div
+
+            onClick={()=>{router.push('/login')}}
             className={`
               text-xs
               px-[18px]
@@ -102,6 +107,12 @@ export default function Header() {
               bg-[#1D434C]
               rounded-lg 
               cursor-pointer
+
+              hover:scale-110
+              hover:shadow-lg
+              transition-all
+              duration-300
+              ease-in-out
             `}
           >
             ورود به حساب کاربری

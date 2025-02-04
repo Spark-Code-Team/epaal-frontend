@@ -13,14 +13,13 @@ const formatNumber = (number) => {
 };
 
 const RequestedLoan = ({ isBanner }) => {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const items = [6, 12, 18, 24];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const [inputValue, setInputValue] = useState(10000000);
+  const [inputValue, setInputValue] = useState(1000000);
 
   const [calculatedPayment, setCalculatePayment] = useState({
     bankPrePayment: "-",
@@ -95,7 +94,7 @@ const RequestedLoan = ({ isBanner }) => {
 
   return (
     <>
-      <div className="absolute mx-auto flex flex-wrap rounded-3xl sm:mt-[800px] bg-white p-3 md:pb-8 shadow-lg sm:min-h-[300px] sm:w-[90%] md:mt-[800px] lg:mt-[900px] lg:h-auto lg:p-5">
+      <div className="absolute mx-auto flex flex-wrap rounded-3xl bg-white p-3 shadow-lg sm:mt-[800px] sm:min-h-[300px] sm:w-[90%] md:mt-[800px] md:pb-8 lg:mt-[900px] lg:h-auto lg:p-5">
         <div className="w-full sm:w-1/2 lg:w-1/2">
           <div className="mt-10 flex w-full flex-wrap">
             <div className="w-1/2 pr-3 text-sm text-green-600 sm:w-1/2 sm:text-base lg:w-1/2 lg:text-lg">
@@ -113,14 +112,15 @@ const RequestedLoan = ({ isBanner }) => {
 
             <div className="flex justify-center lg:w-[65%]">
               <input
-                min={10000000}
-                max={200000000}
+                step={1000000}
+                min={1000000}
+                max={100000000}
                 value={inputValue}
                 type="range"
                 className="mx-3 my-4 w-full appearance-none rounded-lg"
                 onChange={handleChange}
                 style={{
-                  background: `linear-gradient(to left, #1d434c ${percentage}%, #e5e7eb ${percentage}%)`, // سبز به سفید
+                  background: `linear-gradient(to left, #1d434c ${((inputValue - 1000000) / (100000000 - 1000000)) * 100}%, #e5e7eb ${((inputValue - 1000000) / (100000000 - 1000000)) * 100}%)`,
                 }}
               />
             </div>
@@ -162,7 +162,7 @@ const RequestedLoan = ({ isBanner }) => {
         </div>
 
         <div className="w-full sm:w-1/2 lg:w-1/2">
-          <div className="sm:h-34 mx-auto md:mt-2 min-h-44 w-[90%] rounded-lg md:bg-green-100 sm:mx-auto sm:w-[80%] lg:mx-auto lg:mt-10 lg:h-auto lg:min-h-60 lg:w-[80%] lg:pb-8 lg:pt-2 sm:bg-green-100 bg-green-100 mt-10 py-6 ">
+          <div className="sm:h-34 mx-auto mt-10 min-h-44 w-[90%] rounded-lg bg-green-100 py-6 sm:mx-auto sm:w-[80%] sm:bg-green-100 md:mt-2 md:bg-green-100 lg:mx-auto lg:mt-10 lg:h-auto lg:min-h-60 lg:w-[80%] lg:pb-8 lg:pt-2">
             <div className="lg:h-54 min-h-34 sm:h-34 mx-auto mt-5 flex w-[90%] sm:mx-auto sm:w-[80%] lg:mx-auto lg:w-[90%]">
               <div className="w-1/2 pt-[2px] text-sm text-[#1D434C] sm:w-1/2 lg:w-1/2 lg:text-[12px]">
                 اصل تسهیلات ثبتی در بانک
@@ -214,7 +214,10 @@ const RequestedLoan = ({ isBanner }) => {
         </div>
 
         <div className="mt-10 flex w-full flex-row items-center justify-center">
-          <Link href="/authentication" className="rounded-lg border-4 border-green-300 bg-green-900 p-3 px-16 text-white transition-all duration-300 ease-in-out hover:rounded-2xl">
+          <Link
+            href="/authentication"
+            className="rounded-lg border-4 border-green-300 bg-green-900 p-3 px-16 text-white transition-all duration-300 ease-in-out hover:rounded-2xl"
+          >
             درخواست اعتبار
           </Link>
         </div>
