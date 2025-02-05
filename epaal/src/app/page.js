@@ -1,9 +1,14 @@
 // components
-import HomePage from "@/components/template/HomePage";
+import { redirect } from "next/navigation";
 
 
 export default function Home() {
+
+  redirect("/evaam-home")
+
+
   return (
-    <HomePage />
+    <>
+    </>
   );
 }
