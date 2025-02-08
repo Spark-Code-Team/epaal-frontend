@@ -173,7 +173,7 @@ export default function CreditPlans() {
 
   return (
     <>
-      <div className="bg-evaamBackground h-80 w-full lg:px-14 lg:py-10">
+      <div className="bg-evaamBackground h-full w-full ">
         <div className="relative flex h-auto w-full rounded-3xl bg-white lg:flex-col lg:items-center lg:p-8">
           <div id="text-line" className="h-[1px] w-[80%] bg-green-900"></div>
           <div className="absolute top-5 bg-inherit px-5">
@@ -189,13 +189,13 @@ export default function CreditPlans() {
             {/* دکمه‌های چپ و راست */}
             <button
               onClick={prevSlide}
-              className="absolute left-2 z-10 flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
+              className="absolute left-2  flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
             >
               ◀
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-2 z-10 flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
+              className="absolute right-2  flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
             >
               ▶
             </button>
@@ -330,7 +330,7 @@ export default function CreditPlans() {
             <div className="flex w-full items-center justify-center lg:flex-row lg:px-14">
               <div>
                 <button onClick={()=>{
-                  router.push('/complete-info')
+                  router.push('bank-credit/complete-info')
                 }} className="bg-green-900 text-white lg:px-8 lg:py-3 rounded-lg transition-all ease-in-out duration-300 hover:rounded-xl hover:scale-105 hover:shadow-lg">درخواست اعتبار</button>
               </div>
             </div>

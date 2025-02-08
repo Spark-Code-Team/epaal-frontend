@@ -14,7 +14,7 @@ export default function SelectedTarhInformation({ setState }) {
   const router = useRouter()
 
   return (
-    <div className="sm: mt-20 flex h-full w-full gap-[60px] bg-white px-20 py-2">
+    <div className="my-7 flex h-full w-full gap-[60px] bg-white px-20 py-2">
       <BankCardShow image={selectedTarh} />
 
       <div className="flex h-[570px] w-full flex-col justify-between">

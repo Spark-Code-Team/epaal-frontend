@@ -14,14 +14,24 @@ const LoginPage = () => {
       <div className="h-1/2 overflow-hidden bg-[#054366]">
         <BlurLine />
       </div>
-
-      {loginState == 0 ? (
-        <PhoneLogin setLoginState={setLoginState} />
-      ) : loginState == 1 ? (
-        <CodeLogin setLoginState={setLoginState} />
-      ) : (
-        <PasswordLogin />
-      )}
+      <div
+        className="
+          absolute
+          w-screen
+          h-screen
+          flex
+          items-center
+          justify-center
+        "
+      >
+        {loginState == 0 ? (
+          <PhoneLogin setLoginState={setLoginState} />
+        ) : loginState == 1 ? (
+          <CodeLogin setLoginState={setLoginState} />
+        ) : (
+          <PasswordLogin />
+        )}
+      </div>
 
       <div className="h-1/2 bg-white"></div>
     </div>

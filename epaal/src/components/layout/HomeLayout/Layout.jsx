@@ -11,7 +11,6 @@ export default function Layout({ children }) {
           className="
             w-full
             mx-auto
-            min-h-[1200px]
           "
         >
           {children}

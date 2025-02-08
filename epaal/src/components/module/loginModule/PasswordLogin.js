@@ -10,8 +10,7 @@ import KeyPassword from "../../../../public/icons/Key";
 const PasswordLogin = () => {
     return(
 
-      <div className="bg-white p-6 rounded-xl shadow-lg w-[402px] h-[314px]
-       absolute top-[33%] left-[33%]">
+      <div className="bg-white p-6 rounded-xl shadow-lg w-[402px] h-[314px]">
 
           <div className="text-center mb-4">
             <Image src={LogoEvaam} alt="logo" width={150} height={150} />

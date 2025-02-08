@@ -22,8 +22,9 @@ const constant = [
 ];
 
 export default function AdditionalInformation({ setState }) {
+
   return (
-    <div className="sm: mt-20 flex h-full w-full gap-[60px] bg-white px-20 py-2">
+    <div className=" my-7 flex  w-full gap-[60px] bg-white px-20 py-2">
       <BankCardShow image={soalTarh} />
 
       <div className="flex h-[570px] w-full flex-col justify-between">

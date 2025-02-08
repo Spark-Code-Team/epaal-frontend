@@ -50,6 +50,7 @@ export default function Header() {
         md:bg-white
         mx-auto
         max-w-full
+        shadow-md
         z-10
       `}
     >
