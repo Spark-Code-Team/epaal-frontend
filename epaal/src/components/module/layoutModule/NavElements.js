@@ -4,8 +4,28 @@
 import Link from "next/link";
 
 
+const options = [
+    {
+        title: "فروشگاه ایوام",
+        href: "#"
+    },
+    {
+        title: "راهنما خرید اقساطی",
+        href: "#"
+    },
+    {
+        title: "پذیرندگان",
+        href: "#"
+    },
+    {
+        title: "تماس با ما",
+        href: "#"
+    }
+]
 
-export default function NavElements() {
+
+
+export default function NavElements({ navColor }) {
 
 
     return (
@@ -20,118 +40,50 @@ export default function NavElements() {
                 md:flex
             "
         >
-            <div
-                className="
-                    flex
-                    items-center
-                    flex-col
-                    text-black
-                    group
-                    cursor-pointer
-                    relative
-                "
-            >
-                <Link href="/shopping-evaam" className="group-hover:text-blue-900 transition-all duration-300">فروشگاه ایوام</Link>
-                <div
-                    className="
-                        bg-blue-900
-                        w-0
-                        group-hover:w-full
-                        text-blue-900
-                        transition-all
-                        duration-300
-                        absolute
-                        h-[2px]
-                        bottom-[-10px]
-                    "
-                >
-                    
-                </div>
-            </div>
-            <div
-                className="
-                    flex
-                    items-center
-                    flex-col
-                    text-black
-                    group
-                    cursor-pointer
-                    relative
-                "
-            >
-                <Link href="#" className="group-hover:text-blue-900 transition-all duration-300">راهنمای دریافت وام</Link>
-                <div
-                    className="
-                        bg-blue-900
-                        w-0
-                        group-hover:w-full
-                        text-blue-900
-                        transition-all
-                        duration-300
-                        absolute
-                        h-[2px]
-                        bottom-[-10px]
-                    "
-                >
-                    
-                </div>
-            </div>
-            <div
-                className="
-                    flex
-                    items-center
-                    flex-col
-                    text-black
-                    group
-                    cursor-pointer
-                    relative
-                "
-            >
-                <Link href="#" className="group-hover:text-blue-900 transition-all duration-300">بلاگ</Link>
-                <div
-                    className="
-                        bg-blue-900
-                        w-0
-                        group-hover:w-full
-                        text-blue-900
-                        transition-all
-                        duration-300
-                        absolute
-                        h-[2px]
-                        bottom-[-10px]
-                    "
-                >
-                    
-                </div>
-            </div>
-            <div
-                className="
-                    flex
-                    items-center
-                    flex-col
-                    text-black
-                    group
-                    cursor-pointer
-                    relative
-                "
-            >
-                <Link href="#" className="group-hover:text-blue-900 transition-all duration-300">سوالات متداول</Link>
-                <div
-                    className="
-                        bg-blue-900
-                        w-0
-                        group-hover:w-full
-                        text-blue-900
-                        transition-all
-                        duration-300
-                        absolute
-                        h-[2px]
-                        bottom-[-10px]
-                    "
-                >
-                    
-                </div>
-            </div>
+            {
+                options.map((item, index) => (
+                    <div
+                        key={index}
+                        className={`
+                            flex
+                            items-center
+                            flex-col
+                            ${navColor ? "text-black" : "text-white"}
+                            group
+                            cursor-pointer
+                            relative
+                        `}
+                    >
+                        <Link 
+                            href={item.href} 
+                            className={`
+                                ${navColor ? "group-hover:text-black" : "group-hover:text-white"}
+                                transition-all
+                                duration-300
+                            `}
+                        >
+                            {
+                                item.title
+                            }
+                        </Link>
+                        <div
+                            className={`
+                                ${navColor ? "bg-black" : "bg-white"}
+                                w-0
+                                group-hover:w-full
+                                ${navColor ? "bg-black" : "text-white"}
+                                transition-all
+                                duration-300
+                                absolute
+                                h-[2px]
+                                bottom-[-10px]
+                            `}
+                        >
+                            
+                        </div>
+                    </div>
+                ))
+            }
         </div>
     )
 }

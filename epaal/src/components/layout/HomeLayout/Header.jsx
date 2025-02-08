@@ -10,6 +10,10 @@ import EvaamLogo from "../../../../public/icons/evaam-icon";
 //react
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import EvaamLogoo from "../../../../public/icons/EvaamLogoo";
+import EvaamMatn from "../../../../public/icons/EvaamMatn";
+import Logo from "@/components/elements/Logo";
+import LoginIcon from "../../../../public/icons/LoginIcon";
 
 export default function Header() {
 
@@ -41,84 +45,56 @@ export default function Header() {
   return (
     <div
       className={`
-        flex
-        flex-col
-        sticky
-        top-0
         w-full
-        ${navColor ? "bg-white" : "bg-gradient-to-r from-[#41B1AC] to-[#FFD037] md:bg-gradient-to-r md:from-white md:to-white"}
-        md:bg-white
+        max-w-[1280px]
+        py-6
+        px-[112px]
+        flex
+        justify-between
+        items-center
+        fixed
         mx-auto
-        max-w-full
-        shadow-md
-        z-10
+        ${navColor ? "bg-white shadow-3xl" : ""}
+        transition-all
       `}
     >
       <div
         className="
           flex
-          w-full
           items-center
-          justify-between
+          gap-8
+          w-[600px]
         "
       >
-        <div
-          className="
-              relative
-              flex
-              items-center
-              md:w-1/2
-              justify-evenly
-              pr-3
-          "
-        >
-          <BurgerMenu navColor={navColor}/>
-          <div
-            className="
-              hidden
-              cursor-pointer
-              md:flex
-            "
-          >
-            <EvaamLogo color="#1D434C" height="24px" width="24px"/>   
-          </div>
-          <div
-            className="
-              cursor-pointer
-              pr-3
-              md:hidden
-            "
-          >
-            <EvaamLogo color={navColor ? "#000" : "#fff"} height="24px" width="24px"/>   
-          </div>
-          <NavElements />
-        </div>
-        <div
-          className="p-[12px]
-          "
-        >
-          <div
-
-            onClick={()=>{router.push('/login')}}
-            className={`
-              text-xs
-              px-[18px]
-              py-[11.5px]
-              text-white
-              bg-[#1D434C]
-              rounded-lg 
-              cursor-pointer
-
-              hover:scale-110
-              hover:shadow-lg
-              transition-all
-              duration-300
-              ease-in-out
-            `}
-          >
-            ورود به حساب کاربری
-          </div>
-        </div>
+        <Logo 
+          width="56px"
+          height="33px"
+          color={navColor ? "black" : "white"}
+        />
+        <NavElements 
+          navColor={navColor}
+        />
+      </div>
+      <div
+        className={`
+          py-2
+          px-[16px]
+          text-[14px]
+          font-medium
+          bg-[#00000033]
+          rounded-2xl
+          flex
+          items-center
+          backdrop-blur-xl
+          gap-[1px]
+          cursor-pointer
+          ${navColor ? "text-black" : "text-white"}
+        `}
+      >
+        <p>ثبت نام / ورود</p>
+        <LoginIcon 
+          color={navColor ? "black" : "white"}
+        />
       </div>
     </div>
   );

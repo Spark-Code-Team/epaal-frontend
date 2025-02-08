@@ -63,3 +63,7 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   margin-bottom: 10px;
 }
+
+#bn {
+  background-image: url("../../public/image/banner.png");
+}
