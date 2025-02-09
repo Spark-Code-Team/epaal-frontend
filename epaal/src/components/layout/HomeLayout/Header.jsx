@@ -89,6 +89,7 @@ export default function Header() {
           gap-[1px]
           cursor-pointer
           ${navColor ? "text-black" : "text-white"}
+          z-50
         `}
       >
         <p>ثبت نام / ورود</p>

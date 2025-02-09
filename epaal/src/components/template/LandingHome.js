@@ -11,6 +11,7 @@ import MerchantsCard from "../elements/MerchantsCard";
 import Merchants from "../module/landingModule/Merchants";
 import MainBanner from "../module/layoutModule/MainBanner";
 import CreditPlans from "../module/bank-credit/creditPlans";
+import MohasebeAghsat from "../module/landingModule/MohasebeAghsat";
 
 
 
@@ -32,6 +33,7 @@ export default function LandingHome()  {
 
         <>
             <MainBanner />
+            <MohasebeAghsat />
         </>
     )
 }

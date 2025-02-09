@@ -8,6 +8,11 @@ import BlurLine from "../../../public/icons/BlurLine";
 
 const LoginPage = () => {
   const [loginState, setLoginState] = useState(0);
+  const [loginForm, setLoginForm] = useState({
+    phone_number: "",
+    opt_code: "",
+    password: ""
+  })
 
   return (
     <div className="relative h-screen flex flex-col items-center justify-center">
@@ -25,7 +30,11 @@ const LoginPage = () => {
         "
       >
         {loginState == 0 ? (
-          <PhoneLogin setLoginState={setLoginState} />
+          <PhoneLogin 
+            setLoginState={setLoginState}
+            loginForm={loginForm}
+            setLoginForm={setLoginForm}
+          />
         ) : loginState == 1 ? (
           <CodeLogin setLoginState={setLoginState} />
         ) : (

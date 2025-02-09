@@ -3,7 +3,7 @@ import { getCookie } from "../utils/cookie";
 
 
 const api = axios.create({
-    baseURL: process.env.DB_HOST,
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
     headers: {
         "Content-Type": "application/json"
     }

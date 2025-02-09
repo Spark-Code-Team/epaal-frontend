@@ -3,9 +3,25 @@
 import Image from "next/image";
 import LogoEvaam from "../../../../public/image/logoevaam.png";
 import Phone from "../../../../public/icons/Phone";
+import { sendPhone } from "@/service/login";
 
 
-const PhoneLogin = ({ setLoginState }) => {
+const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
+
+    const handelClick = async (e) => {
+
+      console.log(process.env.NEXT_PUBLIC_API_URL);
+      
+      e.preventDefault()
+
+      const { response, error } = await sendPhone(loginForm.phone_number)
+
+      if(response) {
+        console.log(response);
+      } else {
+        console.log(error);
+      }
+    }
 
     return (
       <div className="bg-white p-6 m-6 rounded-xl shadow-lg w-auto h-[314px]">
@@ -21,7 +37,7 @@ const PhoneLogin = ({ setLoginState }) => {
             <div className="mb-4 flex border border-[#E1E6EF]
             items-center rounded-xl ">
               <input
-              dir="ltr"
+                dir="ltr"
                 type="text"
                 placeholder="+98**********"
                 className="w-full px-4 py-2
@@ -29,6 +45,8 @@ const PhoneLogin = ({ setLoginState }) => {
                  focus:outline-none 
                  focus:ring-2
                 focus:ring-blue-100"
+                value={loginForm.phone_number}
+                onChange={(e) => setLoginForm(last => ({...last, phone_number: e.target.value}))}
               />
               <span className="w-[10%] ">
                 <Phone color="#E1E6EF" size={24} width="20%"/>
@@ -39,7 +57,7 @@ const PhoneLogin = ({ setLoginState }) => {
             <button
               type="submit"
               className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition"
-              onClick={() => setLoginState(1)}
+              onClick={(e) => handelClick(e)}
             >
               دریافت کد
             </button>
