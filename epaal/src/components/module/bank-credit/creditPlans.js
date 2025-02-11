@@ -52,6 +52,17 @@ const cards = [
     supportedBy: "زیر نظر بانک مرکزی",
     duration: "تا 24 ماه",
   },
+  {
+    id: 3,
+    title: "کارت 3",
+    backgroundImage: "/image/card3.png",
+    bankName: "های بانک",
+    bankLogo: kar,
+    creditTitle: "ارائه تسهیلات تا سقف",
+    creditCeil: "100,000,000 میلیون تومان",
+    supportedBy: "زیر نظر بانک مرکزی",
+    duration: "تا 24 ماه",
+  },
 ];
 
 export default function CreditPlans() {

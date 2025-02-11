@@ -7,7 +7,7 @@ import Link from "next/link";
 const options = [
     {
         title: "فروشگاه ایوام",
-        href: "#"
+        href: "/shopping-evaam"
     },
     {
         title: "راهنما خرید اقساطی",

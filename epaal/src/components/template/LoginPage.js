@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [loginForm, setLoginForm] = useState({
     phone_number: "",
     opt_code: "",
-    password: ""
+    password: null
   })
 
   return (
@@ -36,7 +36,11 @@ const LoginPage = () => {
             setLoginForm={setLoginForm}
           />
         ) : loginState == 1 ? (
-          <CodeLogin setLoginState={setLoginState} />
+          <CodeLogin 
+            setLoginState={setLoginState}
+            loginForm={loginForm}
+            setLoginForm={setLoginForm}
+          />
         ) : (
           <PasswordLogin />
         )}

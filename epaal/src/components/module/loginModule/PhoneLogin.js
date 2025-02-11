@@ -4,6 +4,7 @@ import Image from "next/image";
 import LogoEvaam from "../../../../public/image/logoevaam.png";
 import Phone from "../../../../public/icons/Phone";
 import { sendPhone } from "@/service/login";
+import { Bounce, toast } from "react-toastify";
 
 
 const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
@@ -17,9 +18,18 @@ const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
       const { response, error } = await sendPhone(loginForm.phone_number)
 
       if(response) {
+        setLoginState(1)
         console.log(response);
       } else {
-        console.log(error);
+        toast.error("😢این شماره ثبت نشده ", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       }
     }
 

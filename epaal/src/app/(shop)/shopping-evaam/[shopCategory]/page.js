@@ -10,6 +10,6 @@ export default async function ShopCategory({ params }) {
     const data = StaticData.filter(item => item.category == shopCategory)
     
     return (
-        <ProductCategoryPage data={data} shopCategory={shopCategory}/>
+        <ProductCategoryPage data={data} shopCategory={shopCategory} />
     )
 }
