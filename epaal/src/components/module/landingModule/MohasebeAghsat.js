@@ -2,19 +2,12 @@
 
 import { useState } from "react";
 
-import aks from "../../../../public/image/airpod.png"
-import aks1 from "../../../../public/image/bank-bg.png"
-import aks2 from "../../../../public/image/phone-service.jpg"
-import aks3 from "../../../../public/image/samsung.jpg"
-import Image from "next/image";
-
 const MohasebeAghsat = () => {
     const [index, setIndex] = useState(1);
     const slides = [
-        aks,
-        aks1,
-        aks2,
-        aks3
+        "/image/backCard.png",
+        "/image/backCard1.png",
+        "/image/backCard2.png"
     ];
 
     const updateSlider = (mozoe) => {
@@ -29,28 +22,65 @@ const MohasebeAghsat = () => {
 
     return (
         <>
-        <div className="relative w-3/5 mx-auto overflow-hidden">
-            <div className="flex transition-transform duration-500" style={{ transform: `translateX(${index * 33.33 - 33.33}%)` }}>
+        <div className=" w-1/2 mx-auto overflow-hidden flex items-center justify-center">
+            <div className="flex p-10 transition-transform duration-500" style={{ transform: `translateX(${index * 33.33 - 33.33}%)` }}>
                 {slides.map((src, i) => (
                     <div 
                         key={i} 
-                        className={`flex-none w-1/3 p-4 transition-transform duration-300 cursor-pointer ${i === index ? "scale-125 z-10 opacity-100" : "opacity-50"}`} 
+                        className={`flex-none w-[300px] h-[200px] p-4 transition-transform duration-300 cursor-pointer bg-cover bg-center bg-no-repeat rounded-2xl z-0 ${i === index ? "scale-125 z-10 opacity-100" : "opacity-50"}`} 
                         onClick={() => updateSlider(i)}
+                        style={{
+                            background: `url(${src}) center/100% 100% no-repeat`,
+                        }}
                     >
-                        <Image width={300} height={300} src={src} alt={`Slide ${i + 1}`} className="w-full rounded-lg" />
+                        <div
+                            className="
+                                w-full
+                                flex
+                                items-center
+                                justify-between
+                                px-2
+                            "
+                        >
+                            <p>بلو</p>
+                            <p>blu</p>
+                        </div>
+
                     </div>
                 ))}
             </div>
         </div>
-            <div className=" flex justify-between transform -translate-y-1/2">
-                <button
-                    className="bg-black bg-opacity-50 text-white px-4 py-2"
-                    onClick={() => updateSlider("azafee")}
-                >❮</button>
-                <button
-                    className="bg-black bg-opacity-50 text-white px-4 py-2"
-                    onClick={() => updateSlider("azafe")}
-                >❯</button>
+            <div className="w-full mt-4 flex justify-center items-center transform -translate-y-1/2">
+                <div
+                    className="
+                        w-[120px]
+                        flex
+                        items-center
+                        gap-3
+                    "
+                >
+                    <div
+                        className="bg-opacity-50 text-white bg-[#E2E2E2] h-[5px]"
+                        onClick={() => updateSlider("azafee")}
+                    >
+                        F
+                    </div>
+                    <div
+                        className="
+                            w-[42px]
+                            h-[5px]
+                            bg-[#8A8B8D]
+                        "
+                    >
+
+                    </div>
+                    <div
+                        className="bg-opacity-50 text-white bg-[#E2E2E2] h-[5px]"
+                        onClick={() => updateSlider("azafe")}
+                    >
+                        F
+                    </div>
+                </div>
             </div>
         </>
     );

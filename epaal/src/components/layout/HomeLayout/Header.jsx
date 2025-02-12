@@ -10,14 +10,10 @@ import EvaamLogo from "../../../../public/icons/evaam-icon";
 //react
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import EvaamLogoo from "../../../../public/icons/EvaamLogoo";
-import EvaamMatn from "../../../../public/icons/EvaamMatn";
 import Logo from "@/components/elements/Logo";
 import LoginIcon from "../../../../public/icons/LoginIcon";
 
 export default function Header() {
-
-  const router = useRouter()
 
   const [scrollY, setScrollY] = useState(0)
   const [navColor, setNavColor] = useState(false)
@@ -53,9 +49,11 @@ export default function Header() {
         justify-between
         items-center
         fixed
+        top-0
         mx-auto
         ${navColor ? "bg-white shadow-3xl" : ""}
         transition-all
+        z-50
       `}
     >
       <div
