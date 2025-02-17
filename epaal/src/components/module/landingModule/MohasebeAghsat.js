@@ -1,14 +1,51 @@
 "use client"
 
 import { useState } from "react";
+import CurveLAnding from "../../../../public/icons/CurveLAnding";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 const MohasebeAghsat = () => {
+
+    const [inputValue, setInputValue] = useState(1000000);
     const [index, setIndex] = useState(1);
+    const [calculatedPayment, setCalculatePayment] = useState({
+        bankPrePayment: "-",
+        yearlySubscribePayment: "-",
+        finalPaymentToUser: "-",
+        paymentPerMounth: digitsEnToFa(0),
+    });
+    const items = [6, 12, 24, 36];
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [monthGhest, setMonthGhest] = useState(0)
     const slides = [
         "/image/backCard.png",
         "/image/backCard1.png",
         "/image/backCard2.png"
     ];
+
+    const formatNumber = (number) => {
+        return number.toLocaleString("fa-IR"); // نمایش عدد به فرمت فارسی
+      };
+
+    const calculatePrePayment = (e) => {
+        let numberOfEvent = Number(e);
+    
+        let prePayment = numberOfEvent * 0.05;
+    
+        let finalPaymentToUser = numberOfEvent - prePayment;
+    
+        let r = 23 / 100 / 12;
+        let denominator = 1 - Math.pow(1 + r, -items[currentIndex]);
+        let payment = (numberOfEvent * r) / denominator;
+    
+        setCalculatePayment((prev) => ({
+          ...prev,
+          bankPrePayment: formatNumber(Math.ceil(prePayment)),
+          yearlySubscribePayment: formatNumber(Math.ceil(prePayment)),
+          finalPaymentToUser: formatNumber(Math.ceil(finalPaymentToUser)),
+          paymentPerMounth: formatNumber(Math.ceil(payment)),
+        }));
+    };
 
     const updateSlider = (mozoe) => {
         if(mozoe == "azafe") {
@@ -19,6 +56,12 @@ const MohasebeAghsat = () => {
             setIndex(last => last - 1)
         }
     };
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setInputValue(value); // ذخیره مقدار جدید
+        calculatePrePayment(value);
+      };
 
     return (
         <div
@@ -180,7 +223,363 @@ const MohasebeAghsat = () => {
                             </div>
                     </div>
 
+                    <div
+                        className="
+                            w-3/4
+                            mx-auto
+                            mb-[48px]
+                            h-[918px]
+                            border-2
+                            border-[#d9d9d9]
+                            mt-[40px]
+                            rounded-3xl
+                            relative
+                            px-[86px]
+                            flex
+                            flex-col
+                            items-center
+                        "
+                    >
+                        <div
+                            className="
+                                pt-[80px]
+                                pb-[47px]
+                            "
+                        >
+                            <p
+                                className="
+                                    text-[24px]
+                                    font-bold
+                                    text-[#1D2433]
+                                "
+                            >
+                                جزئیات طرح انتخابی
+                            </p>
+                        </div>
+
+                        <div
+                            className="
+                                w-full
+                            "
+                        >
+                            <p
+                                className="
+                                    text-[18px]
+                                    font-bold
+                                "
+                            >
+                                مبلغ:
+                                <span
+                                    className="
+                                        text-[#587E88]
+                                        text-[36px]
+                                        font-bold
+                                        mr-[13px]
+                                    "
+                                >
+                                    38,000,000
+                                    <span
+                                        className="
+                                            text-[18px]
+                                            mr-[6px]
+                                        "
+                                    >
+                                        تومان
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div
+                            className="
+                                w-full
+                                flex
+                                items-center
+                                justify-center
+                            "
+                        >
+                            <div
+                                className="
+                                    text-center
+                                    text-[14px]
+                                    text-[#8A8B8D]
+                                "
+                            >
+                                از
+                                <br />
+                                2,000,000
+                                <br />
+                                تومان
+                            </div>
+                            <input
+                                step={1000000}
+                                min={1000000}
+                                max={100000000}
+                                value={inputValue}
+                                type="range"
+                                className="mx-3 my-4 w-full appearance-none rounded-lg"
+                                onChange={handleChange}
+                                style={{
+                                    background: `linear-gradient(to left, #1d434c ${((inputValue - 1000000) / (100000000 - 1000000)) * 100}%, #e5e7eb ${((inputValue - 1000000) / (100000000 - 1000000)) * 100}%)`,
+                                }}
+                            />
+                            <div
+                                className="
+                                    text-center
+                                    text-[14px]
+                                    text-[#8A8B8D]
+                                "
+                            >
+                                از
+                                <br />
+                                50,000,000
+                                <br />
+                                تومان
+                            </div>
+                        </div>
+
+                        <div
+                            className="
+                                w-full
+                                flex
+                                items-center
+                            "
+                        >
+                            <p>
+                                مدت بازپرداخت:
+                            </p>
+                            <div
+                                className="
+                                    flex
+                                    items-center
+                                    gap-4
+                                    my-[50px]
+                                    mr-[50px]
+                                "
+                            >
+                                <div
+                                    className={`
+                                        w-[113px]
+                                        p-[8px]
+                                        rounded-xl
+                                        flex
+                                        items-center
+                                        justify-center
+                                        cursor-pointer
+                                        text-[16px]
+                                        ${monthGhest == 9 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
+                                    `}
+                                    onClick={() => setMonthGhest(9)}
+                                >
+                                    9 ماهه
+                                </div>
+                                <div
+                                    className={`
+                                        w-[113px]
+                                        p-[8px]
+                                        rounded-xl
+                                        flex
+                                        items-center
+                                        justify-center
+                                        cursor-pointer
+                                        text-[16px]
+                                        ${monthGhest == 12 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
+                                    `}
+                                    onClick={() => setMonthGhest(12)}
+                                >
+                                    12 ماهه
+                                </div>
+                                <div
+                                    className={`
+                                        w-[113px]
+                                        p-[8px]
+                                        rounded-xl
+                                        flex
+                                        items-center
+                                        justify-center
+                                        cursor-pointer
+                                        text-[16px]
+                                        ${monthGhest == 18 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
+                                    `}
+                                    onClick={() => setMonthGhest(18)}
+                                >
+                                    18 ماهه
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            className="
+                                grid
+                                grid-cols-1
+                                w-full
+                            "
+                        >
+                            <div
+                                className="
+                                    flex
+                                    items-center
+                                    justify-between
+                                    w-full
+                                    mb-[37px]
+                                "
+                            >
+                                <div
+                                    className="
+                                        
+                                    "
+                                >
+                                    مبلغ شارژ کیف پول
+                                </div>
+                                <div
+                                    className="
+                                        
+                                    "
+                                >
+                                    35,000,000 تومان 
+                                </div>
+                            </div>
+                            <div
+                                className="
+                                    w-full
+                                    flex
+                                    items-center
+                                    justify-between
+                                    mb-[37px]
+                                "
+                            >
+                                <div
+                                    className="
+                                        
+                                    "
+                                >
+                                    اصل تسهیلات تبتی در بانک
+                                </div>
+                                <div
+                                    className="
+                                        
+                                    "
+                                >
+                                    35,000,000 تومان 
+                                </div>
+                            </div>
+                            <div
+                                className="
+                                    w-full
+                                    flex
+                                    items-center
+                                    justify-between
+                                    mb-[37px]
+                                "
+                            >
+                                <div
+                                    className="
+                                    
+                                    "
+                                >
+                                    مبلغ بازپرداخت نهایی
+                                </div>
+                                <div
+                                    className="
+                                    
+                                    "
+                                >
+                                    35,000,000 تومان 
+                                </div>
+                            </div>
+                            <div
+                                className="
+                                    w-full
+                                    flex
+                                    items-center
+                                    justify-between
+                                    mb-[37px]
+                                "
+                            >
+
+                                <div
+                                    className="
+                                    
+                                    "
+                                >
+                                    هزینه عملیات دریافتی ایوام
+                                </div>
+                                <div
+                                    className="
+                                    
+                                    "
+                                >
+                                    35,000,000 تومان 
+                                </div>
+                            </div>
+                            <div
+                                className="
+                                    w-full
+                                    flex
+                                    items-center
+                                    justify-between
+                                    mb-[37px]
+                                "                                
+                            >
+                                <div
+                                    className="
+                                    
+                                    "
+                                >
+                                    شیوه پرداخت هزینه عملیات
+                                </div>
+                                <div
+                                    className="
+                                    
+                                    "
+                                >
+                                    35,000,000 تومان 
+                                </div>
+
+                            </div>
+                            <div
+                                className="
+                                    w-full
+                                    flex
+                                    items-center
+                                    justify-between
+                                    mb-[37px]
+                                "
+                            >
+                                <div
+                                    className="
+                                    
+                                    "
+                                >
+                                    مبلغ قابل پرداخت نقدی
+                                </div>
+                                <div
+                                    className="
+                                    
+                                    "
+                                >
+                                    35,000,000 تومان 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            className="
+                                w-3/4
+                                p-[10px]
+                                text-center
+                                rounded-xl
+                                bg-[#1D434C]
+                                text-white
+                                mt-[41px]
+                            "
+                        >
+                            درخواست  اعتبار
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     );
