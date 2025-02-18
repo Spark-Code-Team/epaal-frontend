@@ -28,8 +28,19 @@ const loginOtp = async (phone_number, otp_code, password) => {
     }
 }
 
+const userRole = async () => {
+    try {
+        const response = await api.get("/users/home")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
 
 export  {
     sendPhone,
-    loginOtp
+    loginOtp,
+    userRole
 }

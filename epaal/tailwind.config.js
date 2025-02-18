@@ -23,6 +23,7 @@ module.exports = {
 
       boxShadow: {
         '3xl': '0px 4px 15px 0px rgba(0, 0, 0, 0.25)',
+        "topShodow": "0px -10px 5px #E1EDF0"
       },
 
       Keyframes: {
