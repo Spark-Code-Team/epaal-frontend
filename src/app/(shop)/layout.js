@@ -8,7 +8,7 @@ export default function ShopLayout({ children }) {
       <LayoutShop>
 
         {children}
-        <BottomNavbar/>
+        {/* <BottomNavbar/> */}
       </LayoutShop>
     </>
 

@@ -42,7 +42,7 @@ export default function MerchantsCard({ merchants, from }) {
         </div>
 
         <button
-          className="mt-16 animate-pulse rounded-xl bg-evaamCyan p-5 text-green-900 shadow-lg"
+          className="mt-16 mb-10 animate-pulse rounded-xl bg-evaamCyan p-5 text-green-900 shadow-lg"
           onClick={() => {
             router.push("/shopping-evaam");
           }}

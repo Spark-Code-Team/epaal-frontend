@@ -81,6 +81,7 @@ export default function SelectedTarhInformation({ setState }) {
           <div
             onClick={() => {
                 router.push("/shopping-evaam")
+                router.push("/login")
                 toast.success("عملیات با موفقیت انجام شد", {
                   position: "bottom-right",
                   autoClose: 5000,

@@ -16,7 +16,7 @@ const LoginPage = () => {
 
   return (
     <div className="relative h-screen flex flex-col items-center justify-center">
-      <div className="h-1/2 overflow-hidden bg-[#054366]">
+      <div className="h-1/2 overflow-hidden bg-evaamGreen">
         <BlurLine />
       </div>
       <div

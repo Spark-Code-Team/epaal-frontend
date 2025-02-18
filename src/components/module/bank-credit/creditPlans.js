@@ -66,7 +66,7 @@ const cards = [
 ];
 
 export default function CreditPlans() {
-  const router = useRouter()
+  const router = useRouter();
 
   const formatNumber = (number) => {
     return number.toLocaleString("fa-IR"); // نمایش عدد به فرمت فارسی
@@ -184,29 +184,34 @@ export default function CreditPlans() {
 
   return (
     <>
-      <div className="bg-evaamBackground h-full w-full ">
-        <div className="relative flex h-auto w-full rounded-3xl bg-white lg:flex-col lg:items-center lg:p-8">
-          <div id="text-line" className="h-[1px] w-[80%] bg-green-900"></div>
-          <div className="absolute top-5 bg-inherit px-5">
-            <p className="text-lg font-bold">طرح های اعتباری و اقساط آن</p>
+      <div className="mt-10 flex flex-col items-center bg-evaamBackground lg:block lg:h-full lg:w-full">
+        <div className="relative flex h-auto w-full flex-col rounded-3xl bg-white lg:flex-col lg:items-center lg:p-8">
+          <div
+            id="text-line"
+            className="h-[1px] w-full bg-green-900 lg:w-[80%]"
+          ></div>
+          <div className="absolute right-12 top-5 bg-inherit px-5 lg:right-[550px]">
+            <p className="w-full text-center text-lg font-bold">
+              طرح های اعتباری و اقساط آن
+            </p>
           </div>
-          <div className="flex h-auto w-full flex-wrap items-center lg:mt-10 lg:flex-row lg:justify-evenly">
+          <div className="hidden h-auto w-full flex-wrap items-center lg:mt-10 lg:flex lg:flex-row lg:justify-evenly">
             <PlansCard plans={conditions} />
           </div>
           <div
             id="cards-carosel"
-            className="relative flex w-full items-center justify-center overflow-hidden lg:mb-10 lg:mt-10 lg:h-[500px]"
+            className="relative hidden w-full items-center justify-center overflow-hidden lg:mb-10 lg:mt-10 lg:flex lg:h-[500px]"
           >
             {/* دکمه‌های چپ و راست */}
             <button
               onClick={prevSlide}
-              className="absolute left-2  flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
+              className="absolute left-2 flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
             >
               ◀
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-2  flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
+              className="absolute right-2 flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
             >
               ▶
             </button>
@@ -277,12 +282,13 @@ export default function CreditPlans() {
               })}
             </div>
           </div>
-          <div className="flex h-[600px] w-full items-center justify-evenly rounded-2xl border-2 border-green-100 lg:flex-col">
+          <div className="mt-16 flex h-[600px] w-full flex-col items-center justify-evenly rounded-2xl border-2 border-green-100 lg:mt-0">
             <div className="text-lg font-bold">جزئیات طرح انتخابی</div>
-            <div className="flex bg-gray-300 py-2 lg:flex-row lg:rounded-xl lg:px-10">
-             مبلغ: {digitsEnToFa(inputValue)} تومان
+            <div className="flex flex-row rounded-xl bg-gray-300 px-10 py-2">
+              مبلغ: {digitsEnToFa(inputValue)} تومان
             </div>
-            <div className="flex lg:w-full lg:flex-row lg:items-center lg:justify-evenly">
+            {/* input in lg: */}
+            <div className="hidden lg:flex lg:w-full lg:flex-row lg:items-center lg:justify-evenly">
               <div>
                 <p className="text-gray-500">
                   {digitsEnToFa("0")} میلیون تومان
@@ -308,45 +314,85 @@ export default function CreditPlans() {
                 </p>
               </div>
             </div>
-            <div className="flex w-full items-center justify-between lg:flex-row lg:px-14">
+            {/* input in lg: */}
+
+            {/* input in mobile */}
+            <div className="flex w-5/6 flex-col lg:hidden">
+              <div className="flex flex-row items-center justify-between text-sm">
+                <div>
+                  <p className="text-gray-500">
+                    {digitsEnToFa("1")} میلیون تومان
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-gray-500">
+                    {digitsEnToFa("100")} میلیون تومان
+                  </p>
+                </div>
+              </div>
+
+              <div className="w-full">
+                <input
+                  step={1000000}
+                  min={1000000}
+                  max={100000000}
+                  value={inputValue}
+                  type="range"
+                  className="my-4 w-full appearance-none rounded-lg"
+                  onChange={handleChange}
+                  style={{
+                    background: `linear-gradient(to left, #1d434c ${((inputValue - 1000000) / (100000000 - 1000000)) * 100}%, #e5e7eb ${((inputValue - 1000000) / (100000000 - 1000000)) * 100}%)`,
+                  }}
+                />
+              </div>
+            </div>
+            {/* input in mobile */}
+
+            <div className="px-4 flex w-full items-center justify-between lg:flex-row lg:px-14">
               <div>
                 <p>اصل تسهیلات ثبتی در بانک</p>
               </div>
               <div>{digitsEnToFa(inputValue)} تومان</div>
             </div>
-            <div className="flex w-full items-center justify-between lg:flex-row lg:px-14">
+            <div className="px-4 flex w-full items-center justify-between lg:flex-row lg:px-14">
               <div>
                 <p>واریز نقدی پیش پرداخت</p>
               </div>
               <div>{calculatedPayment.bankPrePayment} تومان</div>
             </div>
-            <div className="flex w-full items-center justify-between lg:flex-row lg:px-14">
+            <div className="px-4 flex w-full items-center justify-between lg:flex-row lg:px-14">
               <div>
                 <p>هزینه اشتراک سالیانه</p>
               </div>
               <div>{calculatedPayment.yearlySubscribePayment} تومان</div>
             </div>
-            <div className="flex w-full items-center justify-between lg:flex-row lg:px-14">
+            <div className="px-4 flex w-full items-center justify-between lg:flex-row lg:px-14">
               <div>
                 <p>دریافتیِ نهایی</p>
               </div>
               <div>{calculatedPayment.finalPaymentToUser} تومان</div>
             </div>
-            <div className="flex w-full items-center justify-between lg:flex-row lg:px-14">
+            <div className="px-4 flex w-full items-center justify-between lg:flex-row lg:px-14">
               <div>
                 <p>پرداخت ماهانه</p>
               </div>
               <div>{calculatedPayment.paymentPerMounth} تومان</div>
             </div>
-            <div className="flex w-full items-center justify-center lg:flex-row lg:px-14">
+            <div className="px-4 flex w-full items-center justify-center lg:flex-row lg:px-14">
               <div>
-                <button onClick={()=>{
-                  router.push('bank-credit/complete-info')
-                }} className="bg-green-900 text-white lg:px-8 lg:py-3 rounded-lg transition-all ease-in-out duration-300 hover:rounded-xl hover:scale-105 hover:shadow-lg">درخواست اعتبار</button>
+                <button
+                  onClick={() => {
+                    router.push("bank-credit/complete-info");
+                  }}
+                  className="rounded-lg bg-green-900 text-white transition-all duration-300 ease-in-out hover:scale-105 hover:rounded-xl hover:shadow-lg px-8 py-3"
+                >
+                  درخواست اعتبار
+                </button>
               </div>
             </div>
           </div>
-          <Merchants from="not"/>
+          <Merchants from="not" />
         </div>
       </div>
     </>
