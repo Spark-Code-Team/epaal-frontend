@@ -1,3 +1,5 @@
+'use client';
+
 import ExportAdmin from "../../../../public/icons/ExportAdmin";
 import SearchAdmin from "../../../../public/icons/SearchAdmin";
 
