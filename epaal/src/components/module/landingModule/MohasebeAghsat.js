@@ -82,13 +82,14 @@ const MohasebeAghsat = () => {
                     flex-col
                     items-center
                     absolute
-                    top-[-150px]
+                    top-[-100px]
                     h-[1386px]
                 "
             >
                 <div
                     className="
-                        w-[80%]
+                        md:w-[80%]
+                        w-full
                         flex
                         flex-col
                         bg-white
@@ -99,9 +100,11 @@ const MohasebeAghsat = () => {
                         className="
                             w-full
                             text-center
-                            text-[24px]
+                            md:text-[24px]
+                            text-[14px]
                             font-bold
-                            my-[40px]
+                            mb-[20px]
+                            mt-[38px]
                         "
                     >
                         طرح های اعتباری و اقساط آن
@@ -112,7 +115,7 @@ const MohasebeAghsat = () => {
                             {slides.map((src, i) => (
                                 <div 
                                     key={i} 
-                                    className={`flex-none w-[300px] text-white h-[200px] p-4 transition-transform duration-300 cursor-pointer bg-cover bg-center bg-no-repeat rounded-2xl z-0 ${i === index ? "scale-125 z-10 opacity-100" : "opacity-50"}`} 
+                                    className={`flex-none w-[226px] text-white h-[124px] p-4 transition-transform duration-300 cursor-pointer bg-cover bg-center bg-no-repeat rounded-2xl z-0 ${i === index ? "scale-125 z-10 opacity-100" : "opacity-50"}`} 
                                     onClick={() => updateSlider(i)}
                                     style={{
                                         background: `url(${src}) center/100% 100% no-repeat`,
@@ -141,7 +144,8 @@ const MohasebeAghsat = () => {
                                     >
                                         <p
                                             className="
-                                                text-[14px]
+                                                md:text-[14px]
+                                                text-[7px]
                                                 font-bold
                                             "
                                         >
@@ -149,11 +153,12 @@ const MohasebeAghsat = () => {
                                         </p>
                                         <p
                                             className="
-                                                text-[24px]
+                                                md:text-[24px]
+                                                text-[13px]
                                                 font-bold
                                             "
                                         >
-                                            50,000,000 ملیون ریال
+                                            100,000,000 میلیون تومان
                                         </p>
                                     </div>
 
@@ -163,12 +168,14 @@ const MohasebeAghsat = () => {
                                             flex
                                             items-center
                                             justify-between
-                                            mt-[30px]
+                                            md:mt-[30px]
+                                            mt-[8px]
                                         "
                                     >
                                         <div
                                             className="
-                                                text-[10px]
+                                                md:text-[10px]
+                                                text-[5px]
                                                 font-normal
                                             "
                                         >
@@ -177,11 +184,12 @@ const MohasebeAghsat = () => {
                                         <div
                                             className="
                                                 px-[5px]
-                                                py-2
+                                                py-1
                                                 bg-[#232336b3]
                                                 backdrop-blur-[40px]
                                                 rounded-xl
-                                                text-[14px]
+                                                md:text-[14px]
+                                                text-[7px]
                                             "
                                         >
                                             18 ماهه
