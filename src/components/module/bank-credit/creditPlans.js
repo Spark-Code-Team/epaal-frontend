@@ -17,6 +17,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Merchants from "../landingModule/Merchants";
 import { useRouter } from "next/navigation";
+import MohasebeAghsat from "../landingModule/MohasebeAghsat";
 
 const cards = [
   {
@@ -190,105 +191,22 @@ export default function CreditPlans() {
             id="text-line"
             className="h-[1px] w-full bg-green-900 lg:w-[80%]"
           ></div>
-          <div className="absolute right-12 top-5 bg-inherit px-5 lg:right-[550px]">
+          {/* <div className="absolute right-12 top-5 bg-inherit px-5 lg:right-[550px]">
             <p className="w-full text-center text-lg font-bold">
               طرح های اعتباری و اقساط آن
             </p>
-          </div>
-          <div className="hidden h-auto w-full flex-wrap items-center lg:mt-10 lg:flex lg:flex-row lg:justify-evenly">
+          </div> */}
+          <div className="h-auto w-full flex flex-wrap items-center gap-4 justify-center mt-16 lg:flex lg:flex-row lg:justify-evenly mb-32">
             <PlansCard plans={conditions} />
           </div>
-          <div
-            id="cards-carosel"
-            className="relative hidden w-full items-center justify-center overflow-hidden lg:mb-10 lg:mt-10 lg:flex lg:h-[500px]"
-          >
-            {/* دکمه‌های چپ و راست */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-2 flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
-            >
-              ◀
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-2 flex flex-col rounded-full bg-gray-300 p-2 text-gray-600"
-            >
-              ▶
-            </button>
-
-            {/* نمایش کارت‌ها */}
-            <div className="flex w-full items-center justify-center lg:mt-16">
-              {cards.map((card, index) => {
-                const isActive = index === activeIndex;
-                const isPrev =
-                  index === (activeIndex - 1 + cards.length) % cards.length;
-                const isNext = index === (activeIndex + 1) % cards.length;
-
-                return (
-                  <motion.div
-                    key={card.id}
-                    className="absolute flex flex-col items-center justify-center rounded-lg"
-                    style={{
-                      background: `url('${card.backgroundImage}') center/100% 100% no-repeat`,
-                      width: isActive ? "500px" : "600px",
-                      height: isActive ? "300px" : "250px",
-                      zIndex: isActive ? 3 : 2,
-                      opacity: isActive ? 1 : 0.7,
-                    }}
-                    animate={{
-                      x: isPrev ? "-150px" : isNext ? "150px" : "0px",
-                      scale: isActive ? 1.2 : 1,
-                      transition: { duration: 0.5 },
-                    }}
-                  >
-                    <div className="flex h-3/4 w-3/4 flex-col items-center justify-evenly gap-3 text-white">
-                      <div className="flex w-full lg:flex-row lg:items-center lg:justify-between lg:px-1">
-                        <div>
-                          <p>{card.bankName}</p>
-                        </div>
-                        <div>
-                          <Image
-                            src={card.bankLogo}
-                            alt={`${card.id}.png`}
-                            width={100}
-                            height={100}
-                            className="h-10 w-10"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <p className="font-normal text-white">
-                          {card.creditTitle}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-2xl font-extrabold text-white">
-                          {digitsEnToFa(card.creditCeil)}
-                        </p>
-                      </div>
-                      <div className="flex w-full lg:flex-row lg:items-center lg:justify-between lg:px-1">
-                        <div>
-                          <p className="text-[10px] font-thin text-white">
-                            {card.supportedBy}
-                          </p>
-                        </div>
-                        <div className="rounded-xl bg-blurbg px-2 py-1">
-                          {card.duration}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="mt-16 flex h-[600px] w-full flex-col items-center justify-evenly rounded-2xl border-2 border-green-100 lg:mt-0">
-            <div className="text-lg font-bold">جزئیات طرح انتخابی</div>
+          <MohasebeAghsat/>
+          {/* <div className="mt-16 flex h-[600px] w-full flex-col items-center justify-evenly rounded-2xl border-2 border-green-100 lg:mt-0"> */}
+            {/* <div className="text-lg font-bold">جزئیات طرح انتخابی</div>
             <div className="flex flex-row rounded-xl bg-gray-300 px-10 py-2">
               مبلغ: {digitsEnToFa(inputValue)} تومان
-            </div>
+            </div> */}
             {/* input in lg: */}
-            <div className="hidden lg:flex lg:w-full lg:flex-row lg:items-center lg:justify-evenly">
+            {/* <div className="hidden lg:flex lg:w-full lg:flex-row lg:items-center lg:justify-evenly">
               <div>
                 <p className="text-gray-500">
                   {digitsEnToFa("0")} میلیون تومان
@@ -313,11 +231,11 @@ export default function CreditPlans() {
                   {digitsEnToFa("100")} میلیون تومان
                 </p>
               </div>
-            </div>
+            </div> */}
             {/* input in lg: */}
 
             {/* input in mobile */}
-            <div className="flex w-5/6 flex-col lg:hidden">
+            {/* <div className="flex w-5/6 flex-col lg:hidden">
               <div className="flex flex-row items-center justify-between text-sm">
                 <div>
                   <p className="text-gray-500">
@@ -346,10 +264,10 @@ export default function CreditPlans() {
                   }}
                 />
               </div>
-            </div>
+            </div> */}
             {/* input in mobile */}
 
-            <div className="px-4 flex w-full items-center justify-between lg:flex-row lg:px-14">
+            {/* <div className="px-4 flex w-full items-center justify-between lg:flex-row lg:px-14">
               <div>
                 <p>اصل تسهیلات ثبتی در بانک</p>
               </div>
@@ -390,8 +308,8 @@ export default function CreditPlans() {
                   درخواست اعتبار
                 </button>
               </div>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
           <Merchants from="not" />
         </div>
       </div>

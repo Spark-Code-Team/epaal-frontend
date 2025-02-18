@@ -4,6 +4,7 @@ import Image from "next/image";
 import { RiInstagramFill } from "react-icons/ri";
 import { FaLinkedin } from "react-icons/fa";
 import { FaAngleUp } from "react-icons/fa";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 export default function Footer() {
   return (
@@ -15,7 +16,7 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center justify-center">
-            <p className="ml-4 py-[28px] text-sm">تلفن پشتیبانی: 02126612872</p>
+            <p className="mx-4 py-[28px] text-sm">تلفن پشتیبانی: {digitsEnToFa("02126612872")}</p>
             <RiInstagramFill color="#748297" size={24} />
             <span className="mr-[20px]">
               <FaLinkedin color="#748297" size={24} />

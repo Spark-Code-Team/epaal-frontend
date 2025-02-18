@@ -8,7 +8,7 @@ export default function PlansCard({ plans }) {
           {plans.map((eachPlan) => (
             <div
               key={eachPlan.id}
-              className="flex h-48 w-48 flex-col items-center justify-evenly rounded-xl border-2 border-green-100"
+              className="flex h-36 w-36 lg:h-48 lg:w-48 flex-col items-center justify-evenly rounded-xl border-2 border-green-100"
             >
               <div>
                 <Image

@@ -8,7 +8,7 @@ export default function MerchantsCard({ merchants, from }) {
 
   return (
     <>
-      <div className="mt-14 flex flex-col items-center md:mt-10">
+      <div className="-mt-28 flex flex-col items-center md:mt-10">
         <div className="mb-10 border-b-2 border-green-900 text-center md:w-1/3 md:pb-4 lg:w-1/2 lg:pb-5">
           <p>
             {from == "landing"
