@@ -71,7 +71,8 @@ const MohasebeAghsat = () => {
             className="
                 w-full
                 relative
-                min-h-[1386px]
+                md:min-h-[1386px]
+                min-h-[1000px]
             "
         >
             <div
@@ -83,7 +84,7 @@ const MohasebeAghsat = () => {
                     items-center
                     absolute
                     top-[-100px]
-                    h-[1386px]
+                    md:h-[1386px]
                 "
             >
                 <div
@@ -115,7 +116,7 @@ const MohasebeAghsat = () => {
                             {slides.map((src, i) => (
                                 <div 
                                     key={i} 
-                                    className={`flex-none w-[226px] text-white h-[124px] p-4 transition-transform duration-300 cursor-pointer bg-cover bg-center bg-no-repeat rounded-2xl z-0 ${i === index ? "scale-125 z-10 opacity-100" : "opacity-50"}`} 
+                                    className={`flex-none w-[226px] md:w-[398] text-white h-[124px] md:h-[217px] p-4 transition-transform duration-300 cursor-pointer bg-cover bg-center bg-no-repeat rounded-2xl z-0 ${i === index ? "scale-125 z-10 opacity-100" : "opacity-50"}`} 
                                     onClick={() => updateSlider(i)}
                                     style={{
                                         background: `url(${src}) center/100% 100% no-repeat`,
@@ -139,7 +140,8 @@ const MohasebeAghsat = () => {
                                             flex-col
                                             items-center
                                             justify-center
-                                            mt-[14px]
+                                            md:mt-[14px]
+                                            mt-[10px]
                                         "
                                     >
                                         <p
@@ -169,7 +171,6 @@ const MohasebeAghsat = () => {
                                             items-center
                                             justify-between
                                             md:mt-[30px]
-                                            mt-[8px]
                                         "
                                     >
                                         <div
@@ -184,7 +185,7 @@ const MohasebeAghsat = () => {
                                         <div
                                             className="
                                                 px-[5px]
-                                                py-1
+                                                py-2
                                                 bg-[#232336b3]
                                                 backdrop-blur-[40px]
                                                 rounded-xl
@@ -236,16 +237,19 @@ const MohasebeAghsat = () => {
 
                     <div
                         className="
-                            w-3/4
+                            md:w-3/4
+                            w-[90%]
                             mx-auto
-                            mb-[48px]
-                            h-[918px]
+                            md:mb-[48px]
+                            md:h-[918px]
+                            py-7
                             border-2
                             border-[#d9d9d9]
                             mt-[40px]
                             rounded-3xl
                             relative
-                            px-[86px]
+                            md:px-[86px]
+                            px-3
                             flex
                             flex-col
                             items-center
@@ -253,8 +257,9 @@ const MohasebeAghsat = () => {
                     >
                         <div
                             className="
-                                pt-[80px]
-                                pb-[47px]
+                                md:pt-[80px]
+                                md:pb-[47px]
+                                pb-7
                             "
                         >
                             <p
@@ -262,6 +267,8 @@ const MohasebeAghsat = () => {
                                     text-[24px]
                                     font-bold
                                     text-[#1D2433]
+                                    hidden
+                                    md:flex
                                 "
                             >
                                 جزئیات طرح انتخابی
@@ -271,19 +278,40 @@ const MohasebeAghsat = () => {
                         <div
                             className="
                                 w-full
+                                flex
+                                items-center
+                                justify-between
                             "
                         >
                             <p
                                 className="
-                                    text-[18px]
-                                    font-bold
+                                    md:hidden
+                                    flex
                                 "
                             >
-                                مبلغ:
+                                میزان اعتبار درخواستی
+                            </p>
+                            <p
+                                className="
+                                    text-[18px]
+                                    font-bold
+                                    flex
+                                    items-center
+                                "
+                            >
+                                <span
+                                    className="
+                                        hidden
+                                        md:flex
+                                    "
+                                >
+                                    مبلغ:
+                                </span>
                                 <span
                                     className="
                                         text-[#587E88]
-                                        text-[36px]
+                                        md:text-[36px]
+                                        text-[16px]
                                         font-bold
                                         mr-[13px]
                                     "
@@ -293,7 +321,8 @@ const MohasebeAghsat = () => {
                                     }
                                     <span
                                         className="
-                                            text-[18px]
+                                            md:text-[18px]
+                                            text-[12px]
                                             mr-[6px]
                                         "
                                     >
@@ -307,6 +336,8 @@ const MohasebeAghsat = () => {
                             className="
                                 w-full
                                 flex
+                                flex-col
+                                md:flex-row
                                 items-center
                                 justify-center
                             "
@@ -316,13 +347,11 @@ const MohasebeAghsat = () => {
                                     text-center
                                     text-[14px]
                                     text-[#8A8B8D]
+                                    hidden
+                                    md:flex
                                 "
                             >
-                                از
-                                <br />
                                 2,000,000
-                                <br />
-                                تومان
                             </div>
                             <input
                                 step={1000000}
@@ -341,13 +370,24 @@ const MohasebeAghsat = () => {
                                     text-center
                                     text-[14px]
                                     text-[#8A8B8D]
+                                    hidden
+                                    md:flex
                                 "
                             >
-                                از
-                                <br />
                                 50,000,000
-                                <br />
-                                تومان
+                            </div>
+                            <div
+                                className="
+                                    md:hidden
+                                    w-full
+                                    flex
+                                    items-center
+                                    justify-between
+                                    mb-6
+                                "
+                            >
+                                <p> 5 میلیون</p>
+                                <p>50 میلیون</p>
                             </div>
                         </div>
 
@@ -443,6 +483,7 @@ const MohasebeAghsat = () => {
                                 grid
                                 grid-cols-1
                                 w-full
+                                text-[12px]
                             "
                         >
                             <div

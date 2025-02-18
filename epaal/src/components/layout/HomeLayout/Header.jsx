@@ -21,7 +21,7 @@ export default function Header() {
   const onScroll = useCallback(event => {
     const { pageYOffset, scrollY } = window;
     setScrollY(pageYOffset);
-    if(pageYOffset > 100) {
+    if(pageYOffset > 50) {
       setNavColor(true)
     } else {
       setNavColor(false)
@@ -60,7 +60,7 @@ export default function Header() {
       <div
         className="
           flex
-           items-center
+          items-center
           gap-3
           md:gap-8
           w-[600px]

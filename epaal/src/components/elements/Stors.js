@@ -23,18 +23,21 @@ export default function Stors() {
         <div
             className={`
                 w-full
-                ${heightChange ? "h-fit" : "h-[355px]"}
+                py-8
                 bg-[#E1EDF0]
-                px-[108px]
-                py-[40px]
+                md:px-[108px]
+                md:py-[40px]
                 mt-[30px]
+                px-[14px]
                 flex
                 flex-wrap
                 items-center
                 justify-center
-                gap-[49px]
+                md:gap-[49px]
+                gap-[22px]
                 overflow-y-hidden
                 relative
+                mb-7
             `}
         >
             {
@@ -43,8 +46,8 @@ export default function Stors() {
                         className="
                             md:w-[202px]
                             md:h-[202px]
-                            w-[83px]
-                            h-[83px]
+                            w-[72px]
+                            h-[72px]
                             bg-white
                             rounded-[22px]
                             flex
