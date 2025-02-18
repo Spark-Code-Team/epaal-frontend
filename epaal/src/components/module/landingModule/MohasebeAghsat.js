@@ -3,6 +3,7 @@
 import { useState } from "react";
 import CurveLAnding from "../../../../public/icons/CurveLAnding";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
+import { useRouter } from "next/navigation";
 
 const MohasebeAghsat = () => {
 
@@ -22,6 +23,8 @@ const MohasebeAghsat = () => {
         "/image/backCard1.png",
         "/image/backCard2.png"
     ];
+
+    const router = useRouter()
 
     const formatNumber = (number) => {
         return number.toLocaleString("fa-IR"); // نمایش عدد به فرمت فارسی
@@ -350,6 +353,7 @@ const MohasebeAghsat = () => {
                             <p>
                                 مدت بازپرداخت:
                             </p>
+                            
                             <div
                                 className="
                                     flex
@@ -369,11 +373,11 @@ const MohasebeAghsat = () => {
                                         justify-center
                                         cursor-pointer
                                         text-[16px]
-                                        ${monthGhest == 9 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
+                                        ${monthGhest == 6 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
                                     `}
-                                    onClick={() => setMonthGhest(9)}
+                                    onClick={() => setMonthGhest(6)}
                                 >
-                                    9 ماهه
+                                    6 ماهه 
                                 </div>
                                 <div
                                     className={`
@@ -406,6 +410,22 @@ const MohasebeAghsat = () => {
                                     onClick={() => setMonthGhest(18)}
                                 >
                                     18 ماهه
+                                </div>
+                                <div
+                                    className={`
+                                        w-[113px]
+                                        p-[8px]
+                                        rounded-xl
+                                        flex
+                                        items-center
+                                        justify-center
+                                        cursor-pointer
+                                        text-[16px]
+                                        ${monthGhest == 24 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
+                                    `}
+                                    onClick={() => setMonthGhest(24)}
+                                >
+                                    24 ماهه
                                 </div>
                             </div>
                         </div> */}
@@ -574,7 +594,11 @@ const MohasebeAghsat = () => {
                                 bg-[#1D434C]
                                 text-white
                                 mt-[41px]
+                                hover:cursor-pointer
                             "
+                            onClick={()=>{
+                                router.push("/bank-credit")
+                            }}
                         >
                             درخواست  اعتبار
                         </div>
