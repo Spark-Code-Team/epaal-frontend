@@ -10,7 +10,8 @@ export default function BankCardShow ({ image }) {
                 sm:w-[700px]
                 sm:h-[570px]
                 px-[66px]
-                flex
+                md:flex
+                hidden
                 items-center
                 justify-center
                 bg-[#F0F0F1]

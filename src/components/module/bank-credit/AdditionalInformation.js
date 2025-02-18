@@ -24,17 +24,17 @@ const constant = [
 export default function AdditionalInformation({ setState }) {
 
   return (
-    <div className=" my-7 flex  w-full gap-[60px] bg-white px-20 py-2">
+    <div className=" my-7 flex  w-full gap-[60px] bg-white px-7 pt-10 pb-6 md:px-20 md:py-2">
       <BankCardShow image={soalTarh} />
 
       <div className="flex h-[570px] w-full flex-col justify-between">
         <div className="flex h-[60%] flex-col justify-between py-2">
-          <p className="text-[20px] font-bold">اطلاعات تکمیلی</p>
+          <p className="text-[16px] md:text-[20px] font-bold">اطلاعات تکمیلی</p>
           <div className="flex flex-col gap-8">
             {constant.map((item, index) => (
               <div key={index} className="border-r-[5px] border-[#3A616A] px-2">
-                <p className="text-[18px] font-bold">{item.title}</p>
-                <p className="text-[18px] font-medium text-[#8A8B8D]">
+                <p className="text-[14px] md:text-[18px] font-bold">{item.title}</p>
+                <p className="text-[14px] md:text-[18px] font-medium text-[#8A8B8D]">
                   {item.description}
                 </p>
               </div>
