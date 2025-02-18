@@ -14,23 +14,28 @@ export default function MainBanner() {
             className="
                 h-[627px]
                 flex
+                flex-col
+                md:flex-row
                 items-center
                 justify-center
             "
         >
             <div
                 className="
-                    w-1/2
+                    md:w-1/2
                     flex
                     flex-col
-                    mr-[108px]
+                    md:mr-[108px]
                     text-white
                     gap-4
+                    text-center
+                    md:text-justify
                 "
             >
                 <p
                     className="
-                        text-[40px]
+                        text-[28px]
+                        md:text-[40px]
                         font-bold
                     "
                 >
@@ -38,8 +43,10 @@ export default function MainBanner() {
                 </p>
                 <p
                     className="
-                        text-[24px]
+                        text-[16px]
+                        md:text-[24px]
                         font-medium
+                        text-justify
                     "
                 >
                     بدون نیاز به ضامن فقط با کسب رتبه اعتباری مناسب 
@@ -50,6 +57,8 @@ export default function MainBanner() {
                         bg-white
                         flex
                         items-center
+                        mx-auto
+                        md:mx-0
                         gap-[20px]
                         w-fit
                         px-4
@@ -59,7 +68,8 @@ export default function MainBanner() {
                 >
                     <p
                         className="
-                            text-black
+                            text-[#1D434C]
+                            text-[14px]
                         "
                     >
                         راهنمای خرید اقساطی
@@ -81,11 +91,12 @@ export default function MainBanner() {
                 <div
                     className="
                         w-full
-                        flex
+                        md:flex
                         items-center
                         justify-end
                         mt-[45px]
                         gap-2
+                        hidden
                     "
                 >
                     <p
@@ -100,7 +111,8 @@ export default function MainBanner() {
             </div>
             <div
                 className="
-                    w-1/2
+                    md:w-1/2
+                    w-full
                     flex
                     items-center
                     justify-center
@@ -110,8 +122,10 @@ export default function MainBanner() {
                     width={500}
                     height={500}
                     className="
-                        w-[415px]
-                        h-[415px]
+                        md:w-[415px]
+                        md:h-[415px]
+                        w-[304px]
+                        h-[304px]
                     "
                     src={lvazemBanner}
                     alt="alt"

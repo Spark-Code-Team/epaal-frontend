@@ -277,7 +277,9 @@ const MohasebeAghsat = () => {
                                         mr-[13px]
                                     "
                                 >
-                                    38,000,000
+                                    {
+                                        inputValue
+                                    }
                                     <span
                                         className="
                                             text-[18px]
@@ -338,7 +340,7 @@ const MohasebeAghsat = () => {
                             </div>
                         </div>
 
-                        <div
+                        {/* <div
                             className="
                                 w-full
                                 flex
@@ -406,7 +408,7 @@ const MohasebeAghsat = () => {
                                     18 ماهه
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div
                             className="
@@ -436,7 +438,7 @@ const MohasebeAghsat = () => {
                                         
                                     "
                                 >
-                                    35,000,000 تومان 
+                                    {calculatedPayment.finalPaymentToUser} تومان 
                                 </div>
                             </div>
                             <div
@@ -453,14 +455,14 @@ const MohasebeAghsat = () => {
                                         
                                     "
                                 >
-                                    اصل تسهیلات تبتی در بانک
+                                    اصل تسهیلات ثبتی در بانک
                                 </div>
                                 <div
                                     className="
                                         
                                     "
                                 >
-                                    35,000,000 تومان 
+                                    {inputValue} تومان 
                                 </div>
                             </div>
                             <div
@@ -484,7 +486,7 @@ const MohasebeAghsat = () => {
                                     
                                     "
                                 >
-                                    35,000,000 تومان 
+                                    {calculatedPayment.bankPrePayment} تومان 
                                 </div>
                             </div>
                             <div

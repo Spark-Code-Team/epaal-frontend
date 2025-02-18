@@ -1,11 +1,21 @@
 "use client"
 
 import { useState } from "react"
+import bimeBazar from "../../../public/image/bimebazarr.png"
+import matinn from "../../../public/image/matinn.png"
+import daricc from "../../../public/image/daricc.png"
+import zitroo from "../../../public/image/zitroo.png"
+import Image from "next/image"
+
+const storha = [
+    bimeBazar,
+    matinn,
+    daricc,
+    zitroo
+]
 
 
 export default function Stors() {
-
-    const items = Array.from({ length: 21 }, (_, i) => `آیتم ${i + 1}`)
 
     const [heightChange, setHeightChange] = useState(false)
 
@@ -28,21 +38,37 @@ export default function Stors() {
             `}
         >
             {
-                items.map((item, index) => (
+                storha.map((item, index) => (
                     <div
                         className="
-                            w-[130px]
-                            h-[120px]
+                            md:w-[202px]
+                            md:h-[202px]
+                            w-[83px]
+                            h-[83px]
                             bg-white
                             rounded-[22px]
+                            flex
+                            items-center
+                            justify-center
                         "
                         key={index}
                     >
-
+                        <Image 
+                            src={item}
+                            width={1000}
+                            height={1000}
+                            className="
+                                md:w-[134px]
+                                md:h-[134px]
+                                w-[55px]
+                                h-[55px]
+                            "
+                            alt="alt"
+                        />
                     </div>
                 ))
             }
-            <div
+            {/* <div
                 className={`
                     w-full
                     h-9
@@ -52,8 +78,12 @@ export default function Stors() {
                     shadow-topShodow
                 `}
             >
+                <div
 
-            </div>
+                >
+
+                </div>
+            </div> */}
         </div>
     )
 }
