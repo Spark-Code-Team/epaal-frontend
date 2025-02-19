@@ -17,7 +17,7 @@ export default function SelectedTarhInformation({ setState }) {
     <div className="my-7 flex h-full w-full gap-[40px] md:gap-[60px] bg-white px-7 md:px-20 py-2">
       <BankCardShow image={selectedTarh} />
 
-      <div className="flex h-[570px] w-full flex-col justify-between">
+      <div className="flex h-[570px] w-full flex-col justify-between mt-12">
         <div className="flex h-[60%] flex-col justify-between py-2">
           <p className="text-[20px] font-bold">اطلاعات تکمیلی</p>
           <div className="flex flex-col gap-8">

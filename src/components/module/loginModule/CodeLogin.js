@@ -34,7 +34,7 @@ export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }
         theme: "light",
         transition: Bounce,
       });
-      router.replace("/shopping-evaam");
+      router.replace("/bank-credit");
     } else {
       console.log(error);
     }

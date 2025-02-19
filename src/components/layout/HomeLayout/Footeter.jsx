@@ -87,9 +87,9 @@ export default function Footer() {
             کنند. متقاضیان می‌توانند با دریافت وام آنلاین به راحتی و با کارمزد
             پایین تر در مقایسه با رقبا خرید اقساطی خود را انجام دهند.
           </p>
-          <p className="pb-[30px] text-[16px] font-[700] text-[#64748B]">
+          {/* <p className="pb-[30px] text-[16px] font-[700] text-[#64748B]">
             وام بدون پیش پرداخت
-          </p>
+          </p> */}
         </div>
 
         <div className="flex h-[65px] w-full items-center justify-between bg-[#E2E8F0] px-[30px] pb-[30px]">

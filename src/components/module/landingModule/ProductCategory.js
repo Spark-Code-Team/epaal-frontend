@@ -1,120 +1,57 @@
-import mobile from "../../../../public/image/mobile.png"
-import arayeshy from "../../../../public/image/arayeshy.png"
-import Image from "next/image"
-import FlashButton from "@/components/elements/FlashButton"
-import BlurTitle from "@/components/elements/BlurTitle"
-
+import mobile from "../../../../public/image/mobile.png";
+import arayeshy from "../../../../public/image/arayeshy.png";
+import Image from "next/image";
+import FlashButton from "@/components/elements/FlashButton";
+import BlurTitle from "@/components/elements/BlurTitle";
 
 const category = [
-    {
-        title: "کلای دیجیتال",
-        image: mobile
-    },
-    {
-        title: "کلای دیجیتال",
-        image: mobile
-    },
-    {
-        title: "زیبایی",
-        image: arayeshy
-    },
-    {
-        title: "کلای دیجیتال",
-        image: mobile
-    },
-]
-
+  //TODO: عکس برای دسته بندی های اضافه شد
+  {
+    title: "زیبایی",
+    image: arayeshy,
+  },
+  {
+    title: "کالای دیجیتال",
+    image: mobile,
+  },
+  {
+    title: "طلا و جواهر",
+    image: mobile,
+  },
+  {
+    title: "لوازم خانگی",
+    image: mobile,
+  },
+];
 
 export default function ProductCategory() {
-
-    return (
-        <div
-            className="
-                w-full
-                flex
-                flex-col
-                items-center
-                mt-[28px]
-            "
-        >
-            <BlurTitle 
-                title="دسته بندی محصولات"
-            />
-            <div
-                className="
-                    flex
-                    flex-wrap
-                    gap-[24px]
-                    items-center
-                    justify-between
-                    w-full
-                    px-[24px]
-                    md:px-[40px]
-                    pt-[32px]
-                "
-            >
-                {
-                    category.map((item, index) => (
-                        <div
-                            key={index}
-                            className="
-                                flex
-                                flex-col
-                                items-center
-                                justify-center
-                                gap-[14px]
-                            "
-                        >
-                            <div
-                                className="
-                                    rounded-xl
-                                    bg-gradient-to-t
-                                    from-[#26889E]
-                                    to-white
-                                    w-[71px]
-                                    h-[77px]
-                                    md:w-[213px]
-                                    md:h-[199px]
-                                    flex
-                                    items-center
-                                    justify-center
-                                "
-                            >
-                                <Image 
-                                    src={item.image}
-                                    width={2000}
-                                    height={2000}
-                                    alt="category"
-                                    className="
-                                        w-[50px]
-                                        h-[90px]
-                                        md:w-[103px]
-                                        md:h-[180px]
-                                    "
-                                />
-                            </div>
-                            <p
-                                className="
-                                    text-[12px]
-                                    font-normal
-                                    md:text-[18px]
-                                    md:font-medium
-                                "
-                            >
-                                {
-                                    item.title
-                                }
-                            </p>
-                        </div>
-                    ))
-                }
+  return (
+    <div className="mt-[28px] flex w-full flex-col items-center">
+      <BlurTitle title="دسته بندی محصولات" />
+      <div className="flex w-full flex-wrap items-center justify-between gap-[24px] px-[24px] pt-[32px] md:px-[40px]">
+        {category.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center justify-center gap-[14px]"
+          >
+            <div className="flex h-[77px] w-[71px] items-center justify-center rounded-xl bg-gradient-to-t from-[#26889E] to-white md:h-[199px] md:w-[213px]">
+              <Image
+                src={item.image}
+                width={2000}
+                height={2000}
+                alt="category"
+                className="h-[90px] w-[50px] md:h-[180px] md:w-[103px]"
+              />
             </div>
-            <div>
-                <FlashButton
-                    title="رفتن به فروشگاه"
-                    href="#"
-                />
-            </div>
-        </div>
-    )
+            <p className="text-[12px] font-normal md:text-[18px] md:font-medium">
+              {item.title}
+            </p>
+          </div>
+        ))}
+      </div>
+      <div>
+        <FlashButton title="رفتن به فروشگاه" href="#" />
+      </div>
+    </div>
+  );
 }

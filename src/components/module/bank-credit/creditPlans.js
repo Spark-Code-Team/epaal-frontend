@@ -199,7 +199,7 @@ export default function CreditPlans() {
           <div className="h-auto w-full flex flex-wrap items-center gap-4 justify-center mt-16 lg:flex lg:flex-row lg:justify-evenly mb-32">
             <PlansCard plans={conditions} />
           </div>
-          <MohasebeAghsat/>
+          <MohasebeAghsat toPage={"/bank-credit/complete-info"}/>
           {/* <div className="mt-16 flex h-[600px] w-full flex-col items-center justify-evenly rounded-2xl border-2 border-green-100 lg:mt-0"> */}
             {/* <div className="text-lg font-bold">جزئیات طرح انتخابی</div>
             <div className="flex flex-row rounded-xl bg-gray-300 px-10 py-2">

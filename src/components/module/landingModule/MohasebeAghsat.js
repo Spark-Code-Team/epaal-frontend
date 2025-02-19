@@ -4,18 +4,18 @@ import { useState } from "react";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useRouter } from "next/navigation";
 
-const MohasebeAghsat = () => {
+const MohasebeAghsat = ({ toPage }) => {
   const [inputValue, setInputValue] = useState(1000000);
   const [index, setIndex] = useState(1);
   const [calculatedPayment, setCalculatePayment] = useState({
-    bankPrePayment: "-",
-    yearlySubscribePayment: "-",
-    finalPaymentToUser: "-",
-    paymentPerMounth: digitsEnToFa(0),
+    bankPrePayment: digitsEnToFa("1,000,000"),
+    yearlySubscribePayment: digitsEnToFa("1,000,000"),
+    finalPaymentToUser: digitsEnToFa("1,000,000"),
+    paymentPerMounth: digitsEnToFa("94,077"),
   });
-  const items = [6, 12, 24, 36];
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [monthGhest, setMonthGhest] = useState(0);
+  // const items = [6, 12, 24, 36];
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  const [monthGhest, setMonthGhest] = useState(12);
   const slides = [
     "/image/backCard.png",
     "/image/backCard1.png",
@@ -28,7 +28,7 @@ const MohasebeAghsat = () => {
     return number.toLocaleString("fa-IR"); // نمایش عدد به فرمت فارسی
   };
 
-  const calculatePrePayment = (e) => {
+  const calculatePrePayment = (e, month) => {
     let numberOfEvent = Number(e);
 
     let prePayment = numberOfEvent * 0.05;
@@ -36,7 +36,7 @@ const MohasebeAghsat = () => {
     let finalPaymentToUser = numberOfEvent - prePayment;
 
     let r = 23 / 100 / 12;
-    let denominator = 1 - Math.pow(1 + r, -items[currentIndex]);
+    let denominator = 1 - Math.pow(1 + r, -month);
     let payment = (numberOfEvent * r) / denominator;
 
     setCalculatePayment((prev) => ({
@@ -61,7 +61,31 @@ const MohasebeAghsat = () => {
   const handleChange = (e) => {
     const value = e.target.value;
     setInputValue(value); // ذخیره مقدار جدید
-    calculatePrePayment(value);
+    calculatePrePayment(value, monthGhest);
+  };
+
+  // States for swipe functionality
+  const [startX, setStartX] = useState(0);
+  const [endX, setEndX] = useState(0);
+
+  const handleTouchStart = (e) => {
+    setStartX(e.touches[0].clientX); // Record the start point of touch
+  };
+
+const handleTouchEnd = (e) => {
+    setEndX(e.changedTouches[0].clientX); // Record the end point of touch
+    const diff = endX - startX; // Calculate the swipe distance
+
+    console.log(diff)
+
+    // If swipe distance is enough, update the index to move the slides
+    if (Math.abs(diff) > 10) {
+      if (diff > 0) {
+        updateSlider("azafe"); // Move to the right
+      } else {
+        updateSlider("azafee"); // Move to the left
+      }
+    }
   };
 
   return (
@@ -76,19 +100,20 @@ const MohasebeAghsat = () => {
             <div
               className="flex p-10 transition-transform duration-500"
               style={{ transform: `translateX(${index * 33.33 - 33.33}%)` }}
+              onTouchStart={handleTouchStart} // Handle touch start
+              onTouchEnd={handleTouchEnd} // Handle touch end
             >
               {slides.map((src, i) => (
                 <div
                   key={i}
                   className={`z-0 h-[124px] w-[226px] flex-none cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat p-4 text-white transition-transform duration-300 md:h-[217px] md:w-[398] ${i === index ? "z-10 scale-125 opacity-100" : "opacity-50"}`}
-                  onClick={() => updateSlider(i)}
                   style={{
                     background: `url(${src}) center/100% 100% no-repeat`,
                   }}
                 >
                   <div className="flex w-full items-center justify-between px-2">
-                    <p>بلو</p>
-                    <p>blu</p>
+                    <p>های‌بانک</p>
+                    <p>Hi Bank</p>
                   </div>
                   <div className="mt-[10px] flex flex-col items-center justify-center md:mt-[14px]">
                     <p className="text-[7px] font-bold md:text-[14px]">
@@ -101,11 +126,11 @@ const MohasebeAghsat = () => {
 
                   <div className="flex w-full items-center justify-between md:mt-[30px]">
                     <div className="text-[5px] font-normal md:text-[10px]">
-                      تامین مالی توسط بلوبانک
+                      تامین مالی توسط بانک کارآفرین
                     </div>
-                    <div className="rounded-xl bg-[#232336b3] px-[5px] py-2 text-[7px] backdrop-blur-[40px] md:text-[14px]">
+                    {/* <div className="rounded-xl bg-[#232336b3] px-[5px] py-2 text-[7px] backdrop-blur-[40px] md:text-[14px]">
                       {digitsEnToFa("18")} ماهه
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))}
@@ -138,7 +163,7 @@ const MohasebeAghsat = () => {
               <p className="flex items-center text-[18px] font-bold">
                 <span className="hidden md:flex">مبلغ:</span>
                 <span className="mr-[13px] text-[16px] font-bold text-[#587E88] md:text-[36px]">
-                  {digitsEnToFa(inputValue)}
+                  {formatNumber(Number(inputValue))}
                   <span className="mr-[6px] text-[12px] md:text-[18px]">
                     تومان
                   </span>
@@ -171,103 +196,36 @@ const MohasebeAghsat = () => {
               </div>
             </div>
 
-            <div
-                            className="
-                                w-full
-                                flex
-                                md:items-center
-                                flex-col
-                                md:flex-row
-                                my-[26px]
-                            "
-                        >
-                            <p>
-                                مدت بازپرداخت:
-                            </p>
-                            
-                            <div
-                                className="
-                                    flex
-                                    items-center
-                                    gap-4
-                                    md:my-[50px]
-                                    md:mr-[16px]
-                                    my-[16px]
-                                "
-                            >
-                                <div
-                                    className={`
-                                        md:w-[113px]
-                                        w-[79px]
-                                        p-2
-                                        rounded-xl
-                                        flex
-                                        items-center
-                                        justify-center
-                                        cursor-pointer
-                                        md:text-[16px]
-                                        text-[12px]
-                                        ${monthGhest == 6 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
-                                    `}
-                                    onClick={() => setMonthGhest(6)}
-                                >
-                                    6 ماهه 
-                                </div>
-                                <div
-                                    className={`
-                                        md:w-[113px]
-                                        w-[79px]
-                                        p-2
-                                        rounded-xl
-                                        flex
-                                        items-center
-                                        justify-center
-                                        cursor-pointer
-                                        md:text-[16px]
-                                        text-[12px]
-                                        ${monthGhest == 12 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
-                                    `}
-                                    onClick={() => setMonthGhest(12)}
-                                >
-                                    12 ماهه
-                                </div>
-                                <div
-                                    className={`
-                                        md:w-[113px]
-                                        w-[79px]
-                                        p-2
-                                        rounded-xl
-                                        flex
-                                        items-center
-                                        justify-center
-                                        cursor-pointer
-                                        md:text-[16px]
-                                        text-[12px]
-                                        ${monthGhest == 18 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
-                                    `}
-                                    onClick={() => setMonthGhest(18)}
-                                >
-                                    18 ماهه
-                                </div>
-                                <div
-                                    className={`
-                                        md:w-[113px]
-                                        w-[79px]
-                                        p-2
-                                        rounded-xl
-                                        flex
-                                        items-center
-                                        justify-center
-                                        md:text-[16px]
-                                        text-[12px]
-                                        ${monthGhest == 24 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
-                                    `}
-                                    onClick={() => setMonthGhest(24)}
-                                >
-                                    24 ماهه
-                                </div>
-                            </div>
-                        </div>
+            <div className="my-[26px] flex w-full flex-col md:flex-row md:items-center">
+              <p>مدت بازپرداخت:</p>
+
+              <div className="my-[16px] flex items-center gap-4 md:my-[50px] md:mr-[16px]">
+                <div
+                  className={`flex w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 6 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  onClick={() => setMonthGhest(6)}
+                >
+                  6 ماهه
+                </div>
+                <div
+                  className={`flex w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 12 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  onClick={() => setMonthGhest(12)}
+                >
+                  12 ماهه
+                </div>
+                <div
+                  className={`flex w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 18 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  onClick={() => setMonthGhest(18)}
+                >
+                  18 ماهه
+                </div>
+                <div
+                  className={`flex w-[79px] items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 24 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  onClick={() => setMonthGhest(24)}
+                >
+                  24 ماهه
+                </div>
+              </div>
+            </div>
 
             <div className="grid w-full grid-cols-1 text-[12px]">
               <div className="mb-[37px] flex w-full items-center justify-between">
@@ -278,7 +236,7 @@ const MohasebeAghsat = () => {
               </div>
               <div className="mb-[37px] flex w-full items-center justify-between">
                 <div className=" ">اصل تسهیلات ثبتی در بانک</div>
-                <div className=" ">{digitsEnToFa(inputValue)} تومان</div>
+                <div className=" ">{formatNumber(Number(inputValue))} تومان</div>
               </div>
               <div className="mb-[37px] flex w-full items-center justify-between">
                 <div className=" ">
@@ -290,7 +248,7 @@ const MohasebeAghsat = () => {
                 </div>
               </div>
               <div className="mb-[37px] flex w-full items-center justify-between">
-                <div className=" ">هزینه عملیات دریافتی ایوام</div>
+                <div className=" ">هزینه اشتراک ایوام</div>
                 <div className=" ">
                   {calculatedPayment.yearlySubscribePayment} تومان
                 </div>
@@ -303,7 +261,7 @@ const MohasebeAghsat = () => {
                 <div className=" ">35,000,000 تومان</div>
               </div> */}
               <div className="mb-[37px] flex w-full items-center justify-between">
-                <div className=" ">پرداخت ماهانه</div>
+                <div className=" ">اقساط ماهانه</div>
                 <div className=" ">
                   {calculatedPayment.paymentPerMounth}تومان
                 </div>
@@ -313,7 +271,7 @@ const MohasebeAghsat = () => {
             <div
               className="mt-[41px] w-3/4 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
               onClick={() => {
-                router.push("/bank-credit");
+                router.push(toPage);
               }}
             >
               درخواست اعتبار

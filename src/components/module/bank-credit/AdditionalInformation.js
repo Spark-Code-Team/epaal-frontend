@@ -27,7 +27,7 @@ export default function AdditionalInformation({ setState }) {
     <div className=" my-7 flex  w-full gap-[60px] bg-white px-7 pt-10 pb-6 md:px-20 md:py-2">
       <BankCardShow image={soalTarh} />
 
-      <div className="flex h-[570px] w-full flex-col justify-between">
+      <div className="flex h-[570px] w-full flex-col justify-between mt-10">
         <div className="flex h-[60%] flex-col justify-between py-2">
           <p className="text-[16px] md:text-[20px] font-bold">اطلاعات تکمیلی</p>
           <div className="flex flex-col gap-8">

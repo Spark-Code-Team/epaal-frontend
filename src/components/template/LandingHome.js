@@ -36,7 +36,7 @@ export default function LandingHome()  {
 
         <>
             <MainBanner />
-            <MohasebeAghsat />
+            <MohasebeAghsat toPage={"bank-credit"}/>
             <EvamStore />
             <ProductCategory />
             <RahnamaPaziran />
