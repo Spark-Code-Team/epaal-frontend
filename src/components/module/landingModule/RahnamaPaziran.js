@@ -16,6 +16,7 @@ export default function RahnamaPaziran() {
                 items-center
                 justify-center
                 pt-[38px]
+                mb-12
             "
         >
             <p

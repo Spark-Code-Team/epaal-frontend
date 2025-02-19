@@ -19,6 +19,7 @@ export default function FlashButton({ title, href, them }) {
                 py-2
                 mt-8
                 mb-[48px]
+                cursor-pointer
             `}
         >
             <p

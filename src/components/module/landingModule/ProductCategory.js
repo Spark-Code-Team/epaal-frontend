@@ -2,6 +2,7 @@ import mobile from "../../../../public/image/mobile.png"
 import arayeshy from "../../../../public/image/arayeshy.png"
 import Image from "next/image"
 import FlashButton from "@/components/elements/FlashButton"
+import BlurTitle from "@/components/elements/BlurTitle"
 
 
 const category = [
@@ -33,16 +34,12 @@ export default function ProductCategory() {
                 flex
                 flex-col
                 items-center
+                mt-[28px]
             "
         >
-            <div
-                className="
-                    text-[14px]
-                    font-bold
-                "
-            >
-                دسته بندی محصولات
-            </div>
+            <BlurTitle 
+                title="دسته بندی محصولات"
+            />
             <div
                 className="
                     flex
