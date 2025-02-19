@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import CurveLAnding from "../../../../public/icons/CurveLAnding";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useRouter } from "next/navigation";
 
@@ -172,11 +171,14 @@ const MohasebeAghsat = () => {
               </div>
             </div>
 
-            {/* <div
+            <div
                             className="
                                 w-full
                                 flex
-                                items-center
+                                md:items-center
+                                flex-col
+                                md:flex-row
+                                my-[26px]
                             "
                         >
                             <p>
@@ -188,20 +190,23 @@ const MohasebeAghsat = () => {
                                     flex
                                     items-center
                                     gap-4
-                                    my-[50px]
-                                    mr-[50px]
+                                    md:my-[50px]
+                                    md:mr-[16px]
+                                    my-[16px]
                                 "
                             >
                                 <div
                                     className={`
-                                        w-[113px]
-                                        p-[8px]
+                                        md:w-[113px]
+                                        w-[79px]
+                                        p-2
                                         rounded-xl
                                         flex
                                         items-center
                                         justify-center
                                         cursor-pointer
-                                        text-[16px]
+                                        md:text-[16px]
+                                        text-[12px]
                                         ${monthGhest == 6 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
                                     `}
                                     onClick={() => setMonthGhest(6)}
@@ -210,14 +215,16 @@ const MohasebeAghsat = () => {
                                 </div>
                                 <div
                                     className={`
-                                        w-[113px]
-                                        p-[8px]
+                                        md:w-[113px]
+                                        w-[79px]
+                                        p-2
                                         rounded-xl
                                         flex
                                         items-center
                                         justify-center
                                         cursor-pointer
-                                        text-[16px]
+                                        md:text-[16px]
+                                        text-[12px]
                                         ${monthGhest == 12 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
                                     `}
                                     onClick={() => setMonthGhest(12)}
@@ -226,14 +233,16 @@ const MohasebeAghsat = () => {
                                 </div>
                                 <div
                                     className={`
-                                        w-[113px]
-                                        p-[8px]
+                                        md:w-[113px]
+                                        w-[79px]
+                                        p-2
                                         rounded-xl
                                         flex
                                         items-center
                                         justify-center
                                         cursor-pointer
-                                        text-[16px]
+                                        md:text-[16px]
+                                        text-[12px]
                                         ${monthGhest == 18 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
                                     `}
                                     onClick={() => setMonthGhest(18)}
@@ -242,14 +251,15 @@ const MohasebeAghsat = () => {
                                 </div>
                                 <div
                                     className={`
-                                        w-[113px]
-                                        p-[8px]
+                                        md:w-[113px]
+                                        w-[79px]
+                                        p-2
                                         rounded-xl
                                         flex
                                         items-center
                                         justify-center
-                                        cursor-pointer
-                                        text-[16px]
+                                        md:text-[16px]
+                                        text-[12px]
                                         ${monthGhest == 24 ? "bg-[#1D434C] text-white" : "text-[#1D434C] bg-[#F0F0F1]"}
                                     `}
                                     onClick={() => setMonthGhest(24)}
@@ -257,7 +267,7 @@ const MohasebeAghsat = () => {
                                     24 ماهه
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
 
             <div className="grid w-full grid-cols-1 text-[12px]">
               <div className="mb-[37px] flex w-full items-center justify-between">

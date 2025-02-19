@@ -13,6 +13,8 @@ import MainBanner from "../module/layoutModule/MainBanner";
 import CreditPlans from "../module/bank-credit/creditPlans";
 import MohasebeAghsat from "../module/landingModule/MohasebeAghsat";
 import EvamStore from "../module/landingModule/EvamStore";
+import RahnamaPaziran from "../module/landingModule/RahnamaPaziran";
+import ProductCategory from "../module/landingModule/ProductCategory";
 
 
 
@@ -36,6 +38,8 @@ export default function LandingHome()  {
             <MainBanner />
             <MohasebeAghsat />
             <EvamStore />
+            <ProductCategory />
+            <RahnamaPaziran />
         </>
     )
 }
