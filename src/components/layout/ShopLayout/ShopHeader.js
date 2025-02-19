@@ -11,6 +11,7 @@ import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import Logo from "@/components/elements/Logo";
 
 
 const categories = [
@@ -664,12 +665,13 @@ export default function ShopHeader() {
             {/* burger Menu */}
             <div
                 className={`
-                    w-screen
+                    w-full
                     h-screen
                     md:hidden
                     bg-[#0a0a0a4d]   
                     absolute
                     top-0
+                    right-0
                     ${burgerMenu ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}
                     transition-all
                     duration-300
@@ -696,26 +698,15 @@ export default function ShopHeader() {
                             border-[#d9d9d9]
                         "
                     >
+                        <Logo 
+                            width="30px"
+                            height="30px"
+                            color="#1d434c"
+                        />
                         <div
                             className="
-                                flex
-                                items-center
-                                gap-3
-                            "
-                        >
-                            <EvaamLogo 
-                                width="35px"
-                                height="35px"
-                                color="blue"
-                            />
-                            <p>
-                                ایوام      
-                            </p>
-                        </div>
-                        <div
-                            className="
-                                text-blue-800
-                                bg-[#c1def0]
+                                text-evaamGreen
+                                bg-evaamCyan
                                 p-2
                                 rounded-xl
                                 flex

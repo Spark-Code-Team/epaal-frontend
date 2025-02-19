@@ -4,28 +4,8 @@
 import Link from "next/link";
 
 
-const options = [
-    {
-        title: "فروشگاه ایوام",
-        href: "/shopping-evaam"
-    },
-    {
-        title: "راهنما خرید اقساطی",
-        href: "#"
-    },
-    {
-        title: "پذیرندگان",
-        href: "#"
-    },
-    {
-        title: "تماس با ما",
-        href: "#"
-    }
-]
 
-
-
-export default function NavElements({ navColor }) {
+export default function NavElements({ navColor, pathname, options }) {
 
 
     return (
@@ -48,7 +28,7 @@ export default function NavElements({ navColor }) {
                             flex
                             items-center
                             flex-col
-                            ${navColor ? "text-black" : "text-white"}
+                            ${(navColor || pathname != "/evaam-home") ? "text-black" : "text-white"}
                             group
                             cursor-pointer
                             relative
@@ -57,7 +37,7 @@ export default function NavElements({ navColor }) {
                         <Link 
                             href={item.href} 
                             className={`
-                                ${navColor ? "group-hover:text-black" : "group-hover:text-white"}
+                                ${(navColor || pathname != "/evaam-home") ? "group-hover:text-black" : "group-hover:text-white"}
                                 transition-all
                                 duration-300
                             `}
@@ -68,10 +48,10 @@ export default function NavElements({ navColor }) {
                         </Link>
                         <div
                             className={`
-                                ${navColor ? "bg-black" : "bg-white"}
+                                ${(navColor || pathname != "/evaam-home") ? "bg-black" : "bg-white"}
                                 w-0
                                 group-hover:w-full
-                                ${navColor ? "bg-black" : "text-white"}
+                                ${(navColor || pathname != "/evaam-home") ? "bg-black" : "text-white"}
                                 transition-all
                                 duration-300
                                 absolute

@@ -1,7 +1,10 @@
 "use client"
 
-
+// react
 import { useState } from "react";
+
+
+// components
 import AdditionalInformation from "../module/bank-credit/AdditionalInformation";
 import SelectedTarhInformation from "../module/auth/SelectedTarhInformation";
 

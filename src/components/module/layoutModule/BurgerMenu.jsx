@@ -1,18 +1,12 @@
 "use client";
 
-// Nextjs
-import Image from "next/image";
-
-// IMG
-import burger from "../../../../public/icons/burgerMenu.svg";
-import logo from "../../../../public/image/evaam-logo.png";
-
 
 // React
 import { useState } from "react";
 import Link from "next/link";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import EvaamLogo from "../../../../public/icons/evaam-icon";
+import Logo from "@/components/elements/Logo";
 
 export default function BurgerMenu({ navColor}) {
   const [open, setOpen] = useState(false);
@@ -26,6 +20,7 @@ export default function BurgerMenu({ navColor}) {
             w-6
             h-6
             ml-3
+            overflow-x-hidden
             md:hidden
           `}
 
@@ -36,10 +31,10 @@ export default function BurgerMenu({ navColor}) {
           fixed
           top-0
           right-0
-          w-screen
+          w-full
           h-screen
           transform
-          ${open ? "translate-x-0" : "translate-x-full"}
+          ${open ? "translate-x-2" : "translate-x-full"}
           transition-transform
           bg-opacity-15
           bg-neutral-300
@@ -57,7 +52,6 @@ export default function BurgerMenu({ navColor}) {
             right-0
             h-full
             bg-white
-            w-56
             flex
             flex-col
             items-center
@@ -71,17 +65,12 @@ export default function BurgerMenu({ navColor}) {
               items-center
             "
           >
-            <EvaamLogo color="#1d434c" width="30px" height="30px" />
-
-            <p
-              className="
-              text-[#1d434c]
-                text-[16px]
-                mr-2
-            "
-            >
-              ایوام
-            </p>
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            <Logo
+              color="#1d434c"
+              width="30px"
+              height="30px"
+            />
           </div>
           <div
             className="

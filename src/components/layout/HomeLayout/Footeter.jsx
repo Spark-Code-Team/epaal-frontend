@@ -9,7 +9,7 @@ import { digitsEnToFa } from "@persian-tools/persian-tools";
 export default function Footer() {
   return (
     <>
-      <footer className="flex h-20 flex-col items-center justify-between bg-gray-200">
+      <footer className="z-0 h-auto flex flex-col items-center justify-between bg-gray-200">
         <div className="flex w-full items-center justify-between border-b-[1px] border-b-[#748297] px-[30px]">
           <div>
             <EvaamLogo color="#1d1d1d" height="50px" width="50px" />
@@ -77,7 +77,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="w-full items-center bg-gray-200 px-[30px] py-[32px]">
+        <div className="z-0 w-full items-center bg-gray-200 px-[30px] py-[32px]">
           <p className="text-[18px] font-[700] text-[#64748B]">
             مزایای خرید قسطی از ایوام
           </p>
