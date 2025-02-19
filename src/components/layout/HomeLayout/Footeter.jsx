@@ -102,7 +102,7 @@ export default function Footer() {
           <div className="flex rounded-[8px] border-[1px] border-gray-700 px-[10px] py-[5px] text-[13px] font-[600] text-[#475569]">
             <button onClick={() => scrollTo(0, 0)}>
               <span>
-                <FaAngleUp color="#153BBF" width={24} height={24} size={20} />
+                <FaAngleUp color="#1d434c" width={24} height={24} size={20} />
               </span>
             </button>
           </div>
