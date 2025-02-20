@@ -15,7 +15,8 @@ module.exports = {
         blurbg: "#75717180",
         evaamCyan: "#41B1AC",
         evaamBackground: "#E8F5F9",
-        evaamGreen: "#1d434c"
+        evaamGreen: "#1d434c",
+        evaamBorderColor: "#E1EDF0"
       },
 
       backgroundImage: {

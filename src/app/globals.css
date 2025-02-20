@@ -68,3 +68,14 @@ input[type="range"]::-moz-range-thumb {
 #bn {
   background-image: url("../../public/image/banner.png");
 }
+
+
+.hide-scrollbar {
+  /* برای مرورگرهای Webkit مثل Chrome, Safari */
+  scrollbar-width: none; /* برای Firefox */
+  -ms-overflow-style: none; /* برای IE و Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

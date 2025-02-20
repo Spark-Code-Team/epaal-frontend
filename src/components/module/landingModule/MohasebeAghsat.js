@@ -72,11 +72,11 @@ const MohasebeAghsat = ({ toPage }) => {
     setStartX(e.touches[0].clientX); // Record the start point of touch
   };
 
-const handleTouchEnd = (e) => {
+  const handleTouchEnd = (e) => {
     setEndX(e.changedTouches[0].clientX); // Record the end point of touch
     const diff = endX - startX; // Calculate the swipe distance
 
-    console.log(diff)
+    console.log(diff);
 
     // If swipe distance is enough, update the index to move the slides
     if (Math.abs(diff) > 10) {
@@ -236,7 +236,9 @@ const handleTouchEnd = (e) => {
               </div>
               <div className="mb-[37px] flex w-full items-center justify-between">
                 <div className=" ">اصل تسهیلات ثبتی در بانک</div>
-                <div className=" ">{formatNumber(Number(inputValue))} تومان</div>
+                <div className=" ">
+                  {formatNumber(Number(inputValue))} تومان
+                </div>
               </div>
               <div className="mb-[37px] flex w-full items-center justify-between">
                 <div className=" ">
