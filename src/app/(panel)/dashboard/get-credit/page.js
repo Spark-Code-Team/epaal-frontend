@@ -162,7 +162,7 @@ export default function GetCreditDashboard() {
       <div
         className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
         onClick={() => {
-          router.push(toPage);
+          router.push("/dashboard/calculate-credit");
         }}
       >
         درخواست اعتبار

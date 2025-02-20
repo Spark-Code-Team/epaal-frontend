@@ -1,5 +1,9 @@
 import mobile from "../../../../public/image/mobile.png";
 import arayeshy from "../../../../public/image/arayeshy.png";
+import safar from "../../../../public/image/safar.png";
+import khaneh from "../../../../public/image/khane.png";
+import motor from "../../../../public/image/motors.png";
+import gold from "../../../../public/image/gold.png";
 import Image from "next/image";
 import FlashButton from "@/components/elements/FlashButton";
 import BlurTitle from "@/components/elements/BlurTitle";
@@ -16,11 +20,19 @@ const category = [
   },
   {
     title: "طلا و جواهر",
-    image: mobile,
+    image: gold,
   },
   {
     title: "لوازم خانگی",
-    image: mobile,
+    image: khaneh,
+  },
+  {
+    title: "خودرو و موتور",
+    image: motor,
+  },
+  {
+    title: "سفر و گردشگری",
+    image: safar,
   },
 ];
 
@@ -28,7 +40,7 @@ export default function ProductCategory() {
   return (
     <div className="mt-[28px] flex w-full flex-col items-center">
       <BlurTitle title="دسته بندی محصولات" />
-      <div className="flex w-full flex-wrap items-center justify-between gap-[24px] px-[24px] pt-[32px] md:px-[40px]">
+      <div className="flex w-full flex-wrap items-center justify-center gap-[24px] px-[24px] pt-[32px] md:px-[40px]">
         {category.map((item, index) => (
           <div
             key={index}
@@ -40,7 +52,7 @@ export default function ProductCategory() {
                 width={2000}
                 height={2000}
                 alt="category"
-                className="h-[90px] w-[50px] md:h-[180px] md:w-[103px]"
+                className="h-[90px] w-[50px] md:h-[180px] md:w-[150px]"
               />
             </div>
             <p className="text-[12px] font-normal md:text-[18px] md:font-medium">
