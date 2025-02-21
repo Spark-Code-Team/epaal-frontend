@@ -94,7 +94,21 @@ export default function GetCreditDashboard() {
     }
   };
 
+  const [currentStep, setCurrentStep] = useState(1)
+  const steps = [
+    { id: 1, label: 'مرحله اول' },
+    { id: 2, label: 'مرحله دوم' },
+    { id: 3, label: 'مرحله سوم' },
+    { id: 4, label: 'مرحله چهارم' },
+    { id: 5, label: 'مرحله پنجم' },
+    { id: 6, label: 'مرحله ششم' },
+    { id: 7, label: 'مرحله هفتم' },
+    { id: 8, label: 'مرحله هشتم' },
+  ]
+
   return (
+    <>
+    
     <div className="flex flex-col items-center md:mt-10">
       <div className="text-lg font-bold">
         <p>درخواست اعتبار</p>
@@ -225,5 +239,8 @@ export default function GetCreditDashboard() {
         </div>
       </div> */}
     </div>
+
+    
+    </>
   );
 }

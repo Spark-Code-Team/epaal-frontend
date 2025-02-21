@@ -14,6 +14,8 @@ import SentIcon from "../../../../../public/icons/dashboard/sent";
 import SuccessIcon from "../../../../../public/icons/dashboard/success";
 
 export default function ConfirmBank() {
+  const router = useRouter()
+
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [otp, setOtpValue] = useState({ otpValue: null });
@@ -38,7 +40,7 @@ export default function ConfirmBank() {
             <div
               className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
               onClick={() => {
-                setIsOpen(true);
+                router.push("/evaam-home")
               }}
             >
                     تایید و آپلود مدارک

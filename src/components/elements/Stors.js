@@ -17,63 +17,63 @@ import green from "../../../public/image/Green.svg";
 
 const storha = [
   {
-    name:"بیمه بازار",
-    image:bimeBazar,
+    name: "بیمه بازار",
+    image: bimeBazar,
   },
   {
-    name:"متین خودرو",
-    image:matinn,
+    name: "متین خودرو",
+    image: matinn,
   },
   {
-    name:"داریک",
-    image:daricc,
+    name: "داریک",
+    image: daricc,
   },
   {
-    name:"تکنولایف",
-    image:techno,
-  },
-
-  {
-    name:"علی‌بابا",
-    image:ali,
-  },
-  {
-    name:"دیدار",
-    image:didar,
-  },
-  {
-    name:"خانومی",
-    image:khanomi,
-  },
-  {
-    name:"خیلی‌سبز",
-    image:sabz,
+    name: "تکنولایف",
+    image: techno,
   },
 
   {
-    name:"اسنپ‌فود",
-    image:sfood,
+    name: "علی‌بابا",
+    image: ali,
   },
   {
-    name:"گوشی‌شاپ",
-    image:gshop,
+    name: "دیدار",
+    image: didar,
   },
   {
-    name:"گرین",
-    image:green,
+    name: "خانومی",
+    image: khanomi,
+  },
+  {
+    name: "خیلی‌سبز",
+    image: sabz,
+  },
+
+  {
+    name: "اسنپ‌فود",
+    image: sfood,
+  },
+  {
+    name: "گوشی‌شاپ",
+    image: gshop,
+  },
+  {
+    name: "گرین",
+    image: green,
   },
 ];
 
 export default function Stors() {
   return (
-    <div className="relative mb-7 mt-[30px] overflow-hidden bg-[#E1EDF0] px-[14px] py-8">
-      <div className="animate-scroll flex gap-[22px]">
-        {storha.concat(storha, storha, storha).map((item, index) => (
-          <div className="flex flex-col items-center justify-between gap-3">
-            <div
-              key={index}
-              className="flex h-[72px] w-[72px] flex-shrink-0 flex-col items-center justify-center rounded-[22px] bg-white md:h-[202px] md:w-[202px]"
-            >
+    <div className="relative mb-7 mt-[30px] overflow-x-hidden bg-[#E1EDF0] px-[14px] py-8">
+      <div className="animate-scroll flex w-full gap-[22px]">
+        {storha.concat(storha, storha, storha, storha).map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-shrink-0 flex-col items-center justify-between gap-3"
+          >
+            <div className="flex h-[72px] w-[72px] items-center justify-center rounded-[22px] bg-white md:h-[202px] md:w-[202px]">
               <Image
                 src={item.image}
                 width={1000}
@@ -82,9 +82,7 @@ export default function Stors() {
                 alt="alt"
               />
             </div>
-            <div className="font-bold text-xs text-evaamGreen">
-              {item.name}
-            </div>
+            <div className="text-xs font-bold text-evaamGreen">{item.name}</div>
           </div>
         ))}
       </div>

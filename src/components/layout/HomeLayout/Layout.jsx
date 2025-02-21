@@ -7,14 +7,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
-        <div
-          className="
-            w-full
-            mx-auto
-          "
-        >
-          {children}
-        </div>
+      <div className="w-full overflow-x-hidden">{children}</div>
       <Footer />
     </>
   );

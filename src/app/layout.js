@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${danaFont.className} bg-white max-w-7xl mx-auto`}>
+      <body className={`${danaFont.className} bg-white max-w-7xl mx-auto overflow-x-hidden`}>
         <Providers>
           {children}
           <CheckRedux />
