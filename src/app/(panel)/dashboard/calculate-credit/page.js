@@ -56,7 +56,7 @@ export default function CalculateCredit() {
 
   return (
     <>
-      <div className="relative mx-auto mt-[40px] flex w-[90%] flex-col items-center rounded-3xl border-2 border-[#d9d9d9] px-3 py-7 md:mb-[48px] md:h-[918px] md:w-3/4 md:px-[86px] ">
+      <div className="relative mx-auto mt-[80px] mb-10 flex w-[90%] flex-col items-center rounded-3xl border-2 border-[#d9d9d9] px-3 py-7 md:mb-[48px] md:h-[918px] md:w-3/4 md:px-[86px] md:mt-[500px]">
         <div className="pb-7 md:pb-[47px] md:pt-[80px]">
           <p className="hidden text-[24px] font-bold text-[#1D2433] md:flex">
             جزئیات طرح انتخابی
@@ -168,7 +168,7 @@ export default function CalculateCredit() {
         </div>
 
         <div
-          className="mt-[41px] w-3/4 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
+          className="w-3/4 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
           onClick={() => {
             router.push("/dashboard/confirm-bank");
           }}

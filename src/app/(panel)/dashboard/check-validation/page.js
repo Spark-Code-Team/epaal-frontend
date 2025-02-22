@@ -203,7 +203,7 @@ export default function ConfirmBank() {
               </div>
             </div>
             <div
-              className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
+              className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer mb-10"
               onClick={() => {
                 setIsOpen(true);
               }}

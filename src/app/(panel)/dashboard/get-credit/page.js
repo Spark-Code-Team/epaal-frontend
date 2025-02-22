@@ -4,13 +4,19 @@ import { useState } from "react";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useRouter } from "next/navigation";
 
+import dayjs from "dayjs";
+
+
 import MohasebeAghsat from "@/components/module/landingModule/MohasebeAghsat";
 import Tick1 from "../../../../../public/icons/dashboard/tick1";
 import Tick2 from "../../../../../public/icons/dashboard/tick2";
 import Tick3 from "../../../../../public/icons/dashboard/tick3";
 import Tick4 from "../../../../../public/icons/dashboard/tick4";
+import Calender from "@/components/elements/Calender";
 
 export default function GetCreditDashboard() {
+
+
   const [inputValue, setInputValue] = useState(1000000);
   const [index, setIndex] = useState(1);
   const [calculatedPayment, setCalculatePayment] = useState({
@@ -94,124 +100,118 @@ export default function GetCreditDashboard() {
     }
   };
 
-  const [currentStep, setCurrentStep] = useState(1)
-  const steps = [
-    { id: 1, label: 'مرحله اول' },
-    { id: 2, label: 'مرحله دوم' },
-    { id: 3, label: 'مرحله سوم' },
-    { id: 4, label: 'مرحله چهارم' },
-    { id: 5, label: 'مرحله پنجم' },
-    { id: 6, label: 'مرحله ششم' },
-    { id: 7, label: 'مرحله هفتم' },
-    { id: 8, label: 'مرحله هشتم' },
-  ]
+  //* test
 
+
+  //* test
+
+  const [currentStep, setCurrentStep] = useState(1);
   return (
     <>
-    
-    <div className="flex flex-col items-center md:mt-10">
-      <div className="text-lg font-bold">
-        <p>درخواست اعتبار</p>
-      </div>
-      {/* done */}
-      <div className="mx-auto flex w-full items-center justify-center overflow-hidden md:max-w-[810px]">
-        <div
-          className="flex p-10 transition-transform duration-500"
-          style={{ transform: `translateX(${index * 33.33 - 33.33}%)` }}
-          onTouchStart={handleTouchStart} // Handle touch start
-          onTouchEnd={handleTouchEnd} // Handle touch end
-        >
-          {slides.map((src, i) => (
-            <div
-              key={i}
-              className={`z-0 h-[124px] w-[226px] flex-none cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat p-4 text-white transition-transform duration-300 md:h-[217px] md:w-[398] ${i === index ? "z-10 scale-125 opacity-100" : "opacity-50"}`}
-              style={{
-                background: `url(${src}) center/100% 100% no-repeat`,
-              }}
-            >
-              <div className="flex w-full items-center justify-between px-2">
-                <p>های‌بانک</p>
-                <p>Hi Bank</p>
-              </div>
-              <div className="mt-[10px] flex flex-col items-center justify-center md:mt-[14px]">
-                <p className="text-[7px] font-bold md:text-[14px]">
-                  ارائه تسهیلات تا سقف
-                </p>
-                <p className="text-[13px] font-bold md:text-[24px]">
-                  {digitsEnToFa("100,000,000")} میلیون تومان
-                </p>
-              </div>
-
-              <div className="flex w-full items-center justify-between md:mt-[30px]">
-                <div className="text-[5px] font-normal md:text-[10px]">
-                  تامین مالی توسط بانک کارآفرین
+      <div className="flex flex-col items-center md:mt-10">
+        <div className="text-lg font-bold">
+          <p>درخواست اعتبار</p>
+        </div>
+        {/* done */}
+        <div className="mx-auto flex w-full items-center justify-center overflow-hidden md:max-w-[810px]">
+          <div
+            className="flex p-10 transition-transform duration-500"
+            style={{ transform: `translateX(${index * 33.33 - 33.33}%)` }}
+            onTouchStart={handleTouchStart} // Handle touch start
+            onTouchEnd={handleTouchEnd} // Handle touch end
+          >
+            {slides.map((src, i) => (
+              <div
+                key={i}
+                className={`z-0 h-[124px] w-[226px] flex-none cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat p-4 text-white transition-transform duration-300 md:h-[217px] md:w-[398] ${i === index ? "z-10 scale-125 opacity-100" : "opacity-50"}`}
+                style={{
+                  background: `url(${src}) center/100% 100% no-repeat`,
+                }}
+              >
+                <div className="flex w-full items-center justify-between px-2">
+                  <p>های‌بانک</p>
+                  <p>Hi Bank</p>
                 </div>
-                {/* <div className="rounded-xl bg-[#232336b3] px-[5px] py-2 text-[7px] backdrop-blur-[40px] md:text-[14px]">
+                <div className="mt-[10px] flex flex-col items-center justify-center md:mt-[14px]">
+                  <p className="text-[7px] font-bold md:text-[14px]">
+                    ارائه تسهیلات تا سقف
+                  </p>
+                  <p className="text-[13px] font-bold md:text-[24px]">
+                    {digitsEnToFa("100,000,000")} میلیون تومان
+                  </p>
+                </div>
+
+                <div className="flex w-full items-center justify-between md:mt-[30px]">
+                  <div className="text-[5px] font-normal md:text-[10px]">
+                    تامین مالی توسط بانک کارآفرین
+                  </div>
+                  {/* <div className="rounded-xl bg-[#232336b3] px-[5px] py-2 text-[7px] backdrop-blur-[40px] md:text-[14px]">
                       {digitsEnToFa("18")} ماهه
                     </div> */}
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+        {/* done */}
+
+        {/* done */}
+        <div className="mt-4 flex w-full -translate-y-1/2 transform items-center justify-center">
+          <div className="flex w-[120px] items-center gap-3">
+            <div
+              className="h-[5px] w-10 rounded-md bg-[#E2E2E2] bg-opacity-50 text-white"
+              onClick={() => updateSlider("azafee")}
+            ></div>
+            <div className="h-[5px] w-[42px] rounded-md bg-[#8A8B8D]"></div>
+            <div
+              className="h-[5px] w-10 rounded-md bg-[#E2E2E2] bg-opacity-50 text-white"
+              onClick={() => updateSlider("azafe")}
+            ></div>
+          </div>
+        </div>
+        {/* done */}
+
+        {/*  */}
+        <div
+          className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
+          onClick={() => {
+            router.push("/dashboard/calculate-credit");
+          }}
+        >
+          درخواست اعتبار
+        </div>
+        {/*  */}
+
+        <div className="mb-10 mt-10 flex h-auto flex-col items-start gap-5 rounded-2xl bg-evaamBorderColor p-10 md:mb-0 md:flex md:w-full md:flex-row md:items-center md:justify-evenly md:gap-0 md:py-5 md:text-sm">
+          <div className="md:flex md:flex-col md:items-center md:justify-evenly">
+            <div>
+              <Tick1 />
             </div>
-          ))}
-        </div>
-      </div>
-      {/* done */}
-
-      {/* done */}
-      <div className="mt-4 flex w-full -translate-y-1/2 transform items-center justify-center">
-        <div className="flex w-[120px] items-center gap-3">
-          <div
-            className="h-[5px] w-10 rounded-md bg-[#E2E2E2] bg-opacity-50 text-white"
-            onClick={() => updateSlider("azafee")}
-          ></div>
-          <div className="h-[5px] w-[42px] rounded-md bg-[#8A8B8D]"></div>
-          <div
-            className="h-[5px] w-10 rounded-md bg-[#E2E2E2] bg-opacity-50 text-white"
-            onClick={() => updateSlider("azafe")}
-          ></div>
-        </div>
-      </div>
-      {/* done */}
-
-      {/*  */}
-      <div
-        className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
-        onClick={() => {
-          router.push("/dashboard/calculate-credit");
-        }}
-      >
-        درخواست اعتبار
-      </div>
-      {/*  */}
-
-      <div className="bg-evaamBorderColor mt-10 h-auto flex flex-col items-start gap-5 mb-10 md:mb-0 rounded-2xl p-10 md:flex md:w-full md:flex-row md:items-center md:justify-evenly md:gap-0 md:py-5 md:text-sm">
-        <div className="md:flex md:flex-col md:items-center md:justify-evenly">
-          <div>
-            <Tick1 />
+            <div>حساب بانکی فعال در طرح مربوطه</div>
           </div>
-          <div>حساب بانکی فعال در طرح مربوطه</div>
-        </div>
-        <div className="md:flex md:flex-col md:items-center md:justify-evenly">
-          <div>
-            {" "}
-            <Tick2 />{" "}
+          <div className="md:flex md:flex-col md:items-center md:justify-evenly">
+            <div>
+              {" "}
+              <Tick2 />{" "}
+            </div>
+            <div>چک صیادی جهت ضمانت</div>
           </div>
-          <div>چک صیادی جهت ضمانت</div>
-        </div>
-        <div className="md:flex md:flex-col md:items-center md:justify-evenly">
-          <div>
-            <Tick3 />
+          <div className="md:flex md:flex-col md:items-center md:justify-evenly">
+            <div>
+              <Tick3 />
+            </div>
+            <div> استعلام حساب بانکی </div>
           </div>
-          <div> استعلام حساب بانکی </div>
-        </div>
-        <div className="md:flex md:flex-col md:items-center md:justify-evenly">
-          <div>
-            <Tick4 />
+          <div className="md:flex md:flex-col md:items-center md:justify-evenly">
+            <div>
+              <Tick4 />
+            </div>
+            <div> امضاء قرارداد در اپلیکیشن بانکی</div>
           </div>
-          <div> امضاء قرارداد در اپلیکیشن بانکی</div>
         </div>
-      </div>
 
-      {/* <div className="grid w-full grid-cols-1 text-[12px] mt-10 px-2 md:px-10">
+
+        {/* <div className="grid w-full grid-cols-1 text-[12px] mt-10 px-2 md:px-10">
         <div className="mb-[37px] flex w-full items-center justify-between">
           <div className=" ">مبلغ شارژ کیف پول</div>
           <div className=" ">{calculatedPayment.finalPaymentToUser} تومان</div>
@@ -238,9 +238,8 @@ export default function GetCreditDashboard() {
           <div className=" ">{calculatedPayment.paymentPerMounth}تومان</div>
         </div>
       </div> */}
-    </div>
+      </div>
 
-    
     </>
   );
 }

@@ -17,12 +17,14 @@ import { digitsEnToFa } from "@persian-tools/persian-tools";
 import LeftAroowBlur from "../../../../public/icons/Admin/AdminShop/LeftAroowBlur";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { FiLogOut } from "react-icons/fi";
+import { useRouter } from "next/navigation";
 export default function UserSidebar() {
   const [burgerMenu, setBurgerMenu] = useState(false);
+  const router = useRouter();
   return (
     <>
       {/* side bar in mobile */}
-      <div className="bg-evaamBorderColor z-10 fixed left-1/2 top-5 flex w-[85%] -translate-x-1/2 transform flex-row items-center justify-between rounded-3xl p-4 px-6 text-black md:static md:hidden">
+      <div className="fixed left-1/2 top-5 z-10 flex w-[85%] -translate-x-1/2 transform flex-row items-center justify-between rounded-3xl bg-evaamBorderColor p-4 px-6 text-black md:static md:hidden">
         <div
           id="right"
           className="flex flex-row items-center justify-evenly gap-2 text-evaamGreen"
@@ -35,13 +37,15 @@ export default function UserSidebar() {
             <RxHamburgerMenu className="h-10 w-7" />
           </div>
 
-          <div className="border-evaamBorderColor h-10 w-10 rounded-full border">
-            <DefaultPic />
-          </div>
-          <div className="flex flex-col items-center justify-evenly gap-1">
-            <div className="text-xs">ایمان پورپاک</div>
-            <div className="text-xs">{digitsEnToFa("09125143940")}</div>
-          </div>
+          <Link href="/dashboard/profile" className="flex flex-row gap-2">
+            <div className="h-10 w-10 rounded-full border border-evaamBorderColor">
+              <DefaultPic />
+            </div>
+            <div className="flex flex-col items-center justify-evenly gap-1">
+              <div className="text-xs">ایمان پورپاک</div>
+              <div className="text-xs">{digitsEnToFa("09125143940")}</div>
+            </div>
+          </Link>
         </div>
         <div
           id="left"
@@ -85,7 +89,7 @@ export default function UserSidebar() {
                 <div>کیف پول</div>
               </Link>
               <Link
-                href="#"
+                href="/dashboard/orders-panel"
                 className="flex items-center justify-start gap-3 border-[#d9d9d9] px-3 pb-3"
                 onClick={() => {
                   setBurgerMenu(false);
@@ -142,16 +146,22 @@ export default function UserSidebar() {
 
       <div className="hidden md:flex md:h-screen md:w-80 md:flex-col md:bg-evaamBackground md:px-10 md:py-10">
         <div id="profile" className="h-1/6">
-          <div className="flex flex-row items-center justify-between px-4">
+          <Link
+            href="/dashboard/profile"
+            className="flex flex-row items-center justify-between bg-red-200 px-4"
+          >
             {" "}
-            <div className="border-evaamBorderColor h-16 w-16 rounded-full border-4 p-1">
+            <div className="h-16 w-16 rounded-full border-4 border-evaamBorderColor p-1">
               <DefaultPic />
             </div>
             <div className="flex flex-col items-center justify-evenly gap-1">
-              <div className="text-lg font-bold">ایمان پورپاک</div>
-              <div className="text-lg">{digitsEnToFa("09125143940")}</div>
+              <div className="text-xs font-bold">ایمان پورپاک</div>
+              <div className="text-xs">{digitsEnToFa("09125143940")}</div>
             </div>
-          </div>
+            <div>
+              <LeftAroowBlur fill="#1D434C" height="25" width="25" />
+            </div>
+          </Link>
         </div>
         <div id="nav" className="flex h-5/6 flex-col justify-between py-6">
           <div id="links" className="flex h-3/4 flex-col justify-evenly">
@@ -170,7 +180,7 @@ export default function UserSidebar() {
               </div>
             </Link>
             <Link
-              href="#"
+              href="/dashboard/orders-panel"
               className="flex flex-row items-center justify-between gap-3 border-[#d9d9d9] px-3 py-3 transition-all duration-300 ease-in-out hover:rounded-3xl hover:bg-[#93B9C3]"
             >
               <div className="flex w-1/2 flex-row items-center justify-between">
