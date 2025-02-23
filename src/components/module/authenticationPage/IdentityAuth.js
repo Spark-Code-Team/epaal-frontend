@@ -8,6 +8,10 @@ import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import Calandar from "../../../../public/icons/Admin/Calandar";
 import { identityAuthReq } from "@/service/userPanel";
+import SecondeOtp from "../../../../public/icons/dashboard/SecondeOtp";
+import { Modal } from "flowbite-react";
+import CrossIcon from "../../../../public/icons/Admin/CrossIcon";
+import OtpInput from "react18-input-otp";
 
 
 const inputs = [
@@ -58,8 +62,23 @@ export default function IdentityAuth({ setActive }) {
         secondPhone: ""
     })
 
+    const [showModal, setShowModal] = useState(false)
+
+    const [otp, setOtp] = useState("")
+
+    const changeHandler = (enterOtp) => {
+        setOtp(enterOtp)
+    }
+
     const sendEhraz = async () => {
-        const { response, error } = await identityAuthReq(name, family, code, time, secondPhone)
+        // const { response, error } = await identityAuthReq(state.name, state.family, state.code, state.time, state.secondPhone)
+
+        // if(response) {
+        //     console.log(response);
+        // } else {
+        //     console.log(error);
+        // }
+        setShowModal(true)
     }
 
     const inputChange = (e) => {
@@ -73,171 +92,305 @@ export default function IdentityAuth({ setActive }) {
     }
 
     return (
-        <div
-            className="
-                w-full
-                h-full
-            "
-        >
-            <AuthTitle 
-                title="احراز مشخصات"
-                active={true}
-            />
-            <div
-                className="
-                    flex
-                    flex-col
-                    gap-[17px]
-                    mt-4
-                "
-            >
-                {
-                    inputs.map((item, index) => {
-                        if(item.name == "time") {
-                            return (
-                                <div
-                                    key={index}
-                                >
-                                    <label
-                                        className="
-                                            text-[16px]
-                                            font-normal
-                                            px-2
-                                            mb-2
-                                        "
-                                    >
-                                        {
-                                            item.title
-                                        }
-                                    </label>
-                                    <div
-                                        className="
-                                            flex
-                                            items-center
-                                            justify-between
-                                            p-4
-                                            rounded-xl
-                                            border
-                                            border-[#E1EDF0]
-                                        "
-                                    >
-                                        <DatePicker 
-                                            calendar={persian}
-                                            locale={persian_fa}
-                                            calendarPosition="bottom-right"
-                                            onChange={(e) => setState(last => ({...last, time: new Date(e)}))}
-                                        />  
-                                        <div
-                                            className="
-                                                p-2
-                                                rounded-[10px]
-                                                bg-[#1D434C]
-                                                text-white
-                                                text-[14px]
-                                                font-normal
-                                                flex
-                                                items-center
-                                                gap-1
-                                                cursor-pointer
-                                                justify-center
-                                            "
-                                        >
-                                            <Calandar />
-                                            <p
-                                                className="
-                                                    text-center
-                                                "
-                                            >
-                                                انتخاب تاریخ
-                                            </p>
-                                        </div>  
-                                    </div>
-                                </div>
-                            )
-                        } else {
-                            return (
-                                <div
-                                    key={index}
-                                >
-                                    <label
-                                        className="
-                                            text-[16px]
-                                            font-normal
-                                            px-2
-                                            mb-2
-                                        "
-                                    >
-                                        {
-                                            item.title
-                                        }
-                                    </label>
-                                    <div
-                                        className="
-                                            flex
-                                            items-center
-                                            justify-between
-                                            p-4
-                                            rounded-xl
-                                            border
-                                            border-[#E1EDF0]
-                                        "
-                                    >
-                                        <input 
-                                            value={state[item.name]}
-                                            placeholder={item.placeholder}
-                                            onChange={(e) => inputChange(e)}
-                                            name={item.name}
-                                            className="
-                                                focus:border-none
-                                                focus:outline-none
-                                                focus:ring-0
-                                                h-full
-                                                w-full
-                                                text-[14px]
-                                            "
-                                        />
-
-                                        <div
-                                            className={`
-                                                w-[26px]
-                                                h-[26px]
-                                                rounded-[20px]
-                                                flex
-                                                items-center
-                                                justify-center
-                                                ${state[item.name].length >= item.limit ? "bg-[#108B4A]" : "bg-[#C5C5C6]" }
-                                            `}
-                                        >
-                                            <Tick />
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        }
-                    })
-                }
-            </div>
+        <>
             <div
                 className="
                     w-full
-                    flex
-                    justify-end
+                    h-full
                 "
+            >
+                <AuthTitle 
+                    title="احراز مشخصات"
+                    active={true}
+                />
+                <div
+                    className="
+                        flex
+                        flex-col
+                        gap-[15px]
+                        mt-2
+                    "
+                >
+                    {
+                        inputs.map((item, index) => {
+                            if(item.name == "time") {
+                                return (
+                                    <div
+                                        key={index}
+                                    >
+                                        <label
+                                            className="
+                                                text-[16px]
+                                                font-normal
+                                                px-2
+                                                mb-2
+                                            "
+                                        >
+                                            {
+                                                item.title
+                                            }
+                                        </label>
+                                        <div
+                                            className="
+                                                flex
+                                                items-center
+                                                justify-between
+                                                md:p-4
+                                                p-1
+                                                rounded-xl
+                                                border
+                                                border-[#E1EDF0]
+                                                gap-1
+                                            "
+                                        >
+                                            <DatePicker
+                                                calendar={persian}
+                                                locale={persian_fa}
+                                                calendarPosition="bottom-right"
+                                                onChange={(e) => setState(last => ({...last, time: new Date(e)}))}
+                                            />  
+                                            <div
+                                                className="
+                                                    p-2
+                                                    rounded-[10px]
+                                                    bg-[#1D434C]
+                                                    text-white
+                                                    md:text-[14px]
+                                                    text-[12px]
+                                                    font-normal
+                                                    flex
+                                                    items-center
+                                                    gap-1
+                                                    cursor-pointer
+                                                    justify-center
+                                                "
+                                            >
+                                                <Calandar />
+                                                <p
+                                                    className="
+                                                        text-center
+                                                    "
+                                                >
+                                                    انتخاب تاریخ
+                                                </p>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                )
+                            } else {
+                                return (
+                                    <div
+                                        key={index}
+                                    >
+                                        <label
+                                            className="
+                                                text-[16px]
+                                                font-normal
+                                                px-2
+                                                mb-2
+                                            "
+                                        >
+                                            {
+                                                item.title
+                                            }
+                                        </label>
+                                        <div
+                                            className="
+                                                flex
+                                                items-center
+                                                justify-between
+                                                p-3
+                                                rounded-xl
+                                                border
+                                                border-[#E1EDF0]
+                                            "
+                                        >
+                                            <input 
+                                                value={state[item.name]}
+                                                placeholder={item.placeholder}
+                                                onChange={(e) => inputChange(e)}
+                                                name={item.name}
+                                                className="
+                                                    focus:border-none
+                                                    focus:outline-none
+                                                    focus:ring-0
+                                                    h-full
+                                                    w-full
+                                                    text-[14px]
+                                                "
+                                            />
+
+                                            <div
+                                                className={`
+                                                    w-[26px]
+                                                    h-[26px]
+                                                    rounded-[20px]
+                                                    flex
+                                                    items-center
+                                                    justify-center
+                                                    ${state[item.name].length >= item.limit ? "bg-[#108B4A]" : "bg-[#C5C5C6]" }
+                                                `}
+                                            >
+                                                <Tick />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
+                </div>
+                <div
+                    className="
+                        w-full
+                        flex
+                        justify-end
+                        py-4
+                    "
+                >
+                    <div
+                        className="
+                            p-2
+                            rounded-[10px]
+                            bg-[#1D434C]
+                            text-white
+                            text-[14px]
+                            font-normal
+                            cursor-pointer
+                        "
+                        onClick={() => sendEhraz()}
+                    >
+                        تایید و ادامه
+                    </div>
+                </div>
+            </div>
+
+            <Modal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                dismissible
+                size="sm"
+                style={{
+                    display: "flex",
+                }}
             >
                 <div
                     className="
-                        p-2
-                        rounded-[10px]
-                        bg-[#1D434C]
-                        text-white
-                        text-[14px]
-                        font-normal
-                        mt-0
+                        w-full
+                        h-full
+                        flex
+                        flex-col
+                        items-center
+                        justify-center
+                        bg-[#11182780]
                     "
                 >
-                    احراز  مشخصات
+                    <div
+                        className="
+                            md:w-[459px]
+                            md:h-[446px]
+                            p-4
+                            rounded-xl
+                            w-[360px]
+                            h-[350px]
+                            flex
+                            flex-col
+                            items-center
+                            px-8
+                            pt-[26px]
+                            relative
+                            bg-white
+                        "
+                    >
+                        <SecondeOtp />
+
+                        <div
+                            className="
+                                flex
+                                flex-col
+                                items-center
+                                mt-[22px]
+                                gap-3
+                            "
+                        >
+                            <p
+                                className="
+                                    text-[16px]
+                                    font-bold
+                                "
+                            >
+                                تایید شماره تماس
+                            </p>
+                            <p
+                                className="
+                                    text-[12px]
+                                    md:text-[16px]
+                                    font-normal
+                                    text-center
+                                "
+                            >
+                                کد ارسال شده به شماره 09354394868 را وارد کنید
+                            </p>
+                        </div>
+
+                        <div
+                            dir="ltr"
+                            className="
+                                p-[22px]
+                            "
+                        >
+                                                        
+                            <OtpInput
+                                value={otp}
+                                onChange={changeHandler}
+                                numInputs={8}
+                                inputStyle={
+                                    {
+                                        width:"30px",
+                                        height:"36px",
+                                        margin:"0 5px",
+                                        border:"1px solid #c6c6c6",
+                                        borderRadius:"10px"
+                                    }
+                                }
+                            />
+                        </div>
+
+                        <div
+                            className="
+                                text-white
+                                text-center
+                                bg-[#1D434C]
+                                w-full
+                                py-2
+                                rounded-xl
+                            "
+                        >
+                            ارسال مجدد
+                        </div>
+
+                        <div
+                            className="
+                                absolute
+                                top-[10px]
+                                pl-2
+                                w-full
+                                flex
+                                justify-end
+                            "
+                        >
+                            <div
+                                onClick={() => setShowModal(false)}
+                                className="
+                                    cursor-pointer
+                                "
+                            >
+                                <CrossIcon />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </Modal>
+        </>
     )
 }

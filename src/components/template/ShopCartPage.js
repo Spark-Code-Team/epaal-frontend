@@ -195,7 +195,7 @@ export default function ShopCartPage() {
                                 <div className="mb-4 flex border border-[#E1E6EF]
                                 items-center rounded-xl ">
                                 <input
-                                dir="ltr"
+                                    dir="ltr"
                                     type="text"
                                     placeholder="+98**********"
                                     className="w-full px-4 py-2

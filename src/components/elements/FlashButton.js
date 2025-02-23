@@ -1,11 +1,13 @@
+import Link from "next/link";
 import ArrowBannerIcon from "../../../public/icons/ArrowBannerIcon";
 
 
 
-export default function FlashButton({ title, href, them }) {
+export default function FlashButton({ title, href="/", them }) {
 
     return (
-        <div
+        <Link
+            href={href}
             className={`
                 rounded-2xl
                 ${them == "banner"  ? "bg-white" : "bg-evaamGreen"}
@@ -47,6 +49,6 @@ export default function FlashButton({ title, href, them }) {
                     color={them == "banner" ? "white" : "#1D434C"}
                 />
             </div>
-        </div>
+        </Link>
     )
 }

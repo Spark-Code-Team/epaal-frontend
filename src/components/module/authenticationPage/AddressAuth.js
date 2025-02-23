@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 
 
-export default function AddressAuth({ active }) {
+export default function AddressAuth({ active, setShowAddress }) {
 
 
     const [state, setState] = useState("")
@@ -16,8 +16,6 @@ export default function AddressAuth({ active }) {
         postal_code: "",
         address: ""
     })
-
-    const router = useRouter()
 
     const sendAddress = async () => {
         const { response, error } = await addressAuthReq(state)
@@ -34,10 +32,9 @@ export default function AddressAuth({ active }) {
         const { response, error } = await confirmAuthReq(confirmAddress.id, confirmAddress.postal_code, confirmAddress.address)
 
         if(response) {
-            router.push("/dashboard/get-credit")
+            setShowAddress(2)
         } else {
-            console.log(error);
-            
+            console.log(error); 
         }
     }
 
@@ -45,7 +42,7 @@ export default function AddressAuth({ active }) {
         <div>
             <AuthTitle 
                 title="احراز آدرس"
-                active={active}
+                active={true}
             />
             <div>
                 <div
@@ -70,7 +67,6 @@ export default function AddressAuth({ active }) {
                         <input 
                             value={state}
                             onChange={(e) => {
-                                if(!active) return
                                 setState(e.target.value)
                             }}
                             placeholder="کد پستی خود را وارد کنید"
@@ -116,7 +112,7 @@ export default function AddressAuth({ active }) {
                         rounded-[10px]
                         p-2
                         cursor-pointer
-                        ${active ? "bg-[#1D434C] text-white" : "bg-[#d9d9d9]"}
+                        ${state.length >= 10 ? "bg-[#1D434C] text-white" : "bg-[#d9d9d9]"}
                     `}       
                     onClick={() => sendAddress()}  
                 >
@@ -130,10 +126,14 @@ export default function AddressAuth({ active }) {
                         <div
                             className="
                                 w-full
-                                border-[2px]
+                                border
+                                border-[#00970A]
+                                bg-[#E8F5F9]
                                 h-fit
                                 mt-5
                                 rounded-xl
+                                p-3
+                                text-[#00970A]
                             "
                         >
                             {
@@ -155,7 +155,8 @@ export default function AddressAuth({ active }) {
                                     text-[14px]
                                     rounded-[10px]
                                     p-2
-                                    ${active ? "bg-[#1D434C] text-white" : "bg-[#d9d9d9]"}
+                                    bg-[#1D434C]
+                                    text-white
                                 `}    
                                 onClick={() => sendConfirm()}     
                             >

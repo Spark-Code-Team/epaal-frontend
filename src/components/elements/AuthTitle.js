@@ -9,7 +9,7 @@ export default function AuthTitle({ title, active }) {
                 w-full
                 text-[16px]
                 font-bold
-                pb-[26px]
+                pb-[20px]
                 border-b-4
                 mt-3
                 text-center

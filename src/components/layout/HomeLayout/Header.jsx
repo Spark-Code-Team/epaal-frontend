@@ -135,7 +135,7 @@ export default function Header() {
         {
           store.role.id ? (
             <Link
-              href="/"
+              href="/dashboard/authentication"
               className={`
                 py-1
                 px-[10px]

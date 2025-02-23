@@ -54,9 +54,11 @@ export default function UserSidebar() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-evaamGreen bg-none">
             <BellSVG width="25" height="25" color="red" stroke="none" />
           </div>
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-evaamGreen">
+          <Link
+            href="/dashboard/shop-cart"
+          className="flex h-8 w-8 items-center justify-center rounded-lg bg-evaamGreen">
             <BagSVG width="25" height="25" color="red" stroke="none" />
-          </div>
+          </Link>
         </div>
 
         <div
