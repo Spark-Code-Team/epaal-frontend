@@ -1,10 +1,9 @@
 import LoginPage from "@/components/template/LoginPage";
 
-const Login = () => {
+const Login = async () => {
+
     return(
-
-      <LoginPage/>
-
+      <LoginPage />
     )
 }
 export default Login;

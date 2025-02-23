@@ -1,12 +1,33 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PhoneLogin from "../module/loginModule/PhoneLogin";
 import CodeLogin from "../module/loginModule/CodeLogin";
 import PasswordLogin from "../module/loginModule/PasswordLogin";
 import BlurLine from "../../../public/icons/BlurLine";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { fetchRole } from "@/redux/features/userRole/useRole";
 
 const LoginPage = () => {
+
+  const store = useSelector(store => store)
+  const router = useRouter()
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(!store.role.id) {
+      dispatch(fetchRole())
+    }
+  }, [])
+  
+  if(store.role.id) {
+    router.push("/")
+  } else {
+    console.log("no");
+  }
+
   const [loginState, setLoginState] = useState(0);
   const [loginForm, setLoginForm] = useState({
     phone_number: "",

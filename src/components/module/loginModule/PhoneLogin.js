@@ -10,8 +10,6 @@ import { Bounce, toast } from "react-toastify";
 const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
 
     const handelClick = async (e) => {
-
-      console.log(process.env.NEXT_PUBLIC_API_URL);
       
       e.preventDefault()
 
@@ -21,6 +19,9 @@ const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
         setLoginState(1)
         console.log(response);
       } else {
+        console.log(error);
+        setLoginState(1)
+        
         toast.error("😢این شماره ثبت نشده ", {
           position: "bottom-right",
           autoClose: 5000,

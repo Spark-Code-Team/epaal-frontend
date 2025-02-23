@@ -15,6 +15,8 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RxCross2 } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRole } from "@/redux/features/userRole/useRole";
 
 const options = [
   {
@@ -40,6 +42,16 @@ export default function Header() {
   const [scrollY, setScrollY] = useState(0)
   const [navColor, setNavColor] = useState(false)
   const [burgerMenu, setBurgerMenu] = useState(false)
+
+  const store = useSelector(store => store)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(!store.role.id) {
+      dispatch(fetchRole())
+    }
+  }, [])
+  
 
   const pathname  = usePathname()
   
@@ -120,7 +132,37 @@ export default function Header() {
             options={options}
           />
         </div>
-        <Link
+        {
+          store.role.id ? (
+            <Link
+              href="/"
+              className={`
+                py-1
+                px-[10px]
+                text-[10px]
+                md:text-[14px]
+                font-medium
+                bg-[#00000033]
+                rounded-2xl
+                flex
+                items-center
+                justify-center
+                backdrop-blur-xl
+                gap-[1px]
+                cursor-pointer
+                w-[230px]
+                md:w-[150px]
+                ${(navColor || pathname != "/evaam-home") ? "text-black" : "text-white"}
+                z-50
+              `}
+            >
+              حساب کاربری
+              <LoginIcon 
+                color={(navColor || pathname != "/evaam-home") ? "black" : "white"}
+              />
+            </Link>
+          ) : (
+          <Link
           href="/login"
           className={`
             py-1
@@ -147,6 +189,9 @@ export default function Header() {
             color={(navColor || pathname != "/evaam-home") ? "black" : "white"}
           />
         </Link>
+          )
+        }
+
       </div>
 
       {/* Burger Menu */}

@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { Bounce, toast } from "react-toastify";
 import { loginOtp } from "@/service/login";
 import { setCookie } from "@/utils/cookie";
+import { useDispatch } from "react-redux";
+import { fetchRole } from "@/redux/features/userRole/useRole";
 
 export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }) {
 
@@ -17,6 +19,8 @@ export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }
     setLoginForm(last => ({...last, opt_code: enteredOtp}))
   };
 
+  const dispatch = useDispatch()
+
   const handelLogin = async (e) => {
     e.preventDefault();
 
@@ -25,6 +29,7 @@ export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }
     if(response) {
       console.log(response);
       setCookie(response.data)
+      dispatch(fetchRole())
       toast.success("ورود با موفقیت انجام شد", {
         position: "bottom-right",
         autoClose: 5000,

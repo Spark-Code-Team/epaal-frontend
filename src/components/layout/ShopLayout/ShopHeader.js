@@ -9,9 +9,10 @@ import Image from "next/image";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/elements/Logo";
+import { fetchRole } from "@/redux/features/userRole/useRole";
 
 
 const categories = [
@@ -150,6 +151,13 @@ export default function ShopHeader() {
 
 
   const store = useSelector(store => store)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(!store.role.id) {
+        dispatch(fetchRole())
+    }
+  }, [])
 
   const router = useRouter()
 
@@ -272,7 +280,7 @@ export default function ShopHeader() {
                 >
 
                     {
-                        login ? (
+                        store.role.id ? (
                             <>
                             <div
                                 className="
