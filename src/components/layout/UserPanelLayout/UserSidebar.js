@@ -77,7 +77,7 @@ export default function UserSidebar() {
             {/* parts */}
             <div className="mr-3 flex flex-col gap-6">
               <Link
-                href="#"
+                href="/dashboard/wallet"
                 className="flex items-center justify-start gap-3 border-[#d9d9d9] px-3 pb-3"
                 onClick={() => {
                   setBurgerMenu(false);
@@ -148,7 +148,7 @@ export default function UserSidebar() {
         <div id="profile" className="h-1/6">
           <Link
             href="/dashboard/profile"
-            className="flex flex-row items-center justify-between bg-red-200 px-4"
+            className="flex flex-row items-center justify-between px-4 transition-all duration-300 ease-in-out hover:rounded-3xl hover:bg-[#93B9C3]"
           >
             {" "}
             <div className="h-16 w-16 rounded-full border-4 border-evaamBorderColor p-1">
@@ -166,7 +166,7 @@ export default function UserSidebar() {
         <div id="nav" className="flex h-5/6 flex-col justify-between py-6">
           <div id="links" className="flex h-3/4 flex-col justify-evenly">
             <Link
-              href="#"
+              href="/dashboard/wallet"
               className="flex flex-row items-center justify-between gap-3 border-[#d9d9d9] px-3 py-3 transition-all duration-300 ease-in-out hover:rounded-3xl hover:bg-[#93B9C3]"
             >
               <div className="flex w-1/2 flex-row items-center justify-between">
@@ -223,7 +223,7 @@ export default function UserSidebar() {
             </Link>
             <Link
               href="/dashboard/get-credit"
-              className="flex flex-row items-center justify-between gap-3 rounded-3xl border-[#d9d9d9] bg-[#93B9C3] px-3 py-3"
+              className="flex flex-row items-center justify-between gap-3 rounded-3xl border-[#d9d9d9] bg-[#93B9C3] px-3 py-3 transition-all duration-300 ease-in-out hover:bg-evaamGreen hover:text-white"
             >
               <div className="flex w-auto flex-row items-center justify-between gap-2">
                 <div>

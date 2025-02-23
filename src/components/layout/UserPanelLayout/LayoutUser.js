@@ -8,7 +8,7 @@ export default function LayoutUser({ children }) {
           <UserSidebar />
         </div>
 
-        <div className="hide-scrollbar flex h-svh flex-col items-center overflow-auto px-7 pt-28 md:m-10 md:mt-20 md:h-[620px] md:w-[1084px] md:flex-col md:items-center md:justify-center md:overflow-y-auto md:rounded-3xl bg-white md:bg-scroll md:px-7 md:pt-0">
+        <div className="hide-scrollbar bg-white flex h-svh flex-col items-center overflow-x-hidden px-7 pt-28 md:m-10 md:mt-4 md:h-[670px] md:w-[1084px] md:flex-col md:items-center md:justify-center md:overflow-y-auto md:rounded-3xl md:bg-none md:bg-scroll md:px-7 md:pt-0">
           {children}
         </div>
       </div>
