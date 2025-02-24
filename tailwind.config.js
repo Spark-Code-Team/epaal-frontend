@@ -14,6 +14,7 @@ module.exports = {
         foreground: "var(--foreground)",
         blurbg: "#75717180",
         evaamCyan: "#41B1AC",
+        evaamCyanBlur: "#41B1AC60",
         evaamBackground: "#E8F5F9",
         evaamGreen: "#1d434c",
         evaamBorderColor: "#E1EDF0"

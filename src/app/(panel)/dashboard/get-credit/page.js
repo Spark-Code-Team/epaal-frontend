@@ -100,11 +100,6 @@ export default function GetCreditDashboard() {
     }
   };
 
-  //* test
-
-
-  //* test
-
   const [currentStep, setCurrentStep] = useState(1);
   return (
     <>
