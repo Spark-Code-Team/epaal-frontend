@@ -17,6 +17,7 @@ import { usePathname } from "next/navigation";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRole } from "@/redux/features/userRole/useRole";
+import { useRouter } from "next/navigation";
 
 const options = [
   {
@@ -45,6 +46,7 @@ export default function Header() {
 
   const store = useSelector(store => store)
   const dispatch = useDispatch()
+  const router = useRouter()
 
   useEffect(() => {
     if(!store.role.id) {
@@ -75,6 +77,10 @@ export default function Header() {
         window.removeEventListener("scroll", onScroll, { passive: true });
       }
   }, []);
+
+  const secureRoute = () => {
+    router.push("/dashboard/authentication")
+  }
 
   return (
     <>
@@ -134,8 +140,8 @@ export default function Header() {
         </div>
         {
           store.role.id ? (
-            <Link
-              href="/dashboard/authentication"
+            <div
+              onClick={() => secureRoute()}
               className={`
                 py-1
                 px-[10px]
@@ -160,7 +166,7 @@ export default function Header() {
               <LoginIcon 
                 color={(navColor || pathname != "/evaam-home") ? "black" : "white"}
               />
-            </Link>
+            </div>
           ) : (
           <Link
           href="/login"

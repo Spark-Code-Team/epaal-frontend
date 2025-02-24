@@ -13,20 +13,24 @@ export default function ShopCartDashboardPage() {
     const [state, setSatate] = useState(true)
 
     return (
-        <div
-            className="
-                flex
-                flex-col
-                items-center
-            "
-        >
+        <>
             {
                 state ? (
                     <div>
-
+                        <p
+                            
+                        >
+                            سبد خرید
+                        </p>
                     </div>
                 ) : (
-                    <>                    
+                    <div
+                        className="
+                            flex
+                            flex-col
+                            items-center
+                        "
+                    >                    
                         <Image 
                             src={empety}
                             width={5000}
@@ -73,9 +77,9 @@ export default function ShopCartDashboardPage() {
                                 href="/shopping-evaam"
                             />
                         </div>
-                    </>
+                    </div>
                 )
             }
-        </div>
+        </>
     )
 }
