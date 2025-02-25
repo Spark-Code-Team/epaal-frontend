@@ -1,5 +1,6 @@
 "use client";
 
+import PhysicalClues from "../../../../../public/icons/PhysicalClues";
 import { DocumentCheckIcon } from "@heroicons/react/24/outline";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { Tooltip } from "flowbite-react";
@@ -13,6 +14,8 @@ import SuccessPaidTick from "@/../public/image/banner.png";
 import { Modal } from "flowbite-react";
 import CrossIcon from "../../../../../public/icons/Admin/CrossIcon";
 import Image from "next/image";
+import DigitalIcon from "../../../../../public/icons/DigitalIcons";
+import WalletMoney from "../../../../../public/icons/WalletMoney";
 
 export default function ConfirmUsersCluesModule() {
   const sampleData = [
@@ -134,11 +137,7 @@ export default function ConfirmUsersCluesModule() {
                           className="cursor-pointer"
                           onClick={() => handleIconClick("digital")}
                         >
-                          <DocumentCheckIcon
-                            height={25}
-                            color="#1D434C"
-                            className="h-5 w-4"
-                          />
+                          <DigitalIcon height={20} width={20} fill="#1D434C" />
                         </div>
                       </Tooltip>
                       <Tooltip content="تأیید مدارک فیزیکی" placement="top">
@@ -146,20 +145,16 @@ export default function ConfirmUsersCluesModule() {
                           className="cursor-pointer"
                           onClick={() => handleIconClick("physical")}
                         >
-                          <GrDocumentImage
+                          <PhysicalClues
                             height={20}
-                            color="#1D434C"
-                            className="h-5 w-4"
+                            width={20}
+                            fill="#1D434C"
                           />
                         </div>
                       </Tooltip>
                       <Tooltip content="شارژ کیف پول" placement="top">
                         <div className="cursor-pointer">
-                          <FaWallet
-                            height={20}
-                            color="#1D434C"
-                            className="h-5 w-4"
-                          />
+                          <WalletMoney  height={20} width={20} fill="#1D434C"/>
                         </div>
                       </Tooltip>
                     </div>

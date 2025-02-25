@@ -6,6 +6,7 @@ import FieldIcon from "../../public/icons/Admin/FieldIcon";
 import ChartIcon from "../../public/icons/Admin/ChartIcon";
 import PeopleIcon from "../../public/icons/Admin/PeopleIcon";
 import TransActionIcon from "../../public/icons/Admin/TransActionIcon";
+import Clues from "../../public/icons/Clues";
 
 export const mapInput = [
   {
@@ -71,7 +72,7 @@ export const sidebarOptions = [
   {
     title: "تایید مدارک",
     link: "/admin/confirm-users-clues",
-    icon: "",
+    icon: <Clues fill={"none"} height={25} width={25}/>,
     children: [],
   },
   {
