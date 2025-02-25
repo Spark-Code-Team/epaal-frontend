@@ -31,6 +31,8 @@ export default function MainBanner() {
                     gap-4
                     text-center
                     md:text-justify
+                    mt-5
+                    md:mt-0
                 "
             >
                 <p

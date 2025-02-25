@@ -1,5 +1,6 @@
 "use client";
 
+import { sendDigiSignature } from "@/service/userPanel";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { useRef, useState, useEffect } from "react";
 import SignatureCanvas from "react-signature-canvas";
@@ -29,6 +30,17 @@ export default function Signature() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const sendSignature = async () => {
+
+    const { response, error } = await sendDigiSignature()
+
+    if(response) {
+      console.log(response);
+    } else {
+      console.log(error);
+    }
+  }
 
   // تابع پاک کردن امضا (هم بوم و stateها)
   const clearSignature = () => {

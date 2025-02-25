@@ -81,8 +81,6 @@ const allFacility = async () => {
 }
 
 const createFacility = async (sheba_number, facility_id, choosen_value, facility_installment_id) => {
-
-    console.log("gopjgbdoipjgvhfvpg",sheba_number, facility_id, choosen_value);
     
     try {
         const response = await api.post("/facility/create_facility", {
@@ -108,6 +106,37 @@ const startEtebarSanji = async () => {
     }
 }
 
+const sendStatusPhysical = async () => {
+    try {
+        const response = await api.post("/facility/submit_physical")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
+const getStatusPhysical = async () => {
+    try {
+        const response = await api.get("/facility/submit_physical")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
+const sendDigiSignature = async () => {
+    try {
+        const response = await api.get("/facility/digital_signiture")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
+
 
 export {
     identityAuthReq,
@@ -117,5 +146,8 @@ export {
     profileData,
     allFacility,
     createFacility,
-    startEtebarSanji
+    startEtebarSanji,
+    getStatusPhysical,
+    sendStatusPhysical,
+    sendDigiSignature
 }

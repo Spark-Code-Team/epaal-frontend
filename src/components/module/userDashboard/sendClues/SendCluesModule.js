@@ -1,8 +1,45 @@
+"use client"
+
 import Image from "next/image";
 
 import BikeSend from "@/../public/icons/dashboard/bike-clues.svg";
+import { useEffect, useState } from "react";
+import { getStatusPhysical, sendStatusPhysical } from "@/service/userPanel";
+import { toast } from "react-toastify";
 
 export default function SendCluesModule() {
+
+  const [status, setStatus] = useState("")
+
+  const handelStatus = async () => {
+    if(status != "submit_physical") return
+
+    const { response, error } = await sendStatusPhysical()
+
+    if(response) {
+      setStatus(true)
+    } else {
+      console.log(error);
+      toast.error("مدارک به مقصد نرسیده است")
+    }
+  }
+
+  useEffect(() => {
+  
+    const fetchStatus = async () => {
+
+      const { response, error } = await getStatusPhysical()
+
+      if(response) {
+        setStatus(response.data.status)
+      } else {
+        console.log(error);
+      }
+    }
+
+    fetchStatus()
+  }, [status])
+
   return (
     <>
       <div id="container" className="w-full h-auto">
@@ -42,8 +79,18 @@ export default function SendCluesModule() {
             className="mb-5"
           />
         </div>
-        <div className="mb-10 w-4/5 mx-auto rounded-lg bg-gray-200 px-5 py-2 text-center font-semibold text-gray-400">
-          <p>در انتظار پنل ادمین</p>
+        <div className={`mb-10 w-4/5 cursor-pointer mx-auto rounded-lg ${status == "submit_physical" ? "text-white bg-evaamGreen" : "text-gray-400 bg-gray-200"} px-5 py-2 text-center font-semibold `}
+          onClick={() => handelStatus()}
+        >
+          {
+            status == "submit_physical" ? (
+              <p>
+                مدارک ارسال شد
+              </p>
+            ) : (
+              <p>در انتظار پنل ادمین</p>
+            )
+          }
         </div>
       </div>
     </>

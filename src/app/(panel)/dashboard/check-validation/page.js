@@ -49,10 +49,10 @@ export default function ConfirmBank() {
             <div
               className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
               onClick={() => {
-                router.push("/evaam-home")
+                router.push("/dashboard/info-digital")
               }}
             >
-                    تایید و آپلود مدارک
+              تایید و آپلود مدارک
             </div>
           </div>
         </>
