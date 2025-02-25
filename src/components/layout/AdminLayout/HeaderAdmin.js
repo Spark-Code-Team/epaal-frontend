@@ -22,7 +22,7 @@ export default function HeaderAdmin() {
 
                 </div>
 
-                <div className=" w-1/2 flex items-center" >
+                {/* <div className=" w-1/2 flex items-center" >
 
                 <div className="w-[291px] flex items-center border-[1px]
                  border-[#E1E6EF] rounded-[10px]">
@@ -49,7 +49,7 @@ export default function HeaderAdmin() {
                 </div>
 
                 
-                </div>
+                </div> */}
 
             </div>
 

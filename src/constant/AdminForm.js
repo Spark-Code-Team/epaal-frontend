@@ -6,6 +6,7 @@ import FieldIcon from "../../public/icons/Admin/FieldIcon";
 import ChartIcon from "../../public/icons/Admin/ChartIcon";
 import PeopleIcon from "../../public/icons/Admin/PeopleIcon";
 import TransActionIcon from "../../public/icons/Admin/TransActionIcon";
+import Clues from "../../public/icons/Clues";
 
 export const mapInput = [
   {
@@ -62,10 +63,16 @@ export const mapInputpaz = [
 ];
 
 export const sidebarOptions = [
+  // {
+  //   title: "داشبورد",
+  //   link: "#",
+  //   icon: <DashboardIcon />,
+  //   children: [],
+  // },
   {
-    title: "داشبورد",
-    link: "#",
-    icon: <DashboardIcon />,
+    title: "تایید مدارک",
+    link: "/admin/confirm-users-clues",
+    icon: <Clues fill={"none"} height={25} width={25}/>,
     children: [],
   },
   {
@@ -91,21 +98,21 @@ export const sidebarOptions = [
       },
     ],
   },
-  {
-    title: "مدیریت ارایه دهنده ها",
-    link: "#",
-    icon: <MannageIcon />,
-    children: [
-      {
-        title: "اتصال",
-        link: "/admin/providers",
-      },
-      {
-        title: "اطلاعات ارایه دهنده",
-        link: "/admin/sellers",
-      },
-    ],
-  },
+  // {
+  //   title: "مدیریت ارایه دهنده ها",
+  //   link: "#",
+  //   icon: <MannageIcon />,
+  //   children: [
+  //     {
+  //       title: "اتصال",
+  //       link: "/admin/providers",
+  //     },
+  //     {
+  //       title: "اطلاعات ارایه دهنده",
+  //       link: "/admin/sellers",
+  //     },
+  //   ],
+  // },
   {
     title: "مدیریت فروشندگان",
     link: "#",
@@ -152,6 +159,7 @@ export const sidebarOptions = [
     icon: <TransActionIcon />,
     children: [],
   },
+
   {
     title: "مدریت کاربران",
     link: "#",

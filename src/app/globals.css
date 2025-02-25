@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,6 +14,19 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+}
+
+.font-vazir {
+  font-family: "Vazir", sans-serif;
+}
+
+thead tr th:first-child {
+  border-top-right-radius: 0.7rem;
+  border-bottom-right-radius: 0.7rem;
+}
+thead tr th:last-child {
+  border-top-left-radius: 0.7rem;
+  border-bottom-left-radius: 0.7rem;
 }
 
 /* این استایل برای اعمال پس‌زمینه به input[type="range"] */
@@ -62,13 +77,11 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   cursor: pointer;
   margin-bottom: 10px;
-  
 }
 
 #bn {
   background-image: url("../../public/image/banner.png");
 }
-
 
 .hide-scrollbar {
   /* برای مرورگرهای Webkit مثل Chrome, Safari */
@@ -79,7 +92,6 @@ input[type="range"]::-moz-range-thumb {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
 
 @keyframes scroll {
   0% {

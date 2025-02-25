@@ -14,7 +14,7 @@ export default function Carousel({ images = [], seconds = 3 }) {
 
   const prevSlide = useCallback(() => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length,
     );
   }, [images.length]);
 
@@ -22,28 +22,30 @@ export default function Carousel({ images = [], seconds = 3 }) {
     left: prevSlide,
     right: nextSlide,
   });
-  
+
   useEffect(() => {
     const interval = setInterval(() => nextSlide(), seconds * 1000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
   return (
-    <div className="relative w-full h-[300px]  md:h-[421px]">
+    <div className="relative h-[300px] w-full rounded-lg md:h-[421px]">
       {/* Image part */}
-      <div className="overflow-hidden w-full h-full" {...SwipeReact.events}>
+      <div className="h-full w-full overflow-hidden" {...SwipeReact.events}>
         <div
           className="flex transition-transform duration-300 ease-in-out"
           style={{ transform: `translateX(${currentIndex * 100}%)` }}
         >
           {images.map((src, index) => (
-            <div key={index} className={`w-full  flex-shrink-0 relative h-[421px]`}>
+            <div
+              key={index}
+              className={`relative h-[421px] w-full items-center flex-shrink-0`}
+            >
               <Image
                 src={src}
                 alt={`Carousel image ${index + 1}`}
-                className="object-fill w-full "
+                className="w-full rounded-3xl object-fill"
                 fill
-                placeholder="blur"
               />
             </div>
           ))}
@@ -52,7 +54,7 @@ export default function Carousel({ images = [], seconds = 3 }) {
       {/* slide next */}
       <button
         onClick={nextSlide}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 text-gray-800 p-2 rounded-md shadow hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+        className="absolute left-2 top-1/2 -translate-y-1/2 transform rounded-md bg-white/80 p-2 text-gray-800 shadow hover:bg-white focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
         aria-label="Previous slide"
       >
         <svg
@@ -60,7 +62,7 @@ export default function Carousel({ images = [], seconds = 3 }) {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          className="w-2 h-2"
+          className="h-2 w-2"
         >
           <path
             strokeLinecap="round"
@@ -73,7 +75,7 @@ export default function Carousel({ images = [], seconds = 3 }) {
       {/* prev slide */}
       <button
         onClick={prevSlide}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 text-gray-800 p-2 rounded-md shadow hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+        className="absolute right-2 top-1/2 -translate-y-1/2 transform rounded-md bg-white/80 p-2 text-gray-800 shadow hover:bg-white focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
         aria-label="Next slide"
       >
         <svg
@@ -81,7 +83,7 @@ export default function Carousel({ images = [], seconds = 3 }) {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          className="w-2 h-2"
+          className="h-2 w-2"
         >
           <path
             strokeLinecap="round"
@@ -98,7 +100,7 @@ export default function Carousel({ images = [], seconds = 3 }) {
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full ${
+              className={`h-2 w-2 rounded-full ${
                 index === currentIndex ? "bg-white" : "bg-white/50"
               }`}
               aria-label={`Go to slide ${index + 1}`}
