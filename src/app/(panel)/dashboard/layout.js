@@ -11,26 +11,13 @@ export default function UserLayout({children}) {
 
     const dispatch = useDispatch()
     const store = useSelector(store => store)
-
-    console.log(store);
-
-    const testHome = async () => {
-        const { response, error } = await profileData()
-
-        if(response) {
-            console.log(" ============== res =============== \n" , response) 
-        } else {
-            console.log(" ============== error =============== \n", error) 
-        }
-    }
     
 
     useEffect(() => {
+        
         if (!store.profile.id) {
             dispatch(fetchProfile())
         }
-        console.log("in use effect")
-        testHome()
 
     }, [])
 

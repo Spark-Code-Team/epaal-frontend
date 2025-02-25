@@ -102,8 +102,8 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
         const { response, error } = await identityAuthReq(state.name, state.family, state.code, state.time, state.secondPhone, state.opt_code)
 
         if(response) {
-            console.log(response);
             setShowAddress(2)
+            toast.success("احراز مشخصات با موفقیت انجام شد")
         } else {
             console.log(error);
         }
@@ -363,7 +363,7 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
                                     text-center
                                 "
                             >
-                                کد ارسال شده به شماره 09354394868 را وارد کنید
+                                کد ارسال شده به شماره {state.secondPhone} را وارد کنید
                             </p>
                         </div>
 

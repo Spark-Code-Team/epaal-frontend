@@ -70,11 +70,22 @@ const profileData = async () => {
     }
 }
 
+const allFacility = async () => {
+    try {
+        const response = await api.get("/facility/get_all_facility")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
 
 export {
     identityAuthReq,
     addressAuthReq,
     confirmAuthReq,
     secondeOpt,
-    profileData 
+    profileData,
+    allFacility
 }

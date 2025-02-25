@@ -4,6 +4,7 @@ import { useState } from "react";
 import Tick from "../../../../public/icons/Admin/Tick";
 import { addressAuthReq, confirmAuthReq } from "@/service/userPanel";
 import { redirect, useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 
 
@@ -29,15 +30,15 @@ export default function AddressAuth() {
 
 
     const sendConfirm = async () => {
-        console.log("kisvhgoisah");
         
         const { response, error } = await confirmAuthReq(confirmAddress.id, confirmAddress.postal_code, confirmAddress.address)
 
         if(response) {
+            toast.success("احراز آدرس با موفقیت انجام شد")
             redirect("/dashboard")
             
         } else {
-            console.log(error); 
+            toast.error("احراز آدرس با مشکل مواجه شد")
         }
     }
 

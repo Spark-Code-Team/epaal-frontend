@@ -15,6 +15,8 @@ const initialState = {
     second_phone_number: "",
     confirmed_data: "",
     confirmed_address: "",
+    postal_code: "",
+    address: "",
     loading: false
 }
 
@@ -44,6 +46,8 @@ const profileSlice = createSlice({
             state.phone_number = action.payload.response.data.data.phone_number
             state.second_phone_number = action.payload.response.data.data.second_phone_number
             state.national_code = action.payload.response.data.data.national_code
+            state.postal_code = action.payload.response.data.address_data.postal_code
+            state.address = action.payload.response.data.address_data.address
         })
 
         builder.addCase(fetchProfile.rejected, (state) => {
@@ -59,6 +63,8 @@ const profileSlice = createSlice({
             state.confirmed_address = ""
             state.loading = false
             state.error = "error message"
+            state.address = ""
+            state.postal_code = ""
         })
     }
 })
