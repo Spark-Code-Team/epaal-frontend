@@ -18,9 +18,16 @@ import LeftAroowBlur from "../../../../public/icons/Admin/AdminShop/LeftAroowBlu
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { FiLogOut } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 export default function UserSidebar() {
+
+
   const [burgerMenu, setBurgerMenu] = useState(false);
   const router = useRouter();
+
+  const profile = useSelector(store => store.profile)
+
+
   return (
     <>
       {/* side bar in mobile */}
@@ -42,8 +49,8 @@ export default function UserSidebar() {
               <DefaultPic />
             </div>
             <div className="flex flex-col items-center justify-evenly gap-1">
-              <div className="text-xs">ایمان پورپاک</div>
-              <div className="text-xs">{digitsEnToFa("09125143940")}</div>
+              <div className="text-xs">{`${profile.first_name} ${profile.last_name}`}</div>
+              <div className="text-xs">{digitsEnToFa(profile.phone_number)}</div>
             </div>
           </Link>
         </div>
@@ -157,8 +164,8 @@ export default function UserSidebar() {
               <DefaultPic />
             </div>
             <div className="flex flex-col items-center justify-evenly gap-1">
-              <div className="text-xs font-bold">ایمان پورپاک</div>
-              <div className="text-xs">{digitsEnToFa("09125143940")}</div>
+              <div className="text-xs font-bold">{`${profile.first_name} ${profile.last_name}`}</div>
+              <div className="text-xs">{digitsEnToFa(profile.phone_number)}</div>
             </div>
             <div>
               <LeftAroowBlur fill="#1D434C" height="25" width="25" />

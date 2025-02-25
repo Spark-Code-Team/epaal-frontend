@@ -1,4 +1,4 @@
-import defaltUser from "@/../public/icons/dashboard/iman.jpg"
+import defaltUser from "@/../public/image/defaltProfile.png"
 import Image from "next/image";
 
 export default function DefaultPic () {

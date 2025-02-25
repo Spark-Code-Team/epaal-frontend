@@ -4,7 +4,6 @@ import Providers from "@/redux/Providers";
 import "./globals.css";
 import { danaFont } from "@/utils/fonts";
 import { Bounce, ToastContainer } from "react-toastify";
-import CheckRedux from "@/components/elements/CheckRedux";
 
 
 export const metadata = {
@@ -22,7 +21,6 @@ export default function RootLayout({ children }) {
       <body className={`${danaFont.className} bg-white max-w-7xl mx-auto overflow-x-hidden`}>
         <Providers>
           {children}
-          <CheckRedux />
         </Providers>
         <ToastContainer 
           position="bottom-right"

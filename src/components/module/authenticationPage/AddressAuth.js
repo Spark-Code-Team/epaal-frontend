@@ -3,11 +3,12 @@ import IdentityAuth from "./IdentityAuth";
 import { useState } from "react";
 import Tick from "../../../../public/icons/Admin/Tick";
 import { addressAuthReq, confirmAuthReq } from "@/service/userPanel";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 
 
-export default function AddressAuth({ active, setShowAddress }) {
+export default function AddressAuth() {
 
 
     const [state, setState] = useState("")
@@ -29,12 +30,15 @@ export default function AddressAuth({ active, setShowAddress }) {
 
 
     const sendConfirm = async () => {
+        
         const { response, error } = await confirmAuthReq(confirmAddress.id, confirmAddress.postal_code, confirmAddress.address)
 
         if(response) {
-            setShowAddress(2)
+            toast.success("احراز آدرس با موفقیت انجام شد")
+            redirect("/dashboard")
+            
         } else {
-            console.log(error); 
+            toast.error("احراز آدرس با مشکل مواجه شد")
         }
     }
 
@@ -157,6 +161,7 @@ export default function AddressAuth({ active, setShowAddress }) {
                                     p-2
                                     bg-[#1D434C]
                                     text-white
+                                    cursor-pointer
                                 `}    
                                 onClick={() => sendConfirm()}     
                             >

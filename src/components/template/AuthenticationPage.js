@@ -20,13 +20,13 @@ export default function AuthenticationPage() {
         >
             {
                 showAddress == 1 ? (
-                    <AddressAuth 
-                        active={active}
+                    <IdentityAuth 
+                        setActive={setActive}
                         setShowAddress={setShowAddress}
                     />
                 ) : (
-                    <IdentityAuth 
-                        setActive={setActive}
+                    <AddressAuth 
+                        active={active}
                     />
                 )
             }

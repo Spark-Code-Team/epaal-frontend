@@ -1,17 +1,24 @@
 "use client"
 
 import AuthTitle from "@/components/elements/AuthTitle";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Tick from "../../../../public/icons/Admin/Tick";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import Calandar from "../../../../public/icons/Admin/Calandar";
-import { identityAuthReq } from "@/service/userPanel";
+import { identityAuthReq, secondeOpt } from "@/service/userPanel";
 import SecondeOtp from "../../../../public/icons/dashboard/SecondeOtp";
 import { Modal } from "flowbite-react";
 import CrossIcon from "../../../../public/icons/Admin/CrossIcon";
 import OtpInput from "react18-input-otp";
+import Calender from "@/components/elements/Calender";
+import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
+import { toJalaali } from "jalaali-js";
+import DateObject from "react-date-object";
+import { toast } from "react-toastify";
+
+
 
 
 const inputs = [
@@ -52,32 +59,54 @@ const inputs = [
     }
 ]
 
-export default function IdentityAuth({ setActive }) {
+export default function IdentityAuth({ setActive, setShowAddress }) {
 
     const [state, setState] = useState({
         name: "",
         family: "",
         code: "",
         time: new Date(),
-        secondPhone: ""
+        secondPhone: "",
+        opt_code: ""
     })
 
     const [showModal, setShowModal] = useState(false)
 
-    const [otp, setOtp] = useState("")
-
+    const calenderRef = useRef()
     const changeHandler = (enterOtp) => {
-        setOtp(enterOtp)
+        setState(last => ({...last, opt_code: enterOtp}))
+    }
+
+    useEffect(() => {
+        console.log(state);
+        
+    }, [state])
+
+    const openModal = async () => {
+        if(state.code && state.secondPhone && state.family && state.name ) {
+            setShowModal(true)
+
+            const { response, error } = await secondeOpt(state.secondPhone)
+
+            if(response) {
+                console.log("22222222222222222",response);
+            } else {
+                console.log(error);
+            }
+        } else {
+            toast.error("تمامی فیلد ها را پر کنید")
+        }
     }
 
     const sendEhraz = async () => {
-        // const { response, error } = await identityAuthReq(state.name, state.family, state.code, state.time, state.secondPhone)
+        const { response, error } = await identityAuthReq(state.name, state.family, state.code, state.time, state.secondPhone, state.opt_code)
 
-        // if(response) {
-        //     console.log(response);
-        // } else {
-        //     console.log(error);
-        // }
+        if(response) {
+            setShowAddress(2)
+            toast.success("احراز مشخصات با موفقیت انجام شد")
+        } else {
+            console.log(error);
+        }
         setShowModal(true)
     }
 
@@ -147,8 +176,11 @@ export default function IdentityAuth({ setActive }) {
                                                 calendar={persian}
                                                 locale={persian_fa}
                                                 calendarPosition="bottom-right"
-                                                onChange={(e) => setState(last => ({...last, time: new Date(e)}))}
+                                                format="YYYY/MM/DD"
+                                                ref={calenderRef}
+                                                onChange={(date) => setState(last => ({...last, time: digitsFaToEn(date.format("YYYY/MM/DD"))}))}
                                             />  
+                                            {/* <Calender /> */}
                                             <div
                                                 className="
                                                     p-2
@@ -164,6 +196,8 @@ export default function IdentityAuth({ setActive }) {
                                                     cursor-pointer
                                                     justify-center
                                                 "
+
+                                                onClick={() => calenderRef.current.openCalendar()}
                                             >
                                                 <Calandar />
                                                 <p
@@ -258,7 +292,7 @@ export default function IdentityAuth({ setActive }) {
                             font-normal
                             cursor-pointer
                         "
-                        onClick={() => sendEhraz()}
+                        onClick={() => openModal()}
                     >
                         تایید و ادامه
                     </div>
@@ -329,7 +363,7 @@ export default function IdentityAuth({ setActive }) {
                                     text-center
                                 "
                             >
-                                کد ارسال شده به شماره 09354394868 را وارد کنید
+                                کد ارسال شده به شماره {state.secondPhone} را وارد کنید
                             </p>
                         </div>
 
@@ -341,7 +375,7 @@ export default function IdentityAuth({ setActive }) {
                         >
                                                         
                             <OtpInput
-                                value={otp}
+                                value={state.opt_code}
                                 onChange={changeHandler}
                                 numInputs={8}
                                 inputStyle={
@@ -364,9 +398,12 @@ export default function IdentityAuth({ setActive }) {
                                 w-full
                                 py-2
                                 rounded-xl
+                                cursor-pointer
                             "
+
+                            onClick={() => sendEhraz()}
                         >
-                            ارسال مجدد
+                            تایید
                         </div>
 
                         <div
