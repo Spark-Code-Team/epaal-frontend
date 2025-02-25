@@ -12,6 +12,7 @@
     "@persian-tools/persian-tools": "^3.6.0",
     "@reduxjs/toolkit": "^2.5.1",
     "axios": "^1.7.9",
+    "cleave.js": "^1.6.0",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.0.9",
     "jalaali-js": "^1.2.7",
@@ -25,6 +26,7 @@
     "react-multi-date-picker": "^4.5.2",
     "react-redux": "^9.2.0",
     "react-signature-canvas": "^1.1.0-alpha.1",
+    "react-simple-captcha": "^9.3.1",
     "react-toastify": "^11.0.3",
     "react18-input-otp": "^1.1.4",
     "swipe-react": "^1.0.4"

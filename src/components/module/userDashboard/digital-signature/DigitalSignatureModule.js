@@ -4,7 +4,7 @@ export default function DigitalSignatureModule(){
     return (
         <>
             <div>
-                <Signature/>
+                <Signature from="dashboard"/>
             </div>
         </>
     )

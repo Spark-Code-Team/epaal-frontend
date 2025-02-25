@@ -1,10 +1,13 @@
 "use client";
 
 import { TrashIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
 import SignatureCanvas from "react-signature-canvas";
 
-export default function Signature() {
+export default function Signature(props) {
+  const {from} = props
+
   const sigCanvasRef = useRef(null);
   const [signatureData, setSignatureData] = useState("");
   const [isUploading, setIsUploading] = useState(false);
@@ -14,6 +17,8 @@ export default function Signature() {
     width: 600,
     height: 350,
   });
+
+  const router = useRouter()
 
   // تنظیم ابعاد canvas به صورت ریسپانسیو
   useEffect(() => {
@@ -70,8 +75,17 @@ export default function Signature() {
         // نمایش modal پیش‌نمایش
         setShowPreview(true);
       }, 1000);
+
+      
     }
   };
+
+
+  function confirmSignature (){
+    if (from == "dashboard") {
+      router.push("/dashboard/confirm-prepayment")
+    }
+  }
 
   // تابعی برای بازنشانی کامل stateها (ویرایش امضا)
   const resetSignature = () => {
@@ -162,7 +176,7 @@ export default function Signature() {
                 ویرایش
               </button>
               <button
-                onClick={uploadSignature}
+                onClick={confirmSignature}
                 className="rounded bg-evaamGreen px-4 py-2 text-white"
               >
                 تایید نهایی
