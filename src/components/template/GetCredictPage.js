@@ -9,6 +9,8 @@ import Tick2 from "../../../public/icons/dashboard/tick2";
 import Tick3 from "../../../public/icons/dashboard/tick3";
 import Tick4 from "../../../public/icons/dashboard/tick4";
 import { allFacility } from "@/service/userPanel";
+import { useDispatch } from "react-redux";
+import { addFacility } from "@/redux/features/facilityChose/facilityChose";
 
 export default function GetCredictPage() {
 
@@ -33,6 +35,8 @@ export default function GetCredictPage() {
     "/image/backCard1.png",
     "/image/backCard2.png",
   ];
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -197,7 +201,7 @@ export default function GetCredictPage() {
           className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
           onClick={() => {
             router.push("/dashboard/calculate-credit");
-            localStorage.setItem("credict", slides[0].id)
+            dispatch(addFacility({facility: slides[0]}))
           }}
         >
           درخواست اعتبار

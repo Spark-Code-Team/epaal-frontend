@@ -80,6 +80,34 @@ const allFacility = async () => {
     }
 }
 
+const createFacility = async (sheba_number, facility_id, choosen_value, facility_installment_id) => {
+
+    console.log("gopjgbdoipjgvhfvpg",sheba_number, facility_id, choosen_value);
+    
+    try {
+        const response = await api.post("/facility/create_facility", {
+            sheba_number,
+            facility_id,
+            facility_installment_id: `${facility_installment_id}`,
+            choosen_value
+        })
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
+const startEtebarSanji = async () => {
+    try {
+        const response = await api.post("/facility/confirm_grade")
+
+        return { response }
+    } catch(error) {
+        return { error}
+    }
+}
+
 
 export {
     identityAuthReq,
@@ -87,5 +115,7 @@ export {
     confirmAuthReq,
     secondeOpt,
     profileData,
-    allFacility
+    allFacility,
+    createFacility,
+    startEtebarSanji
 }

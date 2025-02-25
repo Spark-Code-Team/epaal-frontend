@@ -13,12 +13,12 @@ const facilityReducer = createSlice({
     initialState,
     reducers: {
         addFacility: (state, action) => {
-            state.selectedFacility = action.payload
+            state.selectedFacility = action.payload.facility
         },
 
         addInAndCh: (state, action) => {
             state.choosen_value = action.payload.choosen_value
-            state.facility_installment_id =  action.payload.id
+            state.facility_installment_id = action.payload.id
         }
     }
 })
