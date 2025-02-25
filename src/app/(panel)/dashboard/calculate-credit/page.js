@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useRouter } from "next/navigation";
+import { allFacility } from "@/service/userPanel";
 
 export default function CalculateCredit() {
   const [inputValue, setInputValue] = useState(1000000);
@@ -16,11 +17,17 @@ export default function CalculateCredit() {
   // const items = [6, 12, 24, 36];
   // const [currentIndex, setCurrentIndex] = useState(0);
   const [monthGhest, setMonthGhest] = useState(12);
-  const slides = [
-    "/image/backCard.png",
-    "/image/backCard1.png",
-    "/image/backCard2.png",
-  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+
+      const { response, error } = await allFacility()
+
+      if(response) {
+        
+      }
+    }
+  }, [])
 
   const router = useRouter();
 
@@ -154,13 +161,15 @@ export default function CalculateCredit() {
               {calculatedPayment.yearlySubscribePayment} تومان
             </div>
           </div>
-          {/* <div className="mb-[37px] flex w-full items-center justify-between">
+            {
+              /* <div className="mb-[37px] flex w-full items-center justify-between">
                 <div className=" ">
                   {" "}
                   <p>دریافتیِ نهایی</p>
                 </div>
                 <div className=" ">35,000,000 تومان</div>
-              </div> */}
+              </div> */
+            }
           <div className="mb-[37px] flex w-full items-center justify-between">
             <div className=" ">اقساط ماهانه</div>
             <div className=" ">{calculatedPayment.paymentPerMounth}تومان</div>

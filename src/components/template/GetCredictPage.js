@@ -40,6 +40,7 @@ export default function GetCredictPage() {
 
         if(response) {
             setSlides(response.data)
+            
         } else {
             console.log(error);
         }
@@ -102,8 +103,6 @@ export default function GetCredictPage() {
     setEndX(e.changedTouches[0].clientX); // Record the end point of touch
     const diff = endX - startX; // Calculate the swipe distance
 
-    console.log(diff);
-
     // If swipe distance is enough, update the index to move the slides
     if (Math.abs(diff) > 10) {
       if (diff > 0) {
@@ -144,11 +143,13 @@ export default function GetCredictPage() {
               >
                 <div className="flex w-full items-center justify-between px-2">
                   <p>
-                    {item.name}
+                    {
+                      item.name.split(" ")[0]
+                    }
                   </p>
                   <p>
                     {
-                        item.name
+                      item.name.split(" ")[1]
                     }
                   </p>
                 </div>
@@ -163,11 +164,11 @@ export default function GetCredictPage() {
 
                 <div className="flex w-full items-center justify-between md:mt-[30px]">
                   <div className="text-[5px] font-normal md:text-[10px]">
-                    تامین مالی توسط بانک کارآفرین
+                    تامین مالی توسط {item.bank.name} 
                   </div>
-                  <div className="rounded-xl bg-[#232336b3] px-[5px] py-2 text-[7px] backdrop-blur-[40px] md:text-[14px]">
+                  {/* <div className="rounded-xl bg-[#232336b3] px-[5px] py-2 text-[7px] backdrop-blur-[40px] md:text-[14px]">
                       {digitsEnToFa("18")} ماهه
-                    </div>
+                    </div> */}
                 </div>
               </div>
             ))}
@@ -196,6 +197,7 @@ export default function GetCredictPage() {
           className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
           onClick={() => {
             router.push("/dashboard/calculate-credit");
+            localStorage.setItem("credict", slides[0].id)
           }}
         >
           درخواست اعتبار
