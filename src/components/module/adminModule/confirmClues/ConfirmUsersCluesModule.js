@@ -27,6 +27,14 @@ export default function ConfirmUsersCluesModule() {
 
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const [showCanceledModal, setShowCanceledModal] = useState(false);
+
+  const initialFields = [
+    // { id: 1, type: "string", value: "" },
+    // { id: 2, type: "file", value: null },
+    // { id: 3, type: "string", value: "" },
+  ];
+  const [fields, setFields] = useState(initialFields);
 
   useEffect(() => {
     setData(sampleData);
@@ -40,6 +48,48 @@ export default function ConfirmUsersCluesModule() {
     }
     setShowModal(true);
   };
+
+  //*   test
+  const handleInputChange = (index, value) => {
+    const newFields = [...fields];
+    newFields[index].value = value;
+    setFields(newFields);
+  };
+
+  // مدیریت تغییر فایل
+  const handleFileChange = (index, file) => {
+    const newFields = [...fields];
+    newFields[index].value = file;
+    setFields(newFields);
+  };
+
+  // ساخت FormData برای ارسال به سرور
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    fields.forEach((field, index) => {
+      // ارسال آی‌دی
+      formData.append(`data[${index}][id]`, field.id);
+      // ارسال مقدار متنی یا مقدار مربوط به فایل
+      formData.append(
+        `data[${index}][value]`,
+        field.value ? (field.type === "string" ? field.value : "") : "",
+      );
+      // ارسال فایل (در صورت انتخاب شده بودن)
+      if (field.type === "file" && field.value) {
+        formData.append(`data[${index}][file]`, field.value);
+      } else {
+        // اگر فایل انتخاب نشده باشد، می‌توانید مقدار null یا یک رشته خالی ارسال کنید.
+        formData.append(`data[${index}][file]`, "");
+      }
+    });
+
+    // برای بررسی لاگ FormData قبل از ارسال:
+    console.log([...formData]);
+  };
+
+  //* test
 
   return (
     <>
@@ -127,19 +177,38 @@ export default function ConfirmUsersCluesModule() {
         </table>
       </div>
 
+      {/* test */}
+
+      {fields.map((field, index) => (
+        <form onSubmit={handleSubmit}>
+          <div key={field.id}>
+            <label>
+              {field.type === "string"
+                ? `متن ${field.id}:`
+                : `فایل ${field.id}:`}
+            </label>
+            {field.type === "string" ? (
+              <input
+                type="text"
+                value={field.value}
+                onChange={(e) => handleInputChange(index, e.target.value)}
+              />
+            ) : (
+              <input
+                type="file"
+                onChange={(e) => handleFileChange(index, e.target.files[0])}
+              />
+            )}
+          </div>
+          <button type="submit">ارسال</button>
+        </form>
+      ))}
+
+      {/* test */}
+
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <Modal.Header className=" self-center">
-            {modalContent}
-        </Modal.Header>
+        <Modal.Header className="self-center">{modalContent}</Modal.Header>
         <Modal.Body className="">
-          {/* <div
-            onClick={() => {
-              setShowModal(false);
-            }}
-            className="flex flex-row items-center justify-end hover:cursor-pointer"
-          >
-            <CrossIcon />
-          </div> */}
           <div>
             <Image
               src={SuccessPaidTick}
@@ -161,11 +230,38 @@ export default function ConfirmUsersCluesModule() {
             <button
               className="w-2/5 rounded-xl border border-evaamGreen py-2 text-evaamGreen transition-all duration-300 ease-in-out hover:scale-105 hover:border-red-500 hover:text-red-500"
               onClick={() => {
-                setShowModal(false);
+                setShowCanceledModal(true);
               }}
             >
               رد کردن
             </button>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+      <Modal
+        show={showCanceledModal}
+        onClose={() => setShowCanceledModal(false)}
+      >
+        <Modal.Header className="place-self-end border-none"></Modal.Header>
+        <Modal.Body>
+          <div className="text-sm font-bold">
+            لطفا دلیل رد شدن را ذکر بفرمایید:
+          </div>
+          <div className="my-5">
+            <input
+              type="text"
+              className="w-full rounded-lg border-none bg-gray-200 outline-none transition-all duration-300 ease-in-out focus:shadow-lg focus:outline-none focus:ring-0"
+            />
+          </div>
+          <div
+            className="mx-auto flex w-1/2 flex-row items-center justify-center rounded-lg bg-evaamGreen py-2 text-white shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
+            onClick={() => {
+              setShowCanceledModal(false);
+              setShowModal(false);
+            }}
+          >
+            <button>ثبت</button>
           </div>
         </Modal.Body>
       </Modal>
