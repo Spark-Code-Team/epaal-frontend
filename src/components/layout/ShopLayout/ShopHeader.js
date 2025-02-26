@@ -153,6 +153,9 @@ export default function ShopHeader() {
   const store = useSelector(store => store)
   const dispatch = useDispatch()
 
+  console.log(store);
+  
+
   useEffect(() => {
     if(!store.role.id) {
         dispatch(fetchRole())

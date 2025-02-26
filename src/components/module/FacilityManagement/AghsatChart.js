@@ -5,9 +5,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function AghsatChart({ percentage, amount }) {
+export default function AghsatChart ({ percentage, amount }) {
   const data = {
-    labels: ["پرداخت شده", "باقی‌مانده"],
     datasets: [
       {
         data: [percentage, 100 - percentage],
@@ -18,9 +17,10 @@ export default function AghsatChart({ percentage, amount }) {
   };
 
   const options = {
-    cutout: "70%", // اندازه دایره داخلی
+    cutout: "70%", // مقدار داخلی برای زیبایی بیشتر
     plugins: {
-      tooltip: { enabled: false },
+      legend: { display: false }, // حذف لیبل‌ها
+      tooltip: { enabled: false }, // غیرفعال کردن راهنمای شناور
     },
   };
 
@@ -28,7 +28,7 @@ export default function AghsatChart({ percentage, amount }) {
     <div className="flex flex-col items-center">
       <div className="relative w-32 h-32">
         <Doughnut data={data} options={options} />
-        <div className="absolute top-[25%] w-full h-full flex flex-col items-center justify-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-lg font-semibold text-gray-700">
             {percentage}%
           </span>
@@ -36,7 +36,7 @@ export default function AghsatChart({ percentage, amount }) {
       </div>
       <p className="mt-2 text-sm text-gray-600">مبلغ اعتبار</p>
       <p className="text-lg font-bold text-gray-800">
-        {amount ? Number(amount).toLocaleString() : "0"} تومان
+        {Number(amount).toLocaleString()} تومان
       </p>
     </div>
   );
