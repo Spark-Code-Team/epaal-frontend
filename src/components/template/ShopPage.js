@@ -1,7 +1,12 @@
+import ShopCart from "../elements/ShopCart";
+import ShopTitle from "../elements/ShopTitle";
+
+const alaki = [1, 2, 3, 4, 5, 6, 7, 8]
+
 export default function shop() {
   return (
     <>
-      <div className="my-10 flex h-screen w-full flex-col items-center justify-self-center bg-green-100 md:w-[90%]">
+      {/* <div className="my-10 flex h-screen w-full flex-col items-center justify-self-center bg-green-100 md:w-[90%]">
         <div
           className="flex h-96 w-[95%] flex-row items-center bg-[length:200%_400%] bg-center bg-no-repeat object-contain"
           style={{
@@ -28,7 +33,37 @@ export default function shop() {
             چپ
           </div>
         </div>
+      </div> */}
+
+      <div
+        className="
+          w-full
+          px-3
+        "
+      >
+        <ShopTitle 
+          title="پربازدیدترین محصولات موتورسیکلت"
+        />
+        <div
+          className="
+            flex
+            gap-[20px]
+            overflow-x-scroll
+            w-full
+            my-7
+            py-2
+          "
+        >
+          {
+            alaki.map(item => (
+              <ShopCart 
+                key={item}
+              />
+            ))
+          }
+        </div>
       </div>
+
     </>
   );
 }
