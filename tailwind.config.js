@@ -17,37 +17,35 @@ module.exports = {
         evaamCyanBlur: "#41B1AC60",
         evaamBackground: "#E8F5F9",
         evaamGreen: "#1d434c",
-        evaamBorderColor: "#E1EDF0"
+        evaamBorderColor: "#E1EDF0",
+        evaamBrightGradient: "#84ABB4",
       },
 
       backgroundImage: {
-        "banner": "./public/image/banner.png"
+        banner: "./public/image/banner.png",
       },
 
       boxShadow: {
-        '3xl': '0px 4px 15px 0px rgba(0, 0, 0, 0.25)',
-        "topShodow": "0px -10px 5px #E1EDF0"
+        "3xl": "0px 4px 15px 0px rgba(0, 0, 0, 0.25)",
+        topShodow: "0px -10px 5px #E1EDF0",
       },
 
       Keyframes: {
         collapse: {
-          '0%': { height: '100px' },
-          '100%': { height: '0' },
+          "0%": { height: "100px" },
+          "100%": { height: "0" },
         },
         expand: {
-          '0%': { height: '0' },
-          '100%': { height: '100px' },
+          "0%": { height: "0" },
+          "100%": { height: "100px" },
         },
       },
 
       animation: {
-        collapse: 'collapse 0.5s ease-in-out forward',
-        expand: 'expand 0.5s ease-in-out forward',
-      }
-      
+        collapse: "collapse 0.5s ease-in-out forward",
+        expand: "expand 0.5s ease-in-out forward",
+      },
     },
   },
-  plugins: [
-    flowbite.plugin(),
-  ],
+  plugins: [flowbite.plugin()],
 };

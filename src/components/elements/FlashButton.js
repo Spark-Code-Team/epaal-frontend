@@ -49,6 +49,7 @@ export default function FlashButton({ title, href="/", them }) {
                     color={them == "banner" ? "white" : "#1D434C"}
                 />
             </div>
+            
         </Link>
     )
 }
