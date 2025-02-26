@@ -11,7 +11,6 @@ export default function MainBanner() {
 
     return (
         <div
-            id="bn"
             className="
                 h-[627px]
                 flex
@@ -20,6 +19,9 @@ export default function MainBanner() {
                 items-center
                 justify-center
             "
+            style={{
+                background: "url('/image/banner.png') center/100% 100% no-repeat",
+            }}
         >
             <div
                 className="
@@ -31,7 +33,7 @@ export default function MainBanner() {
                     gap-4
                     text-center
                     md:text-justify
-                    mt-5
+                    mt-20
                     md:mt-0
                 "
             >
@@ -77,7 +79,7 @@ export default function MainBanner() {
                             text-[16px]
                         "
                     >
-                        محاصبه اقساط
+                        محاسبه اقساط
                     </p>
                     <MohasebeIcon />
                 </div>

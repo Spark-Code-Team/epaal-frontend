@@ -128,7 +128,7 @@ const getStatusPhysical = async () => {
 
 const sendDigiSignature = async () => {
     try {
-        const response = await api.get("/facility/digital_signiture")
+        const response = await api.post("/facility/digital_signiture")
 
         return { response }
     } catch(error) {
