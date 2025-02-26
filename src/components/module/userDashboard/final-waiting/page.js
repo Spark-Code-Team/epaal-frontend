@@ -1,16 +1,29 @@
 "use client";
 import FacilityState from "@/components/elements/FacilityState";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function CreditFinalWaitingModule() {
   const cardBg = "/image/backCard.png";
 
   const [index, setIndex] = useState(1);
+  const router =  useRouter()
+
+  const store = useSelector(store => store)
+
+  useEffect(() => {
+    if(store.status.level_number < 8) {
+        router.back()
+    }
+}, [])
 
   return (
     <>
-
+      <FacilityState 
+        curentState={8}
+      />
       <div className="flex w-full flex-col items-center md:mb-32">
         <div className="flex w-[90%] flex-col items-center">
           <div className="my-5 w-full text-lg font-bold">

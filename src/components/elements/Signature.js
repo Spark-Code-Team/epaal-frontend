@@ -4,6 +4,7 @@ import { sendDigiSignature } from "@/service/userPanel";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import SignatureCanvas from "react-signature-canvas";
 
 export default function Signature(props) {
@@ -20,6 +21,14 @@ export default function Signature(props) {
   });
 
   const router = useRouter()
+
+  const store = useSelector(store => store)
+
+  useEffect(() => {
+    if(store.status.level_number < 6) {
+        router.back()
+    }
+}, [])
 
   // تنظیم ابعاد canvas به صورت ریسپانسیو
   useEffect(() => {

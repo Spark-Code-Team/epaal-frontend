@@ -1,8 +1,23 @@
+"use client"
+
 import FacilityState from "@/components/elements/FacilityState";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function ConfirmPrepaymentModule() {
+
+  const store = useSelector(store => store)
+  const router = useRouter()
+
+  useEffect(() => {
+    if(store.status.level_number < 7) {
+        router.back()
+    }
+}, [])
+
   return (
     <>
       <FacilityState

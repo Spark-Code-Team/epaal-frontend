@@ -3,11 +3,26 @@
 import Image from "next/image";
 import sayyadiCheck from "@/../public/icons/dashboard/sayyadi.svg";
 import { useRouter } from "next/navigation";
+import FacilityState from "@/components/elements/FacilityState";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function InfoDigitalModule() {
   const router = useRouter();
+
+  const store = useSelector(store => store)
+
+  useEffect(() => {
+    if(store.status.level_number < 4) {
+        router.back()
+    }
+}, [])
+
   return (
     <>
+      <FacilityState 
+        curentState={4}
+      />
       <div className="mb-10 w-full">
         <div className="mt-5 flex w-full flex-row items-center justify-start text-evaamGreen">
           <p className="text-lg font-bold">ثبت مدارک مورد نیاز</p>

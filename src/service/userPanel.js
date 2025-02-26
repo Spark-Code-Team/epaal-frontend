@@ -180,13 +180,29 @@ const getlevelfour = async () => {
     }
 }
 
-const postlevelfour = async () => {
+const postlevelfour = async (data) => {
 
     try {
-        const response = await api.post("/facility/submit_digital")
+        const response = await api.post("/facility/submit_digital", {
+            data
+        }, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        })
     
         return { response }
     } catch (error) {
+        return { error }
+    }
+}
+
+const userFacility = async () => {
+    try {
+        const response = await api.get("/facility/inquiry_user_facility")
+
+        return { response }
+    } catch(error) {
         return { error }
     }
 }
@@ -209,5 +225,6 @@ export {
     postPayValue,
     RamzDovom,
     getlevelfour,
-    postlevelfour
+    postlevelfour,
+    userFacility
 }
