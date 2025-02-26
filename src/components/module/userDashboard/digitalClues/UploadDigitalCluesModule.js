@@ -7,15 +7,35 @@ import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { Modal, ModalBody } from "flowbite-react";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaCheckCircle, FaCross, FaPlus } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import { RiCrossLine } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
+import { getlevelfour } from "@/service/userPanel";
 
 export default function UploadDigitalCluesModule() {
   const [checkBox, setCheckBox] = useState(false);
   const [sayyadiCheckLength, setSayyadiCheckLength] = useState("");
+  const [fields, setFields] = useState([])
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const {response, error} = await getlevelfour()
+
+      setFields([])
+      if(response) {
+        response.data.data.forEach((item, index) => {
+          setFields(last => [...last, {id: item.id, value: "", file: null, index: index, type: item.type}])
+        })
+      } else {
+        console.log(error);
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const fileInputRef = useRef(null);
 
@@ -55,6 +75,10 @@ export default function UploadDigitalCluesModule() {
     // }, 2000);
   };
   //*   test
+
+  if(fields.length == 0) {
+    return <div>Loading</div>
+  }
 
   return (
     <>
@@ -170,29 +194,40 @@ export default function UploadDigitalCluesModule() {
             <FaPlus color="white" />
           </div>
 
-          <input
-            ref={fileInputRef}
-            type="file"
-            className="hidden"
-            onChange={handleFileChange}
-            accept=".pdf, .png, .jpg"
-          />
-        </div>
-        <div className="mt-5">
-          <p>شناسۀ صیادی چک را وارد کنید ({digitsEnToFa("16 رقمی")}):</p>
-        </div>
-        <div className="mt-3 flex w-full flex-row items-center justify-between gap-5 rounded-lg border border-gray-200 px-5 py-3">
-          <input
-            type="text"
-            maxLength="16"
-            className="w-full border-none outline-none ring-0 focus:border-none focus:outline-none focus:ring-0"
-            placeholder={digitsEnToFa("شماره 16 رقمی")}
-            onChange={handleCheckLength}
-          />
-          <FaCheckCircle
-            color={`${sayyadiCheckLength.length < 16 ? "gray" : "green"}`}
-            className="h-7 w-7"
-          />
+          {
+            fields.map(item => {
+              if(item.type == "file") {
+                return (
+                  <input
+                  ref={fileInputRef}
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileChange}
+                  accept=".pdf, .png, .jpg"
+                />
+                )
+              } else {
+                <>
+                  <div className="mt-5">
+                    <p>شناسۀ صیادی چک را وارد کنید ({digitsEnToFa("16 رقمی")}):</p>
+                  </div>
+                  <div className="mt-3 flex w-full flex-row items-center justify-between gap-5 rounded-lg border border-gray-200 px-5 py-3">
+                    <input
+                      type="text"
+                      maxLength="16"
+                      className="w-full border-none outline-none ring-0 focus:border-none focus:outline-none focus:ring-0"
+                      placeholder={digitsEnToFa("شماره 16 رقمی")}
+                      onChange={handleCheckLength}
+                    />
+                    <FaCheckCircle
+                      color={`${sayyadiCheckLength.length < 16 ? "gray" : "green"}`}
+                      className="h-7 w-7"
+                    />
+                  </div>
+                </>
+              }
+            })
+          }
         </div>
         <div
           className="mx-auto mb-10 mt-10 w-4/5 rounded-xl bg-evaamGreen py-3 text-center text-white transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer hover:shadow-md"

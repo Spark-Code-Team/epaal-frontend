@@ -1,4 +1,5 @@
 "use client";
+import FacilityState from "@/components/elements/FacilityState";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useState } from "react";
 
@@ -9,7 +10,8 @@ export default function CreditFinalWaitingModule() {
 
   return (
     <>
-      <div className="flex w-full flex-col items-center">
+
+      <div className="flex w-full flex-col items-center md:mb-32">
         <div className="flex w-[90%] flex-col items-center">
           <div className="my-5 w-full text-lg font-bold">
             <p>شارژ نهایی کیف پول</p>

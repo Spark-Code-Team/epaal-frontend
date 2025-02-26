@@ -1,9 +1,13 @@
+import FacilityState from "@/components/elements/FacilityState";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import Link from "next/link";
 
 export default function ConfirmPrepaymentModule() {
   return (
     <>
+      <FacilityState
+          curentState={7}
+      />
       <div className="w-full">
         <div className="my-5 text-lg font-bold">
           <p>دریافت پیش‌پرداخت</p>

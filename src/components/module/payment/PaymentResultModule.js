@@ -5,6 +5,7 @@ import SuccessPaidTick from "@/../public/icons/success-paid-tick.svg";
 import Image from "next/image";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useRouter } from "next/navigation";
+import { postPayValue } from "@/service/userPanel";
 
 export default function PaymentResultModule(props) {
   const { status } = props;
@@ -17,6 +18,19 @@ export default function PaymentResultModule(props) {
 
   const [randomCode, setRandomCode] = useState("");
 
+  const sendFinal = async () => {
+
+    const {response, error} = await postPayValue()
+
+    if(response) {
+      console.log(response);
+      router.push("/dashboard/final-waiting")
+    } else {
+      console.log(error);
+    }
+    
+  }
+
   useEffect(() => {
     const code = generateRandomCode(6);
     setRandomCode(code);
@@ -25,8 +39,8 @@ export default function PaymentResultModule(props) {
     const countdown = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
+          sendFinal()
           clearInterval(countdown);
-          router.push("/dashboard/final-waiting")
           return 0;
         }
         return prevTime - 1;
@@ -164,7 +178,7 @@ export default function PaymentResultModule(props) {
             {/* from compang */}
 
             <div className="w-[50%] bg-evaamGreen h-10 text-white hover:cursor-pointer flex flex-col justify-center items-center rounded-xl">
-              <button>بازگشت به صفحه داشبود</button>
+              <div onClick={() => sendFinal()}>بازگشت به صفحه داشبود</div>
             </div>
           </div>
         </div>

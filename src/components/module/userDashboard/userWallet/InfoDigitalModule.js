@@ -80,9 +80,9 @@ export default function InfoDigitalModule() {
           onClick={() => {
             router.push("/dashboard/upload-digital");
           }}
-          className="mb-10 mt-5 rounded-xl bg-evaamGreen py-2 text-center text-white"
+          className="mb-10 cursor-pointer mt-5 rounded-xl bg-evaamGreen py-2 text-center text-white"
         >
-          <button className="">تایید و ادامه</button>
+          <div className="">تایید و ادامه</div>
         </div>
       </div>
     </>

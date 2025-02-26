@@ -2,7 +2,7 @@
 import CheckRounded from "@/../public/icons/dashboard/round-check.svg";
 
 import CheckBoxSVG from "@/../public/icons/check-tick.svg";
-import { digitsEnToFa, removeCommas } from "@persian-tools/persian-tools";
+import { addCommas, digitsEnToFa, removeCommas } from "@persian-tools/persian-tools";
 import Cleave from "cleave.js/react";
 import { FaKeyboard } from "react-icons/fa";
 
@@ -23,8 +23,28 @@ import Image from "next/image";
 import LogoEvaam from "../../../../public/icons/LogoEvaam";
 import Logo from "@/components/elements/Logo";
 import { useRouter } from "next/navigation";
+import { getPayValue, RamzDovom } from "@/service/userPanel";
+import { toast } from "react-toastify";
 
 export default function PrepaymentModule() {
+
+  const [mablagh, setMablagh] = useState("")
+
+  useEffect(() => {
+    const fetchGheamat = async () => {
+
+      const { response, error } = await getPayValue()
+
+      if(response) {
+        setMablagh(response.data.data)
+      } else {
+        console.log(error);
+      }
+    }
+
+    fetchGheamat()
+  }, [])
+
   const router = useRouter();
 
   const today = new Date();
@@ -72,6 +92,16 @@ export default function PrepaymentModule() {
       clearInterval(timer);
     }; // پاک کردن تایمر هنگام خروج از کامپوننت
   }, []);
+
+  const getRamz = async () => {
+    const { response, error } = await RamzDovom()
+
+    if(response) {
+      toast.success("رمز دوم برای شما ارسال شد")
+    } else {
+      console.log(error);
+    }
+  }
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
@@ -229,7 +259,7 @@ export default function PrepaymentModule() {
                   className="w-36 rounded-xl border-none bg-gray-200 py-2 text-center outline-none ring-0 focus:border-none focus:outline-none focus:ring-0"
                 />
               </div>
-              <div className="w-36 rounded-xl border-none bg-evaamGreen py-2 text-center text-white">
+              <div onClick={() => getRamz()} className="cursor-pointer w-36 rounded-xl border-none bg-evaamGreen py-2 text-center text-white">
                 <p>دریافت رمز پویا</p>
               </div>
             </div>
@@ -274,7 +304,7 @@ export default function PrepaymentModule() {
                 router.push("/payment-result");
               }}
             >
-              پرداخت {digitsEnToFa("11,500,000")} تومان
+              پرداخت {digitsEnToFa(addCommas(`${mablagh}`))} تومان
             </div>
             <div className="flex h-10 w-[90%] flex-row items-center justify-center rounded-xl border border-red-600 text-center text-red-500">
               انصراف
