@@ -89,8 +89,8 @@ const MohasebeAghsat = ({ toPage }) => {
   };
 
   return (
-    <div className="relative min-h-[1000px] w-full md:min-h-[1386px]">
-      <div className="absolute top-[-100px] mx-auto flex w-full flex-col items-center md:h-[1386px]">
+    <div className="relative min-h-[1090px] w-full md:min-h-[1386px]">
+      <div className="absolute top-[-40px] md:top-[-100px] mx-auto flex w-full flex-col items-center md:h-[1386px]">
         <div className="flex w-full flex-col rounded-[54px] bg-white md:w-[80%]">
           <div className="mb-[20px] mt-[38px] w-full text-center text-[14px] font-bold md:text-[24px]">
             طرح های اعتباری و اقساط آن

@@ -12,17 +12,26 @@ import OtpInput from "react18-input-otp";
 import CheckValidation from "../../../../../public/icons/dashboard/checkVal";
 import SentIcon from "../../../../../public/icons/dashboard/sent";
 import SuccessIcon from "../../../../../public/icons/dashboard/success";
+import { startEtebarSanji } from "@/service/userPanel";
 
 export default function ConfirmBank() {
   const router = useRouter()
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [otp, setOtpValue] = useState({ otpValue: null });
+  
+  const handelEtebar = async () => {
 
-  const changeHandler = (enteredOtp) => {
-    setOtpValue((last) => ({ ...last, otpValue: enteredOtp }));
-  };
+    const { response, error } = await startEtebarSanji()
+
+    if(response) {
+      console.log(response);
+      setIsSuccess(true);
+      setIsOpen(false);
+    } else {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -40,10 +49,10 @@ export default function ConfirmBank() {
             <div
               className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
               onClick={() => {
-                router.push("/evaam-home")
+                router.push("/dashboard/info-digital")
               }}
             >
-                    تایید و آپلود مدارک
+              تایید و آپلود مدارک
             </div>
           </div>
         </>
@@ -60,33 +69,14 @@ export default function ConfirmBank() {
               <div className="relative z-10 flex scale-100 transform flex-col items-center rounded-lg bg-white p-6 opacity-100 transition-all duration-300">
                 <h2 className="mb-4 text-xl font-bold">اعتبارسنجی</h2>
                 <SentIcon />
-                <p className="mb-4 mt-5">
-                  کد ارسال شده شمارۀ کاربری خود را وارد کنید
+                <p className="mb-4 mt-5 text-red-600 font-bold">
+                  این عملیات فقط برای یکبار در ماه برای شما رایگان می باشد
                 </p>
-                <OtpInput
-                  value={otp.otpValue}
-                  onChange={changeHandler}
-                  numInputs={8}
-                  containerStyle={{
-                    direction: "ltr", // چپ به راست
-                  }}
-                  inputStyle={{
-                    direction: "ltr",
-                    width: "35px",
-                    height: "41px",
-                    margin: "0 5px",
-                    border: "1px solid #c6c6c6",
-                    borderRadius: "10px",
-                  }}
-                  className="mb-6 mt-5"
-                />
+
                 <div className="flex w-full flex-row items-center justify-center">
                   <button
                     className="rounded-xl bg-evaamCyan px-4 py-2 text-white"
-                    onClick={() => {
-                      setIsSuccess(true);
-                      setIsOpen(false);
-                    }}
+                    onClick={() => handelEtebar()}
                   >
                     تایید و اعتبارسنجی
                   </button>

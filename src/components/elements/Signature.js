@@ -1,5 +1,6 @@
 "use client";
 
+import { sendDigiSignature } from "@/service/userPanel";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
@@ -34,6 +35,18 @@ export default function Signature(props) {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const sendSignature = async () => {
+
+    const { response, error } = await sendDigiSignature()
+
+    if(response) {
+      router.push("/dashboard/confirm-prepayment")
+      console.log(response);
+    } else {
+      console.log(error);
+    }
+  }
 
   // تابع پاک کردن امضا (هم بوم و stateها)
   const clearSignature = () => {
@@ -142,16 +155,27 @@ export default function Signature(props) {
       </div>
       {/* دکمه تایید؛ فعال فقط در صورت وجود امضا */}
       <div
-        onClick={() => {
-          if (signatureData) {
-            uploadSignature();
-          }
-        }}
-        className={`mt-5 rounded-lg py-2 text-center mb-10 ${
-          signatureData
-            ? "bg-evaamGreen hover:cursor-pointer"
-            : "bg-gray-300 hover:cursor-default"
-        } text-white`}
+        // onClick={() => {
+        //   if (signatureData) {
+        //     uploadSignature();
+        //   }
+        // }}
+        onClick={() => sendSignature()}
+        // className={`mt-5 rounded-lg py-2 text-center mb-10 ${
+        //   signatureData
+        //     ? "bg-evaamGreen hover:cursor-pointer"
+        //     : "bg-gray-300 hover:cursor-default"
+        // } text-white`}
+        className="
+          mt-5
+          rounded-lg
+          py-2
+          text-center
+          mb-10
+          bg-evaamGreen
+          cursor-pointer
+          text-white
+        "
       >
         تایید و پیش‌پرداخت
       </div>
@@ -169,12 +193,13 @@ export default function Signature(props) {
               />
             </div>
             <div className="mt-4 flex justify-around gap-2">
-              <button
-                onClick={resetSignature}
+              <div
+                // onClick={resetSignature}
+                onClick={() => sendSignature()}
                 className="rounded bg-gray-300 px-4 py-2 text-black"
               >
                 ویرایش
-              </button>
+              </div>
               <button
                 onClick={confirmSignature}
                 className="rounded bg-evaamGreen px-4 py-2 text-white"

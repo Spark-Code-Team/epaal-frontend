@@ -2,10 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { allFacility } from "@/service/userPanel";
+import { useDispatch, useSelector } from "react-redux";
+import { addInAndCh } from "@/redux/features/facilityChose/facilityChose";
 
 export default function CalculateCredit() {
+
+
   const [inputValue, setInputValue] = useState(1000000);
   const [index, setIndex] = useState(1);
   const [calculatedPayment, setCalculatePayment] = useState({
@@ -18,16 +22,12 @@ export default function CalculateCredit() {
   // const [currentIndex, setCurrentIndex] = useState(0);
   const [monthGhest, setMonthGhest] = useState(12);
 
-  useEffect(() => {
-    const fetchData = async () => {
 
-      const { response, error } = await allFacility()
+  const store = useSelector(store => store.facility)
+  const dispatch = useDispatch()
 
-      if(response) {
-        
-      }
-    }
-  }, [])
+  console.log(store);
+  
 
   const router = useRouter();
 
@@ -60,6 +60,12 @@ export default function CalculateCredit() {
     setInputValue(value); // ذخیره مقدار جدید
     calculatePrePayment(value, monthGhest);
   };
+
+  useEffect(() => {
+    if(!store.selectedFacility) {
+      redirect("/get-credit")
+    }
+  }, [])
 
   return (
     <>
@@ -110,30 +116,17 @@ export default function CalculateCredit() {
           <p>مدت بازپرداخت:</p>
 
           <div className="my-[16px] flex items-center gap-4 md:my-[50px] md:mr-[16px] md:flex md:flex-wrap md:items-center md:justify-center">
-            <div
-              className={`flex flex-col text-center w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 6 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
-              onClick={() => setMonthGhest(6)}
-            >
-              {digitsEnToFa(6)} ماهه
-            </div>
-            <div
-              className={`flex flex-col text-center w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 12 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
-              onClick={() => setMonthGhest(12)}
-            >
-              {digitsEnToFa(12)} ماهه
-            </div>
-            <div
-              className={`flex flex-col text-center w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 18 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
-              onClick={() => setMonthGhest(18)}
-            >
-              {digitsEnToFa(18)} ماهه
-            </div>
-            <div
-              className={`flex flex-col text-center w-[79px] items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 24 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
-              onClick={() => setMonthGhest(24)}
-            >
-              {digitsEnToFa(24)} ماهه
-            </div>
+            {
+              store.selectedFacility.insatllments.map((item, index) => (
+                <div
+                  key={index}
+                  className={`flex flex-col text-center w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == index? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  onClick={() => setMonthGhest(index)}
+                >
+                  {digitsEnToFa(item.number_of_installment)} ماهه
+                </div>
+              ))
+            }
           </div>
         </div>
 
@@ -180,6 +173,7 @@ export default function CalculateCredit() {
           className="w-3/4 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
           onClick={() => {
             router.push("/dashboard/confirm-bank");
+            dispatch(addInAndCh({choosen_value: inputValue, id: store.selectedFacility.insatllments[monthGhest].id}))
           }}
         >
           تایید و ادامه
