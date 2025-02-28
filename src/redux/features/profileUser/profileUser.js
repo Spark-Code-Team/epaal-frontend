@@ -17,7 +17,8 @@ const initialState = {
     confirmed_address: "",
     postal_code: "",
     address: "",
-    loading: false
+    loading: false,
+    error: ""
 }
 
 
@@ -48,6 +49,7 @@ const profileSlice = createSlice({
             state.national_code = action.payload.response.data.data.national_code
             state.postal_code = action.payload.response.data.address_data.postal_code
             state.address = action.payload.response.data.address_data.address
+            state.error = ""
         })
 
         builder.addCase(fetchProfile.rejected, (state) => {

@@ -21,9 +21,6 @@ export default function CreditFinalWaitingModule() {
 
   return (
     <>
-      <FacilityState 
-        curentState={8}
-      />
       <div className="flex w-full flex-col items-center md:mb-32">
         <div className="flex w-[90%] flex-col items-center">
           <div className="my-5 w-full text-lg font-bold">

@@ -12,7 +12,8 @@ const initialState = {
     given_value: "",
     created_at: "",
     facility: 0,
-    loading: false
+    loading: false,
+    error: ""
 }
 
 const fetchStatus = createAsyncThunk("status/fetchStatus", () => {
@@ -38,6 +39,7 @@ const statusSlice = createSlice({
             state.given_value = action.payload.response.data.data.given_value
             state.created_at = action.payload.response.data.data.created_at
             state.facility = action.payload.response.data.data.facility
+            state.error= ""
         })
 
         builder.addCase(fetchStatus.rejected, (state, action) => {

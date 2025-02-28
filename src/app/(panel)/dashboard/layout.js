@@ -1,10 +1,15 @@
 "use client"
 
+// components
 import LayoutUser from "@/components/layout/UserPanelLayout/LayoutUser"
+
+// redux
 import { fetchStatus } from "@/redux/features/facilityState/facilityState"
 import { fetchProfile } from "@/redux/features/profileUser/profileUser"
-import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+
+// react
+import { useEffect } from "react"
 
 
 export default function UserLayout({children}) {
@@ -12,7 +17,6 @@ export default function UserLayout({children}) {
     const dispatch = useDispatch()
     const profile = useSelector(store => store.profile)
     const status = useSelector(store => store.status)
-
     
 
     useEffect(() => {

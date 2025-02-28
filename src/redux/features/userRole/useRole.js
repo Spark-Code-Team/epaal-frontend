@@ -8,7 +8,8 @@ const initialState = {
     last_name: "",
     phone_number: "",
     role: "",
-    loading: false
+    loading: false,
+    error: ""
 }
 
 const fetchRole = createAsyncThunk("role/fetchRole", () => {
@@ -31,6 +32,7 @@ const roleSlice = createSlice({
             state.first_name = action.payload.response.data.first_name
             state.last_name = action.payload.response.data.last_name
             state.phone_number = action.payload.response.data.phone_number
+            state.error = ""
         })
 
         builder.addCase(fetchRole.rejected, (state, action) => {
@@ -40,6 +42,7 @@ const roleSlice = createSlice({
             state.first_name = ""
             state.last_name = ""
             state.phone_number = ""
+            state.error = action.error.message
         })
     }
 })
