@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import ArrowBannerIcon from "../../../public/icons/ArrowBannerIcon";
 
@@ -11,10 +13,15 @@ import FlashButton from "../elements/FlashButton";
 
 import motor from "../../../public/image/motorShop.png";
 import kitchen from "../../../public/image/kitchen.png";
+import { useEffect, useState } from "react";
+import { GETAllProducts } from "@/service/products";
+import { toast } from "react-toastify";
 
 const alaki = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export default function shop() {
+  const [products, setProducts] = useState([]);
+
   const categories = [
     { id: 1, name: "کالای دیجیتال", icon: laptop, alt: "1.jpg" },
     { id: 2, name: "لوازم خانگی برقی", icon: laptop, alt: "2.jpg" },
@@ -24,6 +31,26 @@ export default function shop() {
     { id: 6, name: "خانه و آشپزخانه", icon: laptop, alt: "6.jpg" },
     { id: 7, name: "موتورسیکلت", icon: laptop, alt: "7.jpg" },
   ];
+
+  //! temp product | must change logic of fetching:
+  useEffect(() => {
+    async function fetchProducts() {
+      const { response, error } = await GETAllProducts();
+      if (response) {
+        setProducts(response.data);
+      } else {
+        toast.error("failed");
+      }
+    }
+
+    // calling fetch products func:
+    fetchProducts();
+  }, []);
+
+  console.log("================= products -> \n", products);
+
+  //! temp product | must change logic of fetching:
+
   return (
     <>
       <div className="my-10 flex h-auto w-full flex-col items-center justify-self-center md:w-[90%]">
@@ -72,9 +99,15 @@ export default function shop() {
         <div className="w-full px-3">
           <ShopTitle title="پربازدیدترین محصولات موتورسیکلت" />
           <div className="no-scrollbar my-7 flex w-full gap-[20px] overflow-x-scroll py-2 md:gap-7">
-            {alaki.map((item) => (
-              <ShopCart key={item} icon={motor} />
-            ))}
+            {products.length >= 1 ? (
+              <>
+                {products.map((item) => (
+                  <ShopCart products={item} key={item.id} icon={kitchen} />
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div>
@@ -117,9 +150,15 @@ export default function shop() {
         <div className="my-20 w-full px-3">
           <ShopTitle title="پرفروش ترین لوازم خانگی برقی" />
           <div className="no-scrollbar my-7 flex w-full gap-[20px] overflow-x-scroll py-2 md:gap-7">
-            {alaki.map((item) => (
-              <ShopCart key={item} icon={kitchen} />
-            ))}
+            {products.length >= 1 ? (
+              <>
+                {products.map((item) => (
+                  <ShopCart products={item} key={item.id} icon={kitchen} />
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         {/* kitchen */}

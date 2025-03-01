@@ -8,8 +8,25 @@ import xbox from "./Xbox.jpeg";
 import switchh from "./switch.jpeg";
 import asus from "./asus.jpeg";
 
+import Image from "next/image";
+import bimeBazar from "@/../public/image/bimebazarr.png";
+import matinn from "@/../public/image/matinn.png";
+import daricc from "@/../public/image/daricc.png";
+import zitroo from "@/../public/image/zitroo.png";
+import techno from "@/../public/image/TechnoLife.svg";
+import ali from "@/../public/image/AliBaba.svg";
+import sabz from "@/../public/image/KheiliSabz.svg";
+import khanomi from "@/../public/image/Khanoomi.svg";
+import didar from "@/../public/image/Didar.svg";
+import dewo from "@/../public/image/Daewoo.svg";
+import sfood from "@/../public/image/SnappFood.svg";
+import gshop from "@/../public/image/GooshiShop.svg";
+import green from "@/../public/image/Green.svg";
+
 export const StaticData = [
   {
+    merchant: "تکنولایف",
+    merchantIcon: techno,
     title: "گوشی موبایل سامسونگ s23 ultra دو سیم کارت ظرفیت 256 گیگابایت",
     price: "75,000,000",
     category: "phone",
@@ -51,6 +68,28 @@ export const StaticData = [
         ram: "8 گیگابایت",
         mojod: true,
       },
+    ],
+    information: [
+      { id: 1, key: "ابعاد", value: "8.9 × 78.1 × 163.4 میلی‌متر" },
+      {
+        id: 2,
+        key: "مدل",
+        value:
+          "Galaxy S23 Ultra ",
+      },
+      {
+        id: 3,
+        key: "مشخصات باتری",
+        value: "باتری از نوع لیتیوم-یون با ظرفیت ۴۳۵۲ میلی‌آمپر‌ساعت",
+      },
+      {
+        id: 4,
+        key: "ویژگی های خاص",
+        value:
+          "مقاوم در برابر آب، مناسب عکاسی، مناسب عکاسی سلفی، مناسب بازی، مجهز به حس‌گر تشخیص چهره",
+      },
+      { id: 5, key: "نسخه سیستم عامل", value: "iOS ۱۵" },
+      { id: 6, key: "پردازنده‌ مرکزی", value: "۲x Avalanche + ۴x Blizzard" },
     ],
   },
   {

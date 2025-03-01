@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 export default function AdminLayout({ children }) {
 
-    // redirect("/")
+    // redirect("/admin/confirm-users-clues") 
 
 
     return (

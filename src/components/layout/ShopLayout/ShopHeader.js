@@ -14,6 +14,8 @@ import { useRouter } from "next/navigation";
 import Logo from "@/components/elements/Logo";
 import { fetchRole } from "@/redux/features/userRole/useRole";
 
+import { pallete } from "@/constant/Pallete";
+import CategoryIcon from "../../../../public/icons/category";
 
 const categories = [
     "گوشی موبایل",
@@ -160,6 +162,10 @@ export default function ShopHeader() {
     if(!store.role.id) {
         dispatch(fetchRole())
     }
+
+    // async function fetchUserCart() {
+        
+    // }
   }, [])
 
   const router = useRouter()
@@ -243,22 +249,13 @@ export default function ShopHeader() {
                         <Link
                             href="/shopping-evaam"
                         >
-                            <EvaamLogo 
+                            <Logo 
                                 width="45px"
                                 height="45px"
-                                color="#0e9f6e"
+                                color={pallete.primary}
                             />
                         </Link>
-                        <Link
-                            href="/shopping-evaam"
-                            className="
-                                hidden
-                                md:flex
-                                text-green-500
-                            "
-                        >
-                            ایوام
-                        </Link>
+                    
                     </div>
                     <div
                         className="
@@ -353,8 +350,9 @@ export default function ShopHeader() {
                                     p-[5px]
                                     text-center
                                     border-[2px]
-                                    border-black
+                                    text-white
                                     rounded-lg
+                                    bg-evaamGreen
                                 "
                             >
                                 ورود / ثبت نام
@@ -396,21 +394,33 @@ export default function ShopHeader() {
                         hidden
                         items-center
                         justify-between
-                        w-[88%]
+                        w-full
+                        bg-evaamGreen
+                        text-white
+                        px-10
+                        py-3
                     "
                 >
                     <div
                         className="
-                            bg-[#b5f7ee80]
-                            text-[#007c7d]
-                            w-fit
+                            bg-white
+                            text-evaamGreen
+                            w-auto
                             p-2
                             rounded-xl
                             cursor-pointer
+                            flex 
+                            items-center
+                            justify-evenly
+                            gap-5
+                            font-bold
                         "
                         onClick={() => setShowCategories(true)}
-                    >
-                        دسته بندی کالاها
+                        >
+                         <span>
+                            <CategoryIcon stroke={pallete.primary} fill={pallete.white} height={20} width={20}/>
+                         </span>
+                            <p className="text-sm">دسته بندی کالاها</p>
                     </div>
 
                     <div>
@@ -441,10 +451,10 @@ export default function ShopHeader() {
                     }
                 </div>
 
-                <div
+                {/* <div
                     className="
-                        text-blue-800
-                        bg-[#c1def0]
+                        text-white
+                        bg-evaamGreen
                         p-2
                         rounded-xl
                         md:flex
@@ -452,7 +462,7 @@ export default function ShopHeader() {
                     "
                 >
                     درخواست وام
-                </div>
+                </div> */}
                 
                 {/* categories */}
                 <div
@@ -467,6 +477,7 @@ export default function ShopHeader() {
                         right-0
                         top-14
                         bg-blurbg
+                        hidden
                     `}
                 >
                     <div
@@ -481,7 +492,7 @@ export default function ShopHeader() {
                         onMouseLeave={() => setShowCategories(false)}
                     >
 
-                        {/* header categories */}
+                       
                         <div
                             className="
                                 w-[20%]

@@ -18,6 +18,8 @@ function Search() {
           gap-3
           rounded-lg
           p-2
+          border
+          border-evaamGreen
         `}
     >
       <SearchIcon
