@@ -11,6 +11,7 @@ import { Modal } from "flowbite-react";
 import SecondeOtp from "../../../../../public/icons/dashboard/SecondeOtp";
 import CrossIcon from "../../../../../public/icons/Admin/CrossIcon";
 import { createFacility } from "@/service/userPanel";
+import FacilityState from "@/components/elements/FacilityState";
 
 export default function ConfirmBank() {
 
@@ -21,6 +22,12 @@ export default function ConfirmBank() {
   const router = useRouter()
 
   const store = useSelector(store => store)
+
+  useEffect(() => {
+    if(store.status.level_number < 2) {
+        router.back()
+    }
+}, [])
   
 
   const sendSheba = async () => {
@@ -36,6 +43,9 @@ export default function ConfirmBank() {
 
   return (
     <>
+      <FacilityState
+        curentState={2}
+      />
       {step == 1 ? (
         <>
           <div className="flex flex-col items-center justify-evenly gap-7 md:mt-10">

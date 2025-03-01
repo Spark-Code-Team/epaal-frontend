@@ -136,6 +136,77 @@ const sendDigiSignature = async () => {
     }
 }
 
+const getPayValue = async () => {
+
+    try {
+        const response = await api.get("/facility/prepayment")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
+const postPayValue = async () => {
+
+    try {
+        const response = await api.post("/facility/prepayment")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
+const RamzDovom = async () => {
+
+    try {
+        const response = await api.post("/facility/send_code_getaway_prepayment")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
+const getlevelfour = async () => {
+
+    try {
+        const response = await api.get("/facility/submit_digital")
+    
+        return { response }
+    } catch (error) {
+        return { error }
+    }
+}
+
+const postlevelfour = async (data) => {
+
+    try {
+        const response = await api.post("/facility/submit_digital", {
+            data
+        }, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+    
+        return { response }
+    } catch (error) {
+        return { error }
+    }
+}
+
+const userFacility = async () => {
+    try {
+        const response = await api.get("/facility/inquiry_user_facility")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
 
 
 export {
@@ -149,5 +220,11 @@ export {
     startEtebarSanji,
     getStatusPhysical,
     sendStatusPhysical,
-    sendDigiSignature
+    sendDigiSignature,
+    getPayValue,
+    postPayValue,
+    RamzDovom,
+    getlevelfour,
+    postlevelfour,
+    userFacility
 }

@@ -7,15 +7,48 @@ import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { Modal, ModalBody } from "flowbite-react";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaCheckCircle, FaCross, FaPlus } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import { RiCrossLine } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
+import { getlevelfour, postlevelfour } from "@/service/userPanel";
+import FacilityState from "@/components/elements/FacilityState";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 export default function UploadDigitalCluesModule() {
   const [checkBox, setCheckBox] = useState(false);
   const [sayyadiCheckLength, setSayyadiCheckLength] = useState("");
+  const [fields, setFields] = useState([])
+
+  const store = useSelector(store => store)
+
+  const router = useRouter()
+
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      const {response, error} = await getlevelfour()
+
+      setFields([])
+      if(response) {
+        response.data.data.forEach((item, index) => {
+          setFields(last => [...last, {id: item.id, value: "", file: null, index: index, type: item.type}])
+        })
+      } else {
+        console.log(error);
+      }
+    }
+
+    if(store.status.level_number < 4) {
+        router.back()
+    }
+
+
+    fetchData()
+  }, [])
 
   const fileInputRef = useRef(null);
 
@@ -25,29 +58,51 @@ export default function UploadDigitalCluesModule() {
     }
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e, index) => {
     const file = e.target.files[0];
     if (file) {
-      // اینجا می‌تونی فایل رو پردازش کنی یا آپلود انجام بدی
-      console.log(file);
+      const newFields = fields
+      newFields[index].file = file
+      setFields(newFields)
     }
   };
 
-  const handleCheckLength = (e) => {
-    setSayyadiCheckLength(e.target.value);
-  };
+  const handleCheckLength = (e, index) => {
+    const newFields = fields
+    newFields[index].value = e.target.value
+    setFields(newFields)
+  }
 
   //*   test
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
+
+    const formData = new FormData()
+
+    fields.forEach(item => {
+      formData.append(`data[${item.index}][id]`, item.id)
+      formData.append(`data[${item.index}][value]`, item.value)
+      formData.append(`data[${item.index}][file]`, item.file)
+    })
+
+    const {response, error} = await postlevelfour(formData)
+
+    if(response) {
+      setIsSuccess(true);
+    } else {
+      console.log(error);
+    }
     // هنگام کلیک روی دکمه آپلود
     // setIsLoading(true);
     // // شبیه‌سازی فرایند آپلود به مدت 2 ثانیه
     // setTimeout(() => {
     //   setIsLoading(false);
-    setIsSuccess(true);
+    
+
+
+
     //   // اعلان موفقیت رو بعد از 3 ثانیه مخفی کن
     //   setTimeout(() => {
     //     setIsSuccess(false);
@@ -56,8 +111,15 @@ export default function UploadDigitalCluesModule() {
   };
   //*   test
 
+  if(fields.length == 0) {
+    return <div>Loading</div>
+  }
+
   return (
     <>
+      <FacilityState 
+        curentState={4}
+      />
       {/* overlay لودینگ */}
       {isLoading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -153,52 +215,66 @@ export default function UploadDigitalCluesModule() {
             <p>قوانین و مقررات را خوانده و با آن موافقم.</p>
           </div>
         </div>
-        <div
-          className="relative mt-5 flex h-auto w-full flex-col items-center gap-2 rounded-xl border-4 border-[#BED5DA] pb-10 pt-5 text-sm"
-          onClick={handleClick}
-        >
-          <div className="font-bold">
-            <p>تصویر روی چک صیادی</p>
-          </div>
-          <div className="text-gray-400">
-            <p>فرمت های قابل قبول PDF, PNG, JPG</p>
-          </div>
-          <div className="text-gray-400">
-            <p>حداکثر حجم تا 5Mb</p>
-          </div>
-          <div className="absolute bottom-0 left-1/2 flex h-6 w-16 -translate-x-1/2 transform flex-row items-center justify-center rounded-t-lg bg-[#BED5DA]">
-            <FaPlus color="white" />
-          </div>
 
-          <input
-            ref={fileInputRef}
-            type="file"
-            className="hidden"
-            onChange={handleFileChange}
-            accept=".pdf, .png, .jpg"
-          />
-        </div>
-        <div className="mt-5">
-          <p>شناسۀ صیادی چک را وارد کنید ({digitsEnToFa("16 رقمی")}):</p>
-        </div>
-        <div className="mt-3 flex w-full flex-row items-center justify-between gap-5 rounded-lg border border-gray-200 px-5 py-3">
-          <input
-            type="text"
-            maxLength="16"
-            className="w-full border-none outline-none ring-0 focus:border-none focus:outline-none focus:ring-0"
-            placeholder={digitsEnToFa("شماره 16 رقمی")}
-            onChange={handleCheckLength}
-          />
-          <FaCheckCircle
-            color={`${sayyadiCheckLength.length < 16 ? "gray" : "green"}`}
-            className="h-7 w-7"
-          />
-        </div>
+          {
+            fields.map(item => {
+              if(item.type == "file") {
+                return (
+                  <div
+                  className="relative mt-5 flex h-auto w-full flex-col items-center gap-2 rounded-xl border-4 border-[#BED5DA] pb-10 pt-5 text-sm"
+                  onClick={() => handleClick()}
+                >
+                  <div className="font-bold">
+                    <p>تصویر روی چک صیادی</p>
+                  </div>
+                  <div className="text-gray-400">
+                    <p>فرمت های قابل قبول PDF, PNG, JPG</p>
+                  </div>
+                  <div className="text-gray-400">
+                    <p>حداکثر حجم تا 5Mb</p>
+                  </div>
+                  <div className="absolute bottom-0 left-1/2 flex h-6 w-16 -translate-x-1/2 transform flex-row items-center justify-center rounded-t-lg bg-[#BED5DA]">
+                    <FaPlus color="white" />
+                  </div>
+                    <input
+                    ref={fileInputRef}
+                    type="file"
+                    className="hidden"
+                    onChange={(e) => handleFileChange(e, item.index)}
+                    accept=".pdf, .png, .jpg"
+                  />
+                </div>
+                )
+              } else {
+                return (
+                  <>
+                    <div className="mt-5">
+                      <p>شناسۀ صیادی چک را وارد کنید ({digitsEnToFa("16 رقمی")}):</p>
+                    </div>
+                    <div className="mt-3 flex w-full flex-row items-center justify-between gap-5 rounded-lg border border-gray-200 px-5 py-3">
+                      <input
+                        type="text"
+                        maxLength="16"
+                        className="w-full border-none outline-none ring-0 focus:border-none focus:outline-none focus:ring-0"
+                        placeholder={digitsEnToFa("شماره 16 رقمی")}
+                        onChange={(e) => handleCheckLength(e, item.index)}
+                      />
+                      <FaCheckCircle
+                        color={`${sayyadiCheckLength.length < 16 ? "gray" : "green"}`}
+                        className="h-7 w-7"
+                      />
+                    </div>
+                  </>
+                )
+              }
+            })
+          }
+        
         <div
-          className="mx-auto mb-10 mt-10 w-4/5 rounded-xl bg-evaamGreen py-3 text-center text-white transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer hover:shadow-md"
-          onClick={handleUpload}
+          className="mx-auto cursor-pointer mb-10 mt-10 w-4/5 rounded-xl bg-evaamGreen py-3 text-center text-white transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer hover:shadow-md"
+          onClick={() => handleUpload()}
         >
-          <button>تایید و ادامه</button>
+          <div>تایید و ادامه</div>
         </div>
       </div>
     </>

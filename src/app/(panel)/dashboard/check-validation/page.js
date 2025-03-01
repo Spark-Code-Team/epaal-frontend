@@ -13,12 +13,22 @@ import CheckValidation from "../../../../../public/icons/dashboard/checkVal";
 import SentIcon from "../../../../../public/icons/dashboard/sent";
 import SuccessIcon from "../../../../../public/icons/dashboard/success";
 import { startEtebarSanji } from "@/service/userPanel";
+import FacilityState from "@/components/elements/FacilityState";
+import { useSelector } from "react-redux";
 
 export default function ConfirmBank() {
   const router = useRouter()
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const store = useSelector(store => store)
+
+  useEffect(() => {
+    if(store.status.level_number < 3) {
+        router.back()
+    }
+}, [])
   
   const handelEtebar = async () => {
 
@@ -35,6 +45,9 @@ export default function ConfirmBank() {
 
   return (
     <>
+      <FacilityState
+        curentState={3} 
+      />
       {isSuccess ? (
         <>
           <div className="mt-20 flex flex-col items-center justify-between gap-10 text-center">

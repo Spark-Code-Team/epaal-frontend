@@ -134,6 +134,18 @@ export default function UserSidebar() {
                 <div>راهنما</div>
               </Link>
               <Link
+                href="/dashboard/authentication"
+                className="flex items-center justify-start gap-3 border-[#d9d9d9] px-3 pb-3"
+                onClick={() => {
+                  setBurgerMenu(false);
+                }}
+              >
+                <div>
+                  <Information fill="#1D434C" height="25" width="25" />
+                </div>
+                <div>احراز هویت</div>
+              </Link>
+              <Link
                 href="/dashboard/get-credit"
                 className="flex items-center justify-start gap-3 border-[#d9d9d9] px-3 pb-3"
                 onClick={() => {
@@ -225,6 +237,20 @@ export default function UserSidebar() {
                   <Information fill="#1D434C" height="25" width="25" />
                 </div>
                 <div>راهنما</div>
+              </div>
+              <div>
+                <LeftAroowBlur fill="#1D434C" height="25" width="25" />
+              </div>
+            </Link>
+            <Link
+              href="/dashboard/authentication"
+              className="flex mb-2 flex-row items-center justify-between gap-3 border-[#d9d9d9] px-3 py-3 transition-all duration-300 ease-in-out hover:rounded-3xl hover:bg-[#93B9C3]"
+            >
+              <div className="flex w-1/2 flex-row items-center justify-between">
+                <div>
+                  <Information fill="#1D434C" height="25" width="25" />
+                </div>
+                <div>احراز هویت</div>
               </div>
               <div>
                 <LeftAroowBlur fill="#1D434C" height="25" width="25" />
