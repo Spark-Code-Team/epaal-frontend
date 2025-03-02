@@ -24,11 +24,11 @@ export default function ConfirmBank() {
 
   const store = useSelector(store => store)
 
-  useEffect(() => {
-    if(store.status.level_number < 3) {
-        router.back()
-    }
-}, [])
+//   useEffect(() => {
+//     if(store.status.level_number < 3) {
+//         router.back()
+//     }
+// }, [])
   
   const handelEtebar = async () => {
 

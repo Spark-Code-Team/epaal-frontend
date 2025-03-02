@@ -39,7 +39,7 @@ export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }
         theme: "light",
         transition: Bounce,
       });
-      router.replace("/dashboard/");
+      router.replace("dashboard/get-credit");
     } else {
       console.log(error);
     }

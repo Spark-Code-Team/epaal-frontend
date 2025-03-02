@@ -23,11 +23,11 @@ export default function ConfirmBank() {
 
   const store = useSelector(store => store)
 
-  useEffect(() => {
-    if(store.status.level_number < 2) {
-        router.back()
-    }
-}, [])
+//   useEffect(() => {
+//     if(store.status.level_number < 2) {
+//         router.back()
+//     }
+// }, [])
   
 
   const sendSheba = async () => {
@@ -36,6 +36,7 @@ export default function ConfirmBank() {
     
     if(response) {
       setStep(2)
+      setShowModal(false)
     } else {
       console.log(error);
     }

@@ -12,12 +12,6 @@ export default function ConfirmPrepaymentModule() {
   const store = useSelector(store => store)
   const router = useRouter()
 
-  useEffect(() => {
-    if(store.status.level_number < 7) {
-        router.back()
-    }
-}, [])
-
   return (
     <>
       <FacilityState

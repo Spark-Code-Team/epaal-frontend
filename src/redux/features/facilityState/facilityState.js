@@ -30,6 +30,8 @@ const statusSlice = createSlice({
         })
 
         builder.addCase(fetchStatus.fulfilled, (state, action) => {
+            console.log(action.payload);
+            
             state.loading = false
             state.id = action.payload.response.data.data.id
             state.user_name = action.payload.response.data.data.user_name
