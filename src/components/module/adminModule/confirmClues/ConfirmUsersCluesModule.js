@@ -31,13 +31,6 @@ import { formatNumberToFA } from "@/utils/numToFa";
 import { pallete } from "@/constant/Pallete";
 
 export default function ConfirmUsersCluesModule() {
-  const sampleData = [
-    { id: 1, name: "آیتم 1", category: "دسته‌بندی A", price: "100,000 تومان" },
-    { id: 2, name: "آیتم 2", category: "دسته‌بندی B", price: "200,000 تومان" },
-    { id: 3, name: "آیتم 3", category: "دسته‌بندی A", price: "150,000 تومان" },
-    { id: 4, name: "آیتم 4", category: "دسته‌بندی C", price: "250,000 تومان" },
-    { id: 5, name: "آیتم 5", category: "دسته‌بندی B", price: "300,000 تومان" },
-  ];
 
   const [waitedUsers, setWaitedUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
