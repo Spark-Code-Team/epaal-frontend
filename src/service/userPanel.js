@@ -207,6 +207,16 @@ const userFacility = async () => {
     }
 }
 
+const facilityInformation = async () => {
+    try {
+        const response = await api.get("/users/my_facility/")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
 
 
 export {
@@ -226,5 +236,6 @@ export {
     RamzDovom,
     getlevelfour,
     postlevelfour,
-    userFacility
+    userFacility,
+    facilityInformation
 }

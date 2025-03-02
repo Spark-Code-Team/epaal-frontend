@@ -34,17 +34,20 @@ export default function UploadDigitalCluesModule() {
 
       setFields([])
       if(response) {
-        response.data.data.forEach((item, index) => {
+        response.data.data?.forEach((item, index) => {
           setFields(last => [...last, {id: item.id, value: "", file: null, index: index, type: item.type}])
         })
+
+        console.log("111111111111111111111111111111111",response);
+        
       } else {
-        console.log(error);
+        console.log("111111111111111111111111111111", error);
       }
     }
 
-    if(store.status.level_number < 4) {
-        router.back()
-    }
+    // if(store.status.level_number < 4) {
+    //     router.back()
+    // }
 
 
     fetchData()
@@ -79,21 +82,27 @@ export default function UploadDigitalCluesModule() {
 
   const handleUpload = async () => {
 
-    const formData = new FormData()
-
-    fields.forEach(item => {
-      formData.append(`data[${item.index}][id]`, item.id)
-      formData.append(`data[${item.index}][value]`, item.value)
-      formData.append(`data[${item.index}][file]`, item.file)
-    })
-
-    const {response, error} = await postlevelfour(formData)
-
-    if(response) {
-      setIsSuccess(true);
+    if(store.status.level == "waiting_digital") {
+      router.replace("send-clues")
     } else {
-      console.log(error);
+      const formData = new FormData()
+  
+      fields.forEach(item => {
+        formData.append(`data[${item.index}][id]`, item.id)
+        formData.append(`data[${item.index}][value]`, item.value)
+        formData.append(`data[${item.index}][file]`, item.file)
+      })
+  
+      const {response, error} = await postlevelfour(formData)
+  
+      if(response) {
+        setIsSuccess(true);
+      } else {
+        console.log(error);
+      }
+
     }
+
     // هنگام کلیک روی دکمه آپلود
     // setIsLoading(true);
     // // شبیه‌سازی فرایند آپلود به مدت 2 ثانیه
@@ -111,9 +120,9 @@ export default function UploadDigitalCluesModule() {
   };
   //*   test
 
-  if(fields.length == 0) {
-    return <div>Loading</div>
-  }
+  // if(fields.length == 0) {
+  //   return <div>در انتظار تایید ادمین</div>
+  // }
 
   return (
     <>
@@ -217,7 +226,7 @@ export default function UploadDigitalCluesModule() {
         </div>
 
           {
-            fields.map(item => {
+            fields.length != 0 && fields.map(item => {
               if(item.type == "file") {
                 return (
                   <div
@@ -274,7 +283,15 @@ export default function UploadDigitalCluesModule() {
           className="mx-auto cursor-pointer mb-10 mt-10 w-4/5 rounded-xl bg-evaamGreen py-3 text-center text-white transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer hover:shadow-md"
           onClick={() => handleUpload()}
         >
-          <div>تایید و ادامه</div>
+          <div>
+            {
+              store.status.level == "submit_digital" ? (
+                "رفتن به مرحله بعد"
+              ) : (
+               " تایید و ادامه"
+              )
+            }
+            </div>
         </div>
       </div>
     </>

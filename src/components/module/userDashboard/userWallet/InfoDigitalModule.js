@@ -12,11 +12,11 @@ export default function InfoDigitalModule() {
 
   const store = useSelector(store => store)
 
-  useEffect(() => {
-    if(store.status.level_number < 4) {
-        router.back()
-    }
-}, [])
+//   useEffect(() => {
+//     if(store.status.level_number < 4) {
+//         router.back()
+//     }
+// }, [])
 
   return (
     <>
@@ -40,7 +40,7 @@ export default function InfoDigitalModule() {
             عدم پرداخت اقساط چک ضمانت اجرا میشود.
           </p>
         </div>
-        <div className="mt-5 h-auto w-[350px] rounded-xl bg-slate-200 p-4">
+        <div className="mt-5 h-auto w-[350px] md:w-full rounded-xl bg-slate-200 p-4">
           <div className="mb-4 font-bold">
             <p>مراحل:</p>
           </div>

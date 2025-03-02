@@ -79,7 +79,13 @@ export default function Header() {
   }, []);
 
   const secureRoute = () => {
-    router.push("/dashboard/authentication")
+
+    if (store.role.role = "admin") {
+      router.push("admin")
+    } else {
+      router.push("/dashboard/")
+
+    }
   }
 
   return (

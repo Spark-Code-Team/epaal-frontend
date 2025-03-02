@@ -17,6 +17,10 @@ export default function UserLayout({children}) {
     const dispatch = useDispatch()
     const profile = useSelector(store => store.profile)
     const status = useSelector(store => store.status)
+
+    console.log("profile", profile);
+    console.log("status", status);
+    
     
 
     useEffect(() => {
@@ -25,9 +29,8 @@ export default function UserLayout({children}) {
             dispatch(fetchProfile())
         }
 
-        if(!status.id) {
-            dispatch(fetchStatus())
-        }
+        dispatch(fetchStatus())
+
 
     }, [])
 

@@ -24,12 +24,6 @@ export default function Signature(props) {
 
   const store = useSelector(store => store)
 
-  useEffect(() => {
-    if(store.status.level_number < 6) {
-        router.back()
-    }
-}, [])
-
   // تنظیم ابعاد canvas به صورت ریسپانسیو
   useEffect(() => {
     const handleResize = () => {

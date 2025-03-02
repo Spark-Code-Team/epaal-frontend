@@ -13,12 +13,6 @@ export default function CreditFinalWaitingModule() {
 
   const store = useSelector(store => store)
 
-  useEffect(() => {
-    if(store.status.level_number < 8) {
-        router.back()
-    }
-}, [])
-
   return (
     <>
       <div className="flex w-full flex-col items-center md:mb-32">
@@ -57,7 +51,7 @@ export default function CreditFinalWaitingModule() {
             </div>
           </div>
           <div className="my-5 text-center font-bold">
-            <p>کاربر گرامی، طرح مورد نظر شما، با موفقیت برایتان فعال شد.</p>
+            <p>کاربر گرامی، طرح مورد نظر شما، با موفقیت برایتان فعال خواهد شد.</p>
           </div>
         </div>
       </div>

@@ -6,10 +6,14 @@ import BikeSend from "@/../public/icons/dashboard/bike-clues.svg";
 import { useEffect, useState } from "react";
 import { getStatusPhysical, sendStatusPhysical } from "@/service/userPanel";
 import { toast } from "react-toastify";
+import FacilityState from "@/components/elements/FacilityState";
+import { useRouter } from "next/navigation";
 
 export default function SendCluesModule() {
 
   const [status, setStatus] = useState("")
+
+  const router = useRouter()
 
   const handelStatus = async () => {
     if(status != "submit_physical") return
@@ -18,6 +22,7 @@ export default function SendCluesModule() {
 
     if(response) {
       setStatus(true)
+      router.push("digital-signature")
     } else {
       console.log(error);
       toast.error("مدارک به مقصد نرسیده است")
@@ -42,6 +47,7 @@ export default function SendCluesModule() {
 
   return (
     <>
+      <FacilityState curentState={5} />
       <div id="container" className="w-full h-auto">
         <div className="my-4 text-lg font-extrabold">
           <p>ارسال چک صیادی</p>

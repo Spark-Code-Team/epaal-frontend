@@ -30,7 +30,7 @@ const data = [
     },
 ]
 
-export default function InprogressFacility() {
+export default function InprogressFacility({ facility }) {
 
     return (
         <div

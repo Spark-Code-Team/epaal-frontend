@@ -39,6 +39,7 @@ export default function PaymentResultModule(props) {
     const countdown = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
+          router.push("/dashboard/facility-management")
           sendFinal()
           clearInterval(countdown);
           return 0;

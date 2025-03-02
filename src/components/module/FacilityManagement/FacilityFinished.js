@@ -1,5 +1,8 @@
 
 
+
+
+
 const st = [
     {
         titll: "طرح اعتباری:",
@@ -19,7 +22,7 @@ const st = [
     }
 ]
 
-export default function FinishedFacility() {
+export default function FacilityFinished() {
 
     return (
         <div

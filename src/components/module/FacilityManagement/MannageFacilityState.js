@@ -47,7 +47,7 @@ export default function MannageFacilityState({ setSatate, state }) {
                                 py-2
                                 ${state == item.id ? "text-[#1D2433] border-b-2 border-[#1D2433]" : ""}
                             `}
-
+                            key={item.id}
                             onClick={() => setSatate(item.id)}
                         >
                             <p>

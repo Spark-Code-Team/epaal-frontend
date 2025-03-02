@@ -1,3 +1,4 @@
+import Link from "next/link"
 import AghsatChart from "./AghsatChart"
 
 const st = [
@@ -77,6 +78,32 @@ export default function GivenFacility() {
                     </div>
                 ))
             }
+        </div>
+
+        <div
+            className="
+                w-full
+                absolute
+                left-4
+                bottom-4
+                flex
+                items-center
+                justify-end
+            "
+        >
+            <Link
+                href="/prepayment"
+                className="
+                    w-fit
+                    bg-evaamGreen
+                    text-white
+                    p-2
+                    text-xs
+                    rounded-lg
+                "
+            >
+                پرداخت
+            </Link>
         </div>
     </div>
     )
