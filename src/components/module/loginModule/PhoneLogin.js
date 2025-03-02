@@ -20,7 +20,7 @@ const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
       } else {
         console.log(error);
         
-        toast.error("😢این شماره ثبت نشده ", {
+        toast.error(error.response.data.message, {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
