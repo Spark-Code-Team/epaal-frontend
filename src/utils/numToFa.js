@@ -1,3 +1,3 @@
 export const formatNumberToFA = (number) => {
-  return number.toLocaleString("fa-IR");
+  return Number(number).toLocaleString("fa-IR");
 };

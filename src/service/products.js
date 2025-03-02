@@ -32,3 +32,46 @@ export async function AddSingleProductsToCart(productInstanceId) {
     return { error };
   }
 }
+
+
+export async function GETUserCart() {
+  try {
+    const response = await api.get("users/my_cart/");
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+}
+
+
+
+export async function GETUserCartTotalCost() {
+  try {
+    const response = await api.get("users/get_cart_cost/");
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+}
+
+
+
+
+export async function GETUserWallet() {
+  try {
+    const response = await api.get("users/wallet/");
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+}
+
+
+export async function PayCartProduct() {
+  try {
+    const response = await api.post("users/buy_products/");
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+}

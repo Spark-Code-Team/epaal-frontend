@@ -41,6 +41,13 @@ const shopCartReducer = createSlice({
             }
         },
 
+        setCart: (state, action) => {
+            state.selected = action.payload.map(item => ({
+                ...item,
+            }));
+            state.counter = state.selected.length;
+        },
+
         checkout: (state) => {
             state.selected = []
             state.totalPrice = 0
@@ -51,4 +58,4 @@ const shopCartReducer = createSlice({
 
 
 export default shopCartReducer.reducer
-export const { increment, decrement, checkout } = shopCartReducer.actions
+export const { increment, decrement, checkout, setCart } = shopCartReducer.actions

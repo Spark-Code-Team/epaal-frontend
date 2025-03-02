@@ -16,6 +16,8 @@ import { fetchRole } from "@/redux/features/userRole/useRole";
 
 import { pallete } from "@/constant/Pallete";
 import CategoryIcon from "../../../../public/icons/category";
+import { GETUserCart } from "@/service/products";
+import { setCart } from "@/redux/features/shopCart/shopCart";
 
 const categories = [
     "گوشی موبایل",
@@ -155,7 +157,7 @@ export default function ShopHeader() {
   const store = useSelector(store => store)
   const dispatch = useDispatch()
 
-  console.log(store);
+//   console.log("================ dispatch" , dispatch);
   
 
   useEffect(() => {
@@ -163,9 +165,17 @@ export default function ShopHeader() {
         dispatch(fetchRole())
     }
 
-    // async function fetchUserCart() {
-        
-    // }
+    async function fetchUserCart() {
+        const {response, error} = await GETUserCart()
+
+        if(response){
+            console.log("cart =================> \n", dispatch(setCart(response.data.data)))
+        } else {
+            console.error("error on cart ==============> ", error)
+        }
+    }
+
+    fetchUserCart()
   }, [])
 
   const router = useRouter()

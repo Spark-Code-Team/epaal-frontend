@@ -117,7 +117,7 @@ export default function CalculateCredit() {
 
           <div className="my-[16px] flex items-center gap-4 md:my-[50px] md:mr-[16px] md:flex md:flex-wrap md:items-center md:justify-center">
             {
-              store.selectedFacility.insatllments.map((item, index) => (
+              (store?.selectedFacility?.insatllments || []).map((item, index) => (
                 <div
                   key={index}
                   className={`flex flex-col text-center w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == index? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
