@@ -82,7 +82,7 @@ export default function UploadDigitalCluesModule() {
 
   const handleUpload = async () => {
 
-    if(store.status.level == "waiting_digital") {
+    if(store.status.level == "submit_physical") {
       router.replace("send-clues")
     } else {
       const formData = new FormData()

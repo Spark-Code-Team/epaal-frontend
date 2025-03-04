@@ -9,11 +9,10 @@ const stateCreator = [1, 2, 3, 4, 5, 6, 7, 8]
 export default function FacilityState({ curentState }) {
 
     const store = useSelector(store => store)
-
     const router = useRouter()
 
     useEffect(() => {
-        if(store.status.level_number == curentState) {
+        if (store.status.level_number == curentState) {
             router.back()
         }
     }, [])
