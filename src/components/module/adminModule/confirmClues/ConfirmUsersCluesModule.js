@@ -22,6 +22,7 @@ import {
   POSTRejectDigitalFacitiltyClues,
   POSTAcceptDigitalFacitiltyClues,
   POSTAcceptPhysicalFacitiltyClues,
+  POSTAcceptFinalFacitilty,
 } from "@/service/adminPanel";
 import { toast } from "react-toastify";
 import { ToJalaliDate } from "@/utils/toJalali";
@@ -31,7 +32,6 @@ import { formatNumberToFA } from "@/utils/numToFa";
 import { pallete } from "@/constant/Pallete";
 
 export default function ConfirmUsersCluesModule() {
-
   const [waitedUsers, setWaitedUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
@@ -43,6 +43,7 @@ export default function ConfirmUsersCluesModule() {
     reject_text: "",
   });
   const [userDigitalClues, setUserDigitalClues] = useState([]);
+  const [showFinalConfirm, setShowFinalConfirm] = useState(false);
 
   useEffect(() => {
     const getWaitingUser = async () => {
@@ -52,7 +53,7 @@ export default function ConfirmUsersCluesModule() {
         console.log(response.data);
         setWaitedUsers(response?.data.data);
       } else {
-        toast.error("ت");
+        toast.error("خطا در دریافت اطلاعات");
       }
     };
 
@@ -68,7 +69,6 @@ export default function ConfirmUsersCluesModule() {
           await GETWaitedUserFacitiltyClues(userFacilityId);
 
         if (response) {
-          console.log("res ========> ", response.data.data);
           setUserDigitalClues(response.data.data);
         } else {
           toast.error("erro");
@@ -83,6 +83,8 @@ export default function ConfirmUsersCluesModule() {
     }
     setShowModal(true);
   };
+
+  console.log("00000000000000000000000> \t", waitedUsers)
 
   const sendRejectedFacility = async () => {
     const { response, error } =
@@ -123,6 +125,20 @@ export default function ConfirmUsersCluesModule() {
     } else {
       toast.error("خطا در برقراری ارتباط❌");
     }
+  };
+
+  const sendFinalConfirm = async () => {
+    const { response, error } = await POSTAcceptFinalFacitilty(
+      selectedUserFacility.user_facility_id,
+    );
+
+    if (response) {
+      toast.success("کیف پول کاربر با موفقیت شارژ شد.");
+    } else {
+      toast.error("خطا در برقراری ارتباط")
+    }
+
+    setShowFinalConfirm(false)
   };
 
   return (
@@ -236,6 +252,13 @@ export default function ConfirmUsersCluesModule() {
                               user.status == "in_progress"
                                 ? "auto"
                                 : "none",
+                          }}
+                          onClick={() => {
+                            setSelectedUserFacility((prev) => ({
+                              ...prev,
+                              user_facility_id: user.id,
+                            }));
+                            setShowFinalConfirm(true);
                           }}
                         >
                           <WalletMoney
@@ -388,6 +411,48 @@ export default function ConfirmUsersCluesModule() {
             <button>ثبت</button>
           </div>
         </Modal.Body>
+      </Modal>
+
+      <Modal
+        show={showFinalConfirm}
+        onClose={() => {
+          setShowFinalConfirm(false);
+        }}
+        className="flex flex-col items-center justify-evenly"
+      >
+        <div className="flex flex-col items-center justify-evenly gap-6 py-10">
+          <div className="border-b-2 border-gray-200 px-10 py-5 text-2xl font-bold">
+            <p>تایید نهایی و شارژ کیف پول</p>
+          </div>
+          <div>
+            <hr />
+          </div>
+          <div className="text-lg font-medium">
+            <p>
+              با تأیید نهایی، کیف پول کاربر به مقدار{" "}
+              <span className="text-evaamGreen">" مبلغ قابل اعطا "</span> شارژ
+              خواهد شد.
+            </p>
+          </div>
+          <div className="flex w-full flex-row items-center justify-evenly">
+            <button
+              className="rounded-lg bg-evaamGreen px-10 py-5 text-white transition-all duration-300 ease-in-out hover:rounded-2xl hover:shadow-md"
+              onClick={() => {
+                sendFinalConfirm();
+              }}
+            >
+              تایید و شارژ
+            </button>
+            <button
+              className="rounded-lg bg-red-800 px-10 py-5 text-white transition-all duration-300 ease-in-out hover:rounded-2xl hover:shadow-md"
+              onClick={() => {
+                setShowFinalConfirm(false);
+              }}
+            >
+              انصراف
+            </button>
+          </div>
+        </div>
       </Modal>
     </>
   );

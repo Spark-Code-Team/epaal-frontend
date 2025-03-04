@@ -51,3 +51,16 @@ export async function POSTAcceptPhysicalFacitiltyClues(object) {
     return { error };
   }
 }
+
+
+export async function POSTAcceptFinalFacitilty(faciliryId) {
+  try {
+    const response = await api.post("Admin/confirm_final_waiting", {
+      user_facility_id: faciliryId
+    });
+
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+}
