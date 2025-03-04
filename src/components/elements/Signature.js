@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import SignatureCanvas from "react-signature-canvas";
 
 export default function Signature(props) {
-  const {from} = props
+  const { from } = props
 
   const sigCanvasRef = useRef(null);
   const [signatureData, setSignatureData] = useState("");
@@ -43,7 +43,7 @@ export default function Signature(props) {
 
     const { response, error } = await sendDigiSignature()
 
-    if(response) {
+    if (response) {
       router.push("/dashboard/confirm-prepayment")
       console.log(response);
     } else {
@@ -92,12 +92,12 @@ export default function Signature(props) {
         setShowPreview(true);
       }, 1000);
 
-      
+
     }
   };
 
 
-  function confirmSignature (){
+  function confirmSignature() {
     if (from == "dashboard") {
       router.push("/dashboard/confirm-prepayment")
     }
@@ -114,18 +114,18 @@ export default function Signature(props) {
 
   return (
     <div className="flex flex-col mt-10 w-full">
-        <div className="font-extrabold text-lg mb-5">
-            <p>
-                نمونه امضا
-            </p>
-        </div>
-        <div className="font-medium text-lg mb-5 mt-5">
-            <p>
-                لطفا نمونه امضا خود را در کادر زیر وارد کنید: 
-            </p>
-        </div>
+      <div className="font-extrabold text-lg mb-5">
+        <p>
+          نمونه امضا
+        </p>
+      </div>
+      <div className="font-medium text-lg mb-5 mt-5">
+        <p>
+          لطفا نمونه امضا خود را در کادر زیر وارد کنید:
+        </p>
+      </div>
       <div className="mx-auto flex max-w-md flex-col items-center gap-4 rounded-lg border p-4">
-        
+
         <div className="flex w-full items-center justify-between">
           <p className="font-bold">محل امضا:</p>
           <div

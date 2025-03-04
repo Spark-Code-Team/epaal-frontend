@@ -47,6 +47,7 @@ export default function Header() {
   const store = useSelector(store => store)
   const dispatch = useDispatch()
   const router = useRouter()
+  
 
   useEffect(() => {
     if(!store.role.id) {
@@ -79,12 +80,12 @@ export default function Header() {
   }, []);
 
   const secureRoute = () => {
-
-    if (store.role.role = "admin") {
-      router.push("admin")
+      console.log("injam");
+      
+    if (store.role.role == "admin") {
+      router.push("/admin")
     } else {
       router.push("/dashboard/")
-
     }
   }
 
