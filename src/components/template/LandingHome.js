@@ -1,4 +1,3 @@
-import Articles from "../elements/Articles.";
 import CreditConditions from "../elements/CreditConditions";
 import InstallmentPurchase from "../elements/InstallmentPurchase";
 import LoanApplicationGuide from "../elements/LoanApplicationGuide";
@@ -15,6 +14,7 @@ import MohasebeAghsat from "../module/landingModule/MohasebeAghsat";
 import EvamStore from "../module/landingModule/EvamStore";
 import RahnamaPaziran from "../module/landingModule/RahnamaPaziran";
 import ProductCategory from "../module/landingModule/ProductCategory";
+import ArticleCard from "../elements/ArticleCard";
 
 
 
