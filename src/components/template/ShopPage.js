@@ -12,6 +12,10 @@ import ShopTitle from "../elements/ShopTitle";
 import FlashButton from "../elements/FlashButton";
 
 import motor from "../../../public/image/motorShop.png";
+import secondeBanner from "../../../public/image/secondBanner.png";
+import secondeBannerMobile from "../../../public/image/secondeBannerMobile.png";
+import thirdBanner from "../../../public/image/thirdBannerMobile.png";
+import thirdBannerMobile from "../../../public/image/thirdBanner.png";
 import kitchen from "../../../public/image/kitchen.png";
 import { useEffect, useState } from "react";
 import { GETAllProducts } from "@/service/products";
@@ -115,39 +119,32 @@ export default function shop() {
         </div>
 
         {/* second banner */}
-        <div className="flex h-96 w-[95%] flex-row items-center rounded-3xl bg-gradient-to-r from-violet-900 to-blue-800">
-          <div className="flex h-[80%] w-1/2 flex-col items-start justify-evenly p-4 md:p-16">
-            <div>
-              <h1 className="text-[17px] font-extrabold text-white md:text-3xl">
-                لذت شنیدن موسیقی
-              </h1>
-            </div>
-            <div>
-              <p className="text-[10.0px] font-normal text-white md:w-3/4 md:text-xl">
-                خرید اقساطی انواع هدفون و هدست
-              </p>
-            </div>
-            <button className="flex flex-row items-center justify-between rounded-xl bg-white px-4 py-2 text-[10px] text-evaamGreen md:text-lg">
-              <div>دریافت طرح اعتباری</div>
-              <div>
-                <ArrowBannerIcon color="#1D434C" />
-              </div>
-            </button>
-          </div>
-          <div className="flex w-1/2 flex-col items-center justify-evenly">
-            <Image
-              src={"/image/headset.png"}
-              width={300}
-              height={300}
-              alt="banner.jpg"
-              className="h-[200px] w-[300px] md:h-[500px] md:w-[800px]"
-            />
-          </div>
-        </div>
+          <Image 
+            src={secondeBanner}
+            width={20000}
+            height={20000}
+            alt="alt"
+            className="
+              md:block
+              hidden
+            "
+            draggable={false}
+          />
+          <Image 
+            src={secondeBannerMobile}
+            width={20000}
+            height={20000}
+            alt="alt"
+            className="
+              block
+              md:hidden
+            "
+            draggable={false}
+          />
         {/* second banner */}
 
         {/* kitchen */}
-        <div className="my-20 w-full px-3">
+        <div className="mt-20 w-full px-3">
           <ShopTitle title="پرفروش ترین لوازم خانگی برقی" />
           <div className="no-scrollbar my-7 flex w-full gap-[20px] overflow-x-scroll py-2 md:gap-7">
             {products.length >= 1 ? (
@@ -165,35 +162,28 @@ export default function shop() {
 
         {/* third banner */}
 
-        <div className="flex h-96 w-[95%] flex-row items-center rounded-3xl bg-gradient-to-l from-red-900 to-red-600">
-          <div className="flex w-1/2 flex-col items-center justify-evenly">
-            <Image
-              src={"/image/home.png"}
-              width={300}
-              height={300}
-              alt="banner.jpg"
-              className="h-[200px] w-[300px] md:h-[500px] md:w-[800px]"
-            />
-          </div>
-          <div className="flex h-[80%] w-1/2 flex-col items-start justify-evenly p-4 md:p-16">
-            <div className="w-full">
-              <h1 className="text-[17px] font-extrabold text-white md:text-4xl">
-                لوازم خانگی برقی
-              </h1>
-            </div>
-            <div className="w-full">
-              <p className="text-[10.0px] font-normal text-white md:w-full md:text-3xl">
-                خرید اقساطی انواع خانگی برقی
-              </p>
-            </div>
-            <button className="flex flex-row items-center justify-between rounded-xl bg-white px-4 py-2 text-[10px] text-red-600 md:text-lg">
-              <div>دریافت طرح اعتباری</div>
-              <div>
-                <ArrowBannerIcon color="#FF0000" />
-              </div>
-            </button>
-          </div>
-        </div>
+        <Image 
+            src={thirdBannerMobile}
+            width={20000}
+            height={20000}
+            alt="alt"
+            className="
+              md:block
+              hidden
+            "
+            draggable={false}
+          />
+          <Image 
+            src={thirdBanner}
+            width={20000}
+            height={20000}
+            alt="alt"
+            className="
+              block
+              md:hidden
+            "
+            draggable={false}
+          />
         {/* third banner */}
       </div>
     </>

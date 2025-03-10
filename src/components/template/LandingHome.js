@@ -15,6 +15,7 @@ import EvamStore from "../module/landingModule/EvamStore";
 import RahnamaPaziran from "../module/landingModule/RahnamaPaziran";
 import ProductCategory from "../module/landingModule/ProductCategory";
 import ArticleCard from "../elements/ArticleCard";
+import ArticleTitle from "../module/articlePage/ArticleTitle";
 
 
 

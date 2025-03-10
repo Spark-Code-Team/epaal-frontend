@@ -156,8 +156,6 @@ export default function ShopHeader() {
 
   const store = useSelector(store => store)
   const dispatch = useDispatch()
-
-//   console.log("================ dispatch" , dispatch);
   
 
   useEffect(() => {
@@ -280,13 +278,13 @@ export default function ShopHeader() {
                 </div>
 
                 <div
-                    className="
+                    className={`
                         flex
                         items-center
                         justify-between
                         md:w-[12%]
                         w-[45%]
-                    "
+                    `}
                 >
 
                     {
@@ -353,20 +351,29 @@ export default function ShopHeader() {
                             </div>
                             </>
                         ) : (
-                            <Link
-                                href="/login"
+                            <div
                                 className="
-                                    w-fit
-                                    p-[5px]
-                                    text-center
-                                    border-[2px]
-                                    text-white
-                                    rounded-lg
-                                    bg-evaamGreen
+                                    w-full
+                                    flex
+                                    items-center
+                                    justify-end
                                 "
                             >
-                                ورود / ثبت نام
-                            </Link>
+                                <Link
+                                    href="/login"
+                                    className="
+                                        w-fit
+                                        p-[5px]
+                                        text-center
+                                        border-[2px]
+                                        text-white
+                                        rounded-lg
+                                        bg-evaamGreen
+                                    "
+                                >
+                                    ورود / ثبت نام
+                                </Link>
+                            </div>
                         )
                     }
                 </div>
