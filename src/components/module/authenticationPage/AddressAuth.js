@@ -5,6 +5,7 @@ import Tick from "../../../../public/icons/Admin/Tick";
 import { addressAuthReq, confirmAuthReq } from "@/service/userPanel";
 import { redirect, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 
 
@@ -17,6 +18,8 @@ export default function AddressAuth() {
         postal_code: "",
         address: ""
     })
+
+    const store = useSelector(store => store)
 
     const sendAddress = async () => {
         const { response, error } = await addressAuthReq(state)
@@ -41,6 +44,10 @@ export default function AddressAuth() {
             toast.error("احراز آدرس با مشکل مواجه شد")
         }
     }
+
+    if(store.profile.confirmed_address) [
+        redirect("/dashboard")
+    ]
 
     return (
         <div>

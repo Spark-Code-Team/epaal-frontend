@@ -25,7 +25,7 @@ const LoginPage = () => {
   if(store.role.id) {
     router.push("/")
   } else {
-    console.log("no");
+
   }
 
   const [loginState, setLoginState] = useState(0);

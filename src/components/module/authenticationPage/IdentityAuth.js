@@ -17,6 +17,7 @@ import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
 import { toJalaali } from "jalaali-js";
 import DateObject from "react-date-object";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 
 
@@ -77,10 +78,12 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
         setState(last => ({...last, opt_code: enterOtp}))
     }
 
+    const store = useSelector(store => store)
+
     useEffect(() => {
-        console.log(state);
-        
-    }, [state])
+        console.log(store);
+    }, [store])
+    
 
     const openModal = async () => {
         if(state.code && state.secondPhone && state.family && state.name ) {
@@ -118,6 +121,10 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
         } else {
             setActive(false)
         }
+    }
+
+    if(store.profile.confirmed_address) {
+        setShowAddress(2)
     }
 
     return (

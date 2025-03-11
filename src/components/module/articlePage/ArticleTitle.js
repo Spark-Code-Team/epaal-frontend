@@ -9,7 +9,7 @@ export default function ArticleTitle({ title }) {
                 w-full
                 border-b-[3px]
                 py-4
-                mb-[68px]
+                my-[38px]
             "
         >
             <p

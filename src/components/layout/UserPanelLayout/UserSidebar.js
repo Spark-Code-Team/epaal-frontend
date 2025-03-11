@@ -2,8 +2,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import Logo from "@/components/elements/Logo";
-import { IoIosArrowDown } from "react-icons/io";
-import { FaHamburger } from "react-icons/fa";
 import BagSVG from "../../../../public/icons/dashboard/Bag";
 import BellSVG from "../../../../public/icons/dashboard/bell";
 import DefaultPic from "../../../../public/icons/dashboard/DefaultPic";
@@ -15,10 +13,11 @@ import Information from "../../../../public/icons/dashboard/sidebar/Information"
 import Achivement from "../../../../public/icons/dashboard/sidebar/Achivement";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import LeftAroowBlur from "../../../../public/icons/Admin/AdminShop/LeftAroowBlur";
-import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { FiLogOut } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+
+
 export default function UserSidebar() {
 
 
@@ -133,18 +132,22 @@ export default function UserSidebar() {
                 </div>
                 <div>راهنما</div>
               </Link>
-              <Link
-                href="/dashboard/authentication"
-                className="flex items-center justify-start gap-3 border-[#d9d9d9] px-3 pb-3"
-                onClick={() => {
-                  setBurgerMenu(false);
-                }}
-              >
-                <div>
-                  <Information fill="#1D434C" height="25" width="25" />
-                </div>
-                <div>احراز هویت</div>
-              </Link>
+              {
+                (profile.confirmed_address && profile.confirmed_data) ? null : (
+                  <Link
+                    href="/dashboard/authentication"
+                    className="flex items-center justify-start gap-3 border-[#d9d9d9] px-3 pb-3"
+                    onClick={() => {
+                      setBurgerMenu(false);
+                    }}
+                  >
+                    <div>
+                      <Information fill="#1D434C" height="25" width="25" />
+                    </div>
+                    <div>احراز هویت</div>
+                  </Link>
+                )
+              }
               <Link
                 href="/dashboard/get-credit"
                 className="flex items-center justify-start gap-3 border-[#d9d9d9] px-3 pb-3"
@@ -242,20 +245,24 @@ export default function UserSidebar() {
                 <LeftAroowBlur fill="#1D434C" height="25" width="25" />
               </div>
             </Link>
-            <Link
-              href="/dashboard/authentication"
-              className="flex mb-2 flex-row items-center justify-between gap-3 border-[#d9d9d9] px-3 py-3 transition-all duration-300 ease-in-out hover:rounded-3xl hover:bg-[#93B9C3]"
-            >
-              <div className="flex w-1/2 flex-row items-center justify-between">
-                <div>
-                  <Information fill="#1D434C" height="25" width="25" />
-                </div>
-                <div>احراز هویت</div>
-              </div>
-              <div>
-                <LeftAroowBlur fill="#1D434C" height="25" width="25" />
-              </div>
-            </Link>
+            {
+                (profile.confirmed_address && profile.confirmed_data) ? null : (
+                  <Link
+                  href="/dashboard/authentication"
+                  className="flex mb-2 flex-row items-center justify-between gap-3 border-[#d9d9d9] px-3 py-3 transition-all duration-300 ease-in-out hover:rounded-3xl hover:bg-[#93B9C3]"
+                >
+                  <div className="flex w-1/2 flex-row items-center justify-between">
+                    <div>
+                      <Information fill="#1D434C" height="25" width="25" />
+                    </div>
+                    <div>احراز هویت</div>
+                  </div>
+                  <div>
+                    <LeftAroowBlur fill="#1D434C" height="25" width="25" />
+                  </div>
+                </Link>
+                )
+              }
             <Link
               href="/dashboard/get-credit"
               className="flex flex-row items-center justify-between gap-3 rounded-3xl border-[#d9d9d9] bg-[#93B9C3] px-3 py-3 transition-all duration-300 ease-in-out hover:bg-evaamGreen hover:text-white"
