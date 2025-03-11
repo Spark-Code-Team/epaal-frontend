@@ -217,6 +217,17 @@ const facilityInformation = async () => {
     }
 }
 
+const getWallet = async () => {
+
+    try {
+        const response = await api.get("/users/wallet/")
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
 
 
 export {
@@ -237,5 +248,6 @@ export {
     getlevelfour,
     postlevelfour,
     userFacility,
-    facilityInformation
+    facilityInformation,
+    getWallet
 }
