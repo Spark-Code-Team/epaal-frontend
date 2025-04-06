@@ -1,11 +1,11 @@
+import AdminShopTitle from "../elements/AdminShopTitle";
 import ContineuButton from "../elements/ContineuButton";
+import ProductName from "../module/AddShopProduct/ProductName";
 import AddProductTitle from "../module/adminShop/AddProductTitle";
-import Hint from "../module/adminShop/Hint";
-import SelectCategory from "../module/adminShop/SelectCategory";
 
 
 
-export default function AddShopProductPage() {
+export default function ConstantConfirm() {
 
     return (
         <div
@@ -18,15 +18,15 @@ export default function AddShopProductPage() {
             "
         >
             <div>
-                <AddProductTitle 
-                    levelState={1}
+                <AddProductTitle levelState={3} />
+                <AdminShopTitle
+                    title="فیلدهای ثابت که در مرحله قبل انتخاب کرده اید را تکمیل کنید."
                 />
-                <Hint />
-                <SelectCategory />
+                <ProductName />
             </div>
             <div>
                 <ContineuButton
-                    href="/admin/admin-shop/add-field"
+                    href="/admin/admin-shop/constant-field-confirm"
                 />
             </div>
         </div>

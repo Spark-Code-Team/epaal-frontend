@@ -26,12 +26,14 @@ export default function LayoutAdmin({ children }) {
                     flex
                     flex-col
                     w-[80%]
+                    h-screen
                 "
             >
                 <div
                     className="
                         w-full
                         bg-white
+                        min-h-[20%]
                     "
                 >
                     <HeaderAdmin />
@@ -41,7 +43,8 @@ export default function LayoutAdmin({ children }) {
                     className="
                         w-full
                         bg-white
-                        min-h-full
+                        min-h-[80%]
+                        pb-2
                     "
                 >
                     { children }

@@ -5,10 +5,10 @@ import HalfStateCircul from "../../../../public/icons/Admin/AdminShop/HalfStateC
 
 const titles = [
     "دسته بندی",
-    "اطلاعات کلی",
-    "درج مشخصات",
-    "انتخاب عنوان",
-    "بارگذاری تصویر",
+    "انتخاب فیلد",
+    "درج مشخصات فیلدهای ثابت",
+    "درج مشخصات فیلدهای متغیر",
+    "تایید نهایی",
 ]
 
 
@@ -19,9 +19,9 @@ export default function AddProductTitle({ levelState }) {
             className="
                 flex
                 gap-4
-                mt-[52px]
+                w-full
                 mb-[29px]
-                mx-[50px]
+                mx-[20px]
             "
         >
             {
@@ -32,7 +32,7 @@ export default function AddProductTitle({ levelState }) {
                             flex
                             ${index == titles.length -1 ? "flex-row-reverse" : "flex-row"}
                             items-center
-                            gap-4
+                            gap-1
 
                         `}
                     >
@@ -40,6 +40,7 @@ export default function AddProductTitle({ levelState }) {
                             className={`
                                 text-[16px]
                                 font-normal
+                                text-center
                                 ${ levelState >= index + 1 ? "text-[#054366]" : "text-[#B1B1B1]"}
                                   
                             `}
