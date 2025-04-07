@@ -6,7 +6,7 @@ import ConstantFields from "../module/adminShop/ConstantFields";
 
 
 
-export default function ConstantConfirm() {
+export default function ConfirmDynamicFieldPage() {
 
     return (
         <div
@@ -20,16 +20,15 @@ export default function ConstantConfirm() {
             "
         >
             <div>
-                <AddProductTitle levelState={3} />
+                <AddProductTitle levelState={4} />
                 <AdminShopTitle
                     title="فیلدهای ثابت که در مرحله قبل انتخاب کرده اید را تکمیل کنید."
                 />
-                <ProductName />
-                <ConstantFields />
+                
             </div>
             <div>
                 <ContineuButton
-                    href="/admin/admin-shop/upload-image"
+                    href="/admin/admin-shop/dynamic-field-confirm"
                 />
             </div>
         </div>

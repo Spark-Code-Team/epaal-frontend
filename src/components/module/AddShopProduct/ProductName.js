@@ -1,6 +1,8 @@
 "use client"
 
 import { useState } from "react"
+import ShockedAdmin from "../../../../public/icons/Admin/AdminShop/ShockedAdmin"
+import InputTitleAdminShop from "@/components/elements/InputTitleAdminShop"
 
 const inputsType = [
     {
@@ -27,17 +29,9 @@ export default function ProductName () {
 
     return (
         <div>
-            <div>
-                <p
-                    className="
-                        font-bold
-                        text-[16px]
-                        my-[23px]
-                    "
-                >
-                    عنوان محصول
-                </p>
-            </div>
+            <InputTitleAdminShop 
+                title="عنوان محصول"
+            />
             <div
                 className="
                     flex
@@ -74,13 +68,33 @@ export default function ProductName () {
                                     border
                                     border-[#E1E6EF]
                                     rounded-xl
-                                    w-[515px]
-                                    h-[51px]
+                                    w-[500px]
+                                    h-[50px]
                                 "
                             />
                         </div>
                     ))
                 }
+            </div>
+
+            <div
+                className="
+                    flex
+                    gap-2
+                    mt-[10px]
+                    items-center
+                "
+            >
+                <ShockedAdmin />
+                <p
+                    className="
+                        text-[12px]
+                        font-normal
+                        text-[#57585A]
+                    "
+                >
+                    برای نام گذاری محصول میتوانید از فرمول ماهیت محصول+برند محصول+مدل محصول استفاده کنید
+                </p>
             </div>
         </div>
     )

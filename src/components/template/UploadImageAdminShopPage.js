@@ -1,12 +1,11 @@
-import AdminShopTitle from "../elements/AdminShopTitle";
 import ContineuButton from "../elements/ContineuButton";
-import ProductName from "../module/AddShopProduct/ProductName";
+import InputTitleAdminShop from "../elements/InputTitleAdminShop";
 import AddProductTitle from "../module/adminShop/AddProductTitle";
-import ConstantFields from "../module/adminShop/ConstantFields";
+import UploadeImageInput from "../module/adminShop/UploadeImageInput";
 
 
 
-export default function ConstantConfirm() {
+export default function UploadImageAdminShopPage() {
 
     return (
         <div
@@ -21,11 +20,10 @@ export default function ConstantConfirm() {
         >
             <div>
                 <AddProductTitle levelState={3} />
-                <AdminShopTitle
-                    title="فیلدهای ثابت که در مرحله قبل انتخاب کرده اید را تکمیل کنید."
+                <InputTitleAdminShop 
+                    title="انتخاب تصویر"
                 />
-                <ProductName />
-                <ConstantFields />
+                <UploadeImageInput />
             </div>
             <div>
                 <ContineuButton
