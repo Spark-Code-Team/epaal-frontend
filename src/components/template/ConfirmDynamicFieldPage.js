@@ -1,5 +1,7 @@
 import AdminShopTitle from "../elements/AdminShopTitle";
+import ContedProduct from "../elements/ContedProduct";
 import ContineuButton from "../elements/ContineuButton";
+import ProductIdentity from "../elements/ProductIdentity";
 import ProductName from "../module/AddShopProduct/ProductName";
 import AddProductTitle from "../module/adminShop/AddProductTitle";
 import ConstantFields from "../module/adminShop/ConstantFields";
@@ -22,9 +24,10 @@ export default function ConfirmDynamicFieldPage() {
             <div>
                 <AddProductTitle levelState={4} />
                 <AdminShopTitle
-                    title="فیلدهای ثابت که در مرحله قبل انتخاب کرده اید را تکمیل کنید."
+                    title="تعداد نوع محصول"
                 />
-                
+                <ContedProduct />
+                <ProductIdentity />
             </div>
             <div>
                 <ContineuButton

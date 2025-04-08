@@ -80,7 +80,6 @@ export default function Header() {
   }, []);
 
   const secureRoute = () => {
-      console.log("injam");
       
     if (store.role.role == "admin") {
       router.push("/admin")
@@ -94,7 +93,6 @@ export default function Header() {
       <div
         className={`
           w-full
-          max-w-[1280px]
           py-6
           md:px-[112px]
           flex

@@ -1,8 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import ShockedAdmin from "../../../../public/icons/Admin/AdminShop/ShockedAdmin"
+
 import InputTitleAdminShop from "@/components/elements/InputTitleAdminShop"
+import ShockPoints from "@/components/elements/ShockPoints"
 
 const inputsType = [
     {
@@ -77,25 +78,9 @@ export default function ProductName () {
                 }
             </div>
 
-            <div
-                className="
-                    flex
-                    gap-2
-                    mt-[10px]
-                    items-center
-                "
-            >
-                <ShockedAdmin />
-                <p
-                    className="
-                        text-[12px]
-                        font-normal
-                        text-[#57585A]
-                    "
-                >
-                    برای نام گذاری محصول میتوانید از فرمول ماهیت محصول+برند محصول+مدل محصول استفاده کنید
-                </p>
-            </div>
+            <ShockPoints 
+                title="برای نام گذاری محصول میتوانید از فرمول ماهیت محصول+برند محصول+مدل محصول استفاده کنید"
+            />
         </div>
     )
 }
