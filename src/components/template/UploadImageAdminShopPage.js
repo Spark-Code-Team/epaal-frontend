@@ -32,6 +32,8 @@ export default function UploadImageAdminShopPage() {
             <div>
                 <ContineuButton
                     href="/admin/admin-shop/dynamic-field-confirm"
+                    canReturn={true}
+                    backHref="/admin/admin-shop/constant-field-confirm"
                 />
             </div>
         </div>

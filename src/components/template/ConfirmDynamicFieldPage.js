@@ -31,7 +31,9 @@ export default function ConfirmDynamicFieldPage() {
             </div>
             <div>
                 <ContineuButton
-                    href="/admin/admin-shop/dynamic-field-confirm"
+                    canReturn={true}
+                    href="/admin/admin-shop/confirm-product"
+                    backHref="/admin/admin-shop/upload-image"
                 />
             </div>
         </div>

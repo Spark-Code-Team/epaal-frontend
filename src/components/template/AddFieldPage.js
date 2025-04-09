@@ -27,6 +27,8 @@ export default function AddFieldPage() {
             <div>
                 <ContineuButton
                     href="/admin/admin-shop/constant-field-confirm"
+                    canReturn={true}
+                    backHref="/admin/admin-shop/add-product"
                 />
             </div>
         </div>

@@ -2,16 +2,38 @@ import Link from "next/link";
 
 
 
-export default function ContineuButton({ href, isTrue, canReturn }) {
+export default function ContineuButton({ href, canReturn, backHref }) {
 
     return (
         <div
-            className="
+            className={`
+                ${canReturn ? "justify-between" : "justify-end"}
                 w-full
                 flex
-                justify-end
-            "
+                px-4
+            `}
         >
+            {
+                canReturn ? (
+                    <Link
+                        href={backHref}
+                        className="
+                            flex
+                            w-fit
+                            h-[40px]
+                            p-[10px]
+                            items-center
+                            justify-center
+                            rounded-xl
+                            border
+                            border-evaamGreen
+                            text-evaamGreen
+                        "
+                    >
+                        بازگشت به مرحله قبلی
+                    </Link>
+                ) : <div></div>
+            }
             <Link
                 href={href}
                 className="

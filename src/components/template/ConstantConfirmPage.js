@@ -30,6 +30,8 @@ export default function ConstantConfirm() {
             <div>
                 <ContineuButton
                     href="/admin/admin-shop/upload-image"
+                    canReturn={true}
+                    backHref="/admin/admin-shop/add-field"
                 />
             </div>
         </div>
