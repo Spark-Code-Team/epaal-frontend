@@ -27,7 +27,6 @@ export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }
     const { response, error } = await loginOtp(loginForm.phone_number, loginForm.opt_code, loginForm.password)
 
     if(response) {
-      console.log(response);
       setCookie(response.data)
       dispatch(fetchRole())
       toast.success("ورود با موفقیت انجام شد", {

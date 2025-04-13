@@ -18,8 +18,7 @@ const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
       if(response) {
         setLoginState(1)
       } else {
-        console.log(error);
-        
+
         toast.error(error.response.data.message, {
           position: "bottom-right",
           autoClose: 5000,
