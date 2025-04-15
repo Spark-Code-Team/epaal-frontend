@@ -3,50 +3,42 @@
 import Link from "next/link"
 import { useState } from "react"
 
-
-
 const resiverShopInput = [
     {
-        name: "accepter",
-        title: "نام پذیرنده(فروشگاه)",
-        placeHolder: "نام پذیرنده را وارد کنید"
+        name: "name",
+        title: "نام ادمین",
+        placeHolder: ""
     },
     {
-        name: "malekName",
-        title: "نام مالک کسب و کار",
-        placeHolder: "نام مالک را وارد کنید"
+        name: "lastName",
+        title: "نام خانوادگی ادمین",
+        placeHolder: ""
     },
     {
-        name: "malekLastName",
-        title: "نام خانوادگی مالک کسب و کار",
-        placeHolder: "نام خانوادگی مالک را وارد کنید"
+        name: "email",
+        title: "آدرس ایمیل",
+        placeHolder: ""
     },
     {
-        name: "phoneNumber",
-        title: "شماره تماس مالک",
-        placeHolder: "شماره تماس مالک را وارد کنید"
+        name: "number",
+        title: "شماره تماس ثبت نام",
+        placeHolder: ""
     },
     {
-        name: "address",
-        title: "آدرس سایت پذیرنده",
-        placeHolder: "آدرس سایت را وارد کنید"
-    }
+        name: "password",
+        title: "رمز عبور(8 رقمی)",
+        placeHolder: ""
+    },
+    {
+        name: "rePassword",
+        title: "رمز عبور(8 رقمی)",
+        placeHolder: ""
+    },
 ]
 
-export default function CreateSellerPage() {
+export default function AdminShopIdentityPage() {
 
-    const [ input, setInput] = useState({
-        acceper: "",
-        malekName: "",
-        malekLastName: "",
-        phoneNumber: "",
-        address: ""
-    })
-
-    const handelInput = (e) => {
-
-        setInput(last => ({...last, [e.target.name]: e.target.value}))
-    }
+    const [input, setInput] = useState({})
 
     return (
         <div
