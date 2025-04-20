@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
+import ContineuButton from "../elements/ContineuButton"
 
 const resiverShopInput = [
     {
@@ -99,27 +100,11 @@ export default function AdminShopIdentityPage() {
                     ))
                 }
             </div>
-            <div
-                className="
-                    w-full
-                    flex
-                    justify-end
-                    p-5
-                "
-            >
-                <Link
-                    href="/"
-                    className="
-                        rounded-xl
-                        p-[10px]
-                        text-white
-                        bg-evaamGreen
-                        w-fit
-                    "
-                >
-                    تایید و ادامه
-                </Link>
-            </div>
+            <ContineuButton
+                href="/admin/sellers/create-seller/admin-shop-identity"
+                backHref="/admin/sellers/create-seller/shop-identity"
+                canReturn={true}
+            />
         </div>
     )
 }

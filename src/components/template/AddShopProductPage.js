@@ -27,6 +27,8 @@ export default function AddShopProductPage() {
             <div>
                 <ContineuButton
                     href="/admin/admin-shop/add-field"
+                    canReturn={false}
+                    backHref="/"
                 />
             </div>
         </div>

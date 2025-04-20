@@ -1,15 +1,9 @@
 import SellersPage from "../../../../components/template/SellersPage";
 
-const Sellers = ()=>{
+const Sellers = () => {
 
     return(
-
-        <>
-
-            <SellersPage/>
-
-        </>
-
+        <SellersPage/>
     )
 
 }
