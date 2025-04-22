@@ -37,7 +37,9 @@ export default function UploadeImageInput() {
                 >
                     {
                         testMap.map((item, index) => (
-                            <li>
+                            <li
+                                key={index}
+                            >
                                 <div
                                     className="
                                         rounded-[10px]
@@ -49,7 +51,6 @@ export default function UploadeImageInput() {
                                         justify-center
                                         cursor-pointer
                                     "
-                                    key={index}
                                 >
                                     <AddPicture />
                                 </div>

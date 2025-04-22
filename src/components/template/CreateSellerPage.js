@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import ContineuButton from "../elements/ContineuButton"
+import AddProductTitle from "../module/adminShop/AddProductTitle"
 
 
 
@@ -60,6 +61,10 @@ export default function CreateSellerPage() {
 
             "
         >
+            <AddProductTitle 
+                titleKey="addShop"
+                levelState={1}
+            />
             <div
                 className="
                     w-full

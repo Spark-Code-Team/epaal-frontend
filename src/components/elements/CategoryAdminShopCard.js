@@ -12,6 +12,8 @@ export default function CategoryAdminShopCard() {
                 gap-3
                 rounded-[16px]
                 bg-[#F0F0F1]
+                w-[177px]
+                p-2
             "
         >
             <div
@@ -20,6 +22,7 @@ export default function CategoryAdminShopCard() {
                     flex-col
                     gap-3
                     items-center
+                    w-full
                 "
             >
                 <Image 
@@ -29,7 +32,7 @@ export default function CategoryAdminShopCard() {
                     className="
                       h-[122px]
                       w-full
-                      rounded-xl  
+                      rounded-xl 
                     "
                 />
                 <p
@@ -42,6 +45,21 @@ export default function CategoryAdminShopCard() {
                 >
                     لپتاپ
                 </p>
+            </div>
+
+            <div
+                className="
+                    rounded-[10px]
+                    bg-[#1D434C]
+                    w-full
+                    text-center
+                    px-3
+                    py-1
+                    text-white
+                    cursor-pointer
+                "
+            >
+                انتخاب
             </div>
         </div>
     )

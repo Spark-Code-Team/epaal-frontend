@@ -16,7 +16,6 @@ export default function BankCardShow ({ image }) {
                 justify-center
                 bg-[#F0F0F1]
                 rounded-[32px]
-                
             "
         >
             <Image

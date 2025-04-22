@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import ContineuButton from "../elements/ContineuButton"
+import AddProductTitle from "../module/adminShop/AddProductTitle"
 
 const resiverShopInput = [
     {
@@ -52,6 +53,10 @@ export default function AdminShopIdentityPage() {
 
             "
         >
+            <AddProductTitle
+                levelState={3}
+                titleKey="addShop"
+            />
             <div
                 className="
                     w-full
@@ -101,7 +106,7 @@ export default function AdminShopIdentityPage() {
                 }
             </div>
             <ContineuButton
-                href="/admin/sellers/create-seller/admin-shop-identity"
+                href="/admin/sellers/create-seller/product-category"
                 backHref="/admin/sellers/create-seller/shop-identity"
                 canReturn={true}
             />

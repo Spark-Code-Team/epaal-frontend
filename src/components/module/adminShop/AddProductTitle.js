@@ -3,16 +3,27 @@ import FullStateCircul from "../../../../public/icons/Admin/AdminShop/FullStateC
 import HalfStateCircul from "../../../../public/icons/Admin/AdminShop/HalfStateCircul"
 
 
-const titles = [
-    "دسته بندی",
-    "انتخاب فیلد",
-    "درج مشخصات فیلدهای ثابت",
-    "درج مشخصات فیلدهای متغیر",
-    "تایید نهایی",
-]
+const titles = {
 
+    addTitles: [
+        "دسته بندی",
+        "انتخاب فیلد",
+        "درج مشخصات فیلدهای ثابت",
+        "درج مشخصات فیلدهای متغیر",
+        "تایید نهایی",
+    ],
 
-export default function AddProductTitle({ levelState }) {
+    addShop: [
+        "فرم پذیرندگی",
+        "اطلاعات فروشگاه",
+        "اطلاعات ادمین فروشگاه",
+        "دسته بندی",
+        "بازه تسویه",
+        "تاییدیه نهایی"
+    ]
+}
+
+export default function AddProductTitle({ levelState, titleKey="addTitles" }) {
 
     return (
         <div
@@ -25,7 +36,7 @@ export default function AddProductTitle({ levelState }) {
             "
         >
             {
-                titles.map((item, index) => (
+                titles[titleKey].map((item, index) => (
                     <div
                         key={index}
                         className={`

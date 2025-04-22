@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import ContineuButton from "../elements/ContineuButton"
+import AddProductTitle from "../module/adminShop/AddProductTitle"
 
 
 
@@ -71,6 +72,10 @@ export default function ShopIdentityPage() {
                 justify-between
             "
         >
+            <AddProductTitle 
+                levelState={2}
+                titleKey="addShop"
+            />
             <div
                 className="
                     grid
