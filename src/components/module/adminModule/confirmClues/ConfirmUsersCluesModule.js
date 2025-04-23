@@ -294,7 +294,7 @@ export default function ConfirmUsersCluesModule() {
                     {doc?.document?.type == "file" ? (
                       <div className="flex flex-col items-center justify-evenly">
                         <div className="my-5 border-b border-gray-300 font-bold">
-                          {doc.document.name}
+                          {doc?.document.name}
                         </div>
                         <div>
                           <Image
@@ -308,7 +308,7 @@ export default function ConfirmUsersCluesModule() {
                     ) : (
                       <div className="flex flex-col items-center justify-evenly">
                         <div className="my-5 border-b border-gray-300 font-bold">
-                          {doc.document.name}
+                          {doc?.document.name}
                         </div>
                         <div className="text-black">
                           {digitsEnToFa(doc.value)}
