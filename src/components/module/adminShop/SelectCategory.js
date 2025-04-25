@@ -10,6 +10,10 @@ import FullStateCircul from "../../../../public/icons/Admin/AdminShop/FullStateC
 import EmpetyStateCircul from "../../../../public/icons/Admin/AdminShop/EmpetyStateCircul";
 import CheckTrueCategory from "../../../../public/icons/Admin/CheckTrueCategory";
 import CheckDefaultCategory from "../../../../public/icons/Admin/CheckDefaultCategory";
+import SelectcategoryAdminShop from "@/components/elements/SelectcategoryAdminShop";
+import ProductAndService from "@/components/elements/ProductAndService";
+import LowlevelCategory from "@/components/elements/LowlevelCategory";
+import AvalabelProduct from "@/components/elements/AvalabelProduct";
 
 const optins = [
     1,
@@ -28,6 +32,13 @@ export default function SelectCategory() {
 
     const [showModal, setShowModal] = useState(false)
     const [modalState, setModalState] = useState(1)
+
+    const [ selectedIntro, setSelectedIntro ] = useState({
+        toplevel_topic: {},
+        midlevel_topic: {},
+        lowlevel_topic: {},
+        product_topic_id: {}
+    })
 
     return (
         <>        
@@ -54,7 +65,46 @@ export default function SelectCategory() {
                         font-normal
                     "
                 >
-                    لطفا یک دسته را انتخاب کنید
+                            { 
+                                selectedIntro.product_topic_id?.name ? (
+                                    <div
+                                        className="
+                                            flex
+                                            items-center
+                                            justify-center
+                                            gap-3
+                                        "
+                                    >
+                                        <p>
+                                            {
+                                                selectedIntro.toplevel_topic.name
+                                            }
+                                        </p>
+                                        -
+                                        <p>
+                                            {
+                                                selectedIntro.midlevel_topic.name
+                                            }
+                                        </p>
+                                        -
+                                        <p>
+                                            {
+                                                selectedIntro.lowlevel_topic.name
+                                            }
+                                        </p>
+                                        -
+                                        <p>
+                                            {
+                                                selectedIntro.toplevel_topic.name
+                                            }
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <p>
+                                        لطفا یک دسته را انتخاب کنید
+                                    </p>
+                                )
+                            }
                 </p>
                 <div
                     className="
@@ -150,352 +200,41 @@ export default function SelectCategory() {
                     {/* categories */}
                     {
                         modalState == 1 ? (
-                            <div
-                                className="
-                                    grid
-                                    grid-cols-2
-                                    gap-2
-                                    w-full
-                                    overflow-y-scroll
-                                    mt-[58px]
-                                    max-h-[300px]
-                                "
-                            >
-                                {
-                                    optins.map(items => (
-                                        <div
-                                            key={items}
-                                            className="
-                                                w-full
-                                                flex
-                                                items-center
-                                                justify-between
-                                                p-[18px]
-                                                border
-                                                rounded-xl
-                                            "
-                                        >
-                                            <p>
-                                                کالای دیجیتال
-                                            </p>
-                                            <div>
-                                                <AroowLeft />
-                                            </div>
-                                        </div>
-                                    ))
-                                }
-                            </div>
+                            <SelectcategoryAdminShop
+                                modalState={modalState}
+                                setModalState={setModalState}
+                                setShowModal={setShowModal}
+                                selectedIntro={selectedIntro}
+                                setSelectedIntro={setSelectedIntro}
+                            />
                         ) : modalState == 2 ? (
-                            <div
-                                className="
-                                    w-full
-                                    h-[300px]
-                                    overflow-y-scroll
-                                "
-                            >
-                                <div
-                                    className="
-                                        flex
-                                        items-center
-                                        gap-2
-                                        mt-5
-                                    "
-                                >
-                                    <p
-                                        className="
-                                            text-[#868383]
-                                            text-[12px]
-                                        "
-                                    >
-                                        کالای دیجیتال
-                                    </p>
-                                    <LeftAroowBlur />
-                                </div>
-
-                                <div
-                                    className="
-                                        w-full
-                                        flex
-                                        gap-7
-                                        mt-[14px]
-                                    "
-                                >
-                                    <div
-                                        className="
-                                            flex
-                                            items-center
-                                            gap-1
-                                        "
-                                    >
-                                        <p>
-                                            کالا
-                                        </p>
-                                        <CheckTrueCategory />
-                                    </div>
-                                    <div
-                                        className="
-                                            flex
-                                            items-center
-                                            gap-1
-                                        "
-                                    >
-                                        <p>
-                                            خدمات
-                                        </p>
-                                        <CheckDefaultCategory/>
-                                    </div>
-                                </div>
-
-                                <div
-                                    className="
-                                        grid
-                                        grid-cols-2
-                                        gap-2
-                                        w-full
-                                        mt-[58px]
-                                        max-h-[300px]
-                                    "
-                            >
-                                {
-                                    optins.map(items => (
-                                        <div
-                                            key={items}
-                                            className="
-                                                w-full
-                                                flex
-                                                items-center
-                                                justify-between
-                                                p-[18px]
-                                                border
-                                                rounded-xl
-                                            "
-                                        >
-                                            <p>
-                                                کالای دیجیتال
-                                            </p>
-                                            <div>
-                                                <AroowLeft />
-                                            </div>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                            </div>
+                            <ProductAndService 
+                                modalState={modalState}
+                                setModalState={setModalState}
+                                setShowModal={setShowModal}
+                                selectedIntro={selectedIntro}
+                                setSelectedIntro={setSelectedIntro}
+                            />
                         ) : modalState == 3 ? (
-                            <div
-                                className="
-                                    w-full
-                                    h-[300px]
-                                    overflow-y-scroll
-                                "
-                            >
-                                <div
-                                    className="
-                                        flex
-                                        items-center
-                                        gap-2
-                                        mt-5
-                                    "
-                                >
-                                    <p
-                                        className="
-                                            text-[#868383]
-                                            text-[12px]
-                                        "
-                                    >
-                                        کالای دیجیتال
-                                    </p>
-                                    <LeftAroowBlur />
-                                    <p
-                                        className="
-                                            text-[#868383]
-                                            text-[12px]
-                                        "
-                                    >
-                                        لپ تاپ
-                                    </p>
-                                    <LeftAroowBlur />
-                                </div>
-
-                                <div
-                                    className="
-                                        grid
-                                        grid-cols-2
-                                        gap-2
-                                        w-full
-                                        mt-[58px]
-                                        max-h-[300px]
-                                    "
-                                >
-                                        <div
-                                            className="
-                                                w-full
-                                                flex
-                                                items-center
-                                                justify-between
-                                                p-[18px]
-                                                border
-                                                rounded-xl
-                                            "
-                                        >
-                                            <p>
-                                                کالای دیجیتال
-                                            </p>
-                                            <div>
-                                                <AroowLeft />
-                                            </div>
-                                        </div>
-                                        <div
-                                            className="
-                                                w-full
-                                                flex
-                                                items-center
-                                                justify-between
-                                                p-[18px]
-                                                border
-                                                rounded-xl
-                                            "
-                                        >
-                                            <p>
-                                                کالای دیجیتال
-                                            </p>
-                                            <div>
-                                                <AroowLeft />
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
+                            <LowlevelCategory 
+                                modalState={modalState}
+                                setModalState={setModalState}
+                                setShowModal={setShowModal}
+                                selectedIntro={selectedIntro}
+                                setSelectedIntro={setSelectedIntro}
+                            />
                         ) : (
-                            <div
-                                className="
-                                    w-full
-                                    h-[300px]
-                                    overflow-y-scroll
-                                "                      
-                            >
-                                <div      
-                                    className="
-                                        mt-8
-                                        mb-7
-                                    "
-                                >
-                                    <p
-                                        className="
-                                            text-[18px]
-                                            font-medium
-                                        "
-                                    >
-                                    برندهای موجود در گروه کالایی    
-                                    </p>
-                                </div>
-
-                                <div
-                                    className="
-                                        grid
-                                        grid-cols-2
-                                        gap-2
-                                        w-full
-                                        mt-[58px]
-                                        max-h-[300px]
-                                    "
-                                >
-                                    {
-                                        optins.map(item => (
-                                            <div
-                                            key={item}
-                                            className="
-                                                w-full
-                                                border-b
-                                                border-[#e1e6ef]
-                                                pb-[6px]
-                                                flex
-                                                gap-3
-                                            "
-                                        >
-                                            <div
-                                                className="
-                                                    w-[34px]
-                                                    h-[34px]
-                                                    bg-[#d9d9d9]
-                                                    rounded-full
-                                                "
-                                            >
-    
-                                            </div>
-                                            <div>
-                                                <p
-                                                    className="
-                                                        text-[14px]
-                                                    "
-                                                >
-                                                    نام برند
-                                                </p>
-                                                <p
-                                                    className="
-                                                        text-[10px]
-                                                        font-normal
-                                                    "
-                                                >
-                                                    کد برند
-                                                </p>
-                                            </div>
-                                        </div>
-                                        ))
-                                    }
-                                </div>
-                            </div>
+                        <AvalabelProduct 
+                            modalState={modalState}
+                            setModalState={setModalState}
+                            setShowModal={setShowModal}
+                            selectedIntro={selectedIntro}
+                            setSelectedIntro={setSelectedIntro}
+                        />
                         )
                     }
 
 
-                </div>
-
-                {/* edame button */}
-                <div
-                    className={`
-                        w-full
-                        border-t
-                        flex
-                        ${modalState == 1 ? "justify-end" : "justify-between"}
-                        py-3
-                        px-[53px]
-                    `}
-                >
-                    <div
-                        className={`
-                            p-[10px]
-                            border
-                            rounded-xl
-                            border-[#054366]
-                            cursor-pointer
-                            ${modalState == 1 ? "hidden" : ""}
-                        `}
-                        onClick={() => setModalState(last => last - 1)}
-                    >
-                        بازگشت به محرله قبلی
-                    </div>
-                    <div
-                        className="
-                            bg-[#e1e6ef]
-                            w-fit
-                            p-[10px]
-                            text-white
-                            rounded-xl
-                            hover:bg-[#1d434c]
-                            cursor-pointer
-                            transition-all
-                        "
-                        onClick={() => {
-                            if(modalState == 4) {
-                                setShowModal(false)
-                                setModalState(1)
-                            } else {
-                                setModalState(last => last + 1)
-                            }
-                        }}
-                    >
-                        ادامه
-                    </div>
                 </div>
 
             </Modal>

@@ -53,6 +53,9 @@ export default function Header() {
     if(!store.role.id) {
       dispatch(fetchRole())
     }
+
+    console.log(store);
+    
   }, [])
   
 
@@ -83,6 +86,8 @@ export default function Header() {
       
     if (store.role.role == "admin") {
       router.push("/admin")
+    } else if (store.role.role == "shop_admin") {
+      router.push("/admin/admin-shop")
     } else {
       router.push("/dashboard/")
     }

@@ -7,6 +7,8 @@ import { sendPhone } from "@/service/login";
 import { Bounce, toast } from "react-toastify";
 
 
+
+
 const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
 
     const handelClick = async (e) => {
@@ -19,7 +21,7 @@ const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
         setLoginState(1)
       } else {
 
-        toast.error(error.response.data.message, {
+        toast.error(error.response?.data.message || "مشکلی پیش آمده", {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
