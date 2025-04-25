@@ -46,7 +46,7 @@ export default function FacilityManagementPage() {
     }, [])
 
     useEffect(() => {
-        console.log(facility);
+        console.log("facility \n", facility);
     }, [facility])
 
     if(loading) {
@@ -78,7 +78,7 @@ export default function FacilityManagementPage() {
                     />
                 ) : state == 1 ? (
                     <GivenFacility 
-                        
+                        facility={facility.installment}
                     />
                 ) : <RejectedFacility 
                     facility={facility.canceled}
