@@ -1,4 +1,7 @@
-import AddPicture from "../../../../public/icons/Admin/AddPicture";
+"use client"
+
+import ShopAdminProductImage from "@/components/elements/ShopAdminProductImage";
+import { useEffect, useState } from "react";
 
 const rols = [
     "حداقل باید سه تصویر برای محصول خود بارگذاری کنید",
@@ -10,7 +13,7 @@ const rols = [
 
 export default function UploadeImageInput() {
 
-    const testMap = Array.from({ length: 4}, (i, v) => i)
+    const [images, setImages] = useState(["", "", "", ""])
 
     return (
         <div
@@ -36,25 +39,13 @@ export default function UploadeImageInput() {
                     "
                 >
                     {
-                        testMap.map((item, index) => (
-                            <li
+                        images.map((item, index) => (
+                            <ShopAdminProductImage 
                                 key={index}
-                            >
-                                <div
-                                    className="
-                                        rounded-[10px]
-                                        w-[167px]
-                                        h-[167px]
-                                        bg-[#E1EDF0]
-                                        flex
-                                        items-center
-                                        justify-center
-                                        cursor-pointer
-                                    "
-                                >
-                                    <AddPicture />
-                                </div>
-                            </li>
+                                setImages={setImages}
+                                index={index}
+                                images={images}
+                            />
                         ))
                     }
                 </ul>

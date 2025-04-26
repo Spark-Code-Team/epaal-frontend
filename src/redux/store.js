@@ -5,6 +5,8 @@ import userReducer from "../redux/features/userRole/useRole"
 import profileReducer from "../redux/features/profileUser/profileUser"
 import faciltyReducer from "../redux/features/facilityChose/facilityChose"
 import statusReducer from "../redux/features/facilityState/facilityState"
+import AddProductReducer from "../redux/features/addProduct/addProduct"
+import SelectStaticAndDynamic from "../redux/features/selectStaticAndDynamic/selectStaticAndDynamic"
 
 const store = configureStore({
     reducer: {
@@ -12,7 +14,9 @@ const store = configureStore({
         role: userReducer,
         profile: profileReducer,
         facility: faciltyReducer,
-        status: statusReducer
+        status: statusReducer,
+        addProduct: AddProductReducer,
+        staticDynamic: SelectStaticAndDynamic
     }
 })
 

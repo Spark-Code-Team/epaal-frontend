@@ -8,19 +8,14 @@ import ShockPoints from "@/components/elements/ShockPoints"
 const inputsType = [
     {
         name: "persian_name",
-        title: "نام (فارسی) محصول"
+        title: "نام محصول"
     },
-    {
-        name: "engilish_name",
-        title: "نام (انگلیسی) محصول"
-    }
 ] 
 
 export default function ProductName () {
 
     const [inputs, setInputs] = useState({
-        persian_name: "",
-        engilish_name: ""
+        persian_name: ""
     })
 
     const inputHandler = (e) => {

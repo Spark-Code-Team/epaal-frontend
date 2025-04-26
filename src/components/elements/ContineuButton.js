@@ -2,7 +2,7 @@ import Link from "next/link";
 
 
 
-export default function ContineuButton({ href, canReturn, backHref }) {
+export default function ContineuButton({ href, canReturn, backHref, canGo=true }) {
 
     return (
         <div
@@ -35,8 +35,8 @@ export default function ContineuButton({ href, canReturn, backHref }) {
                 ) : <div></div>
             }
             <Link
-                href={href}
-                className="
+                href={canGo ? href : "#"}
+                className={`
                     flex
                     w-[83px]
                     h-[40px]
@@ -44,9 +44,8 @@ export default function ContineuButton({ href, canReturn, backHref }) {
                     items-center
                     justify-center
                     rounded-xl
-                    bg-evaamGreen
-                    text-white
-                "
+                    ${canGo ? "bg-evaamGreen text-white" : "bg-white text-gray-600 border"}
+                `}
             >
                 ادامه
             </Link>

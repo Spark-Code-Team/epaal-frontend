@@ -1,13 +1,33 @@
-import CheckDefaultCategory from "../../../../public/icons/Admin/CheckDefaultCategory"
-import CheckTrueCategory from "../../../../public/icons/Admin/CheckTrueCategory"
+"use client"
+
+import SelectField from "@/components/elements/SelectField"
+import { getAllField } from "@/service/shop"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 
 
 
 export default function ConstantDynamic () {
 
-    const test = Array.from({length: 20}, (v, i) => i)
+    const [fields, setFields] = useState([])
 
-    // console.log(test);
+    const store = useSelector(store => store.addProduct)
+    
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const { response, error } = await getAllField(store.product_topic_id)
+
+            if(response) {
+                console.log(response);
+                setFields(response.data.data)
+            } else {
+                console.log(error);
+            }
+        }
+
+        fetchData()
+    }, [])
     
     
     return (
@@ -19,54 +39,28 @@ export default function ConstantDynamic () {
             "
         >
             {
-                test.map((item, index) => (
+                fields.length == 0 ? (
                     <div
-                        key={index}
                         className="
-                            w-[80%]
+                            w-full
+                            h-full
                             flex
-                            justify-around
-                            mx-auto
-                            mb-4
+                            items-center
+                            justify-center
                         "
                     >
-                        <div
-                            className="
-                                w-1/2
-                            "
-                        >
-                            <p>نام فیلد</p>
-                        </div>
-                        <div
-                            className="
-                                flex
-                                justify-between
-                                w-1/2
-                            "
-                        >
-                            <div
-                                className="
-                                    flex
-                                    items-center
-                                    gap-2
-                                "
-                            >
-                                <CheckTrueCategory />
-                                ثابت
-                            </div>
-                            <div
-                                className="
-                                    flex
-                                    items-center
-                                    gap-2
-                                "
-                            >
-                                <CheckDefaultCategory />
-                                متغیر
-                            </div>
-                        </div>
+                        <h1>
+                            فیلد پیدا نشد
+                        </h1>
                     </div>
-                ))
+                ) : (
+                    fields.map((item, index) => (
+                        <SelectField 
+                            key={index}
+                            item={item}
+                        />
+                    ))
+                )
             }
         </div>
     )

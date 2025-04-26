@@ -1,3 +1,6 @@
+"use client"
+
+import { useSelector } from "react-redux";
 import AdminShopTitle from "../elements/AdminShopTitle";
 import ContineuButton from "../elements/ContineuButton";
 import ProductName from "../module/AddShopProduct/ProductName";
@@ -7,6 +10,8 @@ import ConstantFields from "../module/adminShop/ConstantFields";
 
 
 export default function ConstantConfirm() {
+
+    const fields = useSelector(store => store.staticDynamic.statics)
 
     return (
         <div
@@ -25,7 +30,9 @@ export default function ConstantConfirm() {
                     title="فیلدهای ثابت که در مرحله قبل انتخاب کرده اید را تکمیل کنید."
                 />
                 <ProductName />
-                <ConstantFields />
+                <ConstantFields 
+                    fields={fields}
+                />
             </div>
             <div>
                 <ContineuButton

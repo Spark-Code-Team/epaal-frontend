@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import IntroAddProduct from "./IntroAddProduct";
 import { AllProductTopic } from "@/service/adminShop";
+import { useDispatch } from "react-redux";
+import { addTopicId } from "@/redux/features/addProduct/addProduct";
 
 
 
 export default function AvalabelProduct({ setModalState, modalState, setShowModal, selectedIntro, setSelectedIntro }) {
 
+    const dispatch = useDispatch()
 
 
     const [category, setCategory] = useState([])
@@ -24,6 +27,12 @@ export default function AvalabelProduct({ setModalState, modalState, setShowModa
 
         fetchData()
     }, [])
+
+    const handelTopic = (item) => {
+        setSelectedIntro(last => ({...last, product_topic_id: item}))
+        dispatch(addTopicId(item.id))
+        console.log(item.id);
+    }
 
     return (
         <>
@@ -84,9 +93,10 @@ export default function AvalabelProduct({ setModalState, modalState, setShowModa
                                         flex
                                         gap-3
                                         transition-all
+                                        cursor-pointer
                                         ${item.id == selectedIntro.product_topic_id.id ? "border-blue-700" : ""}
                                     `}
-                                    onClick={() => setSelectedIntro(last => ({...last, product_topic_id: item}))}
+                                    onClick={() => handelTopic(item)}
                                 >
                                     <div
                                         className="

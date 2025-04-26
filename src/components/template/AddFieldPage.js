@@ -1,3 +1,6 @@
+"use client"
+
+import { useSelector } from "react-redux";
 import AdminShopTitle from "../elements/AdminShopTitle";
 import ContineuButton from "../elements/ContineuButton";
 import ConstantDynamic from "../module/AddShopProduct/ConstantDynamic";
@@ -6,6 +9,8 @@ import AddProductTitle from "../module/adminShop/AddProductTitle";
 
 
 export default function AddFieldPage() {
+
+    const store = useSelector(store => store.staticDynamic)
 
     return (
         <div
@@ -29,6 +34,7 @@ export default function AddFieldPage() {
                     href="/admin/admin-shop/constant-field-confirm"
                     canReturn={true}
                     backHref="/admin/admin-shop/add-product"
+                    canGo={store.dynamic.length !=0 || store.statics.length != 0}
                 />
             </div>
         </div>

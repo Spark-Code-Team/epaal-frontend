@@ -300,8 +300,19 @@ export default function ShopHeader() {
                                     border-2
                                     p-4
                                     border-[#9ED6D9]
-                                    text-[13px]
+                                    text-[13px]\
+                                    cursor-pointer
                                 "
+                                onClick={() => {
+                                    if(store.role.role == "shop_admin") {
+                                        router.push("/admin/admin-shop")
+                                    } else if(store.role.role == "admin") {
+                                        router.push("/admin")
+                                    } else {
+                                        router.push("/shopping-evaam/products/shop-checkout")
+                                    }
+                                    
+                                }}
                             >
                                 حساب کاربری
                             </div>
@@ -317,6 +328,7 @@ export default function ShopHeader() {
                                     p-4
                                     items-center
                                     justify-center
+                                    cursor-pointer
                                 "
                             >
                                 <div

@@ -20,6 +20,7 @@ import kitchen from "../../../public/image/kitchen.png";
 import { useEffect, useState } from "react";
 import { GETAllProducts } from "@/service/products";
 import { toast } from "react-toastify";
+import { getAllProduct } from "@/service/shop";
 
 const alaki = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -38,17 +39,31 @@ export default function shop() {
 
   //! temp product | must change logic of fetching:
   useEffect(() => {
-    async function fetchProducts() {
-      const { response, error } = await GETAllProducts();
-      if (response) {
-        setProducts(response.data);
+    // async function fetchProducts() {
+    //   const { response, error } = await GETAllProducts();
+    //   if (response) {
+    //     setProducts(response.data);
+    //   } else {
+    //     toast.error("failed");
+    //   }
+    // }
+
+    // // calling fetch products func:
+    // fetchProducts();
+
+    const fetchData = async () => {
+      const { response, error } = await getAllProduct()
+
+      if(response) {
+        console.log(response);
       } else {
-        toast.error("failed");
+        console.log("1111111111111111111111111111111111111111",error);
+        
       }
     }
 
-    // calling fetch products func:
-    fetchProducts();
+    fetchData()
+    
   }, []);
 
   console.log("================= products -> \n", products);
