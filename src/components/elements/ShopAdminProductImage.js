@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { addPictures } from "@/redux/features/addProduct/addProduct";
 
 
 
@@ -8,16 +10,23 @@ export default function ShopAdminProductImage ({setImages, images, index}) {
     
     const imageRef = useRef()
     const [picture, setPicture] = useState("")
-    const [mohsen, setMohsen] = useState(false)
+
+    const store = useSelector(store => store.addProduct)
+    const dispatch = useDispatch()
 
     const handelImage = (e) => {
         setPicture(URL.createObjectURL(e.target.files[0]))
-        const procesedImg = images
-        procesedImg[index] = e.target.files[0]
-        
-        setImages(procesedImg)
-        setMohsen(last => !last)        
+        setImages(last => [...last, e.target.files[0]])    
     }
+
+    useEffect(() => {
+        dispatch(addPictures(images))
+    }, [images])
+
+    useEffect(() => {
+        console.log(store);
+        
+    }, [store])
 
 
     return (

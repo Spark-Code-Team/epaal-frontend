@@ -12,22 +12,15 @@ const inputsType = [
     },
 ] 
 
-export default function ProductName () {
-
-    const [inputs, setInputs] = useState({
-        persian_name: ""
-    })
+export default function ProductName ({name, setName}) {
 
     const inputHandler = (e) => {
 
-        setInputs(last => ({...last, [e.target.name]: e.target.value}))
+        setName(last => ({...last, [e.target.name]: e.target.value}))
     }
 
     return (
         <div>
-            <InputTitleAdminShop 
-                title="عنوان محصول"
-            />
             <div
                 className="
                     flex
@@ -57,7 +50,7 @@ export default function ProductName () {
                             </label>
                             <input 
                                 name={item.name}
-                                value={inputs[item.name]}
+                                value={name[item.name]}
                                 onChange={(e) => inputHandler(e)}
                                 type="text"
                                 className="

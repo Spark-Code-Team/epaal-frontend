@@ -13,7 +13,7 @@ const rols = [
 
 export default function UploadeImageInput() {
 
-    const [images, setImages] = useState(["", "", "", ""])
+    const [images, setImages] = useState([])
 
     return (
         <div
@@ -39,7 +39,7 @@ export default function UploadeImageInput() {
                     "
                 >
                     {
-                        images.map((item, index) => (
+                        [...Array(4)].map((item, index) => (
                             <ShopAdminProductImage 
                                 key={index}
                                 setImages={setImages}

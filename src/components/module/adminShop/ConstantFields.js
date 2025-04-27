@@ -1,14 +1,46 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
-export default function ConstantFields({ fields }) {
+export default function ConstantFields({ fields, filedsValue, setFieldsValue }) {
 
-    console.log(fields);
-    
+    const handelChange = (e, chooseabel) => {
 
-    const [filedsValue, setFieldsValue] = useState({})
+        if(filedsValue.length == 0) {
+            if(chooseabel) {
+                setFieldsValue(last => [...last, {
+                    field_id: e.target.name,
+                    field_value_id: e.target.value 
+                }])
+            } else {
+                setFieldsValue(last => [...last, {
+                    field_id: e.target.name,
+                    field_value: e.target.value
+                }])
+            }
+        } else { 
+            
+            var temp = filedsValue.filter(item => item.field_id !== e.target.name)
+
+            if(chooseabel) { 
+                setFieldsValue([...temp, {
+                    field_id: e.target.name,
+                    field_value_id: e.target.value 
+                }])
+            } else {
+                setFieldsValue([...temp, {
+                    field_id: e.target.name,
+                    field_value: e.target.value 
+                }])  
+            }
+        }
+    }
+
+
+    useEffect(() => {
+        console.log(filedsValue);
+    }, [filedsValue])
 
     return (
         <div>
@@ -25,6 +57,9 @@ export default function ConstantFields({ fields }) {
                 className="
                     grid
                     grid-cols-2
+                    h-[70px]
+                    gap-3
+                    overflow-y-scroll
                 "
             >
                 {
@@ -42,6 +77,7 @@ export default function ConstantFields({ fields }) {
                                         {++index}
                                     </p>
                                     <select
+                                        name={item.id}
                                         defaultValue="انتخاب فیلد"
                                         className="
                                             w-[327px]
@@ -50,11 +86,32 @@ export default function ConstantFields({ fields }) {
                                             border
                                             border-[#E1EDF0]
                                         "
-                                        onChange={(e) => setFieldsValue(last => ({...last, title: e.target.value}))}
+                                        onChange={(e) => handelChange(e, true)}
                                     >
-                                        <option>ali</option>
-                                        <option>ali1</option>
-                                        <option>ali2</option>    
+                                        <option
+                                            disabled
+                                        >
+                                            {
+                                                item.name
+                                            }
+                                        </option>
+                                        {
+                                            item.options.length != 0 ? (
+                                                item.options.map(items => (
+                                                    <option
+                                                        value={items.id}
+                                                    >
+                                                        {
+                                                            items.value
+                                                        }
+                                                    </option>
+                                                ))
+                                            ) : (
+                                                <option>
+                                                    گزینه ای وجود ندارد
+                                                </option>
+                                            )
+                                        }
                                     </select>
                                 </div>
                             )
@@ -79,8 +136,9 @@ export default function ConstantFields({ fields }) {
                                             border-[#E1EDF0]
                                         "
                                         type="text"
-                                        placeholder="نام فیلد"
-                                        onChange={(e) => setFieldsValue(last => ({...last, title: e.target.value}))}
+                                        name={item.id}
+                                        placeholder={item.name}
+                                        onChange={(e) => handelChange(e, false)}
                                     />
 
                                 </div>

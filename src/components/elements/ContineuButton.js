@@ -1,8 +1,10 @@
+"use client"
+
 import Link from "next/link";
 
 
 
-export default function ContineuButton({ href, canReturn, backHref, canGo=true }) {
+export default function  ContineuButton({ href, canReturn, backHref, canGo=true, setRefresh=false, }) {
 
     return (
         <div
@@ -34,21 +36,30 @@ export default function ContineuButton({ href, canReturn, backHref, canGo=true }
                     </Link>
                 ) : <div></div>
             }
-            <Link
-                href={canGo ? href : "#"}
-                className={`
-                    flex
-                    w-[83px]
-                    h-[40px]
-                    p-[10px]
-                    items-center
-                    justify-center
-                    rounded-xl
-                    ${canGo ? "bg-evaamGreen text-white" : "bg-white text-gray-600 border"}
-                `}
+            <div
+                onClick={() => {
+                    setRefresh ? (
+                        setRefresh(last => !last)
+                    ) : null
+
+                }}
             >
-                ادامه
-            </Link>
+                <Link
+                    href={canGo ? href : "#"}
+                    className={`
+                        flex
+                        w-[83px]
+                        h-[40px]
+                        p-[10px]
+                        items-center
+                        justify-center
+                        rounded-xl
+                        ${canGo ? "bg-evaamGreen text-white" : "bg-white text-gray-600 border"}
+                    `}
+                >
+                    ادامه
+                </Link>
+            </div>
         </div>
     )
 }

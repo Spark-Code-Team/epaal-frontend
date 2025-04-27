@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 
 
 
@@ -61,7 +62,7 @@ const inpts = {
 }
 
 
-export default function ProductIdentity() {
+export default function ProductIdentity({setDynamicData}) {
 
     const [ staticsInput, setStaticInput ] = useState({
         price: "",
@@ -69,23 +70,68 @@ export default function ProductIdentity() {
         discount: ""
     })
 
-    const [ variableInput, setVariableInput ] = useState({
-        selectedC: "",
-        selectedB: "",
-        selectedA: "",
-        staticC: "",
-        staticB: "",
-        staticA: "",
-    })
+    const [dynamicFields, setDynamicFields] = useState([])
+
+    const store = useSelector(store => store.staticDynamic.dynamic)
+
+    useEffect(() => {
+        console.log(dynamicFields);
+        
+    }, [dynamicFields])
 
     const handelStaticInput = (e) => {
 
         setStaticInput(last => ({...last, [e.target.name]: e.target.value}))
     }
 
-    const handelVariabelInput = (e) => {
+    const handelChange = (e, chooseabel) => {
 
-        setVariableInput(last => ({...last, [e.target.name]: e.target.value}))
+        if(dynamicFields.length == 0) {
+            if(chooseabel) {
+                setDynamicFields(last => [...last, {
+                    field_id: e.target.name,
+                    field_value_id: e.target.value 
+                }])
+            } else {
+                setDynamicFields(last => [...last, {
+                    field_id: e.target.name,
+                    field_value: e.target.value
+                }])
+            }
+        } else { 
+            
+            var temp = dynamicFields.filter(item => item.field_id !== e.target.name)
+
+            if(chooseabel) { 
+                setDynamicFields([...temp, {
+                    field_id: e.target.name,
+                    field_value_id: e.target.value 
+                }])
+            } else {
+                setDynamicFields([...temp, {
+                    field_id: e.target.name,
+                    field_value: e.target.value 
+                }])  
+            }
+        }
+    }
+
+    const buildData = () => {
+        const data = {
+            instance : [
+                {
+                    dynamicFields: [
+                        ...dynamicFields
+                    ],
+                    capacity: Number(staticsInput.inventory),
+                    price: Number(staticsInput.price),
+                    discount: Number(staticsInput.discount)
+                }
+            ]
+        }
+        
+        setDynamicData(data)
+        
     }
 
     return (
@@ -98,6 +144,7 @@ export default function ProductIdentity() {
                 border-[#E2E2E2]
                 mt-[21px]
                 flex
+                relative
             "
         >
             <div
@@ -190,80 +237,104 @@ export default function ProductIdentity() {
                     "
                 >
                     {
-                        inpts.variables.map((items, index) => {
-                            if(items.children?.length) {
-                                return (
-                                    <div
-                                        key={index}
-                                        className="
-                                            flex
-                                            justify-between
-                                            px-4
-                                        "
-                                    >
-                                        <p>
-                                            {
-                                                items.title
-                                            }
-                                        </p>
-                                        <select
+                       store.length != 0 ?  (
+                           store.map((items, index) => {
+                                if(items.options) {
+                                    return (
+                                        <div
+                                            key={index}
                                             className="
-                                                w-[216px]
-                                                h-[38px]
-                                                border-[#E2E2E2]
-                                                rounded-xl
+                                                flex
+                                                justify-between
+                                                px-4
                                             "
-                                            name={items.name}
-                                            onChange={(e) => handelVariabelInput(e)}
                                         >
-                                            {
-                                                items.children.map((item, index) => (
-                                                    <option
-                                                        key={index}
-                                                    >
-                                                        {
-                                                            item
-                                                        }
-                                                    </option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
-                                )
-                            } else {
-                                return (
-                                    <div
-                                        key={index}
-                                        className="
-                                            flex
-                                            justify-between
-                                            px-4
-                                        "
-                                    >
-                                        <p>
-                                            {
-                                                items.title
-                                            }
-                                        </p>
-                                        <input 
-                                            value={variableInput[items.name]}
-                                            name={items.name}
-                                            onChange={(e) => handelVariabelInput(e)}
+                                            <p>
+                                                {
+                                                    items.name
+                                                }
+                                            </p>
+                                            <select
+                                                className="
+                                                    w-[216px]
+                                                    h-[38px]
+                                                    border-[#E2E2E2]
+                                                    rounded-xl
+                                                "
+                                                name={items.id}
+                                                onChange={(e) => handelChange(e, true)}
+                                            >
+                                                {
+                                                    items.options.map((item, index) => (
+                                                        <option
+                                                            key={index}
+                                                            value={item.id}
+                                                        >
+                                                            {
+                                                                item.value
+                                                            }
+                                                        </option>
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
+                                    )
+                                } else {
+                                    return (
+                                        <div
+                                            key={index}
                                             className="
-                                                w-[216px]
-                                                h-[36px]
-                                                rounded-xl
-                                                border
-                                                border-[#C5C5C6]
-                                                px-2
+                                                flex
+                                                justify-between
+                                                px-4
                                             "
-                                        />
-                                    </div>
-                                )
-                            }
-                        })
+                                        >
+                                            <p>
+                                                {
+                                                    items.name
+                                                }
+                                            </p>
+                                            <input 
+                                                name={items.id}
+                                                onChange={(e) => handelChange(e, false)}
+                                                className="
+                                                    w-[216px]
+                                                    h-[36px]
+                                                    rounded-xl
+                                                    border
+                                                    border-[#C5C5C6]
+                                                    px-2
+                                                "
+                                            />
+                                        </div>
+                                    )
+                                }
+                            })
+                       ) : (
+                        <div>
+                            <h1>
+                                فیلدی پیدا نشد
+                            </h1>
+                        </div>
+                       )
                     }
                 </div>
+            </div>
+
+            <div
+                className="
+                    absolute
+                    left-0
+                    bottom-0
+                    bg-evaamGreen
+                    text-white
+                    p-2
+                    rounded-xl
+                    cursor-pointer
+                "
+                onClick={() => buildData()}
+            >
+                ثبت
             </div>
         </div>
     )

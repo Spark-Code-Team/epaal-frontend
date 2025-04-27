@@ -51,9 +51,27 @@ const AllProductTopic = async (lowlevel_topic) => {
     }
 }
 
+const CreateProduct = async (data) => {
+    try {
+        const response = await api.post("/product/create_product",
+            data,
+          
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          },)
+
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
 export {
     categoryAll,
     ServiceAndProduct,
     LowlevelCategoryAll,
-    AllProductTopic
+    AllProductTopic,
+    CreateProduct
 }
