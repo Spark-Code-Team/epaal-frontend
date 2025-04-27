@@ -69,6 +69,7 @@ export default function ConfirmUsersCluesModule() {
           await GETWaitedUserFacitiltyClues(userFacilityId);
 
         if (response) {
+          console.log("\n user clue \n -------> ", response.data);
           setUserDigitalClues(response.data.data);
         } else {
           toast.error("erro");
@@ -83,8 +84,6 @@ export default function ConfirmUsersCluesModule() {
     }
     setShowModal(true);
   };
-
-  console.log("00000000000000000000000> \t", waitedUsers)
 
   const sendRejectedFacility = async () => {
     const { response, error } =

@@ -12,9 +12,9 @@ export default function FacilityState({ curentState }) {
     const router = useRouter()
 
     useEffect(() => {
-        if (store.status.level_number == curentState) {
-            router.back()
-        }
+        // if (store.status.level_number == curentState) {
+        //     router.back()
+        // }
     }, [])
 
 

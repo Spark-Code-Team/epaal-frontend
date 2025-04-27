@@ -265,7 +265,17 @@ const payInstallmentFinal = async (installmentId) => {
 };
 
 
+const getUserCart = async () => {
+  try {
+    const response = await api.get("/users/my_cart/");
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+}
+
 export {
+  getUserCart,
   payInstallmentFinal,
   getInstallmentPayment,
   identityAuthReq,

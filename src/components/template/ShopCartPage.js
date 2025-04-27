@@ -1,20 +1,16 @@
 "use client";
 
-import { useDispatch, useSelector } from "react-redux";
-import CartIcon from "../../../public/icons/Cart";
+import { useSelector } from "react-redux";
 import Image from "next/image";
-import { checkout as finalCheckout } from "@/redux/features/shopCart/shopCart";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Modal } from "flowbite-react";
-import Phone from "../../../public/icons/Phone";
-import LogoEvaam from "../../../public/image/logoevaam.png";
-import OtpInput from "react18-input-otp";
 import { Bounce, toast } from "react-toastify";
 import EvaamLogoo from "../../../public/icons/EvaamLogoo";
 import TrashDashBoard from "../../../public/icons/dashboard/TrashDashboard";
 import { formatNumberToFA } from "@/utils/numToFa";
 import {
+  GETUserCart,
   GETUserCartTotalCost,
   GETUserWallet,
   PayCartProduct,
@@ -26,6 +22,8 @@ export default function ShopCartPage() {
   const [checkout, setCheckout] = useState(1);
   const [userTotalCost, setUserTotalCost] = useState(null);
   const [userWallet, setUserWallet] = useState(null);
+
+  const [userCart, setUserCart] = useState([]);
 
   const router = useRouter();
 
@@ -39,7 +37,7 @@ export default function ShopCartPage() {
     async function handlePayment() {
       const { response, error } = await PayCartProduct();
 
-      if (response.status == 200) {
+      if (response) {
         setOpenModal(false);
         router.push("/shopping-evaam");
 
@@ -52,10 +50,17 @@ export default function ShopCartPage() {
           theme: "light",
           transition: Bounce,
         });
+      } else if (error) {
+        setOpenModal(false);
+        toast.error(
+          error.response.data.error === "your balance is not enough"
+            ? "موجودی حساب شما کافی نیست ❌"
+            : `${error.response.data.error} مشکلی درپرداخت پیش اومده : `,
+        );
       }
     }
 
-    handlePayment()
+    handlePayment();
   };
 
   useEffect(() => {
@@ -66,7 +71,19 @@ export default function ShopCartPage() {
       }
     }
 
+    async function fetchUserCart() {
+      const { response, error } = await GETUserCart();
+
+      if (response) {
+        console.log(" => cart => \n", response.data.data);
+        setUserCart(response.data.data);
+      } else {
+        toast.error("مشکلی در سبد خرید پیش اومده ❌");
+      }
+    }
+
     fetchUserCostCart();
+    fetchUserCart();
   }, []);
 
   async function fetchUserWallet() {
@@ -80,52 +97,58 @@ export default function ShopCartPage() {
     setOpenModal(true);
   }
 
+  const reducer = () => {
+    return userCart.reduce((acc, item) => acc + item.price, 0);
+  };
+
   return (
     <div className="flex-col items-center">
-      {store.counter.selected.length ? (
+      {userCart.length ? (
         <div className="md:flex-row">
           <div className="my-10 w-full px-10 text-lg font-bold">
             <p>سبد خرید</p>
           </div>
           <div className="flex w-full flex-col justify-evenly gap-5 p-4 md:flex-row md:gap-0">
             <div className="md:flex-row md:flex-wrap">
-              {store.counter.selected.map((item) => (
-                <div
-                  className="md:my-3 md:w-[60%] md:rounded-xl md:border md:border-gray-300 md:p-5"
-                  key={item.id}
-                >
-                  <div className="flex w-full">
-                    <div>
-                      <Image
-                        src={item?.product?.fake_picture}
-                        width={500}
-                        height={500}
-                        className="h-[150px] w-[180px] md:h-[250px] md:w-[400px]"
-                        alt={item.title}
-                      />
+              {userCart.length !== 0 ? (
+                userCart.map((item) => (
+                  <div
+                    className="md:my-3 md:w-auto md:rounded-xl md:border md:border-gray-300 md:p-5"
+                    key={item.id}
+                  >
+                    <div className="flex w-full">
+                      <div>
+                        <Image
+                          src={item?.product_image?.product_pic}
+                          width={500}
+                          height={500}
+                          className="h-[150px] w-[180px] md:h-[250px] md:w-[400px] rounded-2xl"
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="flex flex-col items-start justify-around px-5">
+                        <p className="text-xs font-bold md:text-sm">
+                          نام کالا: {item.product_name}
+                        </p>
+                        <p> قیمت کالا:{formatNumberToFA(item?.price)} تومان</p>
+                      </div>
                     </div>
-                    <div className="flex flex-col items-start justify-around px-5">
-                      <p className="text-xs font-bold md:text-sm">
-                        {item.product.name}
-                      </p>
-                      <p className="text-xs md:text-lg">{item.title}</p>
-                      <p className="text-xs md:text-lg">{item.title}</p>
+                    <div className="0 my-4 flex w-full items-center justify-between px-10">
+                      <div>
+                        <TrashDashBoard />
+                      </div>
                     </div>
                   </div>
-                  <div className="0 my-4 flex w-full items-center justify-between px-10">
-                    <div>{formatNumberToFA(item?.price)} تومان</div>
-                    <div>
-                      <TrashDashBoard />
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className="flex h-40 flex-col justify-between rounded-xl border-[3px] border-gray-200 p-4 md:w-[35%]">
               <div>
-                <p> تعداد: {formatNumberToFA(store.counter.counter)} کالا</p>
-                <p>مجموع قیمت: {formatNumberToFA(userTotalCost)} تومان</p>
+                <p> تعداد: {formatNumberToFA(userCart.length)} کالا</p>
+                <p>مجموع قیمت: {formatNumberToFA(reducer())} تومان</p>
               </div>
               <div
                 className="cursor-pointer rounded-md bg-evaamGreen p-2 text-center text-white transition-all"
@@ -151,10 +174,11 @@ export default function ShopCartPage() {
         show={openModal}
         onClose={() => {
           setOpenModal(false);
-          // setCheckout(1);
         }}
-        size="md"
-        dismissible
+        size="sm"
+        style={{
+          display: "flex",
+        }}
       >
         <div className="h-auto w-[500px] rounded-xl bg-white p-6 shadow-lg">
           <div className="flex flex-row items-center gap-5">

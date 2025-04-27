@@ -31,7 +31,7 @@ export default function GivenFacility({ facility }) {
         facility.map((eachFacilityObject) => (
           <div className="relative flex w-full flex-col items-center justify-center rounded-[24px] md:flex-row md:items-center md:justify-start md:gap-4 md:border md:border-[#E1EDF0] md:p-4">
             <AghsatChart
-              amount="10000"
+              amount={`${eachFacilityObject.choosen_value}`}
               percentage={(
                 (eachFacilityObject.num_of_paid_installment /
                   eachFacilityObject.num_of_installment) *

@@ -1,21 +1,30 @@
-export default function ProductOtherDetails({ information }) {
-    // console.log("-----------> ", information)
+export default function ProductOtherDetails({ statics = [], dynamics = [] }) {
+  const allFields = [...statics, ...dynamics.dynamic_fields];
+
   return (
-    <>
-      <div className="flex w-full flex-col items-right px-2 justify-between">
-        <div className="font-bold text-lg my-3">
-        مشخصات محصول
-        </div>
-        {
-            information.map((i) => (
-                <div className="flex w-full flex-row items-center justify-between border-b-2 border-b-gray-200 py-5">
-                <div className="font-bold">{i.key}</div>
-                <div className="w-3/4">{i.value}</div>
-              </div>
-            ))
-        }
-        
+    <div className="flex w-full flex-col px-4">
+      <div className="my-5 text-2xl font-extrabold text-gray-800">مشخصات محصول</div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {allFields.map((item, index) => {
+          if (!item?.field) return null;
+
+          const title = item.field.name || "عنوان نامشخص";
+          const value = item.field.is_choosable
+            ? item.field_value?.value || "مقدار مشخص نشده"
+            : item.value || "مقدار مشخص نشده";
+
+          return (
+            <div
+              key={index}
+              className="flex flex-col rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md"
+            >
+              <div className="mb-2 text-sm font-semibold text-gray-600">{title}</div>
+              <div className="text-lg font-bold text-gray-800">{value}</div>
+            </div>
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 }
