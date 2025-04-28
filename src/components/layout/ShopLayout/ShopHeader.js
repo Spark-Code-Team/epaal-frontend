@@ -181,7 +181,17 @@ export default function ShopHeader() {
         <div className={`flex w-[45%] items-center justify-between md:w-[12%]`}>
           {store.role.id ? (
             <>
-              <div className="flex h-[26px] items-center justify-center rounded-lg border-2 border-[#9ED6D9] p-4 text-[13px]">
+              <div 
+                onClick={() => {
+                  if (store.role.role == "admin") {
+                    router.push("/admin")
+                  } else if (store.role.role == "shop_admin") {
+                    router.push("/admin/admin-shop/add-product")
+                  } else {
+                    router.push("/dashboard/")
+                  }
+                }}
+                className="flex cursor-pointer h-[26px] items-center justify-center rounded-lg border-2 border-[#9ED6D9] p-4 text-[13px]">
                 حساب کاربری
               </div>
 

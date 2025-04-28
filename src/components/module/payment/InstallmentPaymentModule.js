@@ -13,6 +13,7 @@ export default function InstallmentPaymentResultModule() {
 
   const [timeLeft, setTimeLeft] = useState((1 * 60) / 6); // 5 دقیقه (برحسب ثانیه)
   const [dateTime, setDateTime] = useState(new Date());
+  const [status, setStatus] = useState(true)
 
   const [randomCode, setRandomCode] = useState("");
 
