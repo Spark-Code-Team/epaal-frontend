@@ -26,6 +26,7 @@ const alaki = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export default function shop() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   const categories = [
     { id: 1, name: "کالای دیجیتال", icon: laptop, alt: "1.jpg" },
@@ -56,8 +57,14 @@ export default function shop() {
 
       if(response) {
         console.log(response);
+        setProducts(response.data)
+
+        console.log(response.data.data);
+        
+
+        setIsLoading(false)
       } else {
-        console.log("1111111111111111111111111111111111111111",error);
+        console.log(error);
         
       }
     }
@@ -69,6 +76,23 @@ export default function shop() {
   console.log("================= products -> \n", products);
 
   //! temp product | must change logic of fetching:
+
+  if(isLoading) {
+    return (
+      <div
+        className="
+          w-full
+          flex
+          items-center
+          justify-center
+        "
+      >
+        <h1>
+          Loading...
+        </h1>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -118,7 +142,7 @@ export default function shop() {
         <div className="w-full px-3">
           <ShopTitle title="پربازدیدترین محصولات موتورسیکلت" />
           <div className="no-scrollbar my-7 flex w-full gap-[20px] overflow-x-scroll py-2 md:gap-7">
-            {products.length >= 1 ? (
+            {products.length != 0 ? (
               <>
                 {products.map((item) => (
                   <ShopCart products={item} key={item.id} icon={kitchen} />
