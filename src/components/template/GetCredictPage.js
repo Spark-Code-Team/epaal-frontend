@@ -9,7 +9,7 @@ import Tick2 from "../../../public/icons/dashboard/tick2";
 import Tick3 from "../../../public/icons/dashboard/tick3";
 import Tick4 from "../../../public/icons/dashboard/tick4";
 import { allFacility } from "@/service/userPanel";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { addFacility } from "@/redux/features/facilityChose/facilityChose";
 
 export default function GetCredictPage() {
@@ -37,6 +37,8 @@ export default function GetCredictPage() {
   ];
 
   const dispatch = useDispatch()
+  const profile = useSelector(store => store.profile)
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +46,7 @@ export default function GetCredictPage() {
 
         if(response) {
             setSlides(response.data)
-            
+
         } else {
             console.log(error);
         }
@@ -137,12 +139,17 @@ export default function GetCredictPage() {
             onTouchStart={handleTouchStart} // Handle touch start
             onTouchEnd={handleTouchEnd} // Handle touch end
           >
-            {slides.length !=0 && slides.map((item, i) => (
+            {slides.length !==0 && slides.map((item, i) => (
               <div
                 key={i}
-                className={`z-0 h-[124px] w-[226px] flex-none cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat p-4 text-white transition-transform duration-300 md:h-[217px] md:w-[398] ${i == 0 ? "z-10 scale-125 opacity-100" : "opacity-50"}`}
+                className={`z-0 flex-none cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat p-4 text-white transition-transform duration-300 md:h-[217px] md:w-[398] ${i == 0 ? "z-10 scale-125 opacity-100" : "opacity-50"}`}
                 style={{
-                  background: `url(${Images[0]}) center/100% 100% no-repeat`,
+                  width: '300px', // ابعاد دلخواه
+                  height: 'auto',
+                  backgroundImage: `url(${Images[0]})`,
+                  backgroundSize: 'contain', // یا 'contain' بسته به نیاز
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
                 }}
               >
                 <div className="flex w-full items-center justify-between px-2">
@@ -168,7 +175,7 @@ export default function GetCredictPage() {
 
                 <div className="flex w-full items-center justify-between md:mt-[30px]">
                   <div className="text-[5px] font-normal md:text-[10px]">
-                    تامین مالی توسط {item.bank.name} 
+                    تامین مالی توسط {item.bank.name}
                   </div>
                   {/* <div className="rounded-xl bg-[#232336b3] px-[5px] py-2 text-[7px] backdrop-blur-[40px] md:text-[14px]">
                       {digitsEnToFa("18")} ماهه
@@ -200,11 +207,16 @@ export default function GetCredictPage() {
         <div
           className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
           onClick={() => {
+            if (profile.confirmed_address && profile.confirmed_data){
+
             router.push("/dashboard/calculate-credit");
             dispatch(addFacility({facility: slides[0]}))
+            } else {
+              router.push("/dashboard/authentication")
+            }
           }}
         >
-          درخواست اعتبار
+           {profile.confirmed_address && profile.confirmed_data ? "درخواست اعتبار" : "احراز هویت"}
         </div>
         {/*  */}
 

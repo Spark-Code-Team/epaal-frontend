@@ -94,6 +94,7 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
             if(response) {
                 console.log("22222222222222222",response);
             } else {
+                // toast.error(error.data)
                 console.log(error);
             }
         } else {
@@ -108,7 +109,7 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
             setShowAddress(2)
             toast.success("احراز مشخصات با موفقیت انجام شد")
         } else {
-            console.log(error);
+            console.log(error.response.data.message);
         }
         setShowModal(true)
     }
