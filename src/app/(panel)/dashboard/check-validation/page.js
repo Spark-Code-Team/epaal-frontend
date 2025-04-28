@@ -35,11 +35,11 @@ export default function ConfirmBank() {
     const { response, error } = await startEtebarSanji()
 
     if(response) {
-      console.log(response);
+      console.log(" --------------------> ", response.data)
       setIsSuccess(true);
       setIsOpen(false);
     } else {
-      console.log(error);
+      console.log(" err --------------> ", error);
     }
   }
 

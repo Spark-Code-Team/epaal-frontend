@@ -106,8 +106,10 @@ const MohasebeAghsat = ({ toPage }) => {
               {slides.map((src, i) => (
                 <div
                   key={i}
-                  className={`z-0 h-[124px] w-[226px] flex-none cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat p-4 text-white transition-transform duration-300 md:h-[217px] md:w-[398] ${i === index ? "z-10 scale-125 opacity-100" : "opacity-50"}`}
+                  className={`z-0 flex-none cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat p-4 text-white transition-transform duration-300 md:h-[217px] md:w-[398] ${i === index ? "z-10 scale-125 opacity-100" : "opacity-50"}`}
                   style={{
+                    height:"auto",
+                    width:300,
                     background: `url(${src}) center/100% 100% no-repeat`,
                   }}
                 >

@@ -1,36 +1,36 @@
 "use client";
 
 import { pallete } from "@/constant/Pallete";
-import { decrement, increment } from "@/redux/features/shopCart/shopCart";
-import { digitsEnToFa } from "@persian-tools/persian-tools";
+import { fetchUserCart } from "@/redux/features/shopCart/shopCart";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GranteedIcon from "../../../../public/icons/garanteed";
 
 import techno from "@/../public/image/TechnoLife.svg";
 import { AddSingleProductsToCart } from "@/service/products";
 import { toast } from "react-toastify";
 
-export default function ShopProduct({ product }) {
+export default function ShopProduct({
+  product,
+  defaultInstance,
+  setDefaultInstance,
+}) {
   const dispatch = useDispatch();
   const store = useSelector((store) => store);
 
-  const productIndex = store.counter.selected.findIndex(
-    (item) => item.id == product.id,
-  );
-
+  // const productIndex = store.counter.selected.findIndex(
+  //   (item) => item.id == product.id,
+  // );
 
   async function addProdutToCart(instanceID) {
-    const {response, error} = await AddSingleProductsToCart(instanceID)
+    const { response, error } = await AddSingleProductsToCart(instanceID);
 
-    if(response){
-      toast.success("با موفقیت به سبد خرید شما اضافه شد ✅")
-      dispatch(increment(instanceID))
+    if (response) {
+      dispatch(fetchUserCart());
+      toast.success("با موفقیت به سبد خرید شما اضافه شد ✅");
     } else {
-      toast.error("خطا در خرید کالا ❌")
+      toast.error("خطا در خرید کالا ❌");
     }
-
   }
 
   return (
@@ -50,14 +50,16 @@ export default function ShopProduct({ product }) {
                   className="h-20 w-20"
                 />
               </span>
-              {"تکنولایف"}{" "}
+              {product.shop.shop_name}{" "}
             </div>
           </div>
           <div className="pt-3">
             <div>قیمت محصول:</div>
             <div className="font-bold">
               {" "}
-              {digitsEnToFa(product.product_instances[0].price)}
+              {new Intl.NumberFormat("fa-IR").format(
+                product.instances[0].price,
+              )}
               تومان
             </div>
           </div>
@@ -74,14 +76,10 @@ export default function ShopProduct({ product }) {
 
           <div className="flex w-full items-center">
             <div
-              className={`w-full scale-105 cursor-pointer rounded-xl bg-evaamGreen p-3 text-center text-white transition-all duration-300 ease-in-out ${store.counter.selected[productIndex]?.quantity >= 1 ? "hidden" : "block"}`}
-              onClick={() => 
-              {
-                // dispatch(increment(product))
-                console.log(product.product_instances[0].id)
-                addProdutToCart(product.product_instances[0].id)
-              }
-              }
+              className={`w-full scale-105 cursor-pointer rounded-xl bg-evaamGreen p-3 text-center text-white transition-all duration-300 ease-in-out ${store.cart.cartItems.length >= 1 ? "hidden" : "block"}`}
+              onClick={() => {
+                addProdutToCart(defaultInstance.id);
+              }}
             >
               افزودن به سبد خرید
             </div>
@@ -112,34 +110,37 @@ export default function ShopProduct({ product }) {
           <p className="text-[15px]">مبلغ قابل پرداخت :</p>
           <p className="mt-1 text-[18px] font-bold text-[#3A616A]">
             {" "}
-            {digitsEnToFa(product.product_instances[0].price)}تومان
+            {new Intl.NumberFormat("fa-IR").format(product.instances[0].price)}
+            تومان
           </p>
         </div>
         <div
-          className={`h-auto w-52 rounded-xl bg-evaamGreen p-[10px] text-center text-[20px] text-white ${store.counter.selected[productIndex]?.quantity >= 1 ? "hidden" : "block"}`}
-          onClick={() => dispatch(increment(product))}
+          // className={`h-auto w-52 rounded-xl bg-evaamGreen p-[10px] text-center text-[20px] text-white ${store.counter.selected[productIndex]?.quantity >= 1 ? "hidden" : "block"}`}
+            className={`h-auto w-52 rounded-xl bg-evaamGreen p-[10px] text-center text-[20px] text-white`}
+
+            onClick={() => dispatch(increment(product))}
         >
           ثبت سفارش
         </div>
-        {store.counter.selected[productIndex]?.quantity >= 1 ? (
-          <div className="flex w-full items-center justify-around border border-evaamGreen p-2 rounded-lg shadow-md gap">
-            <div
-              onClick={() => dispatch(increment(product))}
-              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-evaamGreen text-2xl transition-all duration-100 ease-in-out hover:scale-105 hover:shadow-md"
-            >
-              +
-            </div>
-            <div className="border-evaamBrightGradient flex h-10 w-10 flex-col items-center justify-center rounded-full border">
-              {store.counter.selected[productIndex]?.quantity}
-            </div>
-            <div
-              onClick={() => dispatch(decrement(product))}
-              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-red-600 text-2xl transition-all duration-100 ease-in-out hover:scale-105 hover:shadow-md"
-            >
-              -
-            </div>
-          </div>
-        ) : null}
+        {/*{store.counter.selected[productIndex]?.quantity >= 1 ? (*/}
+        {/*  <div className="gap flex w-full items-center justify-around rounded-lg border border-evaamGreen p-2 shadow-md">*/}
+        {/*    <div*/}
+        {/*      onClick={() => dispatch(increment(product))}*/}
+        {/*      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-evaamGreen text-2xl transition-all duration-100 ease-in-out hover:scale-105 hover:shadow-md"*/}
+        {/*    >*/}
+        {/*      +*/}
+        {/*    </div>*/}
+        {/*    <div className="flex h-10 w-10 flex-col items-center justify-center rounded-full border border-evaamBrightGradient">*/}
+        {/*      {store.counter.selected[productIndex]?.quantity}*/}
+        {/*    </div>*/}
+        {/*    <div*/}
+        {/*      onClick={() => dispatch(decrement(product))}*/}
+        {/*      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-red-600 text-2xl transition-all duration-100 ease-in-out hover:scale-105 hover:shadow-md"*/}
+        {/*    >*/}
+        {/*      -*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*) : null}*/}
       </div>
     </>
   );

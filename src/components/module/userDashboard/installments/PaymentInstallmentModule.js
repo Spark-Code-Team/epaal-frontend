@@ -279,7 +279,7 @@ export default function PaymentInstallmentModule() {
               <div className="">
                 <input
                   dir="ltr"
-                  placeholder="ماه"
+                  placeholder="رمز دوم"
                   className="w-36 rounded-xl border-none bg-gray-200 py-2 text-center outline-none ring-0 focus:border-none focus:outline-none focus:ring-0"
                 />
               </div>
