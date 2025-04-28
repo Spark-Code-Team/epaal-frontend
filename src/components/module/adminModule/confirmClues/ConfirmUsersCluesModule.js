@@ -1,6 +1,7 @@
 "use client";
 
 import PhysicalClues from "../../../../../public/icons/PhysicalClues";
+import check from "../../../../../public/image/test.jpg"
 import { DocumentCheckIcon } from "@heroicons/react/24/outline";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { Tooltip } from "flowbite-react";
@@ -320,7 +321,7 @@ export default function ConfirmUsersCluesModule() {
             ) : (
               <>
                 <div className="my-4 text-center">
-                  دیتایی برای نمایش وجود نداره
+                  <Image src={check} alt="alt.png" width={200} height={200} />
                 </div>
               </>
             )}

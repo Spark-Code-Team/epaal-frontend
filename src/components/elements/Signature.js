@@ -180,7 +180,7 @@ export default function Signature(props) {
           text-white
         "
       >
-        تایید و پیش‌پرداخت
+        تایید امضا و بارگذاری
       </div>
 
       {/* Modal پیش‌نمایش امضا (با position fixed) */}
