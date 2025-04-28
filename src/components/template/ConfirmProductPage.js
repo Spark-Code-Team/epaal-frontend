@@ -1,8 +1,13 @@
+"use client"
+
+import { useRouter } from "next/navigation";
 import CheckCircle from "../../../public/icons/Admin/AdminShop/CheckCircle";
 
 
 
 export default function ConfirmProductPage() {
+
+    const router = useRouter()
 
     return (
         <div
@@ -42,7 +47,9 @@ export default function ConfirmProductPage() {
                         flex
                         justify-center
                         items-center
+                        cursor-pointer
                     "
+                    onClick={() => router.push("/admin/admin-shop/add-product")}
                 >
                     تایید
                 </div>

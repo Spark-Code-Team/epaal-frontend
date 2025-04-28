@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { CreateProduct } from "@/service/adminShop";
 import axios from "axios";
 import { getCookie } from "@/utils/cookie";
+import { useRouter } from "next/navigation";
 
 
 
@@ -24,6 +25,8 @@ export default function ConfirmDynamicFieldPage() {
     const store = useSelector(store => store.addProduct)    
 
     const formData = new FormData()
+
+    const router = useRouter()
 
     const handelCreateProduct = async () => {
 
@@ -68,7 +71,7 @@ export default function ConfirmDynamicFieldPage() {
                   "Authorization": `Bearer ${token}`
                 },
               }
-            ).then(res => console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",res))
+            ).then(res => router.push("/admin/admin-shop/confirm-product"))
         } catch(error) {
             return { error }
         }
@@ -90,7 +93,7 @@ export default function ConfirmDynamicFieldPage() {
                 <AdminShopTitle
                     title="تعداد نوع محصول"
                 />
-                <ContedProduct />
+                {/* <ContedProduct /> */}
                 <ProductIdentity 
                     setDynamicData={setDynamicData}
                 />
@@ -118,6 +121,7 @@ export default function ConfirmDynamicFieldPage() {
                         border
                         border-evaamGreen
                         text-evaamGreen
+                        cursor-pointer
                     "
                 >
                     بازگشت  به مرحله قبلی
@@ -131,6 +135,7 @@ export default function ConfirmDynamicFieldPage() {
                         items-center
                         justify-center
                         rounded-xl
+                        cursor-pointer
                         ${dynamicData ? "bg-evaamGreen text-white" : "bg-white text-gray-600 border"}
                     `}
 
