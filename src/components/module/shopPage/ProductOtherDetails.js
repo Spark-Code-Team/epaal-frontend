@@ -1,5 +1,8 @@
 export default function ProductOtherDetails({ statics = [], dynamics = [] }) {
-  const allFields = [...statics, ...dynamics.dynamic_fields];
+
+  console.log("0000000000000000000000000000000000000000000000000000000000000000000",{statics, dynamics});
+  const newDynamic = dynamics.dynamic_fields ? dynamics.dynamic_fields : []
+  const allFields = [...statics, ...newDynamic];
 
   return (
     <div className="flex w-full flex-col px-4">
