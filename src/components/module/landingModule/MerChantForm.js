@@ -1,10 +1,9 @@
 "use client"
 
-import Link from "next/link"
-import { useEffect, useState } from "react"
-import ContineuButton from "../elements/ContineuButton"
-import AddProductTitle from "../module/adminShop/AddProductTitle"
-import { useRouter } from "next/navigation"
+import BlurTitle from "@/components/elements/BlurTitle"
+import { sendShopRequest } from "@/service/landing"
+import { useState } from "react"
+import { toast } from "react-toastify"
 
 
 
@@ -32,53 +31,71 @@ const resiverShopInput = [
     {
         name: "address",
         title: "آدرس سایت پذیرنده",
-        placeHolder: "آدرس سایت را وارد کنید"
+        placeHolder: "https://e-vaam.com"
     }
 ]
 
-export default function CreateSellerPage() {
 
-    const router = useRouter()
-
-    useEffect(() => {
-        router.push("/admin/sellers/create-seller/shop-identity")
-    } , [])
+export default function MerChantForm() {
 
     const [ input, setInput] = useState({
-        acceper: "",
+        accepter: "",
         malekName: "",
         malekLastName: "",
         phoneNumber: "",
         address: ""
-    })
+    })    
 
     const handelInput = (e) => {
-
         setInput(last => ({...last, [e.target.name]: e.target.value}))
+    }
+
+    const sendMerchant = async () => {
+
+        const { response, error } = await sendShopRequest(
+            input.accepter,
+            input.malekName, 
+            input.malekLastName, 
+            input.phoneNumber, 
+            input.address
+        )
+
+        if(response) {
+            toast.success("درخواست شما با موفقیت ثبت شد")
+            console.log(response);
+            
+        } else {
+            console.log(error);
+        }
     }
 
     return (
         <div
             className="
+                w-full
                 flex
-                items-center
                 flex-col
-                justify-between
-                h-full
-
+                items-center
+                justify-center
+                gap-7
+                mb-5
             "
         >
-            <AddProductTitle 
-                titleKey="addShop"
-                levelState={1}
+            <BlurTitle 
+                title="فرم پذیرندگی"
             />
+
+
             <div
                 className="
-                    w-full
-                    px-[78px]
+                    w-1/2
                     grid
                     grid-cols-2
-                    gap-[38px]
+                    mx-auto
+                    gap-5
+                    border-[3px]
+                    p-5
+                    rounded-xl
                 "
             >
                 {
@@ -108,7 +125,7 @@ export default function CreateSellerPage() {
                                 onChange={e => handelInput(e)}
                                 placeholder={item.placeHolder}
                                 className="
-                                    border
+                                    border-2
                                     border-[#E1EDF0]
                                     bg-white
                                     py-[14px]
@@ -120,11 +137,30 @@ export default function CreateSellerPage() {
                     ))
                 }
             </div>
-            <ContineuButton 
-                href="/admin/sellers/create-seller/shop-identity"
-                canReturn={false}
-                backHref="/"
-            />
+
+            <div
+                className="
+                    w-full
+                    flex
+                    items-center
+                    justify-center
+                "
+            >
+                <div
+                    className="
+                        bg-evaamGreen
+                        text-white
+                        py-2
+                        px-3
+                        w-fit
+                        rounded-xl
+                        cursor-pointer
+                    "
+                    onClick={() => sendMerchant()}
+                >
+                    ارسال درخواست
+                </div>
+            </div>
         </div>
     )
 }

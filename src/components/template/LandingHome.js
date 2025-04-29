@@ -16,6 +16,7 @@ import RahnamaPaziran from "../module/landingModule/RahnamaPaziran";
 import ProductCategory from "../module/landingModule/ProductCategory";
 import ArticleCard from "../elements/ArticleCard";
 import ArticleTitle from "../module/articlePage/ArticleTitle";
+import MerChantForm from "../module/landingModule/MerChantForm";
 
 
 
@@ -41,6 +42,7 @@ export default function LandingHome()  {
             <EvamStore />
             <ProductCategory />
             <RahnamaPaziran />
+            <MerChantForm />
         </>
     )
 }
