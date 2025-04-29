@@ -93,7 +93,7 @@ export default function MerChantForm() {
                     grid-cols-2
                     mx-auto
                     gap-5
-                    border-[3px]
+                    border-[3px0]
                     p-5
                     rounded-xl
                 "
