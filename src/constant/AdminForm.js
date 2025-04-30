@@ -126,6 +126,10 @@ export const sidebarOptions = [
         title: "تسویه",
         link: "/admin/settlement-seller",
       },
+      {
+        title: "لیست درخواست ها",
+        link: "/admin/request-seller",
+      },
     ],
   },
   {
@@ -225,7 +229,7 @@ export const userPanelSidebarOptions = [
       {
         title: "تسویه",
         link: "/admin/settlement-seller",
-      },
+      }
     ],
   },
   {

@@ -6,6 +6,8 @@ import faciltyReducer from "../redux/features/facilityChose/facilityChose"
 import statusReducer from "../redux/features/facilityState/facilityState"
 import AddProductReducer from "../redux/features/addProduct/addProduct"
 import SelectStaticAndDynamic from "../redux/features/selectStaticAndDynamic/selectStaticAndDynamic"
+import AddShopAdminReducer from "../redux/features/addShop/addShop"
+
 
 const store = configureStore({
     reducer: {
@@ -15,7 +17,8 @@ const store = configureStore({
         facility: faciltyReducer,
         status: statusReducer,
         addProduct: AddProductReducer,
-        staticDynamic: SelectStaticAndDynamic
+        staticDynamic: SelectStaticAndDynamic,
+        addShop: AddShopAdminReducer
     }
 })
 

@@ -65,7 +65,7 @@ export default function MerChantForm() {
             console.log(response);
             
         } else {
-            console.log(error);
+            toast.error("مشکبلی در ثبت درخواست پیش آمده")
         }
     }
 
@@ -85,80 +85,91 @@ export default function MerChantForm() {
                 title="فرم پذیرندگی"
             />
 
-
             <div
                 className="
                     w-1/2
-                    grid
-                    grid-cols-2
-                    mx-auto
-                    gap-5
-                    border-[3px0]
-                    p-5
-                    rounded-xl
-                "
-            >
-                {
-                    resiverShopInput.map((item, index) => (
-                        <div
-                            key={index}
-                            className="
-                                w-full
-                                flex
-                                flex-col
-                                gap-3
-                            "
-                        >
-                            <label
-                                className="
-                                    text-[16px]
-                                    text-[#1D243]
-                                "
-                            >
-                                {
-                                    item.title
-                                }
-                            </label>
-                            <input
-                                name={item.name}
-                                value={input[item.name]}
-                                onChange={e => handelInput(e)}
-                                placeholder={item.placeHolder}
-                                className="
-                                    border-2
-                                    border-[#E1EDF0]
-                                    bg-white
-                                    py-[14px]
-                                    rounded-xl
-                                    px-2
-                                "
-                            />
-                        </div>
-                    ))
-                }
-            </div>
-
-            <div
-                className="
-                    w-full
                     flex
+                    flex-col
                     items-center
+                    gap-4
                     justify-center
+                    border-4
+                    rounded-xl
+                    p-5
                 "
             >
                 <div
                     className="
-                        bg-evaamGreen
-                        text-white
-                        py-2
-                        px-3
-                        w-fit
+                        w-full
+                        grid
+                        grid-cols-2
+                        mx-auto
+                        gap-5
                         rounded-xl
-                        cursor-pointer
                     "
-                    onClick={() => sendMerchant()}
                 >
-                    ارسال درخواست
+                    {
+                        resiverShopInput.map((item, index) => (
+                            <div
+                                key={index}
+                                className="
+                                    w-full
+                                    flex
+                                    flex-col
+                                    gap-3
+                                "
+                            >
+                                <label
+                                    className="
+                                        text-[16px]
+                                        text-[#1D243]
+                                    "
+                                >
+                                    {
+                                        item.title
+                                    }
+                                </label>
+                                <input
+                                    name={item.name}
+                                    value={input[item.name]}
+                                    onChange={e => handelInput(e)}
+                                    placeholder={item.placeHolder}
+                                    className="
+                                        border-2
+                                        border-[#E1EDF0]
+                                        bg-white
+                                        py-[14px]
+                                        rounded-xl
+                                        px-2
+                                    "
+                                />
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div
+                    className="
+                        w-full
+                        flex
+                        items-center
+                        justify-center
+                    "
+                >
+                    <div
+                        className="
+                            bg-evaamGreen
+                            text-white
+                            py-2
+                            px-3
+                            w-fit
+                            rounded-xl
+                            cursor-pointer
+                        "
+                        onClick={() => sendMerchant()}
+                    >
+                        ارسال درخواست
+                    </div>
                 </div>
             </div>
         </div>
