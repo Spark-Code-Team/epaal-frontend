@@ -101,10 +101,13 @@ export default function Header() {
           py-6
           md:px-[112px]
           flex
+          max-w-[1440px]
           justify-between
           md:items-center
           fixed
           top-0
+          left-[50%]
+          translate-x-[-50%]
           mx-auto
           ${(navColor) ? "bg-white shadow-3xl" : ""}
           transition-all
