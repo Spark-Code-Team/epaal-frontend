@@ -7,6 +7,10 @@ import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
 import Image from "next/image";
 import PlusAdmin from "../../../public/icons/PlusAdmin";
+import { CreateTopLevelTopic } from "@/service/adminPanel";
+import axios from "axios";
+import { getCookie } from "@/utils/cookie";
+import { toast } from "react-toastify";
 
 const LevelCategory = ()=>{
 
@@ -17,19 +21,40 @@ const LevelCategory = ()=>{
     })
     const [img,setImg] = useState("");
 
-    const items = [1 , 2 , 3 , 4 , 5 , 6 , 7 , 8];
+    const formData = new FormData()
 
     const imageRef = useRef(null)
 
 
     const ImageChange =(e) => {
 
-        const reader = new FileReader()
+        setAddCategory(last => ({...last, image: e.target.files[0]}))
+        setImg(URL.createObjectURL(e.target.files[0]))
+    }
 
-        reader.readAsDataURL(e.target.files[0])
-        
-        reader.onloadend = () => {
-            setImg(reader.result)
+    const handelSendData = async () => {
+        formData.append("picture", addCategory.image)
+        formData.append("name", addCategory.name)
+
+        const token = getCookie("accessToken")
+
+        try {
+            axios.post(`${process.env.NEXT_PUBLIC_API_URL}product/toplevel_topic`,
+             formData,
+             {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  "Authorization": `Bearer ${token}`
+                },
+              }
+            ).then(res => {
+                toast.success("دسته بندی با موفقیت ساخته شد")
+                setAddCategory({image: "", name: ""})
+                setCategoryModal(false)
+            })
+        } catch(error) {
+            console.log(error)
+            toast.error(error.data?.message || "مشکلی پیش آمده")
         }
     }
 
@@ -66,7 +91,7 @@ const LevelCategory = ()=>{
                 <div className="w-full mt-10 flex flex-wrap">
 
                     {
-                        items.map((item , index)=>(
+                        [...Array(9)].map((item , index)=>(
                             <CardAdmin 
                                 key={index}
                             />
@@ -158,7 +183,6 @@ const LevelCategory = ()=>{
                                 p-[10px]
                                 text-[14px]
                                 font-normal
-                                text-[#A7A8A9]
                                 rounded-xl
                             "
                         />
@@ -220,17 +244,18 @@ const LevelCategory = ()=>{
                         "
                     >
                         <div
-                            className="
+                            className={`
                                 w-[151px]
                                 px-6
                                 py-3
-                                bg-[#054366]
+                                ${addCategory.image && addCategory.name ? "bg-[#054366] text-white" : "bg-slate-100 text-black"}
                                 rounded-xl
-                                text-white
                                 text-center
                                 cursor-pointer
                                 text-[14px]
-                            "
+                            `}
+
+                            onClick={() => handelSendData()}
                         >
                             ایجاد دسته
                         </div>
@@ -240,7 +265,6 @@ const LevelCategory = ()=>{
 
             <input 
                 type="file"
-                value={addCategory.image}
                 onChange={(e) => ImageChange(e)}
                 ref={imageRef}
                 className="

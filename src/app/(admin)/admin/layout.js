@@ -1,3 +1,5 @@
+"use client"
+
 import LayoutAdmin from "@/components/layout/AdminLayout/LayoutAdmin";
 import { redirect } from "next/navigation";
 

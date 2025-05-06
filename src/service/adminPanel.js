@@ -66,4 +66,12 @@ export async function POSTAcceptFinalFacitilty(faciliryId) {
 }
 
 
-// export async function 
+export async function GetAllRequest() {
+  try {
+    const response = await api.get("Admin/all_shop_request")
+
+    return { response }
+  } catch( error ) {
+    return { error }
+  }
+}

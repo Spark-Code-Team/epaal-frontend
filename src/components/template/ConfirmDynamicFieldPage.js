@@ -59,7 +59,6 @@ export default function ConfirmDynamicFieldPage() {
         // }
 
         const token = getCookie("accessToken")
-        console.log(token);
         
         
         try {
