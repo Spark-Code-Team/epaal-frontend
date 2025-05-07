@@ -15,7 +15,8 @@ import { fetchRole } from "@/redux/features/userRole/useRole";
 import { pallete } from "@/constant/Pallete";
 import CategoryIcon from "../../../../public/icons/category";
 import { GETUserCart } from "@/service/products";
-import {fetchUserCart} from "@/redux/features/shopCart/shopCart";
+import { fetchUserCart } from "@/redux/features/shopCart/shopCart";
+import { getAllTopic } from "@/service/shop";
 
 const categories = [
   "گوشی موبایل",
@@ -41,46 +42,51 @@ const rightCategories = [
 
 const headCategories = [0, 1, 2, 3, 4];
 
-const bottomCategories = [
-  {
-    title: "title",
-    children: ["child1", "child2", "child3", "child4", "child5"],
-  },
-  {
-    title: "title",
-    children: ["child1", "child2", "child3", "child4", "child5"],
-  },
-  {
-    title: "title",
-    children: ["child1", "child2", "child3", "child4", "child5"],
-  },
-  {
-    title: "title",
-    children: ["child1", "child2", "child3", "child4", "child5"],
-  },
-  {
-    title: "title",
-    children: ["child1", "child2", "child3", "child4", "child5"],
-  },
-  {
-    title: "title",
-    children: ["child1", "child2", "child3", "child4", "child5"],
-  },
-  {
-    title: "title",
-    children: ["child1", "child2", "child3", "child4", "child5"],
-  },
-  {
-    title: "title",
-    children: ["child1", "child2", "child3", "child4", "child5"],
-  },
-  {
-    title: "title",
-    children: ["child1", "child2", "child3", "child4", "child5"],
-  },
-];
+// const bottomCategories = [
+//   {
+//     title: "title",
+//     children: ["child1", "child2", "child3", "child4", "child5"],
+//   },
+//   {
+//     title: "title",
+//     children: ["child1", "child2", "child3", "child4", "child5"],
+//   },
+//   {
+//     title: "title",
+//     children: ["child1", "child2", "child3", "child4", "child5"],
+//   },
+//   {
+//     title: "title",
+//     children: ["child1", "child2", "child3", "child4", "child5"],
+//   },
+//   {
+//     title: "title",
+//     children: ["child1", "child2", "child3", "child4", "child5"],
+//   },
+//   {
+//     title: "title",
+//     children: ["child1", "child2", "child3", "child4", "child5"],
+//   },
+//   {
+//     title: "title",
+//     children: ["child1", "child2", "child3", "child4", "child5"],
+//   },
+//   {
+//     title: "title",
+//     children: ["child1", "child2", "child3", "child4", "child5"],
+//   },
+//   {
+//     title: "title",
+//     children: ["child1", "child2", "child3", "child4", "child5"],
+//   },
+// ];
 
 export default function ShopHeader() {
+  const [selectedContent, setSelectedContent] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [products, setProducts] = useState([]);
   const [scrollY, setScrollY] = useState(0);
   const [navScroll, setNavScroll] = useState(true);
   const [showCategories, setShowCategories] = useState(false);
@@ -88,11 +94,34 @@ export default function ShopHeader() {
   const [burgerChangeItems, setBurgerChangeItems] = useState(false);
   const [login, setLogin] = useState(false);
 
-
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { response, error } = await getAllTopic();
 
+      if (response) {
+        console.log("Fetched topics: ", response.data);
+
+        if (response.data?.toplevel_topic) {
+          const topics = response.data.toplevel_topic;
+          console.log("Toplevel topics:", topics);
+          setProducts(topics);
+        } else {
+          console.log("No toplevel_topic found in response data");
+        }
+
+        setLoading(false);
+      } else {
+        setError(error?.message || "An error occurred");
+        console.log("Error:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     if (!store.role.id) {
@@ -105,7 +134,6 @@ export default function ShopHeader() {
   useEffect(() => {
     console.log("cartItems updated: ", cartItems);
   }, [cartItems]);
-
 
   // useEffect(() => {
   //   if (!store.role.id) {
@@ -125,7 +153,6 @@ export default function ShopHeader() {
   //
   //   fetchUserCart();
   // }, []);
-
 
   const router = useRouter();
 
@@ -160,6 +187,10 @@ export default function ShopHeader() {
     };
   }, []);
 
+  const catSideClickHandler = (products) => {
+    setSelectedContent(products);
+  };
+
   return (
     <header className="sticky top-0 z-10">
       <div className="z-50 flex items-center justify-between bg-white p-3 transition-all delay-[900ms] md:p-2">
@@ -181,17 +212,18 @@ export default function ShopHeader() {
         <div className={`flex w-[45%] items-center justify-between md:w-[12%]`}>
           {store.role.id ? (
             <>
-              <div 
+              <div
                 onClick={() => {
                   if (store.role.role == "admin") {
-                    router.push("/admin")
+                    router.push("/admin");
                   } else if (store.role.role == "shop_admin") {
-                    router.push("/admin/admin-shop/add-product")
+                    router.push("/admin/admin-shop/add-product");
                   } else {
-                    router.push("/dashboard/")
+                    router.push("/dashboard/");
                   }
                 }}
-                className="flex cursor-pointer h-[26px] items-center justify-center rounded-lg border-2 border-[#9ED6D9] p-4 text-[13px]">
+                className="flex h-[26px] cursor-pointer items-center justify-center rounded-lg border-2 border-[#9ED6D9] p-4 text-[13px]"
+              >
                 حساب کاربری
               </div>
 
@@ -247,13 +279,13 @@ export default function ShopHeader() {
 
           <div>|</div>
 
-          {categories.map((item, index) => (
+          {products?.map((topic) => (
             <div
-              key={index}
+              key={topic.id}
               className="flex cursor-pointer items-center gap-1 text-[13px]"
               onClick={() => setShowCategories(item)}
             >
-              <p>{item}</p>
+              <p className="text-white">{topic.name}</p>
               <IoIosArrowDown width={24} height={24} />
             </div>
           ))}
@@ -274,20 +306,21 @@ export default function ShopHeader() {
 
         {/* categories */}
         <div
-          className={` ${showCategories ? "opacity-100" : "hidden"} ${navScroll ? "" : "translate-y-[-50%] opacity-0"} absolute bottom-[-320px] right-0 top-14 hidden min-h-screen min-w-full bg-blurbg transition-all`}
+          className={` ${showCategories ? "opacity-100" : "hidden"} ${navScroll ? "" : "translate-y-[-50%] opacity-0"} absolute bottom-[-320px] right-0 top-14 min-h-screen min-w-full bg-blurbg transition-all`}
         >
           <div
             className="mx-auto flex h-3/4 min-h-80 w-[90%] bg-white"
             onMouseLeave={() => setShowCategories(false)}
           >
             <div className="flex w-[20%] flex-col justify-between border-l border-l-[#d9d9d9] bg-[#ecebeb] pr-2">
-              {rightCategories.map((item, index) => (
+              {products?.map((topic) => (
                 <div
-                  key={index}
+                  key={topic.id}
                   className="mb-[5px] mr-[1px] flex h-16 w-full cursor-pointer items-center justify-center rounded-br-xl rounded-tr-xl border-l border-l-[#d9d9d9] bg-[#ecebeb] pl-0 transition-all hover:border hover:border-l-2 hover:border-[#d9d9d9] hover:border-l-white hover:bg-white"
                   onMouseEnter={() => setShowCategories(item)}
+                  onClick={catSideClickHandler}
                 >
-                  <p>{item}</p>
+                  <p>{topic.name}</p>
                 </div>
               ))}
             </div>
@@ -296,40 +329,56 @@ export default function ShopHeader() {
               {/* head categories */}
               <div className="mx-auto flex w-[100%] flex-col justify-between gap-10 px-14 pt-3">
                 <p className="text-blue-800">همه محصولات</p>
-                <div className="flex w-[100%] items-center justify-between">
-                  {headCategories.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex cursor-pointer flex-col items-center justify-center gap-4 transition-all hover:scale-110"
-                    >
-                      <Image
-                        src="/"
-                        width={300}
-                        height={300}
-                        className="h-24 w-24 rounded-xl border transition-all hover:border-[2px] hover:border-blue-800"
-                        alt="alt"
-                      />
-                      <p>دسته بندی</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* colums categories */}
-              <div className="mx-auto flex h-full w-[100%] flex-wrap justify-around gap-11 overflow-y-scroll p-2 pb-8">
-                {bottomCategories.map((item, index) => (
-                  <div key={index} className="w-[20%]">
-                    <p>{item.title}</p>
-                    <div className="border-b border-b-[#d9d9d9]">
-                      <div className="h-1 w-2/5 bg-[#afaeae]"></div>
-                    </div>
-                    <div className="flex flex-col gap-3">
-                      {item.children.map((item, index) => (
-                        <p key={index}>{item}</p>
-                      ))}
-                    </div>
+                {selectedContent && (
+                  <div>
+                    {products?.map((topic) => (
+                      <div key={topic.id}>
+                        {/* colums categories */}
+                        <div className="mx-auto flex h-full w-[100%] flex-wrap justify-around gap-11 overflow-y-scroll p-2 pb-8">
+                          {topic?.midlevel_topic?.map((midtopic) => (
+                            <div key={midtopic.id} className="w-[20%]">
+                              <p>{midtopic.name}</p>
+                              <div className="border-b border-b-[#d9d9d9]">
+                                <div className="h-1 w-2/5 bg-[#afaeae]"></div>
+                              </div>
+                              <div className="flex flex-col gap-3">
+                                {midtopic?.lowlevel_topic?.map((lowTopic) => (
+                                  <div
+                                    key={lowTopic.id}
+                                    className="mb-4 grid grid-cols-7 items-center"
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      id="accordian1"
+                                      class="peer hidden"
+                                    />
+                                    <label
+                                      for="accordian1"
+                                      class="col-span-6 w-full cursor-pointer"
+                                    >
+                                      {lowTopic.name}
+                                    </label>
+                                    <div className="col-span-7 hidden h-10 w-full max-lg:peer-checked:block lg:block">
+                                      <ul className="mt-2 divide-gray-100 text-xs *:py-2 max-lg:divide-y max-lg:rounded-lg max-lg:bg-white max-lg:*:px-4">
+                                        {lowTopic?.product_topic?.map(
+                                          (pTopic) => (
+                                            <li key={pTopic.id}>
+                                              {pTopic.name}
+                                            </li>
+                                          ),
+                                        )}
+                                      </ul>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </div>

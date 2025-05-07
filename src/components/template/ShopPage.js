@@ -26,7 +26,7 @@ const alaki = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export default function shop() {
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   const categories = [
     { id: 1, name: "کالای دیجیتال", icon: laptop, alt: "1.jpg" },
@@ -53,45 +53,28 @@ export default function shop() {
     // fetchProducts();
 
     const fetchData = async () => {
-      const { response, error } = await getAllProduct()
+      const { response, error } = await getAllProduct();
 
-      if(response) {
-        console.log(response);
-        setProducts(response.data)
+      if (response) {
+        setProducts(response.data);
 
-        console.log(response.data.data);
-        
-
-        setIsLoading(false)
+        setIsLoading(false);
       } else {
         console.log(error);
-        
       }
-    }
+    };
 
-    fetchData()
-    
+    fetchData();
   }, []);
-
-  console.log("================= products -> \n", products);
 
   //! temp product | must change logic of fetching:
 
-  if(isLoading) {
+  if (isLoading) {
     return (
-      <div
-        className="
-          w-full
-          flex
-          items-center
-          justify-center
-        "
-      >
-        <h1>
-          Loading...
-        </h1>
+      <div className="flex w-full items-center justify-center">
+        <h1>Loading...</h1>
       </div>
-    )
+    );
   }
 
   return (
@@ -158,28 +141,22 @@ export default function shop() {
         </div>
 
         {/* second banner */}
-          <Image 
-            src={secondeBanner}
-            width={20000}
-            height={20000}
-            alt="alt"
-            className="
-              md:block
-              hidden
-            "
-            draggable={false}
-          />
-          <Image 
-            src={secondeBannerMobile}
-            width={20000}
-            height={20000}
-            alt="alt"
-            className="
-              block
-              md:hidden
-            "
-            draggable={false}
-          />
+        <Image
+          src={secondeBanner}
+          width={20000}
+          height={20000}
+          alt="alt"
+          className="hidden md:block"
+          draggable={false}
+        />
+        <Image
+          src={secondeBannerMobile}
+          width={20000}
+          height={20000}
+          alt="alt"
+          className="block md:hidden"
+          draggable={false}
+        />
         {/* second banner */}
 
         {/* kitchen */}
@@ -201,28 +178,22 @@ export default function shop() {
 
         {/* third banner */}
 
-        <Image 
-            src={thirdBannerMobile}
-            width={20000}
-            height={20000}
-            alt="alt"
-            className="
-              md:block
-              hidden
-            "
-            draggable={false}
-          />
-          <Image 
-            src={thirdBanner}
-            width={20000}
-            height={20000}
-            alt="alt"
-            className="
-              block
-              md:hidden
-            "
-            draggable={false}
-          />
+        <Image
+          src={thirdBannerMobile}
+          width={20000}
+          height={20000}
+          alt="alt"
+          className="hidden md:block"
+          draggable={false}
+        />
+        <Image
+          src={thirdBanner}
+          width={20000}
+          height={20000}
+          alt="alt"
+          className="block md:hidden"
+          draggable={false}
+        />
         {/* third banner */}
       </div>
     </>
