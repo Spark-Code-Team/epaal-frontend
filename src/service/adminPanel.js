@@ -75,3 +75,14 @@ export async function GetAllRequest() {
     return { error }
   }
 }
+
+
+export async function GetAllTopLevelTopic() {
+  try {
+    const response = await api.post("product/get_all_toplevel_topic")
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}

@@ -283,7 +283,7 @@ export default function ShopHeader() {
             <div
               key={topic.id}
               className="flex cursor-pointer items-center gap-1 text-[13px]"
-              onClick={() => setShowCategories(item)}
+              onClick={() => setShowCategories(topic.id)}
             >
               <p className="text-white">{topic.name}</p>
               <IoIosArrowDown width={24} height={24} />
@@ -317,7 +317,7 @@ export default function ShopHeader() {
                 <div
                   key={topic.id}
                   className="mb-[5px] mr-[1px] flex h-16 w-full cursor-pointer items-center justify-center rounded-br-xl rounded-tr-xl border-l border-l-[#d9d9d9] bg-[#ecebeb] pl-0 transition-all hover:border hover:border-l-2 hover:border-[#d9d9d9] hover:border-l-white hover:bg-white"
-                  onMouseEnter={() => setShowCategories(item)}
+                  onMouseEnter={() => setShowCategories(topic.id)}
                   onClick={catSideClickHandler}
                 >
                   <p>{topic.name}</p>
