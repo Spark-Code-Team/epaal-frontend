@@ -2,12 +2,13 @@
 import { useState } from "react";
 import moment from "moment-jalaali";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-
+import ChooseYear from "./ChooseYear";
 moment.loadPersian({ dialect: "persian-modern", usePersianDigits: false });
 
 export default function Calender() {
   const [currentDate, setCurrentDate] = useState(moment());
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedYear, setSelectedYear] = useState("");
 
   const months = [
     "فروردین",
@@ -53,11 +54,21 @@ export default function Calender() {
 
   const visibleMonths = getVisibleMonths();
 
+  const baseYear = selectedYear
+    ? parseInt(selectedYear)
+    : parseInt(currentDate.format("jYYYY"));
+
   const daysInMonth = currentDate.daysInMonth();
   const firstDayOfMonth = moment(currentDate).startOf("jMonth").weekday();
 
   const changeMonth = (offset) => {
     setCurrentDate(moment(currentDate).add(offset, "jMonth"));
+  };
+
+  const yearChangeHandler = (e) => {
+    const newYear = e.target.value;
+    setSelectedYear(newYear);
+    setCurrentDate(moment(currentDate).jYear(Number(newYear)));
   };
 
   const monthClickHandler = (i) => {
@@ -66,20 +77,31 @@ export default function Calender() {
     setSelectedDate(null);
   };
 
+  const yearsPerPage = 15;
+  const allYears = Array.from({ length: 111 }, (_, i) => 1300 + i);
+  const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
+
+  const [yearPage, setYearPage] = useState(0);
+  const visibleYears = allYears.slice(
+    yearPage * yearsPerPage,
+    (yearPage + 1) * yearsPerPage,
+  );
+
   return (
     <>
-      <div className="mx-auto flex w-[460px] max-w-md flex-col gap-4 rounded-lg bg-white p-4 shadow-lg">
-        <h2 className="mr-8 h-5 w-8 text-[16px] font-bold">تاریخ</h2>
-        <div className="grid grid-cols-8">
+      <div className="mx-auto flex w-full max-w-[90%] flex-col gap-4 rounded-lg bg-white p-4 shadow-lg sm:w-[460px] sm:max-w-md sm:p-7">
+        <div className="flex justify-between">
+          <h2 className="mr-8 mt-3 h-5 w-8 text-[16px] font-bold">تاریخ</h2>
+
+          <ChooseYear />
+        </div>
+        <div className="grid grid-cols-8 md:gap-x-2">
           <div className="col-span-2 mb-4 flex flex-col items-center justify-between">
             <button
               onClick={() => changeMonth(-1)}
               className="rounded px-3 py-1 text-gray-400"
             >
-              <img
-                src="./public/svg/arrow-bottom.svg"
-                className="col-span-1 mr-auto w-4 transition-transform peer-checked:rotate-180 lg:hidden"
-              />
+              <img className="col-span-1 mr-auto w-4 transition-transform peer-checked:rotate-180 lg:hidden" />
             </button>
 
             <div className="flex flex-col justify-start gap-2">
@@ -159,7 +181,7 @@ export default function Calender() {
           <button className="flex w-[211px] items-center justify-center rounded-lg bg-[#1D434C] font-bold text-white">
             تایید
           </button>
-          <button className="flex w-[200px] items-center justify-center rounded-lg border border-black bg-white font-bold">
+          <button className="flex w-[200px] items-center justify-center rounded-lg border border-black bg-white font-bold text-[#404040]">
             انصراف
           </button>
         </div>
