@@ -17,6 +17,7 @@ import CategoryIcon from "../../../../public/icons/category";
 import { GETUserCart } from "@/service/products";
 import { fetchUserCart } from "@/redux/features/shopCart/shopCart";
 import { getAllTopic } from "@/service/shop";
+import Calender from "@/components/elements/Calender";
 
 const categories = [
   "گوشی موبایل",
@@ -325,8 +326,11 @@ export default function ShopHeader() {
               ))}
             </div>
 
-            <div className="flex w-[80%] flex-col">
+            <div className="flex w-[80%] flex-col bg-red-500">
               {/* head categories */}
+              <div>
+                <Calender />
+              </div>
               <div className="mx-auto flex w-[100%] flex-col justify-between gap-10 px-14 pt-3">
                 <p className="text-blue-800">همه محصولات</p>
                 {selectedContent && (
