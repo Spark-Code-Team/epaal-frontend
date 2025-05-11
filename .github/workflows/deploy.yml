@@ -10,21 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
     steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v3
+    - name: 📥 Checkout code
+      uses: actions/checkout@v3
   
-      - name: 📦 Setup SSH
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # استفاده از secret جدید
+    - name: 📦 Setup SSH
+      uses: webfactory/ssh-agent@v0.5.4
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # استفاده از secret جدید
   
-      - name: 🐳 Deploy with SSH
-        run: |
-          ssh -o StrictHostKeyChecking=no root@185.79.97.38 << 'EOF'
+    - name: 🐳 Deploy with SSH
+      run: |
+        ssh -o StrictHostKeyChecking=no root@185.79.97.38 << 'EOF'
             cd ~/epaal-frontend  # مسیر پروژه جدید
             git pull origin main
             docker-compose -f docker-compose.evaam.yml down --remove-orphans
