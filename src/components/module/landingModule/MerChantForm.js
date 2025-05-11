@@ -11,7 +11,7 @@ const resiverShopInput = [
     {
         name: "accepter",
         title: "نام پذیرنده(فروشگاه)",
-        placeHolder: "نام پذیرنده را وارد کنید"
+        placeHolder: "نام پذیرنده"
     },
     {
         name: "malekName",
@@ -21,12 +21,12 @@ const resiverShopInput = [
     {
         name: "malekLastName",
         title: "نام خانوادگی مالک کسب و کار",
-        placeHolder: "نام خانوادگی مالک را وارد کنید"
+        placeHolder: "نام خانوادگی مالک"
     },
     {
         name: "phoneNumber",
         title: "شماره تماس مالک",
-        placeHolder: "شماره تماس مالک را وارد کنید"
+        placeHolder: "شماره تماس مالک"
     },
     {
         name: "address",
@@ -87,7 +87,7 @@ export default function MerChantForm() {
 
             <div
                 className="
-                    w-1/2
+                    md:w-1/2
                     flex
                     flex-col
                     items-center
@@ -95,7 +95,8 @@ export default function MerChantForm() {
                     justify-center
                     border-4
                     rounded-xl
-                    p-5
+                    md:p-5
+                    p-2
                 "
             >
                 <div
@@ -121,7 +122,8 @@ export default function MerChantForm() {
                             >
                                 <label
                                     className="
-                                        text-[16px]
+                                        md:text-[16px]
+                                        text-[10px]
                                         text-[#1D243]
                                     "
                                 >
@@ -138,9 +140,12 @@ export default function MerChantForm() {
                                         border-2
                                         border-[#E1EDF0]
                                         bg-white
-                                        py-[14px]
+                                        py-[10px]
+                                        md:py-[14px]
                                         rounded-xl
                                         px-2
+                                        text-[12px]
+                                        md:text-[16px]
                                     "
                                 />
                             </div>
@@ -165,6 +170,8 @@ export default function MerChantForm() {
                             w-fit
                             rounded-xl
                             cursor-pointer
+                            text-[10px]
+                            md:text-[16px]
                         "
                         onClick={() => sendMerchant()}
                     >
