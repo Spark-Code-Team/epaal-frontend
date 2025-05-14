@@ -5,10 +5,14 @@ import { digitsEnToFa } from "@persian-tools/persian-tools";
 import ChooseYear from "./ChooseYear";
 moment.loadPersian({ dialect: "persian-modern", usePersianDigits: false });
 
-export default function Calender() {
+export default function Calender({
+  onDateChange,
+  setSelectedDate,
+  selectedDate,
+  setShowCalender,
+}) {
   const [currentDate, setCurrentDate] = useState(moment());
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYear, setSelectedYear] = useState(null);
 
   const months = [
     "فروردین",
@@ -65,10 +69,15 @@ export default function Calender() {
     setCurrentDate(moment(currentDate).add(offset, "jMonth"));
   };
 
-  const yearChangeHandler = (e) => {
-    const newYear = e.target.value;
+  const yearChangeHandler = (newYear) => {
     setSelectedYear(newYear);
-    setCurrentDate(moment(currentDate).jYear(Number(newYear)));
+
+    setCurrentDate(
+      moment(currentDate)
+        .jYear(Number(newYear))
+        .jMonth(currentDate.jMonth())
+        .jDate(currentDate.jDate()),
+    );
   };
 
   const monthClickHandler = (i) => {
@@ -86,6 +95,15 @@ export default function Calender() {
     yearPage * yearsPerPage,
     (yearPage + 1) * yearsPerPage,
   );
+  const handleDateSelection = (date) => {
+    setSelectedDate(date);
+    if (onDateChange) {
+      onDateChange(date);
+    }
+  };
+  const confirmHandler = () => {
+    setShowCalender(false);
+  };
 
   return (
     <>
@@ -93,7 +111,12 @@ export default function Calender() {
         <div className="flex justify-between">
           <h2 className="mr-8 mt-3 h-5 w-8 text-[16px] font-bold">تاریخ</h2>
 
-          <ChooseYear />
+          <ChooseYear
+            selectedYear={selectedYear}
+            setSelectedYear={yearChangeHandler}
+            currentDate={currentDate}
+            setCurrentDate={setCurrentDate}
+          />
         </div>
         <div className="grid grid-cols-8 md:gap-x-2">
           <div className="col-span-2 mb-4 flex flex-col items-center justify-between">
@@ -159,7 +182,7 @@ export default function Calender() {
                           : "hover:rounded-full hover:bg-[#1D434C] hover:text-white"
                       }`}
                       onClick={() =>
-                        setSelectedDate(moment(currentDate).jDate(day))
+                        handleDateSelection(moment(currentDate).jDate(day))
                       }
                     >
                       {digitsEnToFa(day)}
@@ -178,10 +201,16 @@ export default function Calender() {
         )}
 
         <div className="flex h-10 w-full justify-between gap-1">
-          <button className="flex w-[211px] items-center justify-center rounded-lg bg-[#1D434C] font-bold text-white">
+          <button
+            className="flex w-[211px] items-center justify-center rounded-lg bg-[#1D434C] font-bold text-white"
+            onClick={confirmHandler}
+          >
             تایید
           </button>
-          <button className="flex w-[200px] items-center justify-center rounded-lg border border-black bg-white font-bold text-[#404040]">
+          <button
+            className="flex w-[200px] items-center justify-center rounded-lg border border-black bg-white font-bold text-[#404040]"
+            onClick={confirmHandler}
+          >
             انصراف
           </button>
         </div>
