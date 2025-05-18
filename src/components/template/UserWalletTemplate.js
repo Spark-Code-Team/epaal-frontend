@@ -17,7 +17,7 @@ export default function UserWalletTemplate(){
             const { response, error } = await getWallet()
 
             if(response) {
-                console.log(response);
+                console.log("\n wallet --------> \t", response);
                 setData(response.data)
                 
             } else {
@@ -33,8 +33,6 @@ export default function UserWalletTemplate(){
         
     }, [data])
 
-    // bank_deposite
-    // bought
 
     return (
         <>

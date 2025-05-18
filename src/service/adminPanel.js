@@ -86,3 +86,14 @@ export async function GetAllTopLevelTopic() {
     return { error }
   }
 }
+
+export const GetAllTopic = async () => {
+
+    try {
+        const response = await api.post("product/get_all_toplevel_topic")
+    
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
