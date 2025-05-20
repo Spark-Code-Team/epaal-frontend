@@ -97,3 +97,14 @@ export const GetAllTopic = async () => {
         return { error }
     }
 }
+
+export const GetAllMidlevel = async () => {
+
+  try {
+    const response = await api.post("/product/get_all_midlevel_topic")
+
+    return { response }
+  } catch(error) {
+    return { error }
+  }
+}

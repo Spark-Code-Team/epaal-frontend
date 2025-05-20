@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import CategoryTitleLevel from "../elements/CategoryTitleLevel";
-import PhotoSelect from "../elements/PhotoSelect";
 import { GetAllTopLevelTopic } from "@/service/adminPanel";
 import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 import Image from "next/image";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { getCookie } from "@/utils/cookie";
 
 
 
@@ -17,18 +19,43 @@ export default function CategorylevelTowPage({ level }) {
         image: "",
         parent: ""
     })
-    const [photo, setPhoto] = useState("")
-    const [img,setImg] = useState("")
-
-    const inputRef = useRef(null)
-    
-    
-    const UploadePhoto =(e) => {
-        setImg(e.target.files[0])
-    }
-
     const [options, setOptions] = useState([])
 
+    const inputRef = useRef(null)
+
+    const formData = new FormData()
+    
+    const UploadePhoto =(e) => {
+        setState(last => ({...last, image: e.target.files[0]}))
+    }
+
+    const sendData = async () => {
+        formData.append("name", state.name)
+        formData.append("toplevel_topic", state.parent)
+        formData.append("picture", state.image)
+
+        const token = getCookie("accessToken");
+
+        try {
+            axios
+                .post(
+                `${process.env.NEXT_PUBLIC_API_URL}product/midlevel_topic`,
+                formData,
+                {
+                    headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`,
+                    },
+                },
+                )
+                .then((res) => {
+                    toast.success("دسته بندی با موفقیت ساخته شد");
+                    setState({ image: "", name: "", parent: "" });
+                });
+        } catch (error) {
+            toast.error(error.data?.message || "مشکلی پیش آمده");
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,8 +63,6 @@ export default function CategorylevelTowPage({ level }) {
 
             if(response) {
                 setOptions(response.data.data)
-            } else {
-                console.log(error);
             }
         }
 
@@ -55,7 +80,7 @@ export default function CategorylevelTowPage({ level }) {
                     w-full
                 "
             >
-                <CategoryTitleLevel level={level} />
+                <CategoryTitleLevel level="سطح دو" />
         <div
             className="
                 pr-8
@@ -87,7 +112,6 @@ export default function CategorylevelTowPage({ level }) {
                 "
             />
         </div>
-                {/* <PhotoSelect /> */}
         <div
             className="
                 pr-8
@@ -126,7 +150,7 @@ export default function CategorylevelTowPage({ level }) {
                     "
                 >
                     {
-                        img ? (
+                        state.image ? (
                             <div
                                 className="
                                     relative
@@ -142,12 +166,12 @@ export default function CategorylevelTowPage({ level }) {
                                         cursor-pointer
                                         z-10
                                     "
-                                    onClick={() => setImg("")}
+                                    onClick={() => setState(last => ({...last, image: ""}))}
                                 >
                                     <CrossIcon />
                                 </div>
                                 <Image
-                                    src={URL.createObjectURL(img)}
+                                    src={URL.createObjectURL(state.image)}
                                     width={300}
                                     height={300}
                                     className="
@@ -180,13 +204,14 @@ export default function CategorylevelTowPage({ level }) {
                 onChange={(e) => UploadePhoto(e)}
             />
                 <select
-                title="انتخاب والد"
+                    title="انتخاب والد"
                     className="
                         w-full
                         mx-auto
                         pr-8
                         mt-2
                     "
+                    onChange={(e) => setState(last => ({...last, parent: e.target.value}))}
                 >
                     <option
                         disabled
@@ -226,6 +251,7 @@ export default function CategorylevelTowPage({ level }) {
                         p-3
                         rounded-xl
                     "
+                    onClick={() => sendData()}
                 >
                     ایجاد دسته
                 </button>
