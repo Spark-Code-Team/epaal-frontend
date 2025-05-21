@@ -1,10 +1,10 @@
-import CategorylevelTowPage from "@/components/template/CategoryLevelTowPage";
+import CategoryCreateLevelThree from "@/components/template/CategoryCreateLevelThree";
 
 
 
 export default function CreateLevelThree() {
 
     return (
-        <CategorylevelTowPage level="سطح سه"/>
+        <CategoryCreateLevelThree />
     )
 }

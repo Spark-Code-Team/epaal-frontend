@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import CategoryTitleLevel from "../elements/CategoryTitleLevel";
-import { GetAllTopLevelTopic } from "@/service/adminPanel";
+import { GetAllLowlevel, GetAllTopLevelTopic } from "@/service/adminPanel";
 import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 import Image from "next/image";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
@@ -12,7 +12,7 @@ import { getCookie } from "@/utils/cookie";
 
 
 
-export default function CategorylevelTowPage() {
+export default function CategoryCreateLevelThree() {
 
     const [state, setState] = useState({
         name: "",
@@ -31,20 +31,21 @@ export default function CategorylevelTowPage() {
 
     const sendData = async () => {
         formData.append("name", state.name)
-        formData.append("toplevel_topic", state.parent)
+        formData.append("midlevel_topic", state.parent)
         formData.append("picture", state.image)
+        
 
         const token = getCookie("accessToken");
 
         try {
             axios
                 .post(
-                `${process.env.NEXT_PUBLIC_API_URL}product/midlevel_topic`,
+                `${process.env.NEXT_PUBLIC_API_URL}product/lowlevel_topic`,
                 formData,
                 {
                     headers: {
-                    "Content-Type": "multipart/form-data",
-                    Authorization: `Bearer ${token}`,
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${token}`,
                     },
                 },
                 )
@@ -59,10 +60,12 @@ export default function CategorylevelTowPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { response, error } = await GetAllTopLevelTopic()
+            const { response, error } = await GetAllLowlevel()
 
             if(response) {
                 setOptions(response.data.data)
+            } else {
+                console.log(error);
             }
         }
 
@@ -80,7 +83,7 @@ export default function CategorylevelTowPage() {
                     w-full
                 "
             >
-                <CategoryTitleLevel level="سطح دو" />
+                <CategoryTitleLevel level="سطح سه" />
         <div
             className="
                 pr-8
