@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import CategoryTitleLevel from "../elements/CategoryTitleLevel";
-import { GetAllTopLevelTopic } from "@/service/adminPanel";
+import { GetAllLowlevel } from "@/service/adminPanel";
 import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 import Image from "next/image";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
@@ -31,7 +31,7 @@ export default function CategorylevelTowPage() {
 
     const sendData = async () => {
         formData.append("name", state.name)
-        formData.append("toplevel_topic", state.parent)
+        formData.append("lowlevel_topic", state.parent)
         formData.append("picture", state.image)
 
         const token = getCookie("accessToken");
@@ -39,7 +39,7 @@ export default function CategorylevelTowPage() {
         try {
             axios
                 .post(
-                `${process.env.NEXT_PUBLIC_API_URL}product/midlevel_topic`,
+                `${process.env.NEXT_PUBLIC_API_URL}product/product_topic`,
                 formData,
                 {
                     headers: {
@@ -59,7 +59,7 @@ export default function CategorylevelTowPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { response, error } = await GetAllTopLevelTopic()
+            const { response, error } = await GetAllLowlevel()
 
             if(response) {
                 setOptions(response.data.data)
@@ -80,7 +80,7 @@ export default function CategorylevelTowPage() {
                     w-full
                 "
             >
-                <CategoryTitleLevel level="سطح دو" />
+                <CategoryTitleLevel level="سطح چهار" />
         <div
             className="
                 pr-8

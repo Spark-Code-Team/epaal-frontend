@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import CategoryTitleLevel from "../elements/CategoryTitleLevel";
-import { GetAllLowlevel, GetAllTopLevelTopic } from "@/service/adminPanel";
+import { GetAllMidlevel } from "@/service/adminPanel";
 import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 import Image from "next/image";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
@@ -22,7 +22,6 @@ export default function CategoryCreateLevelThree() {
     const [options, setOptions] = useState([])
 
     const inputRef = useRef(null)
-
     const formData = new FormData()
     
     const UploadePhoto =(e) => {
@@ -60,7 +59,7 @@ export default function CategoryCreateLevelThree() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { response, error } = await GetAllLowlevel()
+            const { response, error } = await GetAllMidlevel()
 
             if(response) {
                 setOptions(response.data.data)

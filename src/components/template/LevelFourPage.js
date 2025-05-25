@@ -4,18 +4,20 @@ import Link from "next/link";
 import PlusAdmin from "../../../public/icons/PlusAdmin";
 import CardAdmin from "../elements/CardAdmin";
 import { useEffect, useState } from "react";
-import { GetAllLowlevel } from "@/service/adminPanel";
+import { GetAllTopicProduct } from "@/service/adminPanel";
 
 
-export default function LevelThreePage() {
+export default function LevelFourPage() {
 
     const [ topics, setTopics ] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
-            const { response, error } = await GetAllLowlevel()
+            const { response, error } = await GetAllTopicProduct()
 
             if(response) {
+                console.log("8888888888888888888888888888888888888888", response);
+                
                 setTopics(response.data.data)
             }
         }
@@ -29,12 +31,12 @@ export default function LevelThreePage() {
             <div className="flex w-1/2 items-center">
                 <p className="text-xl">مدیریت دسته بندی ها</p>
 
-                <p className="mr-6 text-base text-[#8A8B8D]">سطح سه</p>
+                <p className="mr-6 text-base text-[#8A8B8D]">سطح چهار</p>
             </div>
 
             <div className="flex w-1/2 justify-end">
                 <Link
-                    href="/admin/categories/create-level-three"
+                    href="/admin/categories/create-level-four"
                     className="flex w-[166px] items-center justify-around rounded-md bg-[#054366] p-2 text-[15px] text-white"
                 >
                     افزودن دسته جدید

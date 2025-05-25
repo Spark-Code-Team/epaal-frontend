@@ -86,15 +86,15 @@ export const sidebarOptions = [
       },
       {
         title: "سطح دو",
-        link: "/admin/categories/create-level-tow",
+        link: "/admin/categories/level-tow",
       },
       {
         title: "سطح سه",
-        link: "/admin/categories/create-level-three",
+        link: "/admin/categories/level-three",
       },
       {
         title: "سطح چهار",
-        link: "/admin/categories/create-level-four",
+        link: "/admin/categories/level-four",
       },
     ],
   },

@@ -118,3 +118,14 @@ export const GetAllLowlevel = async () => {
     return { error }
   }
 }
+
+export const GetAllTopicProduct = async () => {
+
+  try {
+    const response = await api.post("product/get_all_product_topic")
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
