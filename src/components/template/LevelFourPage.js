@@ -4,26 +4,36 @@ import Link from "next/link";
 import PlusAdmin from "../../../public/icons/PlusAdmin";
 import CardAdmin from "../elements/CardAdmin";
 import { useEffect, useState } from "react";
-import { GetAllTopicProduct } from "@/service/adminPanel";
+import { DeleteTopLevelProduct, GetAllTopicProduct } from "@/service/adminPanel";
 
 
 export default function LevelFourPage() {
 
     const [ topics, setTopics ] = useState([])
+    const [ loading, setLoading ] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
             const { response, error } = await GetAllTopicProduct()
 
             if(response) {
-                console.log("8888888888888888888888888888888888888888", response);
-                
-                setTopics(response.data.data)
+                setTopics(response.data.data || [])
             }
         }
 
         fetchData()
-    }, [])
+    }, [loading])
+
+      const handelDelete = async (id) => {
+        const {response, error} = await DeleteTopLevelProduct(id)
+    
+        if(response) {
+          setLoading(last => !last)
+        } else {
+          console.log(error);
+          
+        }
+      }
 
     return (
         <div className="mx-auto mb-4 w-[94%]">
@@ -51,6 +61,7 @@ export default function LevelFourPage() {
                     <CardAdmin
                         key={index}
                         data={item}
+                        handelDelete={handelDelete}
                     />
                 ))
             ) : (

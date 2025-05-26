@@ -7,7 +7,7 @@ import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
 import Image from "next/image";
 import PlusAdmin from "../../../public/icons/PlusAdmin";
-import { CreateTopLevelTopic, GetAllTopic } from "@/service/adminPanel";
+import { CreateTopLevelTopic, DeleteTopLevel, GetAllTopic } from "@/service/adminPanel";
 import axios from "axios";
 import { getCookie } from "@/utils/cookie";
 import { toast } from "react-toastify";
@@ -18,10 +18,9 @@ const LevelCategory = () => {
     name: "",
     image: "",
   });
-
   const [products, setProducts] = useState([]);
-
   const [img, setImg] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const formData = new FormData();
 
@@ -38,7 +37,7 @@ const LevelCategory = () => {
     };
 
     fetchData();
-  }, []);
+  }, [loading]);
 
   const ImageChange = (e) => {
     setAddCategory((last) => ({ ...last, image: e.target.files[0] }));
@@ -67,12 +66,24 @@ const LevelCategory = () => {
           toast.success("دسته بندی با موفقیت ساخته شد");
           setAddCategory({ image: "", name: "" });
           setCategoryModal(false);
+          setLoading(last => !last)
         });
     } catch (error) {
       console.log(error);
       toast.error(error.data?.message || "مشکلی پیش آمده");
     }
   };
+
+  const handelDelete = async (id) => {
+    const {response, error} = await DeleteTopLevel(id)
+
+    if(response) {
+      setLoading(last => !last)
+    } else {
+      console.log(error);
+      
+    }
+  }
 
   return (
     <>
@@ -101,6 +112,7 @@ const LevelCategory = () => {
               <CardAdmin
                   key={index}
                   data={item}
+                  handelDelete={handelDelete}
               />
             ))
           ) : (

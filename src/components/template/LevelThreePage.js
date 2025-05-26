@@ -4,24 +4,36 @@ import Link from "next/link";
 import PlusAdmin from "../../../public/icons/PlusAdmin";
 import CardAdmin from "../elements/CardAdmin";
 import { useEffect, useState } from "react";
-import { GetAllLowlevel } from "@/service/adminPanel";
+import { DeleteLowlevelTopic, GetAllLowlevel } from "@/service/adminPanel";
 
 
 export default function LevelThreePage() {
 
     const [ topics, setTopics ] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
             const { response, error } = await GetAllLowlevel()
 
             if(response) {
-                setTopics(response.data.data)
+                setTopics(response.data.data || [])
             }
         }
 
         fetchData()
-    }, [])
+    }, [loading])
+
+      const handelDelete = async (id) => {
+        const {response, error} = await DeleteLowlevelTopic(id)
+    
+        if(response) {
+          setLoading(last => !last)
+        } else {
+          console.log(error);
+          
+        }
+      }
 
     return (
         <div className="mx-auto mb-4 w-[94%]">
@@ -49,6 +61,7 @@ export default function LevelThreePage() {
                     <CardAdmin
                         key={index}
                         data={item}
+                        handelDelete={handelDelete}
                     />
                 ))
             ) : (

@@ -12,7 +12,7 @@ import EditAdmin from "../../../public/icons/EditAdmin";
 
 
 
-export default function CardAdmin({ data }) {
+export default function CardAdmin({ data, handelDelete }) {
 
     const [openModal, setOpenModal] = useState({
         delete: false,
@@ -142,6 +142,10 @@ export default function CardAdmin({ data }) {
                                 font-normal
                                 cursor-pointer
                             "
+                            onClick={() => {
+                                handelDelete(data.id)
+                                handelModal("delete")
+                            }}
                         >
                             حذف
                         </div>

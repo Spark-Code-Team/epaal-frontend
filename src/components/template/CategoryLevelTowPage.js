@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import CategoryTitleLevel from "../elements/CategoryTitleLevel";
-import { GetAllLowlevel } from "@/service/adminPanel";
+import { GetAllLowlevel, GetAllTopLevelTopic } from "@/service/adminPanel";
 import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 import Image from "next/image";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
@@ -31,7 +31,7 @@ export default function CategorylevelTowPage() {
 
     const sendData = async () => {
         formData.append("name", state.name)
-        formData.append("lowlevel_topic", state.parent)
+        formData.append("toplevel_topic", state.parent)
         formData.append("picture", state.image)
 
         const token = getCookie("accessToken");
@@ -39,7 +39,7 @@ export default function CategorylevelTowPage() {
         try {
             axios
                 .post(
-                `${process.env.NEXT_PUBLIC_API_URL}product/product_topic`,
+                `${process.env.NEXT_PUBLIC_API_URL}product/midlevel_topic`,
                 formData,
                 {
                     headers: {
@@ -59,10 +59,10 @@ export default function CategorylevelTowPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { response, error } = await GetAllLowlevel()
+            const { response, error } = await GetAllTopLevelTopic()
 
             if(response) {
-                setOptions(response.data.data)
+                setOptions(response.data.data || [])
             }
         }
 
@@ -80,7 +80,7 @@ export default function CategorylevelTowPage() {
                     w-full
                 "
             >
-                <CategoryTitleLevel level="سطح چهار" />
+                <CategoryTitleLevel level="سطح دو" />
         <div
             className="
                 pr-8
@@ -220,7 +220,7 @@ export default function CategorylevelTowPage() {
                         انتخاب والد
                     </option>
                     {
-                        options.map(items => (
+                        options.length != 0 ? options.map(items => (
                             <option
                                 key={items.id}
                                 value={items.id}
@@ -229,7 +229,7 @@ export default function CategorylevelTowPage() {
                                     items.name
                                 }
                             </option>
-                        ))
+                        )) : null
                     }
                 </select>
         </div>

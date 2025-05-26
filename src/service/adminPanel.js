@@ -129,3 +129,60 @@ export const GetAllTopicProduct = async () => {
     return { error }
   }
 }
+
+export const DeleteTopLevel = async (id) => {
+
+  try {
+    const response = await api.delete("product/delete_toplevel_topic", {
+      data: {
+        toplevel_topic: id
+      } 
+    })
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const DeleteMidlevelTopic = async (midlevel_topic) => {
+  try {
+    const response = await api.delete("product/delete_midlevel_topic", {
+      data: {
+        midlevel_topic
+      }
+    })
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const DeleteLowlevelTopic = async (lowlevel_topic) => {
+  try {
+    const response = await api.delete("product/delete_lowlevel_topic", {
+      data: {
+        lowlevel_topic
+      }
+    })
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const DeleteTopLevelProduct = async (product_topic) => {
+  try {
+    const response = await api.delete("product/delete_product_topic", {
+      data: {
+        product_topic
+      }
+    })
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
