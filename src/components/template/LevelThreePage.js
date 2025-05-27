@@ -5,6 +5,7 @@ import PlusAdmin from "../../../public/icons/PlusAdmin";
 import CardAdmin from "../elements/CardAdmin";
 import { useEffect, useState } from "react";
 import { DeleteLowlevelTopic, GetAllLowlevel } from "@/service/adminPanel";
+import { toast } from "react-toastify";
 
 
 export default function LevelThreePage() {
@@ -29,9 +30,7 @@ export default function LevelThreePage() {
     
         if(response) {
           setLoading(last => !last)
-        } else {
-          console.log(error);
-          
+          toast.success("دسته بندی با موفقیت حذف شد")
         }
       }
 

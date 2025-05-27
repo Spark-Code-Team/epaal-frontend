@@ -186,3 +186,13 @@ export const DeleteTopLevelProduct = async (product_topic) => {
     return { error }
   }
 }
+
+export const GetRequestIdentity = async (id) => {
+  try {
+    const response = await api.get(`Admin/single_shop_request?shop_request_id=${id}`)
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}

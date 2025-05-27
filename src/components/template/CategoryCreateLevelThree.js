@@ -62,7 +62,7 @@ export default function CategoryCreateLevelThree() {
             const { response, error } = await GetAllMidlevel()
 
             if(response) {
-                setOptions(response.data.data)
+                setOptions(response.data.data || [])
             } else {
                 console.log(error);
             }

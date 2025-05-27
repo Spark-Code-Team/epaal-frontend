@@ -4,6 +4,7 @@ import { GetAllRequest } from "@/service/adminPanel"
 import { useEffect, useState } from "react"
 import AddShop from "../../../public/icons/Admin/AddShop"
 import DeletedRequest from "../../../public/icons/Admin/DeletedRequest"
+import Link from "next/link"
 
 const head = [
     "نام و نام خانوادگی",
@@ -26,8 +27,7 @@ export default function RequestSellerPage() {
 
             if( response ) {
                 setIsLoading(false)
-                console.log("11111111111111111111111111111111111111111",response.data.data);
-                setTabelData(response.data.data)
+                setTabelData(response.data.data[0] ? response.data.data :  [])
             } else {
                 setIsLoading(false)
                 console.log(error);
@@ -180,13 +180,14 @@ export default function RequestSellerPage() {
                                                     gap-7
                                                 "
                                             >
-                                                <div
+                                                <Link
+                                                    href={`sellers/create-seller/${item.id}`}
                                                     className="
                                                         cursor-pointer
                                                     "
                                                 >
                                                     <AddShop />
-                                                </div>
+                                                </Link>
                                                 <div
                                                     className="
                                                         cursor-pointer

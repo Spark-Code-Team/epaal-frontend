@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import ContineuButton from "../elements/ContineuButton"
 import AddProductTitle from "../module/adminShop/AddProductTitle"
 import { useRouter } from "next/navigation"
+import { GetRequestIdentity } from "@/service/adminPanel"
 
 
 
@@ -36,12 +37,21 @@ const resiverShopInput = [
     }
 ]
 
-export default function CreateSellerPage() {
-
-    const router = useRouter()
+export default function CreateSellerPage({ requestId }) {
 
     useEffect(() => {
-        router.push("/admin/sellers/create-seller/shop-identity")
+        const fetchData = async () => {
+            const { response, error } = await GetRequestIdentity(requestId)
+
+            if(response) {
+                console.log(response);
+            } else {
+                console.log(error);
+            }
+        }
+        if(requestId) {
+            fetchData()
+        }
     } , [])
 
     const [ input, setInput] = useState({

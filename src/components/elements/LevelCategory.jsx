@@ -79,9 +79,7 @@ const LevelCategory = () => {
 
     if(response) {
       setLoading(last => !last)
-    } else {
-      console.log(error);
-      
+      toast.success("دسته بندی با موفقیت حذف شد")
     }
   }
 
