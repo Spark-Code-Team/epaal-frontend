@@ -44,7 +44,14 @@ export default function CreateSellerPage({ requestId }) {
             const { response, error } = await GetRequestIdentity(requestId)
 
             if(response) {
-                console.log(response);
+                console.log(response.data);
+                setInput({
+                    address: response.data.site_url,
+                    malekLastName: response.data.last_name,
+                    malekName: response.data.first_name,
+                    phoneNumber: response.data.phone_number,
+                    accepter: response.data.shop_name
+                })
             } else {
                 console.log(error);
             }
@@ -55,7 +62,7 @@ export default function CreateSellerPage({ requestId }) {
     } , [])
 
     const [ input, setInput] = useState({
-        acceper: "",
+        accepter: "",
         malekName: "",
         malekLastName: "",
         phoneNumber: "",
