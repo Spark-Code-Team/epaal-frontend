@@ -2,8 +2,11 @@
 import { useState } from "react";
 import moment from "moment-jalaali";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-import ChooseYear from "./ChooseYear";
 moment.loadPersian({ dialect: "persian-modern", usePersianDigits: false });
+import { SlArrowUp } from "react-icons/sl";
+import { SlArrowDown } from "react-icons/sl";
+
+import ChooseYear from "./ChooseYear";
 
 export default function Calender({
   onDateChange,
@@ -86,15 +89,6 @@ export default function Calender({
     setSelectedDate(null);
   };
 
-  const yearsPerPage = 15;
-  const allYears = Array.from({ length: 111 }, (_, i) => 1300 + i);
-  const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
-
-  const [yearPage, setYearPage] = useState(0);
-  const visibleYears = allYears.slice(
-    yearPage * yearsPerPage,
-    (yearPage + 1) * yearsPerPage,
-  );
   const handleDateSelection = (date) => {
     setSelectedDate(date);
     if (onDateChange) {
@@ -124,7 +118,7 @@ export default function Calender({
               onClick={() => changeMonth(-1)}
               className="rounded px-3 py-1 text-gray-400"
             >
-              <img className="col-span-1 mr-auto w-4 transition-transform peer-checked:rotate-180 lg:hidden" />
+              <SlArrowUp />
             </button>
 
             <div className="flex flex-col justify-start gap-2">
@@ -148,7 +142,7 @@ export default function Calender({
               onClick={() => changeMonth(1)}
               className="rounded px-3 py-1 text-gray-400"
             >
-              ◀
+              <SlArrowDown />
             </button>
           </div>
 

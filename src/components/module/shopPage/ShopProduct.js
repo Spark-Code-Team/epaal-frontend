@@ -1,7 +1,6 @@
 "use client";
 
 import { pallete } from "@/constant/Pallete";
-import { fetchUserCart } from "@/redux/features/shopCart/shopCart";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import GranteedIcon from "../../../../public/icons/garanteed";
@@ -9,19 +8,22 @@ import GranteedIcon from "../../../../public/icons/garanteed";
 import techno from "@/../public/image/TechnoLife.svg";
 import { AddSingleProductsToCart } from "@/service/products";
 import { toast } from "react-toastify";
+import { productQuantity } from "@/helpers/helper";
+import { decrease, increase } from "@/redux/features/addProToCart/addProToCart";
+import { fetchUserCart } from "@/helpers/shopCartThunks";
 
 export default function ShopProduct({
   product,
   defaultInstance,
   setDefaultInstance,
 }) {
-  const dispatch = useDispatch();
   const store = useSelector((store) => store);
-
+  const dispatch = useDispatch();
+  // console.log(store);
   // const productIndex = store.counter.selected.findIndex(
   //   (item) => item.id == product.id,
   // );
-
+  const quantity = productQuantity(store.secondCart, product.id);
   async function addProdutToCart(instanceID) {
     const { response, error } = await AddSingleProductsToCart(instanceID);
 
@@ -30,8 +32,10 @@ export default function ShopProduct({
       toast.success("با موفقیت به سبد خرید شما اضافه شد ✅");
     } else {
       toast.error("خطا در خرید کالا ❌");
+      console.log(error);
     }
   }
+  // const isInCart = store.cart.cartItems.some(item => item.id === product.id);
 
   return (
     <>
@@ -57,9 +61,7 @@ export default function ShopProduct({
             <div>قیمت محصول:</div>
             <div className="font-bold">
               {" "}
-              {new Intl.NumberFormat("fa-IR").format(
-                product.instances[0].price,
-              )}
+              {new Intl.NumberFormat("fa-IR").format(defaultInstance.price)}
               تومان
             </div>
           </div>
@@ -75,13 +77,27 @@ export default function ShopProduct({
           </div>
 
           <div className="flex w-full items-center">
-            <div
-              className={`w-full scale-105 cursor-pointer rounded-xl bg-evaamGreen p-3 text-center text-white transition-all duration-300 ease-in-out ${store.cart.cartItems.length >= 1 ? "hidden" : "block"}`}
-              onClick={() => {
-                addProdutToCart(defaultInstance.id);
-              }}
-            >
-              افزودن به سبد خرید
+            <div>
+              {quantity > 1 && (
+                <button onClick={() => dispatch(decrease(product))}>-</button>
+              )}
+              {!!quantity && <span>{quantity}</span>}
+              {quantity === 0 ? (
+                <button
+                  className={`w-full scale-105 cursor-pointer rounded-xl bg-evaamGreen p-3 text-center text-white transition-all duration-300 ease-in-out ${store.secondCart?.cartItems?.length >= 1 ? "hidden" : "block"}`}
+                  onClick={() => {
+                    addProdutToCart(defaultInstance?.id);
+                    console.log(
+                      "defaultInstance in ShopProduct:",
+                      defaultInstance,
+                    );
+                  }}
+                >
+                  افزودن به سبد خرید
+                </button>
+              ) : (
+                <button onClick={() => dispatch(increase(product))}>+</button>
+              )}
             </div>
             {/* {store.counter.selected[productIndex]?.quantity >= 1 ? (
               <div className="flex w-full items-center justify-around border border-evaamGreen p-2 rounded-lg shadow-md">
@@ -116,9 +132,8 @@ export default function ShopProduct({
         </div>
         <div
           // className={`h-auto w-52 rounded-xl bg-evaamGreen p-[10px] text-center text-[20px] text-white ${store.counter.selected[productIndex]?.quantity >= 1 ? "hidden" : "block"}`}
-            className={`h-auto w-52 rounded-xl bg-evaamGreen p-[10px] text-center text-[20px] text-white`}
-
-            onClick={() => dispatch(increment(product))}
+          className={`h-auto w-52 rounded-xl bg-evaamGreen p-[10px] text-center text-[20px] text-white`}
+          onClick={() => dispatch(increment(product))}
         >
           ثبت سفارش
         </div>

@@ -9,30 +9,34 @@ export async function GETAllProducts() {
   }
 }
 
-
 export async function GETSingleProducts(productId) {
   try {
     const response = await api.post("product/get_single_product", {
-      product_id: productId
+      product_id: productId,
     });
     return { response };
   } catch (error) {
     return { error };
   }
 }
-
 
 export async function AddSingleProductsToCart(productInstanceId) {
+  console.log(
+    "=------------------------------ > fjdkfjd \n",
+    productInstanceId,
+  );
   try {
-    const response = await api.post("users/add_product_to_card/", {
-      product_id: productInstanceId
+    const response = await api.post("users/add_products_to_card/", {
+      product_instances: [{ product_instance: productInstanceId, quantity: 1 }],
     });
-    return { response };
+
+    // console.log("Response:", response);
+    return { response, error: null };
   } catch (error) {
-    return { error };
+    // console.log("Error:", error);
+    return { response: null, error };
   }
 }
-
 
 export async function GETUserCart() {
   try {
@@ -43,8 +47,6 @@ export async function GETUserCart() {
   }
 }
 
-
-
 export async function GETUserCartTotalCost() {
   try {
     const response = await api.get("users/get_cart_cost/");
@@ -53,9 +55,6 @@ export async function GETUserCartTotalCost() {
     return { error };
   }
 }
-
-
-
 
 export async function GETUserWallet() {
   try {
@@ -66,10 +65,22 @@ export async function GETUserWallet() {
   }
 }
 
-
 export async function PayCartProduct() {
   try {
     const response = await api.post("users/buy_products/");
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function replaceUserCart(data) {
+  console.log("fdjaskfdjaaaaaaaaaaaa65295295292 \n", { data });
+  try {
+    const response = await api.post("users/replace_cart/", {
+      product_instances: data,
+    });
+
     return { response };
   } catch (error) {
     return { error };

@@ -1,38 +1,98 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Modal } from "flowbite-react";
 import { Bounce, toast } from "react-toastify";
+import { TbShoppingBagCheck } from "react-icons/tb";
 import EvaamLogoo from "../../../public/icons/EvaamLogoo";
 import TrashDashBoard from "../../../public/icons/dashboard/TrashDashboard";
 import { formatNumberToFA } from "@/utils/numToFa";
 import {
-  GETUserCart,
-  GETUserCartTotalCost,
   GETUserWallet,
   PayCartProduct,
+  replaceUserCart,
 } from "@/service/products";
+import { fetchUserCart } from "@/helpers/shopCartThunks";
+import TrashBasket from "../../../public/icons/trashBasket";
+import PluseIcone from "../../../public/icons/PlusIcone";
+import { calcDiscountedPrice } from "@/helpers/helper";
 
 export default function ShopCartPage() {
-  const store = useSelector((store) => store);
-  const [openModal, setOpenModal] = useState(false);
-  const [checkout, setCheckout] = useState(1);
-  const [userTotalCost, setUserTotalCost] = useState(null);
-  const [userWallet, setUserWallet] = useState(null);
+  const store = useSelector((state) => state);
+  useEffect(() => {
+    console.log("STORE IS : ", store);
+  }, [store]);
 
-  const [userCart, setUserCart] = useState([]);
-
+  const dispatch = useDispatch();
   const router = useRouter();
+  const { selectedItems, userCart, loading, error } = useSelector(
+    (state) => state.cart,
+  );
 
-  const [otp, setOtp] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+  const [userWallet, setUserWallet] = useState(null);
+  const [reload, setReload] = useState(false);
+  // const [userCartState, setUserCart] = useState([]);
 
   const handelCheckout = () => {
     setOpenModal(true);
   };
 
+  const increaseItem = async (item) => {
+    const newArray = selectedItems.map((i) => {
+      const isTarget = i.product_instance.id === item.product_instance.id;
+
+      return {
+        product_instance: i.product_instance.id,
+        quantity: isTarget ? i.quantity + 1 : i.quantity,
+      };
+    });
+
+    const { response, error } = await replaceUserCart(newArray);
+
+    if (response) {
+      setReload((prev) => !prev);
+    } else {
+      console.log("خطا در افزایش تعداد:\n", error);
+    }
+  };
+
+  const decreaseItem = async (item) => {
+    const newArray = selectedItems.map((i) => {
+      const isTarget = i.product_instance.id === item.product_instance.id;
+
+      return {
+        product_instance: i.product_instance.id,
+        quantity: isTarget && i.quantity > 1 ? i.quantity - 1 : i.quantity,
+      };
+    });
+
+    const { response, error } = await replaceUserCart(newArray);
+
+    if (response) {
+      setReload((prev) => !prev);
+    } else {
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!! \n", error);
+    }
+  };
+  const removeItem = async (item) => {
+    const newArray = selectedItems
+      .filter((i) => i.product_instance.id !== item.product_instance.id)
+      .map((i) => ({
+        product_instance: i.product_instance.id,
+        quantity: i.quantity,
+      }));
+    const { response, error } = await replaceUserCart(newArray);
+
+    if (response) {
+      setReload((prev) => !prev);
+    } else {
+      toast.error("خطا در حذف آیتم:");
+    }
+  };
   const payHandler = () => {
     async function handlePayment() {
       const { response, error } = await PayCartProduct();
@@ -64,27 +124,13 @@ export default function ShopCartPage() {
   };
 
   useEffect(() => {
-    async function fetchUserCostCart() {
-      const { response, error } = await GETUserCartTotalCost();
-      if (response) {
-        setUserTotalCost(response.data.all_products_cost);
-      }
+    dispatch(fetchUserCart());
+  }, [reload, dispatch]);
+  useEffect(() => {
+    if (userCart) {
+      console.log("محتویات userCart:", userCart);
     }
-
-    async function fetchUserCart() {
-      const { response, error } = await GETUserCart();
-
-      if (response) {
-        console.log(" => cart => \n", response.data.data);
-        setUserCart(response.data.data);
-      } else {
-        toast.error("مشکلی در سبد خرید پیش اومده ❌");
-      }
-    }
-
-    fetchUserCostCart();
-    fetchUserCart();
-  }, []);
+  }, [userCart]);
 
   async function fetchUserWallet() {
     const { response, error } = await GETUserWallet();
@@ -97,24 +143,30 @@ export default function ShopCartPage() {
     setOpenModal(true);
   }
 
-  const reducer = () => {
-    return userCart.reduce((acc, item) => acc + item.price, 0);
+  const calculateTotalPrice = () => {
+    return selectedItems.reduce((acc, item) => acc + item.price, 0);
+  };
+  const calculateTotalDiscount = () => {
+    return selectedItems.reduce((acc, item) => {
+      const discountAmount = (item.price * item.discount) / 100;
+      return acc + discountAmount;
+    }, 0);
   };
 
   return (
     <div className="flex-col items-center">
-      {userCart.length ? (
-        <div className="md:flex-row">
+      {store?.cart?.selectedItems?.length ? (
+        <div className="flex-row gap-5">
           <div className="my-10 w-full px-10 text-lg font-bold">
             <p>سبد خرید</p>
           </div>
           <div className="flex w-full flex-col justify-evenly gap-5 p-4 md:flex-row md:gap-0">
             <div className="md:flex-row md:flex-wrap">
-              {userCart.length !== 0 ? (
-                userCart.map((item) => (
+              {store?.cart?.selectedItems?.length !== 0 ? (
+                store?.cart?.selectedItems.map((item) => (
                   <div
                     className="md:my-3 md:w-auto md:rounded-xl md:border md:border-gray-300 md:p-5"
-                    key={item.id}
+                    key={item.product_instance.id}
                   >
                     <div className="flex w-full">
                       <div>
@@ -122,15 +174,87 @@ export default function ShopCartPage() {
                           src={item?.product_image?.product_pic}
                           width={500}
                           height={500}
-                          className="h-[150px] w-[180px] md:h-[250px] md:w-[400px] rounded-2xl"
+                          className="h-[150px] w-[180px] rounded-2xl md:h-[250px] md:w-[400px]"
                           alt={item.title}
                         />
                       </div>
-                      <div className="flex flex-col items-start justify-around px-5">
-                        <p className="text-xs font-bold md:text-sm">
-                          نام کالا: {item.product_name}
-                        </p>
-                        <p> قیمت کالا:{formatNumberToFA(item?.price)} تومان</p>
+                      <div className="flex items-start justify-around gap-2 px-5">
+                        <div className="felx">
+                          <p className="text-xs font-bold md:text-sm">
+                            نام کالا: {item.product_instance.product_name}
+                          </p>
+                        </div>
+                        <div className="flex flex-col gap-10">
+                          <div className="flex flex-col">
+                            <div className="flex gap-8">
+                              <p className="text-gray-500/60 line-through">
+                                {formatNumberToFA(item.product_instance.price)}
+                              </p>
+                              <span className="flex h-[17px] w-[34px] items-center justify-center rounded-[28px] bg-[#DF5232] pt-2 text-xs text-white">
+                                %
+                                {formatNumberToFA(
+                                  item.product_instance.discount,
+                                )}
+                              </span>
+                            </div>
+
+                            <p className="font-bold">
+                              {formatNumberToFA(
+                                calcDiscountedPrice(
+                                  item.product_instance.price,
+                                  item.product_instance.discount,
+                                ),
+                              )}
+                              تومان
+                            </p>
+                          </div>
+
+                          <div className="flex h-8 w-[129px] items-center justify-between rounded-xl border border-[#E1EDF0]">
+                            {item.quantity === 1 && (
+                              <button
+                                className="flex h-5 w-5 items-center justify-center"
+                                onClick={() => {
+                                  removeItem(item);
+                                }}
+                              >
+                                <TrashBasket height={20} width={14.17} />
+                              </button>
+                            )}
+                            {item.quantity > 1 && (
+                              <button
+                                onClick={() => {
+                                  decreaseItem(item);
+                                }}
+                              >
+                                -
+                              </button>
+                            )}
+                            <div className="flex w-10 flex-col items-center justify-center">
+                              {!!item.quantity && (
+                                <span className="text-xs leading-none">
+                                  {item.quantity}
+                                </span>
+                              )}
+                              <p className="text-xs font-medium text-[#8A8B8D]">
+                                حداکثر
+                              </p>
+                            </div>
+                            {item.quantity === 0 ? (
+                              <button className="flex flex-row items-center justify-evenly justify-self-center">
+                                <TbShoppingBagCheck width={24} height={24} />
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => {
+                                  increaseItem(item);
+                                }}
+                                className="h-3 w-3"
+                              >
+                                <PluseIcone />
+                              </button>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="0 my-4 flex w-full items-center justify-between px-10">
@@ -145,13 +269,27 @@ export default function ShopCartPage() {
               )}
             </div>
 
-            <div className="flex h-40 flex-col justify-between rounded-xl border-[3px] border-gray-200 p-4 md:w-[35%]">
+            <div className="flex h-40 flex-col justify-between rounded-xl border-[3px] border-gray-200 p-4 pb-8 md:w-[35%]">
               <div>
-                <p> تعداد: {formatNumberToFA(userCart.length)} کالا</p>
-                <p>مجموع قیمت: {formatNumberToFA(reducer())} تومان</p>
+                <div className="flex items-center justify-between">
+                  <p>قیمت کالاها ({store?.cart?.total})</p>
+                  <p>{formatNumberToFA(calculateTotalPrice())} تومان</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p>مجموع تخفیف کالاها ({store?.cart?.total})</p>
+                  <p>{formatNumberToFA(calculateTotalDiscount())} تومان</p>
+                </div>
+                <div className="my-2 h-[2px] bg-[#E1EDF0]"></div>
+                <div className="flex items-center justify-between text-[#F24822]">
+                  <p>مبلغ قابل پرداخت</p>
+                  <p>
+                    <p>{formatNumberToFA(calculateTotalPrice())} تومان</p>
+                  </p>
+                </div>
               </div>
+
               <div
-                className="cursor-pointer rounded-md bg-evaamGreen p-2 text-center text-white transition-all"
+                className="mt-0.5 cursor-pointer rounded-md bg-evaamGreen p-2 text-center text-white transition-all"
                 onClick={() => fetchUserWallet()}
               >
                 <div className="flex w-3/4 flex-row items-center justify-evenly justify-self-center">

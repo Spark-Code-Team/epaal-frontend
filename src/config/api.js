@@ -1,28 +1,27 @@
 import axios from "axios";
 import { getCookie } from "../utils/cookie";
 
-
 const api = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    headers: {
-        "Content-Type": "application/json"
-    }
-})
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 api.interceptors.request.use(
-    request => {
-        const accessToken = getCookie("accessToken")
+  (request) => {
+    const accessToken = getCookie("accessToken");
 
-        if(accessToken) {
-            request.headers["Authorization"] = `Bearer ${accessToken}`
-        }
-
-        return request
-    }, 
-
-    (error) => {
-        return Promise.reject(error)
+    if (accessToken) {
+      request.headers["Authorization"] = `Bearer ${accessToken}`;
     }
-)
+
+    return request;
+  },
+
+  (error) => {
+    return Promise.reject(error);
+  },
+);
 
 export default api;

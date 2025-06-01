@@ -245,7 +245,7 @@ const getInstallments = async () => {
 const getInstallmentPayment = async (installmentId) => {
   try {
     const response = await api.post("/users/single_installment/", {
-      installment_id: installmentId
+      installment_id: installmentId,
     });
     return { response };
   } catch (error) {
@@ -256,14 +256,13 @@ const getInstallmentPayment = async (installmentId) => {
 const payInstallmentFinal = async (installmentId) => {
   try {
     const response = await api.post("/users/pay_installment/", {
-      installment_id: installmentId
+      installment_id: installmentId,
     });
     return { response };
   } catch (error) {
     return { error };
   }
 };
-
 
 const getUserCart = async () => {
   try {
@@ -272,7 +271,16 @@ const getUserCart = async () => {
   } catch (error) {
     return { error };
   }
-}
+};
+
+const userOrder = async () => {
+  try {
+    const response = await api.get("users/my_orders/");
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+};
 
 export {
   getUserCart,
@@ -298,4 +306,5 @@ export {
   facilityInformation,
   getWallet,
   getInstallments,
+  userOrder,
 };

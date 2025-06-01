@@ -8,7 +8,7 @@ function ChooseYear({
   setCurrentDate,
 }) {
   const currentJYear = moment().jYear();
-  const allYears = Array.from({ length: 79 }, (_, i) => currentJYear - i);
+  const allYears = Array.from({ length: 50 }, (_, i) => currentJYear - i);
   const yearsPerPage = 10;
 
   const [yearPage, setYearPage] = useState(0);

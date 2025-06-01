@@ -1,31 +1,21 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUserCart } from "@/service/userPanel";
+import { fetchUserCart } from "@/helpers/shopCartThunks";
+import { createSlice } from "@reduxjs/toolkit";
 
-const fetchUserCart = createAsyncThunk(
-  "user/fetchUserCart",
-  async (_, { rejectWithValue }) => {
-    try {
-      const { response, error } = await getUserCart();
-
-      if (response) {
-        return response.data;
-      } else {
-        return rejectWithValue(error);
-      }
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
+const initialState = {
+  selectedItems: [],
+  itemsCounter: 0,
+  total: 0,
+  checkOut: false,
+  userCart: [],
+  userTotalCost: 0,
+  loading: false,
+  error: null,
+};
 
 const shopCartSlice = createSlice({
   name: "shopCart",
-  initialState: {
-    cartItems: [],
-    loading: false,
-    error: null,
-  },
-  reducers: {},
+  initialState,
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserCart.pending, (state) => {
@@ -34,7 +24,15 @@ const shopCartSlice = createSlice({
       .addCase(fetchUserCart.fulfilled, (state, action) => {
         console.log("\n \n action payload: ", action.payload, "\n \n");
         state.loading = false;
-        state.cartItems = action.payload;
+        state.userCart = action.payload.data;
+        state.total = action.payload.data.reduce(
+          (sum, item) => sum + item.quantity,
+          0,
+        );
+        state.selectedItems = action.payload.data.map((item) => ({
+          product_instance: item.product_instance,
+          quantity: item.quantity,
+        }));
       })
       .addCase(fetchUserCart.rejected, (state, action) => {
         state.loading = false;
@@ -44,4 +42,3 @@ const shopCartSlice = createSlice({
 });
 
 export default shopCartSlice.reducer;
-export { fetchUserCart };

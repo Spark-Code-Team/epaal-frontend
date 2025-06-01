@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 // components
 import NavElements from "../../module/layoutModule/NavElements";
@@ -21,293 +21,154 @@ import { useRouter } from "next/navigation";
 
 const options = [
   {
-      title: "فروشگاه ایوام",
-      href: "/shopping-evaam"
+    title: "فروشگاه ایوام",
+    href: "/shopping-evaam",
   },
   {
-      title: "راهنما خرید اقساطی",
-      href: "#"
+    title: "راهنما خرید اقساطی",
+    href: "#",
   },
   {
-      title: "پذیرندگان",
-      href: "#"
+    title: "پذیرندگان",
+    href: "#",
   },
   {
-      title: "تماس با ما",
-      href: "#"
-  }
-]
+    title: "تماس با ما",
+    href: "#",
+  },
+];
 
 export default function Header() {
+  const [scrollY, setScrollY] = useState(0);
+  const [navColor, setNavColor] = useState(false);
+  const [burgerMenu, setBurgerMenu] = useState(false);
 
-  const [scrollY, setScrollY] = useState(0)
-  const [navColor, setNavColor] = useState(false)
-  const [burgerMenu, setBurgerMenu] = useState(false)
-
-  const store = useSelector(store => store)
-  const dispatch = useDispatch()
-  const router = useRouter()
-  
+  const store = useSelector((store) => store);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
-    if(!store.role.id) {
-      dispatch(fetchRole())
+    if (!store.role.id) {
+      dispatch(fetchRole());
     }
 
     console.log(store);
-    
-  }, [])
-  
+  }, []);
 
-  const pathname  = usePathname()
-  
+  const pathname = usePathname();
 
-  const onScroll = useCallback(event => {
+  const onScroll = useCallback((event) => {
     const { pageYOffset, scrollY } = window;
     setScrollY(pageYOffset);
-    if(pageYOffset > 50) {
-      setNavColor(true)
+    if (pageYOffset > 50) {
+      setNavColor(true);
     } else {
-      setNavColor(false)
+      setNavColor(false);
     }
   }, []);
 
   useEffect(() => {
-      //add eventlistener to window
-      window.addEventListener("scroll", onScroll, { passive: true });
-      
-      // remove event on unmount to prevent a memory leak with the cleanup
-      return () => {
-        window.removeEventListener("scroll", onScroll, { passive: true });
-      }
+    //add eventlistener to window
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // remove event on unmount to prevent a memory leak with the cleanup
+    return () => {
+      window.removeEventListener("scroll", onScroll, { passive: true });
+    };
   }, []);
 
   const secureRoute = () => {
-      
     if (store.role.role == "admin") {
-      router.push("/admin")
+      router.push("/admin");
     } else if (store.role.role == "shop_admin") {
-      router.push("/admin/admin-shop/add-product")
+      router.push("/admin/admin-shop/add-product");
     } else {
-      router.push("/dashboard/")
+      router.push("/dashboard/");
     }
-  }
+  };
 
   return (
     <>
       <div
-        className={`
-          w-full
-          py-6
-          md:px-[112px]
-          flex
-          max-w-[1440px]
-          justify-between
-          md:items-center
-          fixed
-          top-0
-          left-[50%]
-          translate-x-[-50%]
-          mx-auto
-          ${(navColor) ? "bg-white shadow-3xl" : ""}
-          transition-all
-          z-50
-          px-4
-        `}
+        className={`fixed left-[50%] top-0 mx-auto flex w-full max-w-[1440px] translate-x-[-50%] justify-between py-6 md:items-center md:px-[112px] ${navColor ? "bg-white shadow-3xl" : ""} z-50 px-4 transition-all`}
       >
-        <div
-          className="
-            flex
-            items-center
-            gap-3
-            md:gap-8
-            w-[600px]
-          "
-        >
-          <div
-            onClick={() => setBurgerMenu(true)}
-            className="
-              cursor-pointer
-            "
-          >
+        <div className="flex w-[600px] items-center gap-3 md:gap-8">
+          <div onClick={() => setBurgerMenu(true)} className="cursor-pointer">
             <Bars3Icon
-              className={`
-                w-6
-                h-6
-                ${(navColor || pathname != "/evaam-home") ? "text-black" : "text-white"}
-                md:hidden
-              `}
+              className={`h-6 w-6 ${navColor || pathname != "/evaam-home" ? "text-black" : "text-white"} md:hidden`}
             />
           </div>
 
-          <Logo 
+          <Logo
             width="50px"
             height="26px"
-            color={(navColor || pathname != "/evaam-home") ? "black" : "white"}
+            color={navColor || pathname != "/evaam-home" ? "black" : "white"}
           />
-          <NavElements 
+          <NavElements
             navColor={navColor}
             pathname={pathname}
             options={options}
           />
         </div>
-        {
-          store.role.id ? (
+        {store.role.id ? (
+          <div>
+            <div>
+              <button>{/* <PiShoppingCartSimpleBold /> */}</button>
+            </div>
             <div
               onClick={() => secureRoute()}
-              className={`
-                py-1
-                px-[10px]
-                text-[10px]
-                md:text-[14px]
-                font-medium
-                bg-[#00000033]
-                rounded-2xl
-                flex
-                items-center
-                justify-center
-                backdrop-blur-xl
-                gap-[1px]
-                cursor-pointer
-                w-[230px]
-                md:w-[150px]
-                ${(navColor || pathname != "/evaam-home") ? "text-black" : "text-white"}
-                z-50
-              `}
+              className={`flex w-[230px] cursor-pointer items-center justify-center gap-[1px] rounded-2xl bg-[#00000033] px-[10px] py-1 text-[10px] font-medium backdrop-blur-xl md:w-[150px] md:text-[14px] ${navColor || pathname != "/evaam-home" ? "text-black" : "text-white"} z-50`}
             >
               حساب کاربری
-              <LoginIcon 
-                color={(navColor || pathname != "/evaam-home") ? "black" : "white"}
+              <LoginIcon
+                color={
+                  navColor || pathname != "/evaam-home" ? "black" : "white"
+                }
               />
             </div>
-          ) : (
+          </div>
+        ) : (
           <Link
-          href="/login"
-          className={`
-            py-1
-            px-[10px]
-            text-[10px]
-            md:text-[14px]
-            font-medium
-            bg-[#00000033]
-            rounded-2xl
-            flex
-            items-center
-            justify-center
-            backdrop-blur-xl
-            gap-[1px]
-            cursor-pointer
-            w-[230px]
-            md:w-[150px]
-            ${(navColor || pathname != "/evaam-home") ? "text-black" : "text-white"}
-            z-50
-          `}
-        >
-          <p>ثبت نام / ورود</p>
-          <LoginIcon 
-            color={(navColor || pathname != "/evaam-home") ? "black" : "white"}
-          />
-        </Link>
-          )
-        }
-
+            href="/login"
+            className={`flex w-[230px] cursor-pointer items-center justify-center gap-[1px] rounded-2xl bg-[#00000033] px-[10px] py-1 text-[10px] font-medium backdrop-blur-xl md:w-[150px] md:text-[14px] ${navColor || pathname != "/evaam-home" ? "text-black" : "text-white"} z-50`}
+          >
+            <p>ثبت نام / ورود</p>
+            <LoginIcon
+              color={navColor || pathname != "/evaam-home" ? "black" : "white"}
+            />
+          </Link>
+        )}
       </div>
 
       {/* Burger Menu */}
       <div
-        className={`
-            w-full
-            fixed
-            h-screen
-            md:hidden
-            bg-[#0a0a0a4d]   
-            top-0
-            right-0
-            ${burgerMenu ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}
-            transition-all
-            duration-300
-            flex
-            justify-between
-            z-50
-        `}
+        className={`fixed right-0 top-0 h-screen w-full bg-[#0a0a0a4d] md:hidden ${burgerMenu ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"} z-50 flex justify-between transition-all duration-300`}
       >
-        <div
-          className="
-            h-full
-            w-[60%]
-            bg-white
-          "
-        >
-
+        <div className="h-full w-[60%] bg-white">
           {/* Logo */}
-          <div
-            className="
-              flex
-              items-center
-              justify-center
-              py-5
-              border-b
-              border-evaamGreen
-            "
-          >
-            <Logo 
-              width="40px"
-              height="40px"
-              color="#1d434c"
-            />
+          <div className="flex items-center justify-center border-b border-evaamGreen py-5">
+            <Logo width="40px" height="40px" color="#1d434c" />
           </div>
 
           {/* options */}
-          <div
-            className="
-              flex
-              flex-col
-
-            "
-          >
-            {
-              options.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className="
-                    pr-5
-                    py-5
-                    border-b
-                    transition-all
-                    border-evaamGreen
-                    hover:bg-evaamGreen
-                    hover:text-white
-                  "
-                >
-                  { 
-                    item.title
-                  }
-                </Link>
-              ))
-            }
+          <div className="flex flex-col">
+            {options.map((item, index) => (
+              <Link
+                key={index}
+                href={item.href}
+                className="border-b border-evaamGreen py-5 pr-5 transition-all hover:bg-evaamGreen hover:text-white"
+              >
+                {item.title}
+              </Link>
+            ))}
           </div>
         </div>
-          <div
-              className="
-                  bg-white
-                  h-fit
-                  m-5
-                  p-2
-                  rounded-lg
-                  cursor-pointer
-              "
-              onClick={() => setBurgerMenu(false)}
-          >
-              <RxCross2 
-                  fill="red"
-                  className="
-                      w-6
-                      h-6
-                      text-red-700
-                  "
-              />
-          </div>
+        <div
+          className="m-5 h-fit cursor-pointer rounded-lg bg-white p-2"
+          onClick={() => setBurgerMenu(false)}
+        >
+          <RxCross2 fill="red" className="h-6 w-6 text-red-700" />
+        </div>
       </div>
     </>
   );

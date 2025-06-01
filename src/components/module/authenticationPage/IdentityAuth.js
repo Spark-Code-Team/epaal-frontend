@@ -94,9 +94,8 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
       const { response, error } = await secondeOpt(state.secondPhone);
 
       if (response) {
-        console.log("22222222222222222", response);
+        toast.success("تمامی اطلاعات با موفقیت ارسال شد.");
       } else {
-        // toast.error(error.data)
         console.log(" error is ", error);
       }
     } else {
@@ -293,7 +292,10 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
               <div
                 onClick={() => {
                   setShowModal(false);
-                  setOtp("");
+                  setState((prevState) => ({
+                    ...prevState,
+                    opt_code: "",
+                  }));
                 }}
                 className="cursor-pointer"
               >

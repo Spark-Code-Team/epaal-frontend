@@ -23,6 +23,7 @@ export default function ProductDetails({
                 className={`flex cursor-pointer flex-wrap gap-4 rounded-xl border ${item.id === defaultInstance.id ? "border-4 border-evaamGreen" : "border-gray-500"} p-4 transition-all duration-300 ease-linear hover:scale-105 hover:border-4 hover:border-evaamGreen hover:shadow-md`}
                 onClick={() => {
                   setDefaultInstance(item);
+
                   // setInstanceIndex(index)
                 }}
               >

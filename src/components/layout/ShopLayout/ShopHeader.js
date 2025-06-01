@@ -1,6 +1,5 @@
 "use client";
 
-import CartIcon from "../../../../public/icons/Cart";
 import Search from "@/components/elements/search";
 import { IoIosArrowDown } from "react-icons/io";
 import { useCallback, useEffect, useState } from "react";
@@ -14,10 +13,8 @@ import { fetchRole } from "@/redux/features/userRole/useRole";
 
 import { pallete } from "@/constant/Pallete";
 import CategoryIcon from "../../../../public/icons/category";
-import { GETUserCart } from "@/service/products";
-import { fetchUserCart } from "@/redux/features/shopCart/shopCart";
-import { getAllTopic } from "@/service/shop";
-import Calender from "@/components/elements/Calender";
+import { fetchUserCart } from "@/helpers/shopCartThunks";
+import CartLargeMinimalistic from "../../../../public/icons/CartLargeMinimalistic";
 
 const categories = [
   "گوشی موبایل",
@@ -27,18 +24,6 @@ const categories = [
   "موتورسیکلت و لوازم جانبی خودرو",
   "مد و پوشاک",
   "زیبایی و سلامت",
-];
-
-const rightCategories = [
-  "گوشی موبایل",
-  "کالای دیجیتال",
-  "لوازم خانگی برقی",
-  "خانه و آشپزخانه",
-  "موتورسیکلت و لوازم جانبی خودرو",
-  "مد و پوشاک",
-  "زیبایی و سلامت",
-  "ابراز و تجهیزات صنعتی",
-  "ورزش و سفر",
 ];
 
 const headCategories = [0, 1, 2, 3, 4];
@@ -84,7 +69,6 @@ const headCategories = [0, 1, 2, 3, 4];
 
 export default function ShopHeader() {
   const [selectedContent, setSelectedContent] = useState(null);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [products, setProducts] = useState([]);
@@ -95,9 +79,9 @@ export default function ShopHeader() {
   const [burgerChangeItems, setBurgerChangeItems] = useState(false);
   const [login, setLogin] = useState(false);
 
-  const store = useSelector((store) => store);
+  const store = useSelector((state) => state);
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItems);
+
   useEffect(() => {
     const fetchProducts = async () => {
       const { response, error } = await getAllTopic();
@@ -133,8 +117,8 @@ export default function ShopHeader() {
   }, []);
 
   useEffect(() => {
-    console.log("cartItems updated: ", cartItems);
-  }, [cartItems]);
+    console.log("store.cart.userCart updated: ", store.cart.userCart);
+  }, [store.cart.userCart]);
 
   // useEffect(() => {
   //   if (!store.role.id) {
@@ -233,12 +217,18 @@ export default function ShopHeader() {
                   onClick={() => handelCartShop()}
                   className="relative cursor-pointer"
                 >
-                  <CartIcon width="24px" height="24px" color="#475569" />
-                  <div
-                    className={`absolute left-[15px] top-[-15px] h-5 w-5 rounded-lg bg-green-600 text-center text-white`}
-                  >
-                    {/*{cartItems.data.length}*/}
-                  </div>
+                  <CartLargeMinimalistic
+                    width="24px"
+                    height="24px"
+                    color="#475569"
+                  />
+                  {store?.cart?.userCart?.length > 0 && (
+                    <span
+                      className={`absolute left-[15px] top-[-15px] h-5 w-5 rounded-lg bg-green-600 text-center text-white`}
+                    >
+                      {store?.cart?.userCart?.length}
+                    </span>
+                  )}
                 </div>
               </div>
             </>
@@ -318,7 +308,7 @@ export default function ShopHeader() {
                 <div
                   key={topic.id}
                   className="mb-[5px] mr-[1px] flex h-16 w-full cursor-pointer items-center justify-center rounded-br-xl rounded-tr-xl border-l border-l-[#d9d9d9] bg-[#ecebeb] pl-0 transition-all hover:border hover:border-l-2 hover:border-[#d9d9d9] hover:border-l-white hover:bg-white"
-                  onMouseEnter={() => setShowCategories(item)}
+                  onMouseEnter={() => setShowCategories(topic)}
                   onClick={catSideClickHandler}
                 >
                   <p>{topic.name}</p>
@@ -328,9 +318,7 @@ export default function ShopHeader() {
 
             <div className="flex w-[80%] flex-col bg-red-500">
               {/* head categories */}
-              <div>
-                <Calender />
-              </div>
+              <div></div>
               <div className="mx-auto flex w-[100%] flex-col justify-between gap-10 px-14 pt-3">
                 <p className="text-blue-800">همه محصولات</p>
                 {selectedContent && (
@@ -358,7 +346,7 @@ export default function ShopHeader() {
                                     />
                                     <label
                                       for="accordian1"
-                                      class="col-span-6 w-full cursor-pointer"
+                                      className="col-span-6 w-full cursor-pointer"
                                     >
                                       {lowTopic.name}
                                     </label>

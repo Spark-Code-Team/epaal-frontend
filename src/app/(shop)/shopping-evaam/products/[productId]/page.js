@@ -20,6 +20,7 @@ export default function Product() {
 
         if (response) {
           setSingleProduct(response.data.data);
+          console.log(response.data.data);
         } else {
           toast.error("Failed to load single product");
         }

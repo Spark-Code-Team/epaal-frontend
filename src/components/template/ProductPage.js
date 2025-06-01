@@ -8,11 +8,7 @@ import ProductOtherDetails from "../module/shopPage/ProductOtherDetails";
 import { useState } from "react";
 
 export default function ProductPage({ target }) {
-  const [defaultInstance, setDefaultInstance] = useState(
-    target.instances[0],
-  );
-
-  console.log("chosen instance => \n", defaultInstance)
+  const [defaultInstance, setDefaultInstance] = useState(target.instances[0]);
 
   return (
     <>
@@ -31,7 +27,10 @@ export default function ProductPage({ target }) {
           />
         </div>
         <div className="w-[90%]">
-          <ProductOtherDetails statics={target.static_fileds} dynamics={defaultInstance} />
+          <ProductOtherDetails
+            statics={target.static_fileds}
+            dynamics={defaultInstance}
+          />
         </div>
       </div>
     </>
