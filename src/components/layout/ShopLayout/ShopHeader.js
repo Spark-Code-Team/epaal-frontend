@@ -217,7 +217,7 @@ export default function ShopHeader() {
                   if (store.role.role == "admin") {
                     router.push("/admin");
                   } else if (store.role.role == "shop_admin") {
-                    router.push("/admin/admin-shop/add-product");
+                    router.push("/admin/admin-shop");
                   } else {
                     router.push("/dashboard/");
                   }

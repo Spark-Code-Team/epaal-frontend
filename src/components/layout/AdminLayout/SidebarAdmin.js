@@ -2,13 +2,30 @@
 
 import { sidebarOptions } from "@/constant/AdminForm";
 import ArrowLeft from "../../../../public/icons/Admin/ArrowLeft";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "@/components/elements/Logo";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRole } from "@/redux/features/userRole/useRole";
 
 
 export default function SidebarAdmin() {
   const [selectOption, setSelectOption] = useState(false);
+
+
+  const store = useSelector(store => store)
+  const dispatch = useDispatch()
+  // const router = useRouter()
+  
+
+  useEffect(() => {
+    if(!store.role.id) {
+      dispatch(fetchRole())
+    }
+
+    console.log(store.role);
+    
+  }, [])
 
   const handelSelect = (title) => {
     if (title == selectOption) {
@@ -24,7 +41,7 @@ export default function SidebarAdmin() {
         <Logo height="50" width="50" color="#1D434C"/>
       </div>
       <div className="no-scrollbar h-[90%] overflow-y-scroll">
-        {sidebarOptions.map((item, index) => (
+        { store.role.role ? (sidebarOptions[store.role.role].map((item, index) => (
           <div
             className={`flex flex-col ${selectOption == item.title ? "h-fit bg-[#0543660d]" : "h-[15%]"} h-[15%] w-full p-1 transition-all`}
             key={index}
@@ -65,7 +82,7 @@ export default function SidebarAdmin() {
               ))}
             </div>
           </div>
-        ))}
+        ))) : <p>Loading...</p>}
       </div>
     </div>
   );
