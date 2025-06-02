@@ -50,7 +50,7 @@ const profileSlice = createSlice({
       state.error = "";
     });
 
-    builder.addCase(fetchProfile.rejected, (state) => {
+    builder.addCase(fetchProfile.rejected, (state, action) => {
       state.id = "";
       state.first_name = "";
       state.last_name = "";
@@ -62,7 +62,7 @@ const profileSlice = createSlice({
       state.confirmed_data = "";
       state.confirmed_address = "";
       state.loading = false;
-      state.error = "error message";
+      state.error = action.error.message;
       state.address = "";
       state.postal_code = "";
     });

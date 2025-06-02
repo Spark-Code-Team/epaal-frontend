@@ -186,11 +186,11 @@ export const sidebarOptions = {
       children: [
         {
           title: "ایجاد محصول",
-          link: "add-product",
+          link: "/admin/admin-shop/add-product",
         },
         {
           title: "وضعیت محصولات",
-          link: "product-management",
+          link: "/admin/admin-shop/product-management",
         },
         // {
         //   title: "سطح دو",
