@@ -12,7 +12,7 @@ import EditAdmin from "../../../public/icons/EditAdmin";
 
 
 
-export default function CardAdmin() {
+export default function CardAdmin({ data, handelDelete }) {
 
     const [openModal, setOpenModal] = useState({
         delete: false,
@@ -34,9 +34,13 @@ export default function CardAdmin() {
 
                 <div className="w-[95%] h-[256px] bg-white flex flex-wrap justify-around border-2 rounded-xl border-[#E1E6EF] m-auto p-3">
 
-                    <Image src="/image/image-admin.png" alt="" width={226} height={122}/>
+                    <Image src={data.picture ? data.picture : "/"} alt="topic" width={226} height={122}/>
 
-                    <div className="w-full text-center mt-4">کالای دیجیتال</div>
+                    <div className="w-full text-center mt-4">
+                        {
+                            data.name
+                        }
+                    </div>
 
                     <div className="w-full flex justify-between mt-3">
 
@@ -44,7 +48,7 @@ export default function CardAdmin() {
                             onClick={() => handelModal("delete")}
                         >
                             <Link href="#">
-                               <DeleteAdmin/>
+                               <DeleteAdmin />
                             </Link>
                         </div>
 
@@ -138,6 +142,10 @@ export default function CardAdmin() {
                                 font-normal
                                 cursor-pointer
                             "
+                            onClick={() => {
+                                handelDelete(data.id)
+                                handelModal("delete")
+                            }}
                         >
                             حذف
                         </div>

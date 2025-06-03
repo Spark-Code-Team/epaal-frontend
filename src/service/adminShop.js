@@ -68,10 +68,11 @@ const CreateProduct = async (data) => {
     }
 }
 
+
 export {
     categoryAll,
     ServiceAndProduct,
     LowlevelCategoryAll,
     AllProductTopic,
-    CreateProduct
+    CreateProduct,
 }

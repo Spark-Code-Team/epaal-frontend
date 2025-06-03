@@ -203,25 +203,25 @@ const MohasebeAghsat = ({ toPage }) => {
 
               <div className="my-[16px] flex items-center gap-4 md:my-[50px] md:mr-[16px]">
                 <div
-                  className={`flex w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 6 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  className={`flex w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[100px] md:text-[14px] ${monthGhest == 6 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
                   onClick={() => setMonthGhest(6)}
                 >
                   6 ماهه
                 </div>
                 <div
-                  className={`flex w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 12 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  className={`flex w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[100px] md:text-[14px] ${monthGhest == 12 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
                   onClick={() => setMonthGhest(12)}
                 >
                   12 ماهه
                 </div>
                 <div
-                  className={`flex w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 18 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  className={`flex w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[100px] md:text-[14px] ${monthGhest == 18 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
                   onClick={() => setMonthGhest(18)}
                 >
                   18 ماهه
                 </div>
                 <div
-                  className={`flex w-[79px] items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == 24 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  className={`flex w-[79px] items-center justify-center rounded-xl p-2 text-[12px] md:w-[100px] md:text-[14px] ${monthGhest == 24 ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
                   onClick={() => setMonthGhest(24)}
                 >
                   24 ماهه

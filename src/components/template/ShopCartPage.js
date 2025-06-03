@@ -9,42 +9,56 @@ import { Bounce, toast } from "react-toastify";
 import { TbShoppingBagCheck } from "react-icons/tb";
 import EvaamLogoo from "../../../public/icons/EvaamLogoo";
 import TrashDashBoard from "../../../public/icons/dashboard/TrashDashboard";
+import TrashBasket from "../../../public/icons/trashBasket";
+import PluseIcone from "../../../public/icons/PlusIcone";
+import Phone from "../../../public/icons/Phone";
 import { formatNumberToFA } from "@/utils/numToFa";
+import LogoEvaam from "../../../public/image/logoevaam.png";
 import {
   GETUserWallet,
   PayCartProduct,
   replaceUserCart,
 } from "@/service/products";
 import { fetchUserCart } from "@/helpers/shopCartThunks";
-import TrashBasket from "../../../public/icons/trashBasket";
-import PluseIcone from "../../../public/icons/PlusIcone";
 import { calcDiscountedPrice } from "@/helpers/helper";
 
 export default function ShopCartPage() {
-  const store = useSelector((state) => state);
-  useEffect(() => {
-    console.log("STORE IS : ", store);
-  }, [store]);
-
   const dispatch = useDispatch();
   const router = useRouter();
-  const { selectedItems, userCart, loading, error } = useSelector(
+
+  // انتخاب state از Redux
+  const { selectedItems, loading, error, total } = useSelector(
     (state) => state.cart,
   );
 
+  // وضعیت‌های محلی
   const [openModal, setOpenModal] = useState(false);
+  const [checkoutStep, setCheckoutStep] = useState(1); // 1: شماره تماس، 2: کد OTP
   const [userWallet, setUserWallet] = useState(null);
   const [reload, setReload] = useState(false);
-  // const [userCartState, setUserCart] = useState([]);
+  const [otp, setOtp] = useState("");
 
-  const handelCheckout = () => {
+  // بارگذاری سبد خرید در mount و زمان تغییر reload
+  useEffect(() => {
+    dispatch(fetchUserCart());
+  }, [reload, dispatch]);
+
+  // تابع دریافت موجودی کیف پول کاربر
+  async function fetchUserWallet() {
+    const { response, error } = await GETUserWallet();
+    if (response) {
+      setUserWallet(response.data.wallet_balance);
+    } else {
+      setUserWallet("بدون موجودی !");
+    }
     setOpenModal(true);
-  };
+    setCheckoutStep(1);
+  }
 
+  // توابع افزایش، کاهش و حذف کالاها
   const increaseItem = async (item) => {
     const newArray = selectedItems.map((i) => {
       const isTarget = i.product_instance.id === item.product_instance.id;
-
       return {
         product_instance: i.product_instance.id,
         quantity: isTarget ? i.quantity + 1 : i.quantity,
@@ -52,18 +66,16 @@ export default function ShopCartPage() {
     });
 
     const { response, error } = await replaceUserCart(newArray);
-
     if (response) {
       setReload((prev) => !prev);
     } else {
-      console.log("خطا در افزایش تعداد:\n", error);
+      console.error("خطا در افزایش تعداد:", error);
     }
   };
 
   const decreaseItem = async (item) => {
     const newArray = selectedItems.map((i) => {
       const isTarget = i.product_instance.id === item.product_instance.id;
-
       return {
         product_instance: i.product_instance.id,
         quantity: isTarget && i.quantity > 1 ? i.quantity - 1 : i.quantity,
@@ -71,13 +83,13 @@ export default function ShopCartPage() {
     });
 
     const { response, error } = await replaceUserCart(newArray);
-
     if (response) {
       setReload((prev) => !prev);
     } else {
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!! \n", error);
+      console.error("خطا در کاهش تعداد:", error);
     }
   };
+
   const removeItem = async (item) => {
     const newArray = selectedItems
       .filter((i) => i.product_instance.id !== item.product_instance.id)
@@ -85,258 +97,247 @@ export default function ShopCartPage() {
         product_instance: i.product_instance.id,
         quantity: i.quantity,
       }));
-    const { response, error } = await replaceUserCart(newArray);
 
+    const { response, error } = await replaceUserCart(newArray);
     if (response) {
       setReload((prev) => !prev);
     } else {
-      toast.error("خطا در حذف آیتم:");
+      toast.error("خطا در حذف آیتم");
     }
   };
-  const payHandler = () => {
-    async function handlePayment() {
-      const { response, error } = await PayCartProduct();
 
-      if (response) {
-        setOpenModal(false);
-        router.push("/shopping-evaam");
-
-        toast.success("پرداخت با موفقیت انجام شد", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
-      } else if (error) {
-        setOpenModal(false);
-        toast.error(
-          error.response.data.error === "your balance is not enough"
-            ? "موجودی حساب شما کافی نیست ❌"
-            : `${error.response.data.error} مشکلی درپرداخت پیش اومده : `,
-        );
-      }
-    }
-
-    handlePayment();
-  };
-
-  useEffect(() => {
-    dispatch(fetchUserCart());
-  }, [reload, dispatch]);
-  useEffect(() => {
-    if (userCart) {
-      console.log("محتویات userCart:", userCart);
-    }
-  }, [userCart]);
-
-  async function fetchUserWallet() {
-    const { response, error } = await GETUserWallet();
-
-    if (response) {
-      setUserWallet(response.data.wallet_balance);
-    } else {
-      setUserWallet("بدون موجودی !");
-    }
-    setOpenModal(true);
-  }
-
+  // محاسبه قیمت کل و تخفیف کل
   const calculateTotalPrice = () => {
-    return selectedItems.reduce((acc, item) => acc + item.price, 0);
+    return selectedItems.reduce(
+      (acc, item) =>
+        acc +
+        calcDiscountedPrice(
+          item.product_instance.price,
+          item.product_instance.discount,
+        ) *
+          item.quantity,
+      0,
+    );
   };
+
   const calculateTotalDiscount = () => {
     return selectedItems.reduce((acc, item) => {
-      const discountAmount = (item.price * item.discount) / 100;
+      const discountAmount =
+        ((item.product_instance.price * item.product_instance.discount) / 100) *
+        item.quantity;
       return acc + discountAmount;
     }, 0);
   };
 
+  // مدیریت پرداخت
+  const payHandler = async () => {
+    const { response, error } = await PayCartProduct();
+
+    if (response) {
+      setOpenModal(false);
+      router.push("/shopping-evaam");
+      toast.success("پرداخت با موفقیت انجام شد", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    } else if (error) {
+      setOpenModal(false);
+      toast.error(
+        error.response?.data?.error === "your balance is not enough"
+          ? "موجودی حساب شما کافی نیست ❌"
+          : `${error.response?.data?.error} مشکلی درپرداخت پیش آمده`,
+      );
+    }
+  };
+
+  // مدیریت تغییر OTP
+  const changeOtpHandler = (enteredOtp) => {
+    setOtp(enteredOtp);
+  };
+
   return (
     <div className="flex-col items-center">
-      {store?.cart?.selectedItems?.length ? (
+      {selectedItems.length ? (
         <div className="flex-row gap-5">
           <div className="my-10 w-full px-10 text-lg font-bold">
             <p>سبد خرید</p>
           </div>
-          <div className="flex w-full flex-col justify-evenly gap-5 p-4 md:flex-row md:gap-0">
-            <div className="md:flex-row md:flex-wrap">
-              {store?.cart?.selectedItems?.length !== 0 ? (
-                store?.cart?.selectedItems.map((item) => (
-                  <div
-                    className="md:my-3 md:w-auto md:rounded-xl md:border md:border-gray-300 md:p-5"
-                    key={item.product_instance.id}
-                  >
-                    <div className="flex w-full">
-                      <div>
-                        <Image
-                          src={item?.product_image?.product_pic}
-                          width={500}
-                          height={500}
-                          className="h-[150px] w-[180px] rounded-2xl md:h-[250px] md:w-[400px]"
-                          alt={item.title}
-                        />
-                      </div>
-                      <div className="flex items-start justify-around gap-2 px-5">
-                        <div className="felx">
-                          <p className="text-xs font-bold md:text-sm">
-                            نام کالا: {item.product_instance.product_name}
-                          </p>
-                        </div>
-                        <div className="flex flex-col gap-10">
-                          <div className="flex flex-col">
-                            <div className="flex gap-8">
-                              <p className="text-gray-500/60 line-through">
-                                {formatNumberToFA(item.product_instance.price)}
-                              </p>
-                              <span className="flex h-[17px] w-[34px] items-center justify-center rounded-[28px] bg-[#DF5232] pt-2 text-xs text-white">
-                                %
-                                {formatNumberToFA(
-                                  item.product_instance.discount,
-                                )}
-                              </span>
-                            </div>
 
-                            <p className="font-bold">
-                              {formatNumberToFA(
-                                calcDiscountedPrice(
-                                  item.product_instance.price,
-                                  item.product_instance.discount,
-                                ),
-                              )}
+          <div className="flex w-full flex-col justify-evenly gap-5 p-4 md:flex-row md:gap-0">
+            {/* لیست محصولات */}
+            <div className="md:flex-row md:flex-wrap">
+              {selectedItems.map((item) => (
+                <div
+                  className="md:my-3 md:w-auto md:rounded-xl md:border md:border-gray-300 md:p-5"
+                  key={item.product_instance.id}
+                >
+                  <div className="flex w-full">
+                    <Image
+                      src={item?.product_image?.product_pic}
+                      width={500}
+                      height={500}
+                      className="h-[150px] w-[180px] rounded-2xl md:h-[250px] md:w-[400px]"
+                      alt={item.product_instance.product_name}
+                    />
+                    <div className="flex items-start justify-around gap-2 px-5">
+                      <div>
+                        <p className="text-xs font-bold md:text-sm">
+                          نام کالا: {item.product_instance.product_name}
+                        </p>
+                      </div>
+                      <div className="flex flex-col gap-10">
+                        <div className="flex flex-col">
+                          <div className="flex gap-8">
+                            <p className="text-gray-500/60 line-through">
+                              {formatNumberToFA(item.product_instance.price)}{" "}
                               تومان
                             </p>
+                            <span className="flex h-[17px] w-[34px] items-center justify-center rounded-[28px] bg-[#DF5232] pt-2 text-xs text-white">
+                              %
+                              {formatNumberToFA(item.product_instance.discount)}
+                            </span>
                           </div>
 
-                          <div className="flex h-8 w-[129px] items-center justify-between rounded-xl border border-[#E1EDF0]">
-                            {item.quantity === 1 && (
-                              <button
-                                className="flex h-5 w-5 items-center justify-center"
-                                onClick={() => {
-                                  removeItem(item);
-                                }}
-                              >
-                                <TrashBasket height={20} width={14.17} />
-                              </button>
-                            )}
-                            {item.quantity > 1 && (
-                              <button
-                                onClick={() => {
-                                  decreaseItem(item);
-                                }}
-                              >
-                                -
-                              </button>
-                            )}
-                            <div className="flex w-10 flex-col items-center justify-center">
-                              {!!item.quantity && (
-                                <span className="text-xs leading-none">
-                                  {item.quantity}
-                                </span>
-                              )}
-                              <p className="text-xs font-medium text-[#8A8B8D]">
-                                حداکثر
-                              </p>
-                            </div>
-                            {item.quantity === 0 ? (
-                              <button className="flex flex-row items-center justify-evenly justify-self-center">
-                                <TbShoppingBagCheck width={24} height={24} />
-                              </button>
-                            ) : (
-                              <button
-                                onClick={() => {
-                                  increaseItem(item);
-                                }}
-                                className="h-3 w-3"
-                              >
-                                <PluseIcone />
-                              </button>
-                            )}
-                          </div>
+                          <p className="font-bold">
+                            {formatNumberToFA(
+                              calcDiscountedPrice(
+                                item.product_instance.price,
+                                item.product_instance.discount,
+                              ),
+                            )}{" "}
+                            تومان
+                          </p>
                         </div>
-                      </div>
-                    </div>
-                    <div className="0 my-4 flex w-full items-center justify-between px-10">
-                      <div>
-                        <TrashDashBoard />
+
+                        {/* کنترل تعداد */}
+                        <div className="flex h-8 w-[129px] items-center justify-between rounded-xl border border-[#E1EDF0]">
+                          {item.quantity === 1 ? (
+                            <button
+                              className="flex h-5 w-5 items-center justify-center"
+                              onClick={() => removeItem(item)}
+                            >
+                              <TrashBasket height={20} width={14.17} />
+                            </button>
+                          ) : (
+                            <button onClick={() => decreaseItem(item)}>
+                              -
+                            </button>
+                          )}
+
+                          <div className="flex w-10 flex-col items-center justify-center">
+                            <span className="text-xs leading-none">
+                              {item.quantity}
+                            </span>
+                            <p className="text-xs font-medium text-[#8A94A6]">
+                              {formatNumberToFA(item.quantity)}
+                            </p>
+                          </div>
+                          <button onClick={() => increaseItem(item)}>
+                            <PluseIcone height={18} width={18} />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                ))
-              ) : (
-                <></>
-              )}
+                </div>
+              ))}
             </div>
 
-            <div className="flex h-40 flex-col justify-between rounded-xl border-[3px] border-gray-200 p-4 pb-8 md:w-[35%]">
-              <div>
-                <div className="flex items-center justify-between">
-                  <p>قیمت کالاها ({store?.cart?.total})</p>
-                  <p>{formatNumberToFA(calculateTotalPrice())} تومان</p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <p>مجموع تخفیف کالاها ({store?.cart?.total})</p>
-                  <p>{formatNumberToFA(calculateTotalDiscount())} تومان</p>
-                </div>
-                <div className="my-2 h-[2px] bg-[#E1EDF0]"></div>
-                <div className="flex items-center justify-between text-[#F24822]">
-                  <p>مبلغ قابل پرداخت</p>
-                  <p>
-                    <p>{formatNumberToFA(calculateTotalPrice())} تومان</p>
-                  </p>
-                </div>
+            {/* جمع کل و پرداخت */}
+            <div className="mx-5 h-[270px] w-[280px] rounded-2xl bg-white px-10 py-4 shadow-lg md:h-[450px] md:w-[400px]">
+              <p className="mt-3 text-sm font-bold">مبلغ قابل پرداخت:</p>
+
+              <div className="mt-3 flex justify-between gap-6 text-sm text-[#8A94A6]">
+                <p>جمع کل کالاها</p>
+                <p>{formatNumberToFA(calculateTotalPrice())} تومان</p>
+              </div>
+              <div className="my-5 h-[1px] bg-[#EDF1F5]" />
+              <div className="flex justify-between gap-6 text-sm text-[#8A94A6]">
+                <p>میزان تخفیف</p>
+                <p>{formatNumberToFA(calculateTotalDiscount())} تومان</p>
+              </div>
+              <div className="my-5 h-[1px] bg-[#EDF1F5]" />
+              <div className="mb-5 flex justify-between gap-6 text-sm font-bold">
+                <p>مبلغ کل</p>
+                <p>{formatNumberToFA(calculateTotalPrice())} تومان</p>
               </div>
 
-              <div
-                className="mt-0.5 cursor-pointer rounded-md bg-evaamGreen p-2 text-center text-white transition-all"
-                onClick={() => fetchUserWallet()}
+              <button
+                onClick={fetchUserWallet}
+                className="flex w-full items-center justify-center rounded-xl bg-[#DF5232] py-4 text-center text-white"
               >
-                <div className="flex w-3/4 flex-row items-center justify-evenly justify-self-center">
-                  پرداخت از کیف پول ایوام{" "}
-                  <span>
-                    <EvaamLogoo color={"white"} height={30} width={30} />
-                  </span>
-                </div>
-              </div>
+                پرداخت
+                <TbShoppingBagCheck className="mr-1" />
+              </button>
             </div>
           </div>
         </div>
       ) : (
-        <div className="flex h-full min-h-[50vh] w-full items-center justify-center">
-          <h1>سبد شما خالی است</h1>
+        <div className="flex h-[80vh] flex-col items-center justify-center gap-3 text-[#8A94A6]">
+          <EvaamLogoo width={200} height={200} />
+          <p className="text-lg">سبد خرید شما خالی است</p>
         </div>
       )}
 
+      {/* مودال پرداخت و ورود شماره */}
       <Modal
         show={openModal}
-        onClose={() => {
-          setOpenModal(false);
-        }}
-        size="sm"
-        style={{
-          display: "flex",
-        }}
+        size="md"
+        popup={true}
+        onClose={() => setOpenModal(false)}
       >
-        <div className="h-auto w-[500px] rounded-xl bg-white p-6 shadow-lg">
-          <div className="flex flex-row items-center gap-5">
-            <div>
-              <p className="py-6 text-lg"> موجودی کیف پول ایوام شما: </p>
+        <Modal.Header className="border-b-0" />
+        <Modal.Body>
+          {checkoutStep === 1 && (
+            <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
+              <h3 className="text-xl font-medium text-gray-900">
+                ورود شماره موبایل
+              </h3>
+              <div className="flex flex-col gap-2">
+                <p>موجودی کیف پول: {userWallet ?? "در حال بارگذاری..."}</p>
+                <input
+                  type="tel"
+                  placeholder="شماره موبایل خود را وارد کنید"
+                  className="w-full rounded border border-gray-300 px-3 py-2"
+                />
+              </div>
+              <button
+                className="w-full rounded bg-[#DF5232] py-2 text-white"
+                onClick={() => setCheckoutStep(2)}
+              >
+                دریافت کد تایید
+              </button>
             </div>
-            <div className="text-center text-2xl font-bold">
-              {formatNumberToFA(userWallet)} تومان
+          )}
+
+          {checkoutStep === 2 && (
+            <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
+              <h3 className="text-xl font-medium text-gray-900">
+                وارد کردن کد تایید
+              </h3>
+              <input
+                type="text"
+                maxLength={6}
+                value={otp}
+                onChange={(e) => changeOtpHandler(e.target.value)}
+                placeholder="کد تایید را وارد کنید"
+                className="w-full rounded border border-gray-300 px-3 py-2"
+              />
+              <button
+                className="w-full rounded bg-[#DF5232] py-2 text-white"
+                onClick={payHandler}
+                disabled={otp.length !== 6}
+              >
+                پرداخت
+              </button>
             </div>
-          </div>
-          <form>
-            <div className="mb-4" dir="ltr"></div>
-            <div
-              onClick={() => payHandler()}
-              className="w-full cursor-pointer rounded-xl bg-evaamGreen px-4 py-4 text-center text-white transition hover:bg-blue-100 hover:text-black hover:shadow-md"
-            >
-              پرداخت از کیف پول
-            </div>
-          </form>
-        </div>
+          )}
+        </Modal.Body>
       </Modal>
     </div>
   );

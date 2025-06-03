@@ -1,258 +1,207 @@
-"use client"
+"use client";
 
 import CardAdmin from "./CardAdmin";
 import { Modal } from "flowbite-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CrossIcon from "../../../public/icons/Admin/CrossIcon";
 import AddPicture from "../../../public/icons/Admin/AddPicture";
 import Image from "next/image";
 import PlusAdmin from "../../../public/icons/PlusAdmin";
+import { CreateTopLevelTopic, DeleteTopLevel, GetAllTopic } from "@/service/adminPanel";
+import axios from "axios";
+import { getCookie } from "@/utils/cookie";
+import { toast } from "react-toastify";
 
-const LevelCategory = ()=>{
+const LevelCategory = () => {
+  const [categoryModal, setCategoryModal] = useState(false);
+  const [addCategory, setAddCategory] = useState({
+    name: "",
+    image: "",
+  });
+  const [products, setProducts] = useState([]);
+  const [img, setImg] = useState("");
+  const [loading, setLoading] = useState(false)
 
-    const [categoryModal, setCategoryModal] = useState(false);
-    const [addCategory, setAddCategory] = useState({
-        name: "",
-        image: ""
-    })
-    const [img,setImg] = useState("");
+  const formData = new FormData();
 
-    const items = [1 , 2 , 3 , 4 , 5 , 6 , 7 , 8];
+  const imageRef = useRef(null);
 
-    const imageRef = useRef(null)
+  useEffect(() => {
+    const fetchData = async () => {
+      const { response, error } = await GetAllTopic();
 
+      if (response) {
+        console.log(response);
+        setProducts(response.data.data);
+      }
+    };
 
-    const ImageChange =(e) => {
+    fetchData();
+  }, [loading]);
 
-        const reader = new FileReader()
+  const ImageChange = (e) => {
+    setAddCategory((last) => ({ ...last, image: e.target.files[0] }));
+    setImg(URL.createObjectURL(e.target.files[0]));
+  };
 
-        reader.readAsDataURL(e.target.files[0])
-        
-        reader.onloadend = () => {
-            setImg(reader.result)
-        }
+  const handelSendData = async () => {
+    formData.append("picture", addCategory.image);
+    formData.append("name", addCategory.name);
+
+    const token = getCookie("accessToken");
+
+    try {
+      axios
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}product/toplevel_topic`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then((res) => {
+          toast.success("دسته بندی با موفقیت ساخته شد");
+          setAddCategory({ image: "", name: "" });
+          setCategoryModal(false);
+          setLoading(last => !last)
+        });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.data?.message || "مشکلی پیش آمده");
     }
+  };
 
-    return(
+  const handelDelete = async (id) => {
+    const {response, error} = await DeleteTopLevel(id)
 
-        <>
+    if(response) {
+      setLoading(last => !last)
+      toast.success("دسته بندی با موفقیت حذف شد")
+    }
+  }
 
-            <div className="w-[94%] mx-auto mb-4">
+  return (
+    <>
+      <div className="mx-auto mb-4 w-[94%]">
+        <div className="mx-auto mt-8 flex w-full">
+          <div className="flex w-1/2 items-center">
+            <p className="text-xl">مدیریت دسته بندی ها</p>
 
-                <div className="w-full mx-auto mt-8 flex">
+            <p className="mr-6 text-base text-[#8A8B8D]">سطح یک</p>
+          </div>
 
-                    <div className="w-1/2 flex items-center">
-
-                        <p className="text-xl">مدیریت دسته بندی ها</p>
-
-                        <p className="text-base mr-6 text-[#8A8B8D]">سطح یک</p>
-
-                    </div>
-
-                    <div className="w-1/2 flex justify-end">
-
-                        <button className="w-[166px] bg-[#054366] text-white p-2 flex justify-around items-center rounded-md text-[15px]"
-                            onClick={() => setCategoryModal(true)}
-                        >
-                            افزودن دسته جدید
-                            <PlusAdmin/>
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <div className="w-full mt-10 flex flex-wrap">
-
-                    {
-                        items.map((item , index)=>(
-                            <CardAdmin 
-                                key={index}
-                            />
-                        ))
-                    }
-
-                </div>
-
-
-            </div>
-
-            <Modal
-                show={categoryModal}
-                onClose={() => setCategoryModal(false)}
-                dismissible
-                size="xl"
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
-                }}
+          <div className="flex w-1/2 justify-end">
+            <button
+              className="flex w-[166px] items-center justify-around rounded-md bg-[#054366] p-2 text-[15px] text-white"
+              onClick={() => setCategoryModal(true)}
             >
-                <div
-                    className="
-                        w-[557px]
-                        h-[445px]
-                        rounded-[10px]
-                        bg-white
-                        mx-auto
-                        px-7
-                    "
-                >
-                    {/* title  */}
+              افزودن دسته جدید
+              <PlusAdmin />
+            </button>
+          </div>
+        </div>
 
-                    <div
-                        className="
-                            w-full
-                            flex
-                            justify-between
-                            items-center
-                            pt-7
-                            pb-4
-                            border-b
-                        "
-                    >
-                        <p
-                            className="
-                                text-[20px]
-                                font-semibold
-                                pr-2
-                            "
-                        >
-                            ایجاد دسته جدید (سطح یک)
-                        </p>
-                        <div
-                            onClick={() => setCategoryModal(false)}
-                            className="
-                                cursor-pointer
-                            "
-                        >
-                            <CrossIcon />
-                        </div>
-                    </div>
+        <div className="mt-10 flex w-full flex-wrap">
+          {products.length ? (
+            products.map((item, index) => (
+              <CardAdmin
+                  key={index}
+                  data={item}
+                  handelDelete={handelDelete}
+              />
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
+      </div>
 
-                    {/* name input */}
-                    <div
-                        className="
-                            pt-[18px]
-                        "
-                    >
-                        <p
-                            className="
-                                text-[14px]
-                                font-medium
-                                pb-3
-                                text-right
-                            "
-                        >
-                            نام دسته :
-                        </p>
-                        <input 
-                            value={addCategory.name}
-                            onChange={(e) => setAddCategory(last => ({...last, name: e.target.value}))}
-                            placeholder="نام دسته را وارد کنید"
-                            className="
-                                w-[501px]
-                                border-[1px]
-                                border-black
-                                p-[10px]
-                                text-[14px]
-                                font-normal
-                                text-[#A7A8A9]
-                                rounded-xl
-                            "
-                        />
-                    </div>
+      <Modal
+        show={categoryModal}
+        onClose={() => setCategoryModal(false)}
+        dismissible
+        size="xl"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div className="mx-auto h-[445px] w-[557px] rounded-[10px] bg-white px-7">
+          {/* title  */}
 
-                    {/* image input */}
-                    <div
-                        className="
-                            pt-[18px]
-                        "
-                    >
-                        <p
-                            className="
-                                text-[14px]
-                                font-medium
-                                pb-[18px]
-                            "
-                        >
-                            تصویر انتخاب کنید :
-                        </p>
-                        <div
-                            className="
-                                border-[1px]
-                                border-[#6D6E70]
-                                border-dashed
-                                w-full
-                                h-[135px]
-                                flex
-                                items-center
-                                justify-center
-                            "
-                            onClick={() => imageRef.current.click()}
-                        >
-                        {
-                            img ? (
-                                <Image
-                                    src={img}
-                                    width={300}
-                                    height={300}
-                                    className="
-                                        w-[300px]
-                                        h-full
-                                    "
-                                    alt="alt"
-                                />
-                            ) : (
-                                <AddPicture />
-                            )
-                        }
-                        </div>
-                    </div>
-                    
-                    <div
-                        className="
-                            w-full
-                            flex
-                            justify-end
-                            py-4
-                        "
-                    >
-                        <div
-                            className="
-                                w-[151px]
-                                px-6
-                                py-3
-                                bg-[#054366]
-                                rounded-xl
-                                text-white
-                                text-center
-                                cursor-pointer
-                                text-[14px]
-                            "
-                        >
-                            ایجاد دسته
-                        </div>
-                    </div>
-                </div>
-            </Modal>
+          <div className="flex w-full items-center justify-between border-b pb-4 pt-7">
+            <p className="pr-2 text-[20px] font-semibold">
+              ایجاد دسته جدید (سطح یک)
+            </p>
+            <div
+              onClick={() => setCategoryModal(false)}
+              className="cursor-pointer"
+            >
+              <CrossIcon />
+            </div>
+          </div>
 
-            <input 
-                type="file"
-                value={addCategory.image}
-                onChange={(e) => ImageChange(e)}
-                ref={imageRef}
-                className="
-                    hidden
-                "
+          {/* name input */}
+          <div className="pt-[18px]">
+            <p className="pb-3 text-right text-[14px] font-medium">
+              نام دسته :
+            </p>
+            <input
+              value={addCategory.name}
+              onChange={(e) =>
+                setAddCategory((last) => ({ ...last, name: e.target.value }))
+              }
+              placeholder="نام دسته را وارد کنید"
+              className="w-[501px] rounded-xl border-[1px] border-black p-[10px] text-[14px] font-normal"
             />
+          </div>
 
-        </>
+          {/* image input */}
+          <div className="pt-[18px]">
+            <p className="pb-[18px] text-[14px] font-medium">
+              تصویر انتخاب کنید :
+            </p>
+            <div
+              className="flex h-[135px] w-full items-center justify-center border-[1px] border-dashed border-[#6D6E70]"
+              onClick={() => imageRef.current.click()}
+            >
+              {img ? (
+                <Image
+                  src={img}
+                  width={300}
+                  height={300}
+                  className="h-full w-[300px]"
+                  alt="alt"
+                />
+              ) : (
+                <AddPicture />
+              )}
+            </div>
+          </div>
 
-    )
+          <div className="flex w-full justify-end py-4">
+            <div
+              className={`w-[151px] px-6 py-3 ${addCategory.image && addCategory.name ? "bg-[#054366] text-white" : "bg-slate-100 text-black"} cursor-pointer rounded-xl text-center text-[14px]`}
+              onClick={() => handelSendData()}
+            >
+              ایجاد دسته
+            </div>
+          </div>
+        </div>
+      </Modal>
 
-}
-
+      <input
+        type="file"
+        onChange={(e) => ImageChange(e)}
+        ref={imageRef}
+        className="hidden"
+      />
+    </>
+  );
+};
 
 export default LevelCategory;

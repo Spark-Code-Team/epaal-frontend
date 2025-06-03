@@ -57,6 +57,8 @@ export default function shop() {
 
       if (response) {
         setProducts(response.data);
+        console.log("mmmmmmmmmmmmmmmmmmmmmmmmmmm", response.data);
+        
 
         setIsLoading(false);
       } else {

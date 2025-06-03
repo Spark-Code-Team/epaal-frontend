@@ -8,6 +8,7 @@ import { getStatusPhysical, sendStatusPhysical } from "@/service/userPanel";
 import { toast } from "react-toastify";
 import FacilityState from "@/components/elements/FacilityState";
 import { useRouter } from "next/navigation";
+import {digitsEnToFa} from "@persian-tools/persian-tools";
 
 export default function SendCluesModule() {
 
@@ -65,7 +66,7 @@ export default function SendCluesModule() {
             </p>
           </div>
           <div>
-            <p>و کدپستی: ********</p>
+            <p>و کدپستی: {digitsEnToFa("1157945149")}</p>
           </div>
           <div>
             <p>ارسال نمائید و منتظر اعلام نتیجه، بمانید.</p>

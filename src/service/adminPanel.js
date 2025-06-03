@@ -66,4 +66,133 @@ export async function POSTAcceptFinalFacitilty(faciliryId) {
 }
 
 
-// export async function 
+export async function GetAllRequest() {
+  try {
+    const response = await api.get("Admin/all_shop_request")
+
+    return { response }
+  } catch( error ) {
+    return { error }
+  }
+}
+
+
+export async function GetAllTopLevelTopic() {
+  try {
+    const response = await api.post("product/get_all_toplevel_topic")
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const GetAllTopic = async () => {
+
+    try {
+        const response = await api.post("product/get_all_toplevel_topic")
+    
+        return { response }
+    } catch(error) {
+        return { error }
+    }
+}
+
+export const GetAllMidlevel = async () => {
+
+  try {
+    const response = await api.post("/product/get_all_midlevel_topic")
+
+    return { response }
+  } catch(error) {
+    return { error }
+  }
+}
+
+export const GetAllLowlevel = async () => {
+  try {
+    const response = await api.post("product/get_all_lowlevel_topic")
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const GetAllTopicProduct = async () => {
+
+  try {
+    const response = await api.post("product/get_all_product_topic")
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const DeleteTopLevel = async (id) => {
+
+  try {
+    const response = await api.delete("product/delete_toplevel_topic", {
+      data: {
+        toplevel_topic: id
+      } 
+    })
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const DeleteMidlevelTopic = async (midlevel_topic) => {
+  try {
+    const response = await api.delete("product/delete_midlevel_topic", {
+      data: {
+        midlevel_topic
+      }
+    })
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const DeleteLowlevelTopic = async (lowlevel_topic) => {
+  try {
+    const response = await api.delete("product/delete_lowlevel_topic", {
+      data: {
+        lowlevel_topic
+      }
+    })
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const DeleteTopLevelProduct = async (product_topic) => {
+  try {
+    const response = await api.delete("product/delete_product_topic", {
+      data: {
+        product_topic
+      }
+    })
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export const GetRequestIdentity = async (id) => {
+  try {
+    const response = await api.get(`Admin/single_shop_request?shop_request_id=${id}`)
+
+    return { response }
+  } catch (error) {
+    return { error }
+  }
+}

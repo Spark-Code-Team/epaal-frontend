@@ -29,9 +29,12 @@ const loginOtp = async (phone_number, otp_code, password) => {
 const userRole = async () => {
   try {
     const response = await api.get("/users/home/");
+    console.log(response);
 
     return { response };
   } catch (error) {
+    console.log(error);
+
     return { error };
   }
 };

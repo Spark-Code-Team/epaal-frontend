@@ -1,17 +1,13 @@
 "use client";
 
-// components
 import NavElements from "../../module/layoutModule/NavElements";
 import Logo from "@/components/elements/Logo";
 
-// react
 import { useCallback, useEffect, useState } from "react";
 
-// icons
 import LoginIcon from "../../../../public/icons/LoginIcon";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
-//
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RxCross2 } from "react-icons/rx";
@@ -46,32 +42,22 @@ export default function Header() {
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!store.role.id) {
       dispatch(fetchRole());
     }
-
-    console.log(store);
   }, []);
 
-  const pathname = usePathname();
-
-  const onScroll = useCallback((event) => {
-    const { pageYOffset, scrollY } = window;
+  const onScroll = useCallback(() => {
+    const { pageYOffset } = window;
     setScrollY(pageYOffset);
-    if (pageYOffset > 50) {
-      setNavColor(true);
-    } else {
-      setNavColor(false);
-    }
+    setNavColor(pageYOffset > 50);
   }, []);
 
   useEffect(() => {
-    //add eventlistener to window
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    // remove event on unmount to prevent a memory leak with the cleanup
     return () => {
       window.removeEventListener("scroll", onScroll, { passive: true });
     };
