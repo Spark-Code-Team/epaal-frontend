@@ -36,12 +36,12 @@ export default function ShopCartPage() {
     (state) => state.cart,
   );
 
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
+  const [checkout, setCheckout] = useState(1);
+  const [otp, setOtp] = useState("");
   const [userWallet, setUserWallet] = useState(null);
   const [reload, setReload] = useState(false);
   const [userCost, setUserCost] = useState(null);
-  // const [userCartState, setUserCart] = useState([]);
-
   const handelCheckout = () => {
     setOpenModal(true);
   };
@@ -169,8 +169,8 @@ export default function ShopCartPage() {
     }, 0);
   };
 
-  const changeHandler = (enteredOtp) =>{
-      setOtp(enteredOtp);
+  const changeHandler = (enteredOtp) => {
+    setOtp(enteredOtp);
   };
 
   return (
@@ -332,99 +332,77 @@ export default function ShopCartPage() {
       )}
 
       <Modal
-                show={openModal}
-                onClose={() => {
-                    setOpenModal(false);
-                    setCheckout(1)
-                }}
-                size="md"
-                dismissible
-                className="
-                    flex
-                "
-            >
-                {
-                    checkout == 1 ? (
-                        <div className="bg-white p-6 rounded-xl shadow-lg">
+        show={openModal}
+        onClose={() => {
+          setOpenModal(false);
+          setCheckout(1);
+        }}
+        size="md"
+        dismissible
+        className="flex"
+      >
+        {checkout == 1 ? (
+          <div className="rounded-xl bg-white p-6 shadow-lg">
+            <div className="mb-4 text-center">
+              <Image src={LogoEvaam} alt="logo" width={150} height={150} />
+            </div>
 
-                            <div className="text-center mb-4">
-                                <Image src={LogoEvaam} alt="logo" width={150} height={150} />
-                            </div>
-        
-                            <form>
-        
-                            <p className="py-6 text-[12px]">شماره تماس را وارد کنید</p>
-        
-                                <div className="mb-4 flex border border-[#E1E6EF]
-                                items-center rounded-xl ">
-                                <input
-                                    dir="ltr"
-                                    type="text"
-                                    placeholder="+98**********"
-                                    className="w-full px-4 py-2
-                                    border-none
-                                    focus:outline-none 
-                                    focus:ring-2
-                                    focus:ring-blue-100"
-                                />
-                                <span className="w-[10%] ">
-                                    <Phone color="#E1E6EF" size={24} width="20%"/>
-                                </span>
-        
-                                </div>
-                                
-                                <div
-                                className="w-full bg-[#E1E6EF] text-center cursor-pointer text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition"
-                                onClick={() => setCheckout(2)}
-                                >
-                                دریافت کد
-                                </div>
-                            </form>
-                        </div>
-                    ) : (
-                        <div className="bg-white p-6 rounded-xl shadow-lg w-[402px] h-[314px]">
-                 
-                           <div className="text-center mb-4">
-                             <Image src={LogoEvaam} alt="logo" width={150} height={150} />
-                           </div>
-                 
-                           <form>
-                 
-                           <p className="py-6 text-[12px]"> کد ارسال شده را وارد کنید </p>
-                 
-                             <div className="mb-4" dir="ltr">
-             
-                               
-                            <OtpInput
-                                value={otp}
-                                onChange={changeHandler}
-                                numInputs={8}
-                                
-                                inputStyle={
-                                    {
-                                        width:"35px",
-                                        height:"41px",
-                                        margin:"0 5px",
-                                        border:"1px solid #c6c6c6",
-                                        borderRadius:"10px"
-                                    }
-                                }
-                        
-                            />
-             
-                            </div>
-                                    <div
-                                        onClick={() => payHandler()}
-                                        className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition text-center cursor-pointer"
-                                    >
-                                            پرداخت از کیف پول
-                                        
-                                    </div>
-                                </form>
-                            </div>
-                    )
-                }
-            </Modal>
+            <form>
+              <p className="py-6 text-[12px]">شماره تماس را وارد کنید</p>
+
+              <div className="mb-4 flex items-center rounded-xl border border-[#E1E6EF]">
+                <input
+                  dir="ltr"
+                  type="text"
+                  placeholder="+98**********"
+                  className="w-full border-none px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                />
+                <span className="w-[10%]">
+                  <Phone color="#E1E6EF" size={24} width="20%" />
+                </span>
+              </div>
+
+              <div
+                className="w-full cursor-pointer rounded-xl bg-[#E1E6EF] px-4 py-2 text-center text-black transition hover:bg-blue-100"
+                onClick={() => setCheckout(2)}
+              >
+                دریافت کد
+              </div>
+            </form>
+          </div>
+        ) : (
+          <div className="h-[314px] w-[402px] rounded-xl bg-white p-6 shadow-lg">
+            <div className="mb-4 text-center">
+              <Image src={LogoEvaam} alt="logo" width={150} height={150} />
+            </div>
+
+            <form>
+              <p className="py-6 text-[12px]"> کد ارسال شده را وارد کنید </p>
+
+              <div className="mb-4" dir="ltr">
+                <OtpInput
+                  value={otp}
+                  onChange={changeHandler}
+                  numInputs={8}
+                  inputStyle={{
+                    width: "35px",
+                    height: "41px",
+                    margin: "0 5px",
+                    border: "1px solid #c6c6c6",
+                    borderRadius: "10px",
+                  }}
+                />
+              </div>
+              <div
+                onClick={() => payHandler()}
+                className="w-full cursor-pointer rounded-xl bg-[#E1E6EF] px-4 py-2 text-center text-black transition hover:bg-blue-100"
+              >
+                پرداخت از کیف پول
+              </div>
+            </form>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }
