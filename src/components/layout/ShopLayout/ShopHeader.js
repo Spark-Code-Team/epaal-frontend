@@ -13,7 +13,7 @@ import { pallete } from "@/constant/Pallete";
 import CategoryIcon from "../../../../public/icons/category";
 import { fetchUserCart } from "@/helpers/shopCartThunks";
 import CartLargeMinimalistic from "../../../../public/icons/CartLargeMinimalistic";
-import { getAllTopic } from "@/helpers/topicThunks";
+// import { getAllTopic } from "@/helpers/topicThunks";
 
 export default function ShopHeader() {
   const [products, setProducts] = useState([]);
