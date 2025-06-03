@@ -47,6 +47,7 @@ export default function Header() {
   const store = useSelector(store => store)
   const dispatch = useDispatch()
   const router = useRouter()
+  const pathname  = usePathname()
   
 
   useEffect(() => {
@@ -56,9 +57,7 @@ export default function Header() {
   }, [])
   
 
-  const pathname  = usePathname()
   
-
   const onScroll = useCallback(event => {
     const { pageYOffset, scrollY } = window;
     setScrollY(pageYOffset);
