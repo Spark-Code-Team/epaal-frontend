@@ -63,18 +63,18 @@ export const mapInputpaz = [
 ];
 
 export const sidebarOptions = {
-  // {
-  //   title: "داشبورد",
-  //   link: "#",
-  //   icon: <DashboardIcon />,
-  //   children: [],
-  // },
   admin: [
     {
       title: "تایید مدارک",
       link: "/admin/confirm-users-clues",
       icon: <Clues fill={"none"} height={25} width={25}/>,
       children: [],
+    },
+    {
+      title: "تایید محصولات",
+      link: "/admin/confirm-products",
+      icon: <TransActionIcon />,
+      children: []
     },
     {
       title: "مدیریت دسته بندی ها",
@@ -99,21 +99,6 @@ export const sidebarOptions = {
         },
       ],
     },
-    // {
-    //   title: "مدیریت ارایه دهنده ها",
-    //   link: "#",
-    //   icon: <MannageIcon />,
-    //   children: [
-    //     {
-    //       title: "اتصال",
-    //       link: "/admin/providers",
-    //     },
-    //     {
-    //       title: "اطلاعات ارایه دهنده",
-    //       link: "/admin/sellers",
-    //     },
-    //   ],
-    // },
     {
       title: "مدیریت فروشندگان",
       link: "#",

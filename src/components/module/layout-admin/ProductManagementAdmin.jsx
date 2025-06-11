@@ -1,11 +1,15 @@
 'use client';
 
+import { useState } from "react";
 import ExportAdmin from "../../../../public/icons/ExportAdmin";
 import SearchAdmin from "../../../../public/icons/SearchAdmin";
 
 const ProductManagementAdmin = () => {
 
+    const [status, setStatus] = useState("pending")
+
     const items = [1, 2, 3, 4, 5, 6];
+
 
 
     return (
@@ -42,9 +46,9 @@ const ProductManagementAdmin = () => {
 
 
                         <div className="w-[37%] flex bg-white border-[1.5px] border-[#C5C5C6] rounded-md justify-around items-center pt-[4px] pb-[4px]">
-                            <button className="p-2 rounded-md text-sm">در انتظار تایید</button>
-                            <button className="p-2 bg-[#054366] text-white rounded-md text-sm">رد شده</button>
-                            <button className="p-2 rounded-md text-sm">تایید شده</button>
+                            <button onClick={() => setStatus("pending")} className={`p-2 rounded-md text-sm ${status == "pending" ? "bg-[#054366] text-white" : ""}`}>در انتظار تایید</button>
+                            <button onClick={() => setStatus("rejected")} className={`p-2 rounded-md text-sm ${status == "rejected" ? "bg-[#054366] text-white" : ""}`}>رد شده</button>
+                            <button onClick={() => setStatus("accepted")} className={`p-2 rounded-md text-sm ${status == "accepted" ? "bg-[#054366] text-white" : ""}`}>تایید شده</button>
                         </div>
 
                     </div>
