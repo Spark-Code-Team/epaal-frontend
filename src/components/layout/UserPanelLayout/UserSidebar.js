@@ -16,6 +16,8 @@ import LeftAroowBlur from "../../../../public/icons/Admin/AdminShop/LeftAroowBlu
 import {FiLogOut} from "react-icons/fi";
 import {useRouter} from "next/navigation";
 import {useSelector} from "react-redux";
+import { logOut } from "@/service/userPanel";
+import { getCookie } from "@/utils/cookie";
 
 
 export default function UserSidebar() {
@@ -27,6 +29,24 @@ export default function UserSidebar() {
     const profile = useSelector(store => store.profile)
 
     console.log("\n confirmed \n", profile)
+
+    const log_out = async () =>{ 
+        console.log(' i want to get out')
+        document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        const {response , error} = await logOut(getCookie('refreshToken'))
+        if(response){
+          document.cookie.split(';').forEach(function(c) {
+            document.cookie = c.trim().split('=')[0] + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+          }); 
+          router.push("/")
+          console.log('log out res --> ',response)
+        }else{
+          console.log('log out err --> ' , error)
+          window.location.reload()
+          toast.error('خروج ناموفق')
+        }
+      }
 
 
     return (
@@ -287,7 +307,11 @@ export default function UserSidebar() {
                         </Link>
                     </div>
                     <div id="logout" className="border-t-2 border-gray-200 px-3 py-6">
-                        <button className="flex w-full flex-row items-center justify-evenly">
+                        <button 
+                        onClick={()=>{  
+                            log_out()
+                          }}
+                        className="flex w-full flex-row items-center justify-evenly">
                             <div>
                                 <FiLogOut stroke="red"/>
                             </div>
