@@ -109,6 +109,7 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
             setShowAddress(2)
             toast.success("احراز مشخصات با موفقیت انجام شد")
         } else {
+            toast.error(error.response.data.message)
             console.log(error.response.data.message);
         }
         setShowModal(true)
