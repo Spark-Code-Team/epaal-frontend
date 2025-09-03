@@ -25,7 +25,7 @@ export default function LandingHome()  {
     return (
         // <>
         //     <Banner />
-        //     <LoanApplicationGuide />
+            // <LoanApplicationGuide />
         //     <ProductCategories />
         //     <CreditConditions />
         //     <LoanApplicationProcess />

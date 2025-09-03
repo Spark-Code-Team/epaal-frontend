@@ -1,4 +1,5 @@
 import api from "@/config/api";
+import { toast } from "react-toastify";
 
 const identityAuthReq = async (
   first_name,
@@ -44,6 +45,7 @@ const addressAuthReq = async (postal_code) => {
 
     return { response };
   } catch (error) {
+    // toast.error(error.response.data.message)
     return { error };
   }
 };
@@ -64,13 +66,14 @@ const confirmAuthReq = async (id, postal_code, address) => {
 
 const profileData = async () => {
   try {
-    const response = await api.get("/users/profile/");
-
-    return { response };
+  const response = await api.get("/users/profile/");
+  return { response };
   } catch (error) {
-    return { error };
+  return {
+  error: error.response?.data?.message || error.message || "Unknown error"
+  };
   }
-};
+  };
 
 const allFacility = async () => {
   try {
