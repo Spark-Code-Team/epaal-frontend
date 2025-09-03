@@ -53,12 +53,13 @@ const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
                 className="w-full px-4 py-2
                 border-none
                  focus:outline-none 
+                 focus:rounded-xl
                  focus:ring-2
                 focus:ring-blue-100"
                 value={loginForm.phone_number}
                 onChange={(e) => setLoginForm(last => ({...last, phone_number: e.target.value}))}
               />
-              <span className="w-[10%] ">
+              <span className="w-[10%] mr-2 ">
                 <Phone color="#E1E6EF" size={24} width="20%"/>
               </span>
 
@@ -66,7 +67,7 @@ const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
             
             <button
               type="submit"
-              className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl hover:bg-blue-100 transition"
+              className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl duration-200 hover:bg-blue-200 transition"
               onClick={(e) => handelClick(e)}
             >
               دریافت کد

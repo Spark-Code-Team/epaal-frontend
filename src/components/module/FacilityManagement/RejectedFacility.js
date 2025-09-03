@@ -51,7 +51,7 @@ export default function RejectedFacility({ facility }) {
           </div>
         ))
       ) : (
-        <>هیچ دیتایی نیست</>
+        <>دیتایی موجود نیست</>
       )}
     </>
   );
