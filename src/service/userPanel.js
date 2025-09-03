@@ -1,4 +1,5 @@
 import api from "@/config/api";
+import { toast } from "react-toastify";
 
 const identityAuthReq = async (
   first_name,
@@ -20,6 +21,7 @@ const identityAuthReq = async (
 
     return { response };
   } catch (error) {
+      toast.error(error.response.data.error)
     return { error };
   }
 };

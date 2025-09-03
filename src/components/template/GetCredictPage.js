@@ -1,5 +1,5 @@
 "use client";
-
+import UserModal from "../module/dashboardModule/DashboardUserModal";
 import { useEffect, useState } from "react";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,7 @@ import { addFacility } from "@/redux/features/facilityChose/facilityChose";
 
 export default function GetCredictPage() {
 
-
+  const [showModal, setShowModal] = useState(false);
   const [inputValue, setInputValue] = useState(1000000);
   const [index, setIndex] = useState(1);
   const [calculatedPayment, setCalculatePayment] = useState({
@@ -39,6 +39,19 @@ export default function GetCredictPage() {
   const dispatch = useDispatch()
   const profile = useSelector(store => store.profile)
 
+   // تابع برای بستن مودال
+   const handleCloseModal = () => {
+    setShowModal(false);
+};
+
+  // useEffect برای نمایش مودال
+  useEffect(() => {
+    // اگر اطلاعات پروفایل از Redux لود شده و احراز هویت کامل نیست
+    if (profile && (!profile.confirmed_address || !profile.confirmed_data)) {
+      setShowModal(true);
+    }
+  }, [profile]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,6 +67,9 @@ export default function GetCredictPage() {
 
     fetchData()
   }, [])
+  
+
+ 
 
   const router = useRouter();
 
@@ -277,6 +293,9 @@ export default function GetCredictPage() {
         </div>
       </div> */}
       </div>
+
+     {/* نمایش شرطی مودال و ارسال تابع بستن */}
+     {showModal && <UserModal onClose={handleCloseModal} />} 
 
     </>
   );
