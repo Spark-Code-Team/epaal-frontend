@@ -1,6 +1,9 @@
 import api from "@/config/api";
 import { toast } from "react-toastify";
 
+
+
+
 const identityAuthReq = async (
   first_name,
   last_name,
@@ -82,7 +85,9 @@ const profileData = async () => {
         const response = await api.post('/users/logout/', {
             refresh_token: refreshToken
         })
-        console.log('//////////////->', response)    
+        console.log('//////////////->', response)  
+
+
         return{response}
     } catch(error){
         toast.error(error.response?.data || "مشکلی پیش آمده")       

@@ -32,15 +32,15 @@ export default function UserSidebar() {
 
     const log_out = async () =>{ 
         console.log(' i want to get out')
-        document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         const {response , error} = await logOut(getCookie('refreshToken'))
+        console.log('log out res --> ',response)
         if(response){
+          document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";    
           document.cookie.split(';').forEach(function(c) {
             document.cookie = c.trim().split('=')[0] + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
           }); 
           router.push("/")
-          console.log('log out res --> ',response)
         }else{
           console.log('log out err --> ' , error)
           window.location.reload()
