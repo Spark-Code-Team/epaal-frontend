@@ -75,6 +75,20 @@ const profileData = async () => {
   }
   };
 
+
+  export const logOut = async (refreshToken) => {
+    try{
+        const response = await api.post('/users/logout/', {
+            refresh_token: refreshToken
+        })
+        console.log('//////////////->', response)    
+        return{response}
+    } catch(error){
+        toast.error(error.response?.data || "مشکلی پیش آمده")       
+        return{error}
+    }
+}
+
 const allFacility = async () => {
   try {
     const response = await api.get("/facility/get_all_facility");
