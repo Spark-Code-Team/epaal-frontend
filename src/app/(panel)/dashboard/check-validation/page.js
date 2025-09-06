@@ -17,34 +17,41 @@ import FacilityState from "@/components/elements/FacilityState";
 import { useSelector } from "react-redux";
 
 export default function ConfirmBank() {
-  const router = useRouter()
+  const router = useRouter();
 
+  // کنترل وضعیت مودال و نمایش موفقیت مرحله
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const store = useSelector(store => store)
+  // دسترسی به استور (در صورت نیاز برای محدودیت مرحله/نمایش UI)
+  const store = useSelector((store) => store);
 
-//   useEffect(() => {
-//     if(store.status.level_number < 3) {
-//         router.back()
-//     }
-// }, [])
-  
+  // نکته: اگر نیاز به کنترل مرحله قبل از این اکشن دارید، مشابه کد کامنت‌شده‌ی شما
+  // می‌توانید guard بگذارید (اینجا منطق را تغییر نمی‌دهیم):
+  // useEffect(() => {
+  //   if (store.status.level_number < 3) {
+  //     router.back();
+  //   }
+  // }, []);
+
+  // فراخوانی API تأیید گرید (از مرحله 3 به 4)
   const handelEtebar = async () => {
+    const { response, error } = await startEtebarSanji();
 
-    const { response, error } = await startEtebarSanji()
-
-    if(response) {
-      console.log(" --------------------> ", response.data)
+    if (response) {
+      // موفق: مرحله 3 تمام شد، می‌توانید UI موفقیت/گام بعد را نشان دهید
+      console.log(" --------------------> ", response.data);
       setIsSuccess(true);
       setIsOpen(false);
     } else {
+      // خطا: لاگ یا toast مناسب
       console.log(" err --------------> ", error);
+      // مثال: toast.error(error?.response?.data?.message || "خطا در تأیید گرید")
     }
-  }
+  };
 
   return (
-    <>
+      <>
       <FacilityState
         curentState={3} 
       />

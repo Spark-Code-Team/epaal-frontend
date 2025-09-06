@@ -61,12 +61,12 @@ const inputs = [
 ]
 
 export default function IdentityAuth({ setActive, setShowAddress }) {
-    // استیت فرم احراز: نام، نام‌خانوادگی، کد ملی، تاریخ تولد، موبایل دوم، کد OTP
+    // فیلدهای فرم و کد OTP واردشده توسط کاربر
     const [state, setState] = useState({
       name: "",          // first_name
       family: "",        // last_name
       code: "",          // national_code
-      time: new Date(),  // birthday_date (در صورت نیاز پیش از ارسال تبدیل به "YYYY/MM/DD" شود)
+      time: new Date(),  // birthday_date (در صورت نیاز قبل از ارسال "YYYY/MM/DD")
       secondPhone: "",   // second_phone_number
       opt_code: ""       // otp_code
     });
@@ -74,38 +74,40 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
     const [showModal, setShowModal] = useState(false);
     const calenderRef = useRef();
   
-    // ثبت مقدار OTP وارد شده
+    // وقتی کاربر OTP را وارد می‌کند
     const changeHandler = (enterOtp) => {
-      setState(last => ({ ...last, opt_code: enterOtp }));
+      setState((last) => ({ ...last, opt_code: enterOtp }));
     };
   
-    const store = useSelector(store => store);
+    const store = useSelector((store) => store);
     useEffect(() => {
       console.log(store);
     }, [store]);
   
-    // ارسال درخواست ساخت/ارسال OTP برای موبایل دوم
+    // ابتدا اعتبارسنجی حداقلی فرم؛ سپس درخواست ارسال OTP برای موبایل دوم
     const openModal = async () => {
       if (state.code && state.secondPhone && state.family && state.name) {
         setShowModal(true);
   
-        // فرض: secondeOpt شماره دوم را گرفته و OTP ارسال می‌کند
+        // فراخوانی API ارسال OTP
         const { response, error } = await secondeOpt(state.secondPhone);
   
         if (response) {
+          // مثال: می‌توانید پیام موفقیت را نمایش دهید یا تایمر شمارش معکوس بگذارید
           console.log("OTP sent:", response);
         } else {
+          // نمایش پیام خطای قابل‌خواندن (در صورت وجود)
           console.log(error);
-          // در صورت نیاز: toast.error(error?.response?.data?.error || "خطا در ارسال کد")
+          // toast.error(error?.response?.data?.error || error?.response?.data?.message || "خطا در ارسال کد");
         }
       } else {
         toast.error("تمامی فیلد ها را پر کنید");
       }
     };
   
-    // ارسال درخواست احراز مشخصات به بک‌اند
+    // ارسال درخواست احراز مشخصات (KYC)
     const sendEhraz = async () => {
-      // اگر state.time از نوع Date است، بهتر است همین‌جا تبدیل شود:
+      // اگر state.time از نوع Date است، اینجا به "YYYY/MM/DD" تبدیل کنید:
       // const fmt = (d) => `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;
       // const birthday = state.time instanceof Date ? fmt(state.time) : state.time;
   
@@ -113,27 +115,31 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
         state.name,        // first_name
         state.family,      // last_name
         state.code,        // national_code
-        state.time,        // birthday_date (در صورت تبدیل، مقدار birthday را جایگزین کنید)
+        state.time,        // birthday_date (یا birthday پس از تبدیل)
         state.secondPhone, // second_phone_number
         state.opt_code     // otp_code
       );
   
       if (response) {
-        // موفق: رفتن به مرحله بعدی (مثلاً بخش آدرس)
+        // موفق: رفتن به مرحله‌ی بعدی (مثلاً ثبت/تأیید آدرس)
         setShowAddress(2);
         toast.success("احراز مشخصات با موفقیت انجام شد");
       } else {
-        // نمایش پیام خطای قابل‌خواندن از پاسخ سرور
-        toast.error(error?.response?.data?.message || error?.response?.data?.error || "خطا در احراز مشخصات");
+        // تلاش برای نمایش پیام دقیق از پاسخ سرور
+        toast.error(
+          error?.response?.data?.message ||
+          error?.response?.data?.error ||
+          "خطا در احراز مشخصات"
+        );
         console.log(error?.response?.data?.message || error?.response?.data?.error);
       }
   
       setShowModal(true);
     };
   
-    // به‌روزرسانی استیت فرم + کنترل فعال بودن دکمه ادامه
+    // کنترل ورودی‌ها و فعال/غیرفعال کردن دکمه ادامه
     const inputChange = (e) => {
-      setState(last => ({ ...last, [e.target.name]: e.target.value }));
+      setState((last) => ({ ...last, [e.target.name]: e.target.value }));
   
       if (state.name && state.family && state.code && state.secondPhone) {
         setActive(true);
@@ -142,7 +148,7 @@ export default function IdentityAuth({ setActive, setShowAddress }) {
       }
     };
   
-    // اگر آدرس قبلاً تأیید شده، مستقیم به مرحله 2 برو
+    // اگر آدرس قبلاً تأیید شده، مستقیماً مرحله ۲ را نشان بده
     if (store.profile.confirmed_address) {
       setShowAddress(2);
     }

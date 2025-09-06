@@ -21,34 +21,51 @@ import { getCookie } from "@/utils/cookie";
 
 
 export default function UserSidebar() {
-
-
+    // وضعیت باز/بسته بودن منوی برگر در سایدبار
     const [burgerMenu, setBurgerMenu] = useState(false);
+  
+    // ناوبری سمت کلاینت
     const router = useRouter();
-
-    const profile = useSelector(store => store.profile)
-
-    console.log("\n confirmed \n", profile)
-
-    const log_out = async () =>{ 
-        console.log(' i want to get out')
-        const {response , error} = await logOut(getCookie('refreshToken'))
-        console.log('log out res --> ',response)
-        if(response){
-          document.cookie = " =; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";    
-          document.cookie.split(';').forEach(function(c) {
-            document.cookie = c.trim().split('=')[0] + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-          }); 
-          router.push("/")
-        }else{
-          console.log('log out err --> ' , error)
-          window.location.reload()
-          toast.error('خروج ناموفق')
-        }
+  
+    // داده‌های پروفایل از ریداکس (برای نمایش وضعیت کاربر در UI)
+    const profile = useSelector((store) => store.profile);
+    console.log("\n confirmed \n", profile);
+  
+    // هندل خروج کاربر:
+    // 1) فراخوانی API لاگ‌آوت با refreshToken از کوکی
+    // 2) در موفقیت: پاک‌سازی کوکی‌ها و هدایت به صفحه‌ی اصلی
+    // 3) در خطا: رفرش صفحه و نمایش خطا
+    const log_out = async () => {
+      console.log(" i want to get out");
+  
+      // دریافت نتیجه‌ی خروج از سیستم
+      const { response, error } = await logOut(getCookie("refreshToken"));
+      console.log("log out res --> ", response);
+  
+      if (response) {
+        // پاک‌کردن کوکی‌ها:
+        // - ابتدا یک کوکی خالی با انقضا گذشته (بی‌اثر اما آسیبی هم نمی‌زند)
+        // - سپس accessToken به‌طور صریح
+        // - در نهایت تمام کوکی‌های فعلی دامنه را با انقضای گذشته خنثی می‌کند
+        // نکته: برای دامنه‌های ساب‌دامین‌دار، در صورت نیاز domain=your.domain را هم اضافه کنید.
+        document.cookie = " =; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie.split(";").forEach(function (c) {
+          document.cookie =
+            c.trim().split("=")[0] +
+            "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        });
+  
+        // هدایت به صفحه‌ی اصلی پس از خروج موفق
+        router.push("/");
+      } else {
+        console.log("log out err --> ", error);
+        // در صورت خطا، یک رفرش کامل از صفحه انجام می‌شود تا وضعیت نادرست توکن‌ها/حالت‌ها رفع شود
+        window.location.reload();
+        toast.error("خروج ناموفق");
       }
-
-
+    };
+  
     return (
         <>
             {/* side bar in mobile */}

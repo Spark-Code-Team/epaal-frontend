@@ -27,40 +27,49 @@ import { getPayValue, RamzDovom } from "@/service/userPanel";
 import { toast } from "react-toastify";
 
 export default function PrepaymentModule() {
+  // مبلغ پیش‌پرداخت که از سرور گرفته می‌شود (string)
+  const [mablagh, setMablagh] = useState("");
 
-  const [mablagh, setMablagh] = useState("")
-
+  // گرفتن مبلغ پیش‌پرداخت در mount
   useEffect(() => {
     const fetchGheamat = async () => {
-
-      const { response, error } = await getPayValue()
-
-      if(response) {
-        setMablagh(response.data.data)
+      const { response, error } = await getPayValue(); // GET /facility/prepayment → { data: "<amount_as_string>" }
+      if (response) {
+        setMablagh(response.data.data); // مقدار رشته‌ای برگشتی را در state می‌نشانیم
       } else {
         console.log(error);
       }
-    }
-
-    fetchGheamat()
-  }, [])
+    };
+    fetchGheamat();
+  }, []);
 
   const router = useRouter();
 
+  // زمان فعلی برای نمایش در UI
   const today = new Date();
-
-  const [checkBox, setCheckBox] = useState(false);
-  const [userInput, setUserInput] = useState("");
-  const [message, setMessage] = useState("");
-  const [timeLeft, setTimeLeft] = useState(10 * 60); // 5 دقیقه (برحسب ثانیه)
   const [dateTime, setDateTime] = useState(new Date());
 
+  // وضعیت چک‌باکس تأیید قوانین/شرایط (در صورت استفاده در UI)
+  const [checkBox, setCheckBox] = useState(false);
+
+  // ورودی کاربر برای کپچا/کد (در صورت استفاده)
+  const [userInput, setUserInput] = useState("");
+
+  // پیام کمکی برای کاربر (خطا/موفقیت محلی UI)
+  const [message, setMessage] = useState("");
+
+  // تایمر معکوس برای اعتبار کد/فرصت پرداخت
+  // نکته: این مقدار «۱۰ دقیقه» است (۱۰*۶۰). اگر قصد «۵ دقیقه» دارید مقدار را 5*60 کنید.
+  const [timeLeft, setTimeLeft] = useState(10 * 60);
+
+  // قالب تاریخ کوتاه شمسی برای نمایش
   const shortDate = new Intl.DateTimeFormat("fa-IR", {
     year: "numeric",
     month: "numeric",
     day: "numeric",
   }).format(today);
 
+  // قالب زمان (ساعت:دقیقه:ثانیه) برای نمایش
   const time = new Intl.DateTimeFormat("fa-IR", {
     hour: "2-digit",
     minute: "2-digit",
@@ -69,40 +78,42 @@ export default function PrepaymentModule() {
   }).format(dateTime);
 
   useEffect(() => {
-    loadCaptchaEnginge(5, "transparent", "black", "numbers"); // ۵ رقم عددی با رنگ مشکی
+    // راه‌اندازی کَپچا (۵ رقم عددی، پس‌زمینه شفاف، متن مشکی)
+    loadCaptchaEnginge(5, "transparent", "black", "numbers");
 
-    const timer = setInterval(() => {
-      setDateTime(new Date());
-    }, 1000); // هر ثانیه به‌روزرسانی شود
+    // تایمر به‌روزرسانی ساعت نمایش داده‌شده هر ۱ ثانیه
+    const timer = setInterval(() => setDateTime(new Date()), 1000);
 
-    // ایجاد تایمر شمارش معکوس
+    // تایمر معکوس برای timeLeft (هر ۱ ثانیه یک ثانیه کم می‌کند)
     const countdown = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
-          clearInterval(countdown);
-
+          clearInterval(countdown); // اتمام شمارش معکوس
           return 0;
         }
         return prevTime - 1;
       });
     }, 1000);
 
+    // پاک‌سازی تایمرها در unmount
     return () => {
       clearInterval(countdown);
       clearInterval(timer);
-    }; // پاک کردن تایمر هنگام خروج از کامپوننت
+    };
   }, []);
 
+  // فراخوانی API برای ارسال «رمز دوم پرداخت» از سرور به موبایل کاربر
   const getRamz = async () => {
-    const { response, error } = await RamzDovom()
-
-    if(response) {
-      toast.success("رمز دوم برای شما ارسال شد")
+    const { response, error } = await RamzDovom();
+    if (response) {
+      toast.success("رمز دوم برای شما ارسال شد");
     } else {
       console.log(error);
+      // درصورت نیاز: toast.error(error?.response?.data?.message || "ارسال رمز دوم ناموفق بود")
     }
-  }
+  };
 
+  // محاسبه‌ی دقیقه/ثانیه‌های باقیمانده برای نمایش
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 

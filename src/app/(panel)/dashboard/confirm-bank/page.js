@@ -13,33 +13,38 @@ import { createFacility } from "@/service/userPanel";
 import FacilityState from "@/components/elements/FacilityState";
 
 export default function ConfirmBank() {
+  // step: مرحله نمایش (۱: ورود شبا، ۲: موفقیت/گام بعد)
   const [step, setStep] = useState(1);
+
+  // sheba: بخش عددی/متنی شبا که کاربر وارد می‌کند (بدون "IR")
   const [sheba, setSheba] = useState("");
+
+  // showModal: کنترل باز/بسته بودن مودال (اگر در UI استفاده می‌شود)
   const [showModal, setShowModal] = useState();
 
   const router = useRouter();
 
+  // store: شامل facility.selectedFacility, facility.choosen_value, facility.facility_installment_id
+  // که در ارسال درخواست تسهیلات استفاده می‌شوند
   const store = useSelector((store) => store);
 
-  //   useEffect(() => {
-  //     if(store.status.level_number < 2) {
-  //         router.back()
-  //     }
-  // }, [])
-
+  // ارسال اطلاعات شبا + شناسه طرح و پلن اقساط برای ایجاد تسهیلات
   const sendSheba = async () => {
     const { response, error } = await createFacility(
-      `IR${sheba}`,
-      store.facility.selectedFacility.id,
-      store.facility.choosen_value,
-      store.facility.facility_installment_id,
+      `IR${sheba}`,                                  // شبا با پیشوند IR
+      store.facility.selectedFacility.id,            // شناسه تسهیلات انتخابی
+      store.facility.choosen_value,                  // مبلغ انتخابی
+      store.facility.facility_installment_id,        // شناسه پلن اقساط
     );
 
     if (response) {
+      // موفق: رفتن به مرحله بعد و بستن مودال (در صورت استفاده)
       setStep(2);
       setShowModal(false);
     } else {
+      // خطا: لاگ/اعلان خطا (در صورت نیاز toast اضافه کنید)
       console.log(error);
+      // مثال: toast.error(error?.response?.data?.message || "ایجاد تسهیلات ناموفق بود")
     }
   };
 

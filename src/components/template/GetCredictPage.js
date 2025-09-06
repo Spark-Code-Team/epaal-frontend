@@ -13,59 +13,56 @@ import {useDispatch, useSelector} from "react-redux";
 import { addFacility } from "@/redux/features/facilityChose/facilityChose";
 
 export default function GetCredictPage() {
-
-
+  // مقدار ورودی کاربر (مبلغ درخواستی) — پیش‌فرض 1,000,000
   const [inputValue, setInputValue] = useState(1000000);
+
+  // ایندکس اسلایدر کارت‌های تسهیلات
   const [index, setIndex] = useState(1);
+
+  // محاسبات پرداخت — مقادیر به فرمت فارسی نمایش داده می‌شوند
   const [calculatedPayment, setCalculatePayment] = useState({
     bankPrePayment: digitsEnToFa("1,000,000"),
     yearlySubscribePayment: digitsEnToFa("1,000,000"),
     finalPaymentToUser: digitsEnToFa("1,000,000"),
     paymentPerMounth: digitsEnToFa("94,077"),
   });
-  const [slides, setSlides] = useState([])
 
+  // اسلایدهای دریافتی از API (Facility list)
+  const [slides, setSlides] = useState([]);
 
-  // const items = [6, 12, 24, 36];
-  // const [currentIndex, setCurrentIndex] = useState(0);
+  const [monthGhest, setMonthGhest] = useState(12); // تعداد اقساط (ماه)
+  const Images = ["/image/backCard.png", "/image/backCard1.png", "/image/backCard2.png"]; // پس‌زمینه‌های کارت
 
-  const [monthGhest, setMonthGhest] = useState(12);
-  const Images = [
-    "/image/backCard.png",
-    "/image/backCard1.png",
-    "/image/backCard2.png",
-  ];
+  const dispatch = useDispatch();
+  const profile = useSelector((store) => store.profile);
 
-  const dispatch = useDispatch()
-  const profile = useSelector(store => store.profile)
-
-
+  // فراخوانی API برای گرفتن لیست تسهیلات هنگام mount
   useEffect(() => {
     const fetchData = async () => {
-        const { response, error } = await allFacility()
-
-        if(response) {
-            setSlides(response.data)
-
-        } else {
-            console.log(error);
-        }
-    }
-
-    fetchData()
-  }, [])
+      const { response, error } = await allFacility();
+      if (response) {
+        // response.data: آرایه‌ی Facility → برای رندر کارت‌ها/اسلایدها
+        setSlides(response.data);
+      } else {
+        console.log(error);
+        // درصورت نیاز: toast.error(error?.response?.data?.error || "خطا در دریافت تسهیلات")
+      }
+    };
+    fetchData();
+  }, []);
 
   const router = useRouter();
 
-  const formatNumber = (number) => {
-    return number.toLocaleString("fa-IR"); // نمایش عدد به فرمت فارسی
-  };
+  // فرمت عدد به نمایش فارسی
+  const formatNumber = (number) => number.toLocaleString("fa-IR");
 
+  // محاسبه‌ی پیش‌پرداخت، مبلغ نهایی دریافتی کاربر، و قسط ماهانه
+  // - prePayment = 5% مبلغ
+  // - finalPaymentToUser = مبلغ - prePayment
+  // - payment: فرمول قسط ثابت (Amortization) با نرخ سالانه 23% → r = 23/100/12
   const calculatePrePayment = (e, month) => {
     let numberOfEvent = Number(e);
-
     let prePayment = numberOfEvent * 0.05;
-
     let finalPaymentToUser = numberOfEvent - prePayment;
 
     let r = 23 / 100 / 12;
@@ -75,12 +72,15 @@ export default function GetCredictPage() {
     setCalculatePayment((prev) => ({
       ...prev,
       bankPrePayment: formatNumber(Math.ceil(prePayment)),
-      yearlySubscribePayment: formatNumber(Math.ceil(prePayment)),
+      yearlySubscribePayment: formatNumber(Math.ceil(prePayment)), // ظاهراً همان 5% به‌عنوان «حق اشتراک سالانه» نیز نمایش داده می‌شود
       finalPaymentToUser: formatNumber(Math.ceil(finalPaymentToUser)),
       paymentPerMounth: formatNumber(Math.ceil(payment)),
     }));
   };
 
+  // تغییر ایندکس اسلایدر بر اساس جهت
+  // mozoe === "azafe" → افزایش ایندکس (حرکت به جلو)
+  // else → کاهش ایندکس (حرکت به عقب)
   const updateSlider = (mozoe) => {
     if (mozoe == "azafe") {
       if (index == slides.length - 1) return;
@@ -91,40 +91,38 @@ export default function GetCredictPage() {
     }
   };
 
+  // هنگام تغییر مبلغ ورودی، محاسبات به‌روزرسانی می‌شود
   const handleChange = (e) => {
     const value = e.target.value;
-    setInputValue(value); // ذخیره مقدار جدید
+    setInputValue(value);
     calculatePrePayment(value, monthGhest);
   };
 
-  // States for swipe functionality
+  // مدیریت سوایپ روی اسلایدر
   const [startX, setStartX] = useState(0);
   const [endX, setEndX] = useState(0);
 
   const handleTouchStart = (e) => {
-    setStartX(e.touches[0].clientX); // Record the start point of touch
+    setStartX(e.touches[0].clientX);
   };
 
   const handleTouchEnd = (e) => {
-    setEndX(e.changedTouches[0].clientX); // Record the end point of touch
-    const diff = endX - startX; // Calculate the swipe distance
+    setEndX(e.changedTouches[0].clientX);
+    const diff = endX - startX;
 
-    // If swipe distance is enough, update the index to move the slides
+    // اگر فاصله‌ی سوایپ کافی بود، ایندکس اسلایدر را تغییر بده
     if (Math.abs(diff) > 10) {
       if (diff > 0) {
-        updateSlider("azafe"); // Move to the right
+        updateSlider("azafe");   // یادداشت: طبق منطق فعلی، سوایپ به راست ایندکس را زیاد می‌کند
       } else {
-        updateSlider("azafee"); // Move to the left
+        updateSlider("azafee");  // یادداشت: این مقدار با else هندل می‌شود؛ غلط‌املایی عمدی حفظ شده تا منطق فعلی تغییر نکند
       }
     }
   };
 
-  //* test
-
-
-  //* test
-
+  // مرحله‌ی فعلی (برای نمایش UI چندمرحله‌ای)
   const [currentStep, setCurrentStep] = useState(1);
+
   return (
     <>
       <div className="flex flex-col items-center md:mt-10">

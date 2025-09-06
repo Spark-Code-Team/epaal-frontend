@@ -10,46 +10,57 @@ import { useSelector } from "react-redux";
 
 
 export default function AddressAuth() {
-
-
-    const [state, setState] = useState("")
+    // state: مقدار ورودی کدپستی
+    const [state, setState] = useState("");
+  
+    // پاسخ موقت آدرس برگردانده‌شده از /users/show_address/
+    // انتظار: { id, postal_code, address }
     const [confirmAddress, setConfirmAddress] = useState({
-        id: "",
-        postal_code: "",
-        address: ""
-    })
-
-    const store = useSelector(store => store)
-
+      id: "",
+      postal_code: "",
+      address: "",
+    });
+  
+    const store = useSelector((store) => store);
+  
+    // ارسال کدپستی برای دریافت آدرس از سرور
     const sendAddress = async () => {
-        const { response, error } = await addressAuthReq(state)
-
-        if(response) {
-            setConfirmAddress(response.data)
-        } else {
-            console.log(error);
-        }
-    }
-
-
+      const { response, error } = await addressAuthReq(state);
+  
+      if (response) {
+        // response.data ⇒ { id, postal_code, address }
+        setConfirmAddress(response.data);
+      } else {
+        console.log(error);
+        // نمونه نمایش خطا:
+        // toast.error(error?.response?.data?.error || error?.response?.data?.message || "خطا در دریافت آدرس");
+      }
+    };
+  
+    // تأیید نهایی آدرس با استفاده از داده‌های confirmAddress
     const sendConfirm = async () => {
-        
-        const { response, error } = await confirmAuthReq(confirmAddress.id, confirmAddress.postal_code, confirmAddress.address)
-
-        if(response) {
-            toast.success("احراز آدرس با موفقیت انجام شد")
-            redirect("/dashboard")
-            
-        } else {
-            toast.error("احراز آدرس با مشکل مواجه شد")
-        }
+      const { response, error } = await confirmAuthReq(
+        confirmAddress.id,
+        confirmAddress.postal_code,
+        confirmAddress.address
+      );
+  
+      if (response) {
+        toast.success("احراز آدرس با موفقیت انجام شد");
+        redirect("/dashboard");
+      } else {
+        toast.error("احراز آدرس با مشکل مواجه شد");
+        // نمونه نمایش خطای دقیق‌تر:
+        // toast.error(error?.response?.data?.error || error?.response?.data?.message || "احراز آدرس با مشکل مواجه شد");
+      }
+    };
+  
+    // اگر آدرس از قبل تأیید شده باشد، کاربر را به داشبورد ببر
+    if (store.profile.confirmed_address) {
+      redirect("/dashboard");
     }
-
-    if(store.profile.confirmed_address) [
-        redirect("/dashboard")
-    ]
-
-    return (
+  
+    return (  
         <div>
             <AuthTitle 
                 title="احراز آدرس"

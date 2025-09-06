@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { redirect, useRouter } from "next/navigation";
-import { allFacility } from "@/service/userPanel";
 import { useDispatch, useSelector } from "react-redux";
 import { addInAndCh } from "@/redux/features/facilityChose/facilityChose";
 
