@@ -2,8 +2,21 @@ import api from "@/config/api";
 import { toast } from "react-toastify";
 
 
-
-
+/**
+ * POST /users/confirm_information/
+ * احراز مشخصات کاربر (KYC)
+ *
+ * ورودی‌ها:
+ *  - first_name (string)
+ *  - last_name (string)
+ *  - national_code (string)
+ *  - birthday_date (string | Date)  // اگر Date بود، قبل از ارسال به "YYYY/MM/DD" تبدیل شود
+ *  - second_phone_number (string)
+ *  - otp_code (string)
+ *
+ * موفق:    { response }
+ * ناموفق:  { error }  // شامل error.response با بدنه‌ی {"error": "..."} یا {"message": "..."}
+ */
 const identityAuthReq = async (
   first_name,
   last_name,
@@ -13,11 +26,15 @@ const identityAuthReq = async (
   otp_code,
 ) => {
   try {
+    // اگر birthday_date نوع Date است، اینجا به فرمت "YYYY/MM/DD" تبدیل کنید (در صورت نیاز)
+    // const fmt = (d) => `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;
+    // const birthday = birthday_date instanceof Date ? fmt(birthday_date) : birthday_date;
+
     const response = await api.post("/users/confirm_information/", {
       first_name,
       last_name,
       national_code,
-      birthday_date,
+      birthday_date,        // یا birthday
       second_phone_number,
       otp_code,
     });
@@ -28,6 +45,8 @@ const identityAuthReq = async (
   }
 };
 
+
+// 📌 ارسال کد OTP به شماره تلفن دوم
 const secondeOpt = async (second_phone_number) => {
   try {
     const response = await api.post("/users/send_otp_second_phone_number/", {
@@ -40,6 +59,7 @@ const secondeOpt = async (second_phone_number) => {
   }
 };
 
+// 📌 دریافت آدرس کاربر با کد پستی
 const addressAuthReq = async (postal_code) => {
   try {
     const response = await api.post("/users/show_address/", {
@@ -53,6 +73,7 @@ const addressAuthReq = async (postal_code) => {
   }
 };
 
+// 📌 تایید نهایی آدرس کاربر
 const confirmAuthReq = async (id, postal_code, address) => {
   try {
     const response = await api.post("/users/confirm_address/", {
@@ -67,33 +88,33 @@ const confirmAuthReq = async (id, postal_code, address) => {
   }
 };
 
+// 📌 دریافت اطلاعات پروفایل کاربر
 const profileData = async () => {
   try {
-  const response = await api.get("/users/profile/");
-  return { response };
+    const response = await api.get("/users/profile/");
+    return { response };
   } catch (error) {
-  return {
-  error: error.response?.data?.message || error.message || "Unknown error"
-  };
+    return {
+      error: error.response?.data?.message || error.message || "Unknown error"
+    };
   }
-  };
+};
 
-
-  export const logOut = async (refreshToken) => {
-    try{
-        const response = await api.post('/users/logout/', {
-            refresh_token: refreshToken
-        })
-        console.log('//////////////->', response)  
-
-
-        return{response}
-    } catch(error){
-        toast.error(error.response?.data || "مشکلی پیش آمده")       
-        return{error}
-    }
+// 📌 خروج کاربر از حساب (logout)
+export const logOut = async (refreshToken) => {
+  try {
+    const response = await api.post('/users/logout/', {
+      refresh_token: refreshToken
+    });
+    console.log('//////////////->', response)  
+    return { response }
+  } catch (error) {
+    toast.error(error.response?.data || "مشکلی پیش آمده")       
+    return { error }
+  }
 }
 
+// 📌 دریافت همه تسهیلات (facility) موجود
 const allFacility = async () => {
   try {
     const response = await api.get("/facility/get_all_facility");
@@ -104,6 +125,7 @@ const allFacility = async () => {
   }
 };
 
+// 📌 ایجاد تسهیلات جدید برای کاربر
 const createFacility = async (
   sheba_number,
   facility_id,
@@ -124,6 +146,7 @@ const createFacility = async (
   }
 };
 
+// 📌 شروع فرآیند اعتبارسنجی (اعتبارسنجی کاربر)
 const startEtebarSanji = async () => {
   try {
     const response = await api.post("/facility/confirm_grade");
@@ -134,6 +157,7 @@ const startEtebarSanji = async () => {
   }
 };
 
+// 📌 ثبت وضعیت تحویل حضوری (فیزیکی)
 const sendStatusPhysical = async () => {
   try {
     const response = await api.post("/facility/submit_physical");
@@ -144,6 +168,7 @@ const sendStatusPhysical = async () => {
   }
 };
 
+// 📌 دریافت وضعیت تحویل حضوری (فیزیکی)
 const getStatusPhysical = async () => {
   try {
     const response = await api.get("/facility/submit_physical");
@@ -154,6 +179,7 @@ const getStatusPhysical = async () => {
   }
 };
 
+// 📌 ارسال امضای دیجیتال کاربر
 const sendDigiSignature = async () => {
   try {
     const response = await api.post("/facility/digital_signiture");
@@ -164,6 +190,7 @@ const sendDigiSignature = async () => {
   }
 };
 
+// 📌 دریافت مبلغ پیش‌پرداخت
 const getPayValue = async () => {
   try {
     const response = await api.get("/facility/prepayment");
@@ -174,6 +201,7 @@ const getPayValue = async () => {
   }
 };
 
+// 📌 ارسال تایید پرداخت پیش‌پرداخت
 const postPayValue = async () => {
   try {
     const response = await api.post("/facility/prepayment");
@@ -184,6 +212,7 @@ const postPayValue = async () => {
   }
 };
 
+// 📌 ارسال کد دوم (رمز دوم) برای پرداخت پیش‌پرداخت
 const RamzDovom = async () => {
   try {
     const response = await api.post("/facility/send_code_getaway_prepayment");
@@ -194,6 +223,7 @@ const RamzDovom = async () => {
   }
 };
 
+// 📌 دریافت وضعیت مرحله چهارم (دیجیتال)
 const getlevelfour = async () => {
   try {
     const response = await api.get("/facility/submit_digital");
@@ -204,6 +234,7 @@ const getlevelfour = async () => {
   }
 };
 
+// 📌 ارسال اطلاعات مرحله چهارم (دیجیتال) همراه با فایل
 const postlevelfour = async (data) => {
   try {
     const response = await api.post(
@@ -224,6 +255,7 @@ const postlevelfour = async (data) => {
   }
 };
 
+// 📌 استعلام تسهیلات کاربر
 const userFacility = async () => {
   try {
     const response = await api.get("/facility/inquiry_user_facility");
@@ -234,6 +266,7 @@ const userFacility = async () => {
   }
 };
 
+// 📌 دریافت اطلاعات تسهیلات کاربر
 const facilityInformation = async () => {
   try {
     const response = await api.get("/users/my_facility/");
@@ -244,6 +277,7 @@ const facilityInformation = async () => {
   }
 };
 
+// 📌 دریافت اطلاعات کیف پول کاربر
 const getWallet = async () => {
   try {
     const response = await api.get("/users/wallet/");
@@ -254,6 +288,7 @@ const getWallet = async () => {
   }
 };
 
+// 📌 دریافت لیست قسط‌های کاربر
 const getInstallments = async () => {
   try {
     const response = await api.get("/users/my_installment/");
@@ -264,6 +299,7 @@ const getInstallments = async () => {
   }
 };
 
+// 📌 دریافت جزئیات یک قسط خاص برای پرداخت
 const getInstallmentPayment = async (installmentId) => {
   try {
     const response = await api.post("/users/single_installment/", {
@@ -275,6 +311,7 @@ const getInstallmentPayment = async (installmentId) => {
   }
 };
 
+// 📌 پرداخت نهایی یک قسط خاص
 const payInstallmentFinal = async (installmentId) => {
   try {
     const response = await api.post("/users/pay_installment/", {
@@ -286,7 +323,7 @@ const payInstallmentFinal = async (installmentId) => {
   }
 };
 
-
+// 📌 دریافت سبد خرید کاربر
 const getUserCart = async () => {
   try {
     const response = await api.get("/users/my_cart/");

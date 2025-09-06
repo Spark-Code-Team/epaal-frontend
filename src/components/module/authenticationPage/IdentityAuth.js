@@ -61,74 +61,92 @@ const inputs = [
 ]
 
 export default function IdentityAuth({ setActive, setShowAddress }) {
-
+    // استیت فرم احراز: نام، نام‌خانوادگی، کد ملی، تاریخ تولد، موبایل دوم، کد OTP
     const [state, setState] = useState({
-        name: "",
-        family: "",
-        code: "",
-        time: new Date(),
-        secondPhone: "",
-        opt_code: ""
-    })
-
-    const [showModal, setShowModal] = useState(false)
-
-    const calenderRef = useRef()
+      name: "",          // first_name
+      family: "",        // last_name
+      code: "",          // national_code
+      time: new Date(),  // birthday_date (در صورت نیاز پیش از ارسال تبدیل به "YYYY/MM/DD" شود)
+      secondPhone: "",   // second_phone_number
+      opt_code: ""       // otp_code
+    });
+  
+    const [showModal, setShowModal] = useState(false);
+    const calenderRef = useRef();
+  
+    // ثبت مقدار OTP وارد شده
     const changeHandler = (enterOtp) => {
-        setState(last => ({...last, opt_code: enterOtp}))
-    }
-
-    const store = useSelector(store => store)
-
+      setState(last => ({ ...last, opt_code: enterOtp }));
+    };
+  
+    const store = useSelector(store => store);
     useEffect(() => {
-        console.log(store);
-    }, [store])
-    
-
+      console.log(store);
+    }, [store]);
+  
+    // ارسال درخواست ساخت/ارسال OTP برای موبایل دوم
     const openModal = async () => {
-        if(state.code && state.secondPhone && state.family && state.name ) {
-            setShowModal(true)
-
-            const { response, error } = await secondeOpt(state.secondPhone)
-
-            if(response) {
-                console.log("22222222222222222",response);
-            } else {
-                // toast.error(error.data)
-                console.log(error);
-            }
+      if (state.code && state.secondPhone && state.family && state.name) {
+        setShowModal(true);
+  
+        // فرض: secondeOpt شماره دوم را گرفته و OTP ارسال می‌کند
+        const { response, error } = await secondeOpt(state.secondPhone);
+  
+        if (response) {
+          console.log("OTP sent:", response);
         } else {
-            toast.error("تمامی فیلد ها را پر کنید")
+          console.log(error);
+          // در صورت نیاز: toast.error(error?.response?.data?.error || "خطا در ارسال کد")
         }
-    }
-
+      } else {
+        toast.error("تمامی فیلد ها را پر کنید");
+      }
+    };
+  
+    // ارسال درخواست احراز مشخصات به بک‌اند
     const sendEhraz = async () => {
-        const { response, error } = await identityAuthReq(state.name, state.family, state.code, state.time, state.secondPhone, state.opt_code)
-
-        if(response) {
-            setShowAddress(2)
-            toast.success("احراز مشخصات با موفقیت انجام شد")
-        } else {
-            toast.error(error.response.data.message)
-            console.log(error.response.data.message);
-        }
-        setShowModal(true)
-    }
-
+      // اگر state.time از نوع Date است، بهتر است همین‌جا تبدیل شود:
+      // const fmt = (d) => `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;
+      // const birthday = state.time instanceof Date ? fmt(state.time) : state.time;
+  
+      const { response, error } = await identityAuthReq(
+        state.name,        // first_name
+        state.family,      // last_name
+        state.code,        // national_code
+        state.time,        // birthday_date (در صورت تبدیل، مقدار birthday را جایگزین کنید)
+        state.secondPhone, // second_phone_number
+        state.opt_code     // otp_code
+      );
+  
+      if (response) {
+        // موفق: رفتن به مرحله بعدی (مثلاً بخش آدرس)
+        setShowAddress(2);
+        toast.success("احراز مشخصات با موفقیت انجام شد");
+      } else {
+        // نمایش پیام خطای قابل‌خواندن از پاسخ سرور
+        toast.error(error?.response?.data?.message || error?.response?.data?.error || "خطا در احراز مشخصات");
+        console.log(error?.response?.data?.message || error?.response?.data?.error);
+      }
+  
+      setShowModal(true);
+    };
+  
+    // به‌روزرسانی استیت فرم + کنترل فعال بودن دکمه ادامه
     const inputChange = (e) => {
-        setState(last => ({...last, [e.target.name]: e.target.value}))
-
-        if(state.name && state.family && state.code && state.secondPhone) {
-            setActive(true)
-        } else {
-            setActive(false)
-        }
+      setState(last => ({ ...last, [e.target.name]: e.target.value }));
+  
+      if (state.name && state.family && state.code && state.secondPhone) {
+        setActive(true);
+      } else {
+        setActive(false);
+      }
+    };
+  
+    // اگر آدرس قبلاً تأیید شده، مستقیم به مرحله 2 برو
+    if (store.profile.confirmed_address) {
+      setShowAddress(2);
     }
-
-    if(store.profile.confirmed_address) {
-        setShowAddress(2)
-    }
-
+  
     return (
         <>
             <div
