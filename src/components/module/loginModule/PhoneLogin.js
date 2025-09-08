@@ -34,49 +34,52 @@ const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
     }
 
     return (
-      <div className="bg-white p-6 m-6 rounded-xl shadow-lg w-auto h-[314px]">
+<div className="bg-white p-4 sm:p-6 m-2 sm:m-6 rounded-2xl shadow-lg w-full max-w-sm mx-auto">
+<div className="text-center mb-4">
+  <Image
+    src={LogoEvaam}
+    alt="logo"
+    width={150}
+    height={150}
+    className="mx-auto w-24 sm:w-32 md:w-36 h-auto"
+  />
+</div>
 
-          <div className="text-center mb-4">
-            <Image src={LogoEvaam} alt="logo" width={150} height={150} />
-          </div>
+  <form>
+    <p className="py-4 sm:py-6 text-xs sm:text-sm text-center">
+      شماره تماس را وارد کنید
+    </p>
 
-          <form>
+    <div className="mb-4 flex border border-[#E1E6EF] items-center rounded-xl">
+      <input
+        dir="ltr"
+        type="text"
+        placeholder="+98**********"
+        className="w-full px-3 sm:px-4 py-2 border-none focus:outline-none focus:ring-2 focus:ring-blue-100 rounded-xl text-sm sm:text-base"
+        value={loginForm.phone_number}
+        onChange={(e) =>
+          setLoginForm((last) => ({ ...last, phone_number: e.target.value }))
+        }
+      />
+      <span className="w-[12%] mr-2 flex justify-center">
+        <Phone color="#E1E6EF" size={20} className="sm:size-24" />
+      </span>
+    </div>
 
-          <p className="py-6 text-[12px]">شماره تماس را وارد کنید</p>
+    <button
+      type="submit"
+      className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl duration-200 hover:bg-blue-200 transition text-sm sm:text-base"
+      onClick={(e) => handelClick(e)}
+    >
+      دریافت کد
+    </button>
+  </form>
 
-            <div className="mb-4 flex border border-[#E1E6EF]
-            items-center rounded-xl ">
-              <input
-                dir="ltr"
-                type="text"
-                placeholder="+98**********"
-                className="w-full px-4 py-2
-                border-none
-                 focus:outline-none 
-                 focus:rounded-xl
-                 focus:ring-2
-                focus:ring-blue-100"
-                value={loginForm.phone_number}
-                onChange={(e) => setLoginForm(last => ({...last, phone_number: e.target.value}))}
-              />
-              <span className="w-[10%] mr-2 ">
-                <Phone color="#E1E6EF" size={24} width="20%"/>
-              </span>
+  <p className="text-gray-500 text-xs sm:text-sm mt-4 text-center">
+    ورود شما به معنای پذیرش شرایط ایوام و قوانین حریم خصوصی است
+  </p>
+</div>
 
-            </div>
-            
-            <button
-              type="submit"
-              className="w-full bg-[#E1E6EF] text-black py-2 px-4 rounded-xl duration-200 hover:bg-blue-200 transition"
-              onClick={(e) => handelClick(e)}
-            >
-              دریافت کد
-            </button>
-          </form>
-          <p className="text-gray-500 text-[12px] mb-10 mt-4 text-center">
-          ورود شما به معنای پذیرش شرایط ایوام و قوانین حریم خصوصی است 
-          </p>
-      </div>
     )
 }
 export default PhoneLogin;

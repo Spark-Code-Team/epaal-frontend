@@ -47,42 +47,56 @@ export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }
   };
 
   return (
-    <div className="bg-white p-6 m-10 rounded-xl shadow-lg w-[402px] h-[314px]">
-      <div className="mb-4 text-center">
-        <Image src={LogoEvaam} alt="logo" width={150} height={150} />
-      </div>
+<div className="bg-white p-4 sm:p-6 m-2 sm:m-6 rounded-2xl shadow-lg w-full max-w-sm mx-auto">
+  <div className="mb-4 text-center">
+    <Image
+      src={LogoEvaam}
+      alt="logo"
+      width={150}
+      height={150}
+      className="mx-auto w-24 sm:w-32 md:w-36 h-auto"
+    />
+  </div>
 
-      <form>
-        <p className="py-6 text-[12px]"> کد ارسال شده را وارد کنید </p>
+  <form>
+    <p className="py-4 sm:py-6 text-xs sm:text-sm text-center">
+      کد ارسال شده را وارد کنید
+    </p>
 
-        <div className="mb-4">
-          <OtpInput
-            value={loginForm.opt_code}
-            onChange={changeHandler}
-            numInputs={8}
-            containerStyle={{
-              direction: "ltr", // چپ به راست
-            }}
-            inputStyle={{
-              direction: "ltr",
-              width: "35px",
-              height: "41px",
-              margin: "0 5px",
-              border: "1px solid #c6c6c6",
-              borderRadius: "10px",
-            }}
-          />
-        </div>
-        <button
-          onClick={(e) => handelLogin(e)}
-          className="w-full rounded-xl bg-[#E1E6EF] px-4 py-2 text-black transition hover:bg-blue-100"
-        >
-          ورود
-        </button>
-      </form>
-      <p className="mb-10 mt-4 text-center text-[12px] text-gray-500">
-        ورود شما به معنای پذیرش شرایط ایوام و قوانین حریم خصوصی است
-      </p>
+    <div className="mb-4 flex justify-center">
+      <OtpInput
+        value={loginForm.opt_code}
+        onChange={changeHandler}
+        numInputs={8}
+        containerStyle={{
+          direction: "ltr",
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap", // برای موبایل که تنگ میشه
+        }}
+        inputStyle={{
+          direction: "ltr",
+          width: "32px",
+          height: "40px",
+          margin: "4px",
+          border: "1px solid #c6c6c6",
+          borderRadius: "10px",
+        }}
+      />
     </div>
+
+    <button
+      onClick={(e) => handelLogin(e)}
+      className="w-full rounded-xl bg-[#E1E6EF] px-4 py-2 text-sm sm:text-base text-black transition hover:bg-blue-100"
+    >
+      ورود
+    </button>
+  </form>
+
+  <p className="mt-4 text-center text-xs sm:text-sm text-gray-500">
+    ورود شما به معنای پذیرش شرایط ایوام و قوانین حریم خصوصی است
+  </p>
+</div>
+
   );
 }
