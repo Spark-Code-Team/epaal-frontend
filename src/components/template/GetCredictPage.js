@@ -218,31 +218,22 @@ export default function GetCredictPage() {
         </div>
         {/*  */}
 
-        <div className="mb-10 mt-10 flex h-auto flex-col items-start gap-5 rounded-2xl bg-evaamBorderColor p-10 md:mb-0 md:flex md:w-full md:flex-row md:items-center md:justify-evenly md:gap-0 md:py-5 md:text-sm">
-          <div className="md:flex md:flex-col md:items-center md:justify-evenly">
-            <div>
-              <Tick1 />
-            </div>
+        <div className="mb-10 mt-10 grid w-full max-w-5xl grid-cols-2 gap-6 rounded-2xl bg-evaamBorderColor p-6 text-sm md:mb-0 md:grid-cols-4 md:gap-4 md:p-5">
+          <div className="flex flex-col items-center justify-center gap-2 text-center">
+            <Tick1 />
             <div>حساب بانکی فعال در طرح مربوطه</div>
           </div>
-          <div className="md:flex md:flex-col md:items-center md:justify-evenly">
-            <div>
-              {" "}
-              <Tick2 />{" "}
-            </div>
+          <div className="flex flex-col items-center justify-center gap-2 text-center">
+            <Tick2 />
             <div>چک صیادی جهت ضمانت</div>
           </div>
-          <div className="md:flex md:flex-col md:items-center md:justify-evenly">
-            <div>
-              <Tick3 />
-            </div>
-            <div> استعلام حساب بانکی </div>
+          <div className="flex flex-col items-center justify-center gap-2 text-center">
+            <Tick3 />
+            <div>استعلام حساب بانکی</div>
           </div>
-          <div className="md:flex md:flex-col md:items-center md:justify-evenly">
-            <div>
-              <Tick4 />
-            </div>
-            <div> امضاء قرارداد در اپلیکیشن بانکی</div>
+          <div className="flex flex-col items-center justify-center gap-2 text-center">
+            <Tick4 />
+            <div>امضاء قرارداد در اپلیکیشن بانکی</div>
           </div>
         </div>
 

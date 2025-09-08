@@ -1,53 +1,81 @@
-const { userFacility } = require("@/service/userPanel")
-const { createAsyncThunk, createSlice } = require("@reduxjs/toolkit")
+// src/redux/features/status/statusSlice.js  (ESM)
 
-
+import { userFacility } from "@/service/userPanel";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    id: "",
-    user_name: "",
-    status: "",
-    level: "",
-    level_number: "",
-    given_value: "",
-    created_at: "",
-    facility: 0,
-    loading: false,
-    error: ""
-}
+  id: "",
+  user_name: "",
+  status: "",
+  level: "",
+  level_number: "",
+  given_value: "",
+  created_at: "",
+  facility: 0,       // اگر آبجکت می‌خواهی: {}
+  loading: false,
+  error: "",
+};
 
-const fetchStatus = createAsyncThunk("status/fetchStatus", () => {
-    return userFacility()
-})
+export const fetchStatus = createAsyncThunk(
+  "status/fetchStatus",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await userFacility();
 
+      // اگر سرویس‌ت این شکلی برمی‌گرداند: { response } یا { error }
+      const maybeAxios = res?.response ?? res;
+
+      // axios response → data لایه‌ی اول
+      const topData = maybeAxios?.data;
+
+      // طبق لاگ تو: دیتا داخل data.data است
+      const real = topData?.data ?? topData;
+
+      if (!real) throw new Error("Malformed response: missing data");
+
+      // 🔹 payload ما دقیقا آبجکت نهایی است (id, user_name, ...)
+      return real;
+    } catch (err) {
+      return rejectWithValue(
+        err?.response?.data || err?.message || "Request failed"
+      );
+    }
+  }
+);
 
 const statusSlice = createSlice({
-    name: "status",
-    initialState,
-    extraReducers: (builder) => {
-        builder.addCase(fetchStatus.pending, (state) => {
-            state.loading = true
-        })
+  name: "status",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchStatus.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
+      .addCase(fetchStatus.fulfilled, (state, { payload }) => {
+        state.loading = false;
 
-        builder.addCase(fetchStatus.fulfilled, (state, action) => {
-            state.loading = false
-            state.id = action.payload.response.data.data.id
-            state.user_name = action.payload.response.data.data.user_name
-            state.status = action.payload.response.data.data.status
-            state.level = action.payload.response.data.data.level
-            state.level_number = action.payload.response.data.data.level_number
-            state.given_value = action.payload.response.data.data.given_value
-            state.created_at = action.payload.response.data.data.created_at
-            state.facility = action.payload.response.data.data.facility
-            state.error= ""
-        })
+        // حالا payload همون شیء داخل data.data ست
+        state.id = payload?.id ?? "";
+        state.user_name = payload?.user_name ?? "";
+        state.status = payload?.status ?? "";
+        state.level = payload?.level ?? "";
+        state.level_number = payload?.level_number ?? "";
+        state.given_value = payload?.given_value ?? "";
+        state.created_at = payload?.created_at ?? "";
+        state.facility = payload?.facility ?? 0; // یا {}
 
-        builder.addCase(fetchStatus.rejected, (state, action) => {
-            state.loading = true
-            state.error = action.error.message
-        })
-    }
-})
+        state.error = "";
+      })
+      .addCase(fetchStatus.rejected, (state, { payload, error }) => {
+        state.loading = false;
+        state.error =
+          (typeof payload === "string" ? payload : null) ||
+          error?.message ||
+          "Failed to fetch status";
+      });
+  },
+});
 
-export default statusSlice.reducer
-export { fetchStatus }
+export default statusSlice.reducer;

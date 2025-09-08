@@ -7,6 +7,8 @@ import GivenFacility from "../module/FacilityManagement/GivenFacility";
 import RejectedFacility from "../module/FacilityManagement/RejectedFacility";
 import FacilityFinished from "../module/FacilityManagement/FacilityFinished";
 import { facilityInformation } from "@/service/userPanel";
+import { useDispatch, useSelector } from "react-redux"
+
 
 
 export default function FacilityManagementPage() {
@@ -20,6 +22,22 @@ export default function FacilityManagementPage() {
 
     const [state, setState] = useState(1)
     const [loading, setLoading] = useState(false)
+
+    const dispatch = useDispatch()
+    const status = useSelector(store => store.status)
+
+
+    useEffect(() => {
+        console.log(status , 'استیت رو لاااااااااااااگ گرفتم')
+
+        if (!profile.id) {
+            dispatch(fetchProfile())
+        }
+
+        dispatch(fetchStatus())
+
+
+    }, [])
     
     useEffect(() => {
 

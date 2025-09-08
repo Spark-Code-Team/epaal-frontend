@@ -15,6 +15,7 @@ export async function GETAllWaitingUserFacitilty() {
     const response = await api.get("Admin/get_all_waiting_facility");
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 }
@@ -43,6 +44,7 @@ export async function GETWaitedUserFacitiltyClues(user_facility_id) {
     });
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 }
@@ -71,6 +73,7 @@ export async function POSTRejectDigitalFacitiltyClues(object) {
     const response = await api.post("Admin/reject_facility", object);
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 }
@@ -96,6 +99,7 @@ export async function POSTAcceptDigitalFacitiltyClues(object) {
     const response = await api.post("Admin/confirm_waitnig_digital", object);
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 }
@@ -120,6 +124,7 @@ export async function POSTAcceptPhysicalFacitiltyClues(object) {
     const response = await api.post("Admin/confirm_waitnig_physical", object);
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 }
@@ -156,6 +161,7 @@ export async function POSTAcceptFinalFacitilty(faciliryId) {
     });
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 }
@@ -180,6 +186,7 @@ export async function GetAllRequest() {
     const response = await api.get("Admin/all_shop_request");
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 }
@@ -203,6 +210,7 @@ export async function GetAllTopLevelTopic() {
     const response = await api.post("product/get_all_toplevel_topic");
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 }
@@ -225,6 +233,7 @@ export const GetAllTopic = async () => {
     const response = await api.post("product/get_all_toplevel_topic");
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -255,6 +264,7 @@ export const GetAllMidlevel = async () => {
     const response = await api.post("/product/get_all_midlevel_topic");
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -281,6 +291,7 @@ export const GetAllLowlevel = async () => {
     const response = await api.post("product/get_all_lowlevel_topic");
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -307,6 +318,7 @@ export const GetAllTopicProduct = async () => {
     const response = await api.post("product/get_all_product_topic");
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -337,6 +349,7 @@ export const DeleteTopLevel = async (id) => {
     });
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -367,6 +380,7 @@ export const DeleteMidlevelTopic = async (midlevel_topic) => {
     });
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -397,6 +411,7 @@ export const DeleteLowlevelTopic = async (lowlevel_topic) => {
     });
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -427,6 +442,7 @@ export const DeleteTopLevelProduct = async (product_topic) => {
     });
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -451,6 +467,7 @@ export const GetRequestIdentity = async (id) => {
     const response = await api.get(`Admin/single_shop_request?shop_request_id=${id}`);
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };

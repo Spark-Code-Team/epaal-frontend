@@ -30,6 +30,7 @@ export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }
     if(response) {
       setCookie(response.data)
       dispatch(fetchRole())
+      router.replace("dashboard/get-credit");
       toast.success("ورود با موفقیت انجام شد", {
         position: "bottom-right",
         autoClose: 5000,
@@ -39,7 +40,6 @@ export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }
         theme: "light",
         transition: Bounce,
       });
-      router.replace("dashboard/get-credit");
     } else {
       console.log(error);
     }

@@ -20,7 +20,6 @@ export default function UserLayout({children}) {
     
 
     useEffect(() => {
-        
         if (!profile.id) {
             dispatch(fetchProfile())
         }

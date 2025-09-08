@@ -287,6 +287,7 @@ const getlevelfour = async () => {
     const response = await api.get("/facility/submit_digital");
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -306,6 +307,7 @@ const postlevelfour = async (formData) => {
     });
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };

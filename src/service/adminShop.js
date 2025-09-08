@@ -12,6 +12,7 @@ const categoryAll = async () => {
       const response = await api.post("/product/get_all_toplevel_topic");
       return { response };
     } catch (error) {
+      console.log(error)
       return { error };
     }
   };
@@ -34,6 +35,7 @@ const ServiceAndProduct = async (toplevel_topic, is_product) => {
       });
       return { response };
     } catch (error) {
+      console.log(error)
       return { error };
     }
   };
@@ -53,6 +55,7 @@ const LowlevelCategoryAll = async (midlevel_topic) => {
       });
       return { response };
     } catch (error) {
+      console.log(error)
       return { error };
     }
   };
@@ -73,6 +76,7 @@ const AllProductTopic = async (lowlevel_topic) => {
     });
     return { response };
   } catch (error) {
+    console.log(error)
     return { error };
   }
 };
@@ -142,6 +146,7 @@ const CreateProduct = async (formData) => {
       });
       return { response };
     } catch (error) {
+      console.log(error)
       return { error };
     }
   };

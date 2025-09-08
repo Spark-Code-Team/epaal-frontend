@@ -73,7 +73,7 @@ export default function ConfirmUsersCluesModule() {
           console.log("\n user clue \n -------> ", response.data);
           setUserDigitalClues(response.data.data);
         } else {
-          toast.error("erro");
+          toast.error("error");
           console.error("err =========> ", error);
         }
       };
