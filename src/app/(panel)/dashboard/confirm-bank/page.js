@@ -1,16 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import WaitBag from "../../../../../public/icons/dashboard/wait-bag";
 import TickBag from "../../../../../public/icons/dashboard/tickBag";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "flowbite-react";
 import SecondeOtp from "../../../../../public/icons/dashboard/SecondeOtp";
 import CrossIcon from "../../../../../public/icons/Admin/CrossIcon";
 import { createFacility } from "@/service/userPanel";
 import FacilityState from "@/components/elements/FacilityState";
+import { fetchProfile } from "@/redux/features/profileUser/profileUser";
 
 export default function ConfirmBank() {
   // step: مرحله نمایش (۱: ورود شبا، ۲: موفقیت/گام بعد)
@@ -48,9 +49,21 @@ export default function ConfirmBank() {
     }
   };
 
+        const dispatch = useDispatch()
+        const status = useSelector(store => store.status)
+    
+    
+        useEffect(() => {
+            console.log(status , 'استیت رو لاااااااااااااگ میخوام بگیگیرم')
+    
+            if (!profile.id) {
+                dispatch(fetchProfile())
+            }
+        }, )
+
   return (
     <>
-      <FacilityState curentState={2} />
+      <FacilityState curentState={status.level_number? status.level_number : 1} />
       {step == 1 ? (
         <>
           <div className="flex flex-col items-center justify-evenly gap-7 md:mt-10">

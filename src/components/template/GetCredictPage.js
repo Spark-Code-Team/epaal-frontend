@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { addFacility } from "@/redux/features/facilityChose/facilityChose";
 
 export default function GetCredictPage() {
+  
   // مقدار ورودی کاربر (مبلغ درخواستی) — پیش‌فرض 1,000,000
   const [inputValue, setInputValue] = useState(1000000);
 

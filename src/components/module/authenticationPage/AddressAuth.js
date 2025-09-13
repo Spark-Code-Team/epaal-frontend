@@ -47,6 +47,7 @@ export default function AddressAuth() {
   
       if (response) {
         toast.success("احراز آدرس با موفقیت انجام شد");
+        window.location.reload();
         redirect("/dashboard");
       } else {
         toast.error("احراز آدرس با مشکل مواجه شد");

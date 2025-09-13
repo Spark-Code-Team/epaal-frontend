@@ -33,10 +33,6 @@ export default function FacilityManagementPage() {
         if (!profile.id) {
             dispatch(fetchProfile())
         }
-
-        dispatch(fetchStatus())
-
-
     }, [])
     
     useEffect(() => {

@@ -1,5 +1,5 @@
 "use client";
-import {useState} from "react";
+import {useState , useEffect} from "react";
 import Link from "next/link";
 import Logo from "@/components/elements/Logo";
 import BagSVG from "../../../../public/icons/dashboard/Bag";
@@ -15,12 +15,26 @@ import {digitsEnToFa} from "@persian-tools/persian-tools";
 import LeftAroowBlur from "../../../../public/icons/Admin/AdminShop/LeftAroowBlur";
 import {FiLogOut} from "react-icons/fi";
 import {useRouter} from "next/navigation";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { logOut } from "@/service/userPanel";
 import { getCookie } from "@/utils/cookie";
+import { fetchProfile } from "@/redux/features/profileUser/profileUser";
 
 
 export default function UserSidebar() {
+
+    const dispatch = useDispatch()
+    const status = useSelector(store => store.status)
+
+
+    useEffect(() => {
+        console.log(status , 'استیت رو لاااااااااااااگ میخوام بگیرم')
+
+        if (!profile.id) {
+            dispatch(fetchProfile())
+        }
+    }, )
+
     // وضعیت باز/بسته بودن منوی برگر در سایدبار
     const [burgerMenu, setBurgerMenu] = useState(false);
   
@@ -190,6 +204,7 @@ export default function UserSidebar() {
                                 )
                             }
 
+                            {status?.status != "in_progress" ? <>
                             {
                                 (profile.confirmed_address && profile.confirmed_data) ? (<Link
                                     href="/dashboard/get-credit"
@@ -204,6 +219,7 @@ export default function UserSidebar() {
                                     <div>درخواست اعتبار</div>
                                 </Link>) : null
                             }
+                            </>:<></>}
 
                         </div>
                     </div>
@@ -211,7 +227,7 @@ export default function UserSidebar() {
                     {/* cross buttom */}
                 </div>
             </div>
-            {/* side bar in mobile */}
+            {/* side bar in desktop */}
 
             <div className="hidden md:flex md:h-screen md:w-80 md:flex-col md:bg-evaamBackground md:px-10 md:py-10">
                 <div id="profile" className="h-1/6">
@@ -308,6 +324,8 @@ export default function UserSidebar() {
                                 </Link>
                             )
                         }
+
+                        {status?.status != "in_progress" ? <>
                         <Link
                             href="/dashboard/get-credit"
                             className="flex flex-row items-center justify-between gap-3 rounded-3xl border-[#d9d9d9] bg-[#93B9C3] px-3 py-3 transition-all duration-300 ease-in-out hover:bg-evaamGreen hover:text-white"
@@ -322,6 +340,8 @@ export default function UserSidebar() {
                                 <LeftAroowBlur fill="#1D434C" height="25" width="25"/>
                             </div>
                         </Link>
+                        </>:<></>}
+
                     </div>
                     <div id="logout" className="border-t-2 border-gray-200 px-3 py-6">
                         <button 
