@@ -9,7 +9,7 @@ import { Bounce, toast } from "react-toastify";
 import EvaamLogoo from "../../../public/icons/EvaamLogoo";
 import TrashDashBoard from "../../../public/icons/dashboard/TrashDashboard";
 import { formatNumberToFA } from "@/utils/numToFa";
-import LogoEvaam from "../../../public/image/logoevaam.png";
+import LogoEvaam from "../../../public/image/evaam-logo.png";
 import {
   GETUserCart,
   GETUserCartTotalCost,

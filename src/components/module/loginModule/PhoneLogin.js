@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import LogoEvaam from "../../../../public/image/logoevaam.png";
+import LogoEvaam from "../../../../public/image/evaam-logo.png";
 import Phone from "../../../../public/icons/Phone";
 import { sendPhone } from "@/service/login";
 import { Bounce, toast } from "react-toastify";

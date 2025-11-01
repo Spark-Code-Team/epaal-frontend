@@ -2,7 +2,7 @@
 
 import OtpInput from "react18-input-otp";
 import Image from "next/image";
-import LogoEvaam from "../../../../public/image/logoevaam.png";
+import LogoEvaam from "../../../../public/image/evaam-logo.png";
 import { useRouter } from "next/navigation";
 import { Bounce, toast } from "react-toastify";
 import { loginOtp } from "@/service/login";

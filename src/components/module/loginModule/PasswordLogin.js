@@ -2,7 +2,7 @@
 "use client"
 
 import Image from "next/image";
-import LogoEvaam from "../../../../public/image/logoevaam.png";
+import LogoEvaam from "../../../../public/image/evaam-logo.png";
 import KeyPassword from "../../../../public/icons/Key";
 
 
