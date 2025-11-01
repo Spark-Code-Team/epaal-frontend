@@ -7,8 +7,8 @@ import { Bounce, ToastContainer } from "react-toastify";
 
 
 export const metadata = {
-  title: "EVAAM",
-  description: "EVAAM",
+  title: "ZARMAYEH",
+  description: "ZARMAYEH",
 };
 
 

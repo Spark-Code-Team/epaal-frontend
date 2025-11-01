@@ -94,7 +94,7 @@ export default function ReactOtpInput({ setLoginState, loginForm, setLoginForm }
   </form>
 
   <p className="mt-4 text-center text-xs sm:text-sm text-gray-500">
-    ورود شما به معنای پذیرش شرایط ایوام و قوانین حریم خصوصی است
+    ورود شما به معنای پذیرش شرایط زرمایه و قوانین حریم خصوصی است
   </p>
 </div>
 

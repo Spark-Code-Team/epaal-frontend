@@ -16,7 +16,7 @@ export default function EvamStore() {
             "
         >
             <BlurTitle 
-                title="قابل استفاده در فروشگاه های ایوام"
+                title="قابل استفاده در فروشگاه های زرمایه"
             />
 
             <Stors  />

@@ -19,11 +19,11 @@ export default function Logo({ width, height, color }) {
               height={height}
               color={color}
             />
-            <EvaamMatn
-              width={width}
-              height={height}
-              color={color}
-            />
+            {/*<EvaamMatn*/}
+            {/*  width={width}*/}
+            {/*  height={height}*/}
+            {/*  color={color}*/}
+            {/*/>*/}
         </Link>
     )
 }

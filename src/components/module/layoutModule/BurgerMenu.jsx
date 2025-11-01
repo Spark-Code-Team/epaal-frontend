@@ -80,7 +80,7 @@ export default function BurgerMenu({ navColor}) {
               border-slate-300
             "
           >
-            <Link href={"/shopping-evaam"}>فروشگاه های ایوام</Link>
+            <Link href={"/shopping-zarmayeh"}>فروشگاه های زرمایه</Link>
           </div>
           <div
             className="

@@ -12,8 +12,8 @@ export default function MerchantsCard({ merchants, from }) {
         <div className="mb-10 border-b-2 border-green-900 text-center md:w-1/3 md:pb-4 lg:w-1/2 lg:pb-5">
           <p>
             {from == "landing"
-              ? "فروشگاه های ایوام"
-              : "قابل استفاده در فروشگاه های فعال ایوام"}
+              ? "فروشگاه های زرمایه"
+              : "قابل استفاده در فروشگاه های فعال زرمایه"}
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-5 lg:w-full lg:flex-row lg:justify-evenly">

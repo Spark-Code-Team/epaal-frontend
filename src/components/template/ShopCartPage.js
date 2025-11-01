@@ -164,7 +164,7 @@ export default function ShopCartPage() {
                 onClick={() => fetchUserWallet()}
               >
                 <div className="flex w-3/4 flex-row items-center justify-evenly justify-self-center">
-                  پرداخت از کیف پول ایوام{" "}
+                  پرداخت از کیف پول زرمایه{" "}
                   <span>
                     <EvaamLogoo color={"white"} height={30} width={30} />
                   </span>

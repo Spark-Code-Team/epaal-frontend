@@ -273,7 +273,7 @@ const MohasebeAghsat = ({ toPage }) => {
                 <div>{calculatedPayment.bankPrePayment} تومان</div>
               </div>
               <div className="flex w-full items-center justify-between border-b border-gray-100 pb-3">
-                <div>هزینه اشتراک ایوام</div>
+                <div>هزینه اشتراک زرمایه</div>
                 <div>{calculatedPayment.yearlySubscribePayment} تومان</div>
               </div>
               <div className="flex w-full items-center justify-between">

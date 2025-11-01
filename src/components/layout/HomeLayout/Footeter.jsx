@@ -28,7 +28,7 @@ export default function Footer() {
           <div className="flex justify-between sm:w-[150%]">
             <div className="w-[50%] pr-[40px]">
               <ul className="text-[13px] font-[400] leading-8 text-[#334155]">
-                <li className="text-[14px] font-[600] text-[#334155]">ایوام</li>
+                <li className="text-[14px] font-[600] text-[#334155]">زرمایه</li>
                 <li>درباره ما</li>
                 <li>فرصت‌های شغلی</li>
                 <li>تماس باما</li>
@@ -79,7 +79,7 @@ export default function Footer() {
 
         <div className="z-0 w-full items-center bg-gray-200 px-[30px] py-[32px]">
           <p className="text-[18px] font-[700] text-[#64748B]">
-            مزایای خرید قسطی از ایوام
+            مزایای خرید قسطی از زرمایه
           </p>
           <p className="py-[30px] text-[13px] font-[400] text-[#64748B]">
             خرید قسطی کالا از یکی از گزینه‌های بسیار مناسب برای کسانی است که در
@@ -95,7 +95,7 @@ export default function Footer() {
         <div className="flex h-[65px] w-full items-center justify-between bg-[#E2E8F0] px-[30px] pb-[30px]">
           <div>
             <p className="text-[12px] font-[600] text-[#475569]">
-              کلیه حقوق مادی و معنوی متعلق به ایوام می باشد.
+              کلیه حقوق مادی و معنوی متعلق به زرمایه می باشد.
             </p>
           </div>
 

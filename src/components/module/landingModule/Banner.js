@@ -42,11 +42,11 @@ export default function Banner() {
               </button>
               <button
                 onClick={() => {
-                  router.push("/shopping-evaam");
+                  router.push("/shopping-zarmayeh");
                 }}
                 className="items-center justify-center rounded-lg border-2 border-evaamCyan bg-none text-cyan-600 transition-all duration-300 ease-in-out hover:rounded-xl hover:bg-evaamCyan hover:text-white sm:p-2 sm:text-sm md:px-6 md:py-2 md:text-sm lg:px-14 lg:py-4"
               >
-                فروشگاه ایوام
+                فروشگاه زرمایه
               </button>
             </div>
           </div>

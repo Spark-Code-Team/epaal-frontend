@@ -28,7 +28,7 @@ export default function NavElements({ navColor, pathname, options }) {
                             flex
                             items-center
                             flex-col
-                            ${(navColor || pathname != "/evaam-home") ? "text-black" : "text-white"}
+                            ${(navColor || pathname != "/zarmayeh-home") ? "text-black" : "text-white"}
                             group
                             cursor-pointer
                             relative
@@ -37,7 +37,7 @@ export default function NavElements({ navColor, pathname, options }) {
                         <Link 
                             href={item.href} 
                             className={`
-                                ${(navColor || pathname != "/evaam-home") ? "group-hover:text-black" : "group-hover:text-white"}
+                                ${(navColor || pathname != "/zarmayeh-home") ? "group-hover:text-black" : "group-hover:text-white"}
                                 transition-all
                                 duration-300
                             `}
@@ -48,10 +48,10 @@ export default function NavElements({ navColor, pathname, options }) {
                         </Link>
                         <div
                             className={`
-                                ${(navColor || pathname != "/evaam-home") ? "bg-black" : "bg-white"}
+                                ${(navColor || pathname != "/zarmayeh-home") ? "bg-black" : "bg-white"}
                                 w-0
                                 group-hover:w-full
-                                ${(navColor || pathname != "/evaam-home") ? "bg-black" : "text-white"}
+                                ${(navColor || pathname != "/zarmayeh-home") ? "bg-black" : "text-white"}
                                 transition-all
                                 duration-300
                                 absolute

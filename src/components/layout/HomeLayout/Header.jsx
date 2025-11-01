@@ -21,8 +21,8 @@ import { useRouter } from "next/navigation";
 
 const options = [
   {
-      title: "فروشگاه ایوام",
-      href: "/shopping-evaam"
+      title: "فروشگاه زرمایه",
+      href: "/shopping-zarmayeh"
   },
   {
       title: "راهنما خرید اقساطی",

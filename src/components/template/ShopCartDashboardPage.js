@@ -332,7 +332,7 @@ export default function ShopCartDashboardPage() {
                                 "
                             >
                                 <p>
-                                    محاسبه خرید اقساطی ایوام
+                                    محاسبه خرید اقساطی زرمایه
                                 </p>
                             </div>
 

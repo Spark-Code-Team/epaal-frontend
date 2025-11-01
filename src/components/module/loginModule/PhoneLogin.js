@@ -76,7 +76,7 @@ const PhoneLogin = ({ setLoginState, setLoginForm, loginForm }) => {
   </form>
 
   <p className="text-gray-500 text-xs sm:text-sm mt-4 text-center">
-    ورود شما به معنای پذیرش شرایط ایوام و قوانین حریم خصوصی است
+    ورود شما به معنای پذیرش شرایط زرمایه و قوانین حریم خصوصی است
   </p>
 </div>
 

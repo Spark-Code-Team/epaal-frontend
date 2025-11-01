@@ -80,7 +80,7 @@ export default function SelectedTarhInformation({ setState }) {
           </div>
           <div
             onClick={() => {
-                router.push("/shopping-evaam")
+                router.push("/shopping-zarmayeh")
                 router.push("/login")
                 toast.success("عملیات با موفقیت انجام شد", {
                   position: "bottom-right",

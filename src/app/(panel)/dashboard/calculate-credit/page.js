@@ -148,7 +148,7 @@ export default function CalculateCredit() {
             <div className=" ">{calculatedPayment.bankPrePayment} تومان</div>
           </div>
           <div className="mb-[37px] flex w-full items-center justify-between">
-            <div className=" ">هزینه اشتراک ایوام</div>
+            <div className=" ">هزینه اشتراک زرمایه</div>
             <div className=" ">
               {calculatedPayment.yearlySubscribePayment} تومان
             </div>

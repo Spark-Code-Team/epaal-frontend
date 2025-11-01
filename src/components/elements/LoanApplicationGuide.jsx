@@ -23,11 +23,11 @@ const LoanApplicationGuide = () => {
           <div className="m-auto mt-8 w-full text-[15px] lg:mt-0 lg:w-[422px]">
             برای اطلاع از نحوه ثبت درخواست وام فوری، فرآیند خرید قسطی از
             فروشگاه، دریافت وام بدون ضامن، اعتبارسنجی، ضمانت‌ها و امکانات دیگر
-            ایوام ویدئو را مشاهده کنید.
+            زرمایه ویدئو را مشاهده کنید.
           </div>
           <div className="m-auto mt-10 w-full text-[15px] lg:w-[422px]">
             همچنین برای دریافت اطلاعات بیشتر می‌توانید وارد صفحه راهنمای
-            ایوام شوید.
+            زرمایه شوید.
           </div>
 
           <div className="justify-right m-auto mt-10 flex w-full text-[15px] lg:w-[422px]">
@@ -35,7 +35,7 @@ const LoanApplicationGuide = () => {
               href={""}
               className="flex items-center space-x-4 text-[#2852E4]"
             >
-              <span className="me-1">صفحه راهنمای ایوام</span>
+              <span className="me-1">صفحه راهنمای زرمایه</span>
               <MdOutlineArrowBackIosNew size={20} />
             </Link>
           </div>

@@ -15,7 +15,7 @@ const BodyAuthBank = () => {
 
                 <p className="w-full mt-12 text-center font-bold">معیار های سنجش رفتار مالی:</p>
 
-                <p className="w-full mt-12 text-center">سابقه شما در بازپرداخت بدهی در ایوام</p>
+                <p className="w-full mt-12 text-center">سابقه شما در بازپرداخت بدهی در زرمایه</p>
                 <p className="w-full mt-5 text-center">سابقه شما در بازپرداخت اقساط تسهیلات بانکی</p>
                 <p className="w-full mt-3 text-center">نداشتن چک برگشتی</p>
 

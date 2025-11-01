@@ -36,7 +36,7 @@ export default function ConfirmDynamicFieldPage() {
         formData.append("name", store.name.persian_name)
         formData.append("instance", JSON.stringify(dynamicData))
         formData.append("product_topic_id", Number(store.product_topic_id))
-        formData.append("detail", "کالای اضافه شده به ایوام")
+        formData.append("detail", "کالای اضافه شده به زرمایه")
         formData.append("static_fields",JSON.stringify({ 
             static_fields: store.static_fields
         }))

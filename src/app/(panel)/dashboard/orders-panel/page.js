@@ -15,7 +15,7 @@ export default function OrdersPanel() {
           <p className="mt-5 font-bold text-gray-400">
             درحال حاضر سفارشی برای شما ثبت نشده است
           </p>
-          <Link href='/evaam-home' >
+          <Link href='/zarmayeh-home' >
           <button  className="mt-10 rounded-2xl bg-evaamGreen px-10 py-3 text-white transition-all duration-300 ease-in-out hover:shadow-md">
             بازگشت به صفحه اصلی
           </button>
