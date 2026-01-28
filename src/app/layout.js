@@ -1,28 +1,22 @@
-
 // css
 import Providers from "@/redux/Providers";
 import "./globals.css";
 import { danaFont } from "@/utils/fonts";
 import { Bounce, ToastContainer } from "react-toastify";
 
-
 export const metadata = {
-  title: "ZARMAYEH",
-  description: "ZARMAYEH",
+  title: "E-VAAM",
+  description: "E-VAAM",
 };
 
-
-
 export default function RootLayout({ children }) {
-  
-
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${danaFont.className} bg-white max-w-[1440px] mx-auto overflow-x-hidden`}>
-        <Providers>
-          {children}
-        </Providers>
-        <ToastContainer 
+      <body
+        className={`${danaFont.className} mx-auto max-w-[1440px] overflow-x-hidden bg-white`}
+      >
+        <Providers>{children}</Providers>
+        <ToastContainer
           position="bottom-right"
           autoClose={5000}
           hideProgressBar={false}

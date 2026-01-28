@@ -1,60 +1,28 @@
-"use client"
+"use client";
 
 import { useRouter } from "next/navigation";
 import CheckCircle from "../../../public/icons/Admin/AdminShop/CheckCircle";
 
-
-
 export default function ConfirmProductPage() {
+  const router = useRouter();
 
-    const router = useRouter()
-
-    return (
-        <div
-            className="
-                w-full
-                h-full
-                flex
-                items-center
-                justify-center
-            "
-        >
-            <div
-                className="
-                    rounded-[32px]
-                    flex
-                    flex-col
-                    justify-around
-                    items-center
-                    bg-[#F0F2F5]
-                    w-[919px]
-                    h-[417px]
-                "
-            >
-                <p>
-                    محصول شما با موفقیت ثبت گردید.جهت انتشار در فروشگاه لطفا منتظر تاییدیه از سمت زرمایه بمانید.
-                </p>
-                <div>
-                    <CheckCircle />
-                </div>
-                <div
-                    className="
-                        w-[167px]
-                        h-[44px]
-                        rounded-xl
-                        bg-evaamGreen
-                        text-white
-                        flex
-                        justify-center
-                        items-center
-                        cursor-pointer
-                    "
-                    onClick={() => router.push("/admin/admin-shop/add-product")}
-                >
-                    تایید
-                </div>
-            </div>
-
+  return (
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="flex h-[417px] w-[919px] flex-col items-center justify-around rounded-[32px] bg-[#F0F2F5]">
+        <p>
+          محصول شما با موفقیت ثبت گردید.جهت انتشار در فروشگاه لطفا منتظر تاییدیه
+          از سمت ای-وام بمانید.
+        </p>
+        <div>
+          <CheckCircle />
         </div>
-    )
+        <div
+          className="flex h-[44px] w-[167px] cursor-pointer items-center justify-center rounded-xl bg-evaamGreen text-white"
+          onClick={() => router.push("/admin/admin-shop/add-product")}
+        >
+          تایید
+        </div>
+      </div>
+    </div>
+  );
 }

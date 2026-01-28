@@ -9,11 +9,10 @@ import Tick2 from "../../../public/icons/dashboard/tick2";
 import Tick3 from "../../../public/icons/dashboard/tick3";
 import Tick4 from "../../../public/icons/dashboard/tick4";
 import { allFacility } from "@/service/userPanel";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFacility } from "@/redux/features/facilityChose/facilityChose";
 
 export default function GetCredictPage() {
-  
   // مقدار ورودی کاربر (مبلغ درخواستی) — پیش‌فرض 1,000,000
   const [inputValue, setInputValue] = useState(1000000);
 
@@ -32,7 +31,11 @@ export default function GetCredictPage() {
   const [slides, setSlides] = useState([]);
 
   const [monthGhest, setMonthGhest] = useState(12); // تعداد اقساط (ماه)
-  const Images = ["/image/backCard.png", "/image/backCard1.png", "/image/backCard2.png"]; // پس‌زمینه‌های کارت
+  const Images = [
+    "/image/backCard.png",
+    "/image/backCard1.png",
+    "/image/backCard2.png",
+  ]; // پس‌زمینه‌های کارت
 
   const dispatch = useDispatch();
   const profile = useSelector((store) => store.profile);
@@ -114,9 +117,9 @@ export default function GetCredictPage() {
     // اگر فاصله‌ی سوایپ کافی بود، ایندکس اسلایدر را تغییر بده
     if (Math.abs(diff) > 10) {
       if (diff > 0) {
-        updateSlider("azafe");   // یادداشت: طبق منطق فعلی، سوایپ به راست ایندکس را زیاد می‌کند
+        updateSlider("azafe"); // یادداشت: طبق منطق فعلی، سوایپ به راست ایندکس را زیاد می‌کند
       } else {
-        updateSlider("azafee");  // یادداشت: این مقدار با else هندل می‌شود؛ غلط‌املایی عمدی حفظ شده تا منطق فعلی تغییر نکند
+        updateSlider("azafee"); // یادداشت: این مقدار با else هندل می‌شود؛ غلط‌املایی عمدی حفظ شده تا منطق فعلی تغییر نکند
       }
     }
   };
@@ -138,50 +141,43 @@ export default function GetCredictPage() {
             onTouchStart={handleTouchStart} // Handle touch start
             onTouchEnd={handleTouchEnd} // Handle touch end
           >
-            {slides.length !==0 && slides.map((item, i) => (
-              <div
-                key={i}
-                className={`z-0 flex-none cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat p-4 text-white transition-transform duration-300 md:h-[217px] md:w-[398] ${i == 0 ? "z-10 scale-125 opacity-100" : "opacity-50"}`}
-                style={{
-                  width: '300px', // ابعاد دلخواه
-                  height: 'auto',
-                  backgroundImage: `url(${Images[0]})`,
-                  backgroundSize: 'contain', // یا 'contain' بسته به نیاز
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
-              >
-                <div className="flex w-full items-center justify-between px-2">
-                  <p>
-                    {
-                      item.name.split(" ")[0]
-                    }
-                  </p>
-                  <p>
-                    {
-                      item.name.split(" ")[1]
-                    }
-                  </p>
-                </div>
-                <div className="mt-[10px] flex flex-col items-center justify-center md:mt-[14px]">
-                  <p className="text-[7px] font-bold md:text-[14px]">
-                    ارائه تسهیلات تا سقف
-                  </p>
-                  <p className="text-[13px] font-bold md:text-[24px]">
-                    {digitsEnToFa(item.max_value)} تومان
-                  </p>
-                </div>
-
-                <div className="flex w-full items-center justify-between md:mt-[30px]">
-                  <div className="text-[5px] font-normal md:text-[10px]">
-                    تامین مالی توسط {item.bank.name}
+            {slides.length !== 0 &&
+              slides.map((item, i) => (
+                <div
+                  key={i}
+                  className={`z-0 flex-none cursor-pointer rounded-2xl bg-cover bg-center bg-no-repeat p-4 text-white transition-transform duration-300 md:h-[217px] md:w-[398] ${i == 0 ? "z-10 scale-125 opacity-100" : "opacity-50"}`}
+                  style={{
+                    width: "300px", // ابعاد دلخواه
+                    height: "auto",
+                    backgroundImage: `url(${Images[0]})`,
+                    backgroundSize: "contain", // یا 'contain' بسته به نیاز
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                >
+                  <div className="flex w-full items-center justify-between px-2">
+                    <p>{item.name.split(" ")[0]}</p>
+                    <p>{item.name.split(" ")[1]}</p>
                   </div>
-                  {/* <div className="rounded-xl bg-[#232336b3] px-[5px] py-2 text-[7px] backdrop-blur-[40px] md:text-[14px]">
+                  <div className="mt-[10px] flex flex-col items-center justify-center md:mt-[14px]">
+                    <p className="text-[7px] font-bold md:text-[14px]">
+                      ارائه تسهیلات تا سقف
+                    </p>
+                    <p className="text-[13px] font-bold md:text-[24px]">
+                      {digitsEnToFa(item.max_value)} تومان
+                    </p>
+                  </div>
+
+                  <div className="flex w-full items-center justify-between md:mt-[30px]">
+                    <div className="text-[5px] font-normal md:text-[10px]">
+                      تامین مالی توسط {item.bank.name}
+                    </div>
+                    {/* <div className="rounded-xl bg-[#232336b3] px-[5px] py-2 text-[7px] backdrop-blur-[40px] md:text-[14px]">
                       {digitsEnToFa("18")} ماهه
                     </div> */}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
         {/* done */}
@@ -206,16 +202,17 @@ export default function GetCredictPage() {
         <div
           className="mt-[41px] w-1/2 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
           onClick={() => {
-            if (profile.confirmed_address && profile.confirmed_data){
-
-            router.push("/dashboard/calculate-credit");
-            dispatch(addFacility({facility: slides[0]}))
+            if (profile.confirmed_address && profile.confirmed_data) {
+              router.push("/dashboard/calculate-credit");
+              dispatch(addFacility({ facility: slides[0] }));
             } else {
-              router.push("/dashboard/authentication")
+              router.push("/dashboard/authentication");
             }
           }}
         >
-           {profile.confirmed_address && profile.confirmed_data ? "درخواست اعتبار" : "احراز هویت"}
+          {profile.confirmed_address && profile.confirmed_data
+            ? "درخواست اعتبار"
+            : "احراز هویت"}
         </div>
         {/*  */}
 
@@ -238,7 +235,6 @@ export default function GetCredictPage() {
           </div>
         </div>
 
-
         {/* <div className="grid w-full grid-cols-1 text-[12px] mt-10 px-2 md:px-10">
         <div className="mb-[37px] flex w-full items-center justify-between">
           <div className=" ">مبلغ شارژ کیف پول</div>
@@ -256,7 +252,7 @@ export default function GetCredictPage() {
           <div className=" ">{calculatedPayment.bankPrePayment} تومان</div>
         </div>
         <div className="mb-[37px] flex w-full items-center justify-between">
-          <div className=" ">هزینه اشتراک زرمایه</div>
+          <div className=" ">هزینه اشتراک ای-وام</div>
           <div className=" ">
             {calculatedPayment.yearlySubscribePayment} تومان
           </div>
@@ -267,7 +263,6 @@ export default function GetCredictPage() {
         </div>
       </div> */}
       </div>
-
     </>
   );
 }

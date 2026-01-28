@@ -158,7 +158,7 @@ export default function ShopHeader() {
 
   const handelCartShop = () => {
     localStorage.setItem("selected", JSON.stringify(store.counter));
-    router.push("/shopping-zarmayeh/products/shop-checkout");
+    router.push("/shopping-evaam/products/shop-checkout");
   };
 
   const onScroll = useCallback(
@@ -200,7 +200,7 @@ export default function ShopHeader() {
               className="flex h-6 w-6 md:hidden"
               onClick={() => setBurgerMenu(true)}
             />
-            <Link href="/shopping-zarmayeh">
+            <Link href="/shopping-evaam">
               <Logo width="45px" height="45px" color={pallete.primary} />
             </Link>
           </div>

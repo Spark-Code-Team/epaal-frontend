@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import AdminShopTitle from "../elements/AdminShopTitle";
@@ -15,134 +15,87 @@ import axios from "axios";
 import { getCookie } from "@/utils/cookie";
 import { useRouter } from "next/navigation";
 
-
-
 export default function ConfirmDynamicFieldPage() {
+  const [dynamicData, setDynamicData] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
-    const [dynamicData, setDynamicData] = useState({})
-    const [refresh, setRefresh] = useState(false)
+  const store = useSelector((store) => store.addProduct);
 
-    const store = useSelector(store => store.addProduct)    
+  const formData = new FormData();
 
-    const formData = new FormData()
+  const router = useRouter();
 
-    const router = useRouter()
+  const handelCreateProduct = async () => {
+    console.log(store);
 
-    const handelCreateProduct = async () => {
+    formData.append("name", store.name.persian_name);
+    formData.append("instance", JSON.stringify(dynamicData));
+    formData.append("product_topic_id", Number(store.product_topic_id));
+    formData.append("detail", "کالای اضافه شده به ای-وام");
+    formData.append(
+      "static_fields",
+      JSON.stringify({
+        static_fields: store.static_fields,
+      }),
+    );
 
-        console.log(store);
-        
+    store.picture.map((item, index) => {
+      formData.append(`picture[${index}]`, item);
+    });
 
-        formData.append("name", store.name.persian_name)
-        formData.append("instance", JSON.stringify(dynamicData))
-        formData.append("product_topic_id", Number(store.product_topic_id))
-        formData.append("detail", "کالای اضافه شده به زرمایه")
-        formData.append("static_fields",JSON.stringify({ 
-            static_fields: store.static_fields
-        }))
+    // const { response, error } = await CreateProduct(formData)
 
-        store.picture.map((item, index) => {
-            formData.append(`picture[${index}]`, item)
-        })
+    console.log("5555555555555", [...formData.entries()]);
 
-        // const { response, error } = await CreateProduct(formData)
+    // if(response) {
+    //     console.log(response);
+    // } else {
+    //     console.log(error);
 
-        console.log("5555555555555",[...formData.entries()]);
-        
-        
+    // }
 
-        // if(response) {
-        //     console.log(response);
-        // } else {
-        //     console.log(error);
-            
-        // }
+    const token = getCookie("accessToken");
 
-        const token = getCookie("accessToken")
-        
-        
-        try {
-            axios.post(`${process.env.NEXT_PUBLIC_API_URL}product/create_product`,
-             formData,
-             {
-                headers: {
-                  "Content-Type": "multipart/form-data",
-                  "Authorization": `Bearer ${token}`
-                },
-              }
-            ).then(res => router.push("/admin/admin-shop/confirm-product"))
-        } catch(error) {
-            return { error }
-        }
+    try {
+      axios
+        .post(
+          `${process.env.NEXT_PUBLIC_API_URL}product/create_product`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then((res) => router.push("/admin/admin-shop/confirm-product"));
+    } catch (error) {
+      return { error };
     }
+  };
 
-    return (
-        <div
-            className="
-                w-full
-                h-full
-                flex
-                flex-col
-                justify-between
-                mx-3
-            "
+  return (
+    <div className="mx-3 flex h-full w-full flex-col justify-between">
+      <div>
+        <AddProductTitle levelState={4} />
+        <AdminShopTitle title="تعداد نوع محصول" />
+        {/* <ContedProduct /> */}
+        <ProductIdentity setDynamicData={setDynamicData} />
+      </div>
+      <div className="flex w-full items-center justify-between p-5">
+        <Link
+          href="/admin/admin-shop/upload-image"
+          className="flex h-[40px] w-fit cursor-pointer items-center justify-center rounded-xl border border-evaamGreen p-[10px] text-evaamGreen"
         >
-            <div>
-                <AddProductTitle levelState={4} />
-                <AdminShopTitle
-                    title="تعداد نوع محصول"
-                />
-                {/* <ContedProduct /> */}
-                <ProductIdentity 
-                    setDynamicData={setDynamicData}
-                />
-            </div>
-            <div
-                className="
-                    w-full
-                    flex
-                    items-center
-                    justify-between
-                    p-5
-                "
-            >
-
-                <Link
-                    href="/admin/admin-shop/upload-image"
-                    className="
-                        flex
-                        w-fit
-                        h-[40px]
-                        p-[10px]
-                        items-center
-                        justify-center
-                        rounded-xl
-                        border
-                        border-evaamGreen
-                        text-evaamGreen
-                        cursor-pointer
-                    "
-                >
-                    بازگشت  به مرحله قبلی
-                </Link>
-                <div
-                    className={`
-                        flex
-                        w-fit
-                        h-[40px]
-                        p-[10px]
-                        items-center
-                        justify-center
-                        rounded-xl
-                        cursor-pointer
-                        ${dynamicData ? "bg-evaamGreen text-white" : "bg-white text-gray-600 border"}
-                    `}
-
-                    onClick={() => handelCreateProduct()}
-                >
-                    ساخت محصول
-                </div>
-            </div>
+          بازگشت به مرحله قبلی
+        </Link>
+        <div
+          className={`flex h-[40px] w-fit cursor-pointer items-center justify-center rounded-xl p-[10px] ${dynamicData ? "bg-evaamGreen text-white" : "border bg-white text-gray-600"} `}
+          onClick={() => handelCreateProduct()}
+        >
+          ساخت محصول
         </div>
-    )
+      </div>
+    </div>
+  );
 }

@@ -58,7 +58,6 @@ export default function shop() {
       if (response) {
         setProducts(response.data);
         console.log("mmmmmmmmmmmmmmmmmmmmmmmmmmm", response.data);
-        
 
         setIsLoading(false);
       } else {
@@ -91,7 +90,7 @@ export default function shop() {
           <div className="flex h-[80%] w-1/2 flex-col items-start justify-evenly p-4 md:p-16">
             <div>
               <h1 className="text-lg font-extrabold text-white md:text-3xl">
-                خرید اعتباری با زرمایه
+                خرید اعتباری با ای-وام
               </h1>
             </div>
             <div>

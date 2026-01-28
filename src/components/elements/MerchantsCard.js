@@ -12,8 +12,8 @@ export default function MerchantsCard({ merchants, from }) {
         <div className="mb-10 border-b-2 border-green-900 text-center md:w-1/3 md:pb-4 lg:w-1/2 lg:pb-5">
           <p>
             {from == "landing"
-              ? "فروشگاه های زرمایه"
-              : "قابل استفاده در فروشگاه های فعال زرمایه"}
+              ? "فروشگاه های ای-وام"
+              : "قابل استفاده در فروشگاه های فعال ای-وام"}
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-5 lg:w-full lg:flex-row lg:justify-evenly">
@@ -22,7 +22,7 @@ export default function MerchantsCard({ merchants, from }) {
               {merchants.map((eachMerchant) => (
                 <button
                   key={eachMerchant.id}
-                  className="bg-evaamBackground flex flex-col items-center justify-between rounded-xl p-5 shadow-xl transition-all duration-300 ease-in-out hover:scale-110 md:flex-col"
+                  className="flex flex-col items-center justify-between rounded-xl bg-evaamBackground p-5 shadow-xl transition-all duration-300 ease-in-out hover:scale-110 md:flex-col"
                 >
                   <Image
                     src={eachMerchant.merchantLogo}
@@ -42,7 +42,7 @@ export default function MerchantsCard({ merchants, from }) {
         </div>
 
         <button
-          className="mt-16 mb-10 animate-pulse rounded-xl bg-evaamCyan p-5 text-green-900 shadow-lg"
+          className="mb-10 mt-16 animate-pulse rounded-xl bg-evaamCyan p-5 text-green-900 shadow-lg"
           onClick={() => {
             router.push("/shopping-evaam");
           }}

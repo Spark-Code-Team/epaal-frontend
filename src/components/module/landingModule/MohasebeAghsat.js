@@ -18,8 +18,12 @@ const MohasebeAghsat = ({ toPage }) => {
   });
 
   const slides = useMemo(
-    () => ["/image/backCard.png", "/image/backCard1.png", "/image/backCard2.png"],
-    []
+    () => [
+      "/image/backCard.png",
+      "/image/backCard1.png",
+      "/image/backCard2.png",
+    ],
+    [],
   );
   const router = useRouter();
 
@@ -213,7 +217,7 @@ const MohasebeAghsat = ({ toPage }) => {
               </div>
 
               <input
-                dir="rtl"               // 👈 مهم برای جلوگیری از برعکس شدن در RTL
+                dir="rtl" // 👈 مهم برای جلوگیری از برعکس شدن در RTL
                 step={1000000}
                 min={minVal}
                 max={maxVal}
@@ -273,7 +277,7 @@ const MohasebeAghsat = ({ toPage }) => {
                 <div>{calculatedPayment.bankPrePayment} تومان</div>
               </div>
               <div className="flex w-full items-center justify-between border-b border-gray-100 pb-3">
-                <div>هزینه اشتراک زرمایه</div>
+                <div>هزینه اشتراک ای-وام</div>
                 <div>{calculatedPayment.yearlySubscribePayment} تومان</div>
               </div>
               <div className="flex w-full items-center justify-between">
@@ -286,7 +290,7 @@ const MohasebeAghsat = ({ toPage }) => {
             <button
               type="button"
               onClick={() => router.push(toPage)}
-              className="mt-6 mx-auto block w-full max-w-sm rounded-xl bg-[#1D434C] p-3 text-center text-white transition hover:opacity-95 md:mt-10 md:max-w-md"
+              className="mx-auto mt-6 block w-full max-w-sm rounded-xl bg-[#1D434C] p-3 text-center text-white transition hover:opacity-95 md:mt-10 md:max-w-md"
             >
               درخواست اعتبار
             </button>

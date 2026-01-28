@@ -14,7 +14,7 @@ export default function InfoDigitalModule() {
     "نوشتن چک مطابق راهنمایی که ارائه می‌شود.",
     "ثبت چک در سامانه صیاد",
     "بارگذاری تصویر چک",
-    "ارسال چک به دفتر زرمایه",
+    "ارسال چک به دفتر ای-وام",
     "بازگرداندن چک بعد از تسویه آخرین قسط",
   ];
 
@@ -36,7 +36,7 @@ export default function InfoDigitalModule() {
 
       <div className="w-full">
         {/* تیتر */}
-        <div className="mt-5 flex w-full items-center justify-start text-evaamGreen px-4 md:px-6">
+        <div className="mt-5 flex w-full items-center justify-start px-4 text-evaamGreen md:px-6">
           <p className="text-base font-bold md:text-lg">ثبت مدارک مورد نیاز</p>
         </div>
 
@@ -53,16 +53,16 @@ export default function InfoDigitalModule() {
         </div>
 
         {/* عنوان زیر تصویر */}
-        <div className="mt-4 text-center px-4 md:px-6">
+        <div className="mt-4 px-4 text-center md:px-6">
           <p className="text-sm md:text-base">چک صیادی بنفش رنگ</p>
         </div>
 
         {/* توضیحات */}
         <div className="mt-4 px-4 text-justify leading-7 text-gray-700 md:px-6">
           <p className="text-sm md:text-base">
-            برای ضمانت تسهیلات خود باید دارنده چک صیادی بنفش رنگ مانند نمونه بالا
-            باشید. این چک تنها به عنوان ضمانت از شما دریافت می‌شود و در صورت عدم
-            پرداخت اقساط، چک ضمانت اجرا می‌شود.
+            برای ضمانت تسهیلات خود باید دارنده چک صیادی بنفش رنگ مانند نمونه
+            بالا باشید. این چک تنها به عنوان ضمانت از شما دریافت می‌شود و در
+            صورت عدم پرداخت اقساط، چک ضمانت اجرا می‌شود.
           </p>
         </div>
 
@@ -74,7 +74,7 @@ export default function InfoDigitalModule() {
             </div>
 
             {/* موبایل: لیست عمودی */}
-            <div className="sm:hidden space-y-4">
+            <div className="space-y-4 sm:hidden">
               {steps.map((txt, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <NumberIcon n={i + 1} />
@@ -99,7 +99,7 @@ export default function InfoDigitalModule() {
         <div className="mt-6 px-4 md:px-6">
           <button
             onClick={() => router.push("/dashboard/upload-digital")}
-            className="mb-10 w-full max-w-3xl mx-auto block rounded-xl bg-evaamGreen py-3 text-center text-white transition-all hover:scale-[1.01] hover:shadow-md"
+            className="mx-auto mb-10 block w-full max-w-3xl rounded-xl bg-evaamGreen py-3 text-center text-white transition-all hover:scale-[1.01] hover:shadow-md"
           >
             تایید و ادامه
           </button>

@@ -1,14 +1,8 @@
 // components
 import { redirect } from "next/navigation";
 
-
 export default function Home() {
+  redirect("/evaam-home");
 
-  redirect("/zarmayeh-home")
-
-
-  return (
-    <>
-    </>
-  );
+  return <></>;
 }

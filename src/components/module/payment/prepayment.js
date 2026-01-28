@@ -2,7 +2,11 @@
 import CheckRounded from "@/../public/icons/dashboard/round-check.svg";
 
 import CheckBoxSVG from "@/../public/icons/check-tick.svg";
-import { addCommas, digitsEnToFa, removeCommas } from "@persian-tools/persian-tools";
+import {
+  addCommas,
+  digitsEnToFa,
+  removeCommas,
+} from "@persian-tools/persian-tools";
 import Cleave from "cleave.js/react";
 import { FaKeyboard } from "react-icons/fa";
 
@@ -129,7 +133,7 @@ export default function PrepaymentModule() {
           <div className="mx-auto -mt-16 flex w-[90%] flex-row items-center justify-between md:px-32">
             <div>
               <p className="font-bold text-white">
-                درگاه پرداخت اینترنتی زرمایه
+                درگاه پرداخت اینترنتی ای-وام
               </p>
             </div>
             <div className="text-white">
@@ -250,7 +254,7 @@ export default function PrepaymentModule() {
                   />
                 </div>
               </div>
-              <div className="bg- bg-evaamCyanBlur flex h-10 w-36 flex-col items-start justify-center rounded-xl">
+              <div className="bg- flex h-10 w-36 flex-col items-start justify-center rounded-xl bg-evaamCyanBlur">
                 <LoadCanvasTemplateNoReload />
               </div>
             </div>
@@ -270,7 +274,10 @@ export default function PrepaymentModule() {
                   className="w-36 rounded-xl border-none bg-gray-200 py-2 text-center outline-none ring-0 focus:border-none focus:outline-none focus:ring-0"
                 />
               </div>
-              <div onClick={() => getRamz()} className="cursor-pointer w-36 rounded-xl border-none bg-evaamGreen py-2 text-center text-white">
+              <div
+                onClick={() => getRamz()}
+                className="w-36 cursor-pointer rounded-xl border-none bg-evaamGreen py-2 text-center text-white"
+              >
                 <p>دریافت رمز پویا</p>
               </div>
             </div>
@@ -302,7 +309,7 @@ export default function PrepaymentModule() {
             </div>
 
             <div className="text-sm font-bold text-black">
-              <p>شماره کارت در درگاه زرمایه ذخیره شود.</p>
+              <p>شماره کارت در درگاه ای-وام ذخیره شود.</p>
             </div>
           </div>
           {/* save card number */}

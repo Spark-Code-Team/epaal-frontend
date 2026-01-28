@@ -9,14 +9,16 @@ import { digitsEnToFa } from "@persian-tools/persian-tools";
 export default function Footer() {
   return (
     <>
-      <footer className="z-0  flex flex-col items-center justify-between bg-gray-200">
+      <footer className="z-0 flex flex-col items-center justify-between bg-gray-200">
         <div className="flex w-full items-center justify-between border-b-[1px] border-b-[#748297] px-[30px]">
           <div>
             <EvaamLogo color="#1d1d1d" height="50px" width="50px" />
           </div>
 
           <div className="flex items-center justify-center">
-            <p className="mx-4 py-[28px] text-sm">تلفن پشتیبانی: {digitsEnToFa("02126612872")}</p>
+            <p className="mx-4 py-[28px] text-sm">
+              تلفن پشتیبانی: {digitsEnToFa("02126612872")}
+            </p>
             <RiInstagramFill color="#748297" size={24} />
             <span className="mr-[20px]">
               <FaLinkedin color="#748297" size={24} />
@@ -28,7 +30,9 @@ export default function Footer() {
           <div className="flex justify-between sm:w-[150%]">
             <div className="w-[50%] pr-[40px]">
               <ul className="text-[13px] font-[400] leading-8 text-[#334155]">
-                <li className="text-[14px] font-[600] text-[#334155]">زرمایه</li>
+                <li className="text-[14px] font-[600] text-[#334155]">
+                  ای-وام
+                </li>
                 <li>درباره ما</li>
                 <li>فرصت‌های شغلی</li>
                 <li>تماس باما</li>
@@ -67,19 +71,19 @@ export default function Footer() {
               height={80}
               className="h-[80px] w-[80px]"
             />
-            <Image
+            {/* <Image
               src={"/image/66.png"}
               alt=""
               width={80}
               height={80}
               className="h-[80px] w-[80px]"
-            />
+            />*/}
           </div>
         </div>
 
         <div className="z-0 w-full items-center bg-gray-200 px-[30px] py-[32px]">
           <p className="text-[18px] font-[700] text-[#64748B]">
-            مزایای خرید قسطی از زرمایه
+            مزایای خرید قسطی از ای-وام
           </p>
           <p className="py-[30px] text-[13px] font-[400] text-[#64748B]">
             خرید قسطی کالا از یکی از گزینه‌های بسیار مناسب برای کسانی است که در
@@ -95,7 +99,7 @@ export default function Footer() {
         <div className="flex h-[65px] w-full items-center justify-between bg-[#E2E8F0] px-[30px] pb-[30px]">
           <div>
             <p className="text-[12px] font-[600] text-[#475569]">
-              کلیه حقوق مادی و معنوی متعلق به زرمایه می باشد.
+              کلیه حقوق مادی و معنوی متعلق به ای-وام می باشد.
             </p>
           </div>
 

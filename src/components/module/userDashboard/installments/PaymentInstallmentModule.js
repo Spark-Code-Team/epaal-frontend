@@ -140,7 +140,7 @@ export default function PaymentInstallmentModule() {
           <div className="mx-auto -mt-16 flex w-[90%] flex-row items-center justify-between md:px-32">
             <div>
               <p className="font-bold text-white">
-                درگاه پرداخت اینترنتی زرمایه
+                درگاه پرداخت اینترنتی ای-وام
               </p>
             </div>
             <div className="text-white">
@@ -318,7 +318,7 @@ export default function PaymentInstallmentModule() {
             </div>
 
             <div className="text-sm font-bold text-black">
-              <p>شماره کارت در درگاه زرمایه ذخیره شود.</p>
+              <p>شماره کارت در درگاه ای-وام ذخیره شود.</p>
             </div>
           </div>
           {/* save card number */}

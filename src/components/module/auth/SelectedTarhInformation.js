@@ -11,22 +11,22 @@ import { Bounce, toast } from "react-toastify";
 export default function SelectedTarhInformation({ setState }) {
   const [input, setInput] = useState("");
 
-  const router = useRouter()
+  const router = useRouter();
 
   return (
-    <div className="my-7 flex h-full w-full gap-[40px] md:gap-[60px] bg-white px-7 md:px-20 py-2">
+    <div className="my-7 flex h-full w-full gap-[40px] bg-white px-7 py-2 md:gap-[60px] md:px-20">
       <BankCardShow image={selectedTarh} />
 
-      <div className="flex h-[570px] w-full flex-col justify-between mt-12">
+      <div className="mt-12 flex h-[570px] w-full flex-col justify-between">
         <div className="flex h-[60%] flex-col justify-between py-2">
           <p className="text-[20px] font-bold">اطلاعات تکمیلی</p>
           <div className="flex flex-col gap-8">
             <div className="flex gap-5 border-r-[5px] border-[#3A616A] px-2">
               <div>
-                <p className="text-[14px] md:text-[18px] font-bold">
+                <p className="text-[14px] font-bold md:text-[18px]">
                   مجموع اقساط+هزینه خدمات و زیرساخت
                 </p>
-                <div className="text-[14px] md:text-[18px] font-medium text-[#8A8B8D]">
+                <div className="text-[14px] font-medium text-[#8A8B8D] md:text-[18px]">
                   <p>مبلغ هر قسط</p>
                   <p>
                     این هزینه درمرحله آخر ثبت نام به صورت نقدی دریافت می شود
@@ -34,19 +34,23 @@ export default function SelectedTarhInformation({ setState }) {
                 </div>
               </div>
               <div>
-                <p className="text-[14px] md:text-[18px] font-bold">40000000 میلیون تومان</p>
-                <p className="text-[14px] md:text-[18px] font-medium text-[#8A8B8D]">
+                <p className="text-[14px] font-bold md:text-[18px]">
+                  40000000 میلیون تومان
+                </p>
+                <p className="text-[14px] font-medium text-[#8A8B8D] md:text-[18px]">
                   16.667.000 میلیون تومان
                 </p>
               </div>
             </div>
 
             <div className="border-r-[5px] border-[#3A616A] px-2">
-              <p className="text-[14px] md:text-[18px] font-bold">شرایط و مدارک مورد نیاز</p>
-              <p className="text-[14px] md:text-[18px] font-medium text-[#8A8B8D]">
+              <p className="text-[14px] font-bold md:text-[18px]">
+                شرایط و مدارک مورد نیاز
+              </p>
+              <p className="text-[14px] font-medium text-[#8A8B8D] md:text-[18px]">
                 داشتن حداقل 18 و حداکثر 70 سال سن
               </p>
-              <p className="text-[14px] md:text-[18px] font-medium text-[#8A8B8D]">
+              <p className="text-[14px] font-medium text-[#8A8B8D] md:text-[18px]">
                 داشتن رتبه کافی امکان سنجی
               </p>
             </div>
@@ -54,7 +58,7 @@ export default function SelectedTarhInformation({ setState }) {
         </div>
 
         <div className="mb-5 flex flex-col gap-3">
-          <label className="text-[12px] md:text-[16px] font-normal">
+          <label className="text-[12px] font-normal md:text-[16px]">
             شماره شبا حساب بانکی خود را وارد کنید
           </label>
           <input
@@ -65,7 +69,7 @@ export default function SelectedTarhInformation({ setState }) {
           />
           <Link
             href="https://cafebazaar.ir/app/ir.karafarinbank.digital.mb"
-            className="text-blue-500 text-[14px] md:text-[16px]"
+            className="text-[14px] text-blue-500 md:text-[16px]"
           >
             حساب بانکی ندارید؟ برای افتتاح حساب اینجا کلیلک کنید
           </Link>
@@ -80,17 +84,17 @@ export default function SelectedTarhInformation({ setState }) {
           </div>
           <div
             onClick={() => {
-                router.push("/shopping-zarmayeh")
-                router.push("/login")
-                toast.success("عملیات با موفقیت انجام شد", {
-                  position: "bottom-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  progress: undefined,
-                  theme: "light",
-                  transition: Bounce,
-                });
+              router.push("/shopping-evaam");
+              router.push("/login");
+              toast.success("عملیات با موفقیت انجام شد", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+              });
             }}
             className="flex h-[42px] w-[134px] cursor-pointer items-center justify-center rounded-md bg-[#1D434C] text-white"
           >

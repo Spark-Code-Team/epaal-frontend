@@ -7,8 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addInAndCh } from "@/redux/features/facilityChose/facilityChose";
 
 export default function CalculateCredit() {
-
-
   const [inputValue, setInputValue] = useState(1000000);
   const [index, setIndex] = useState(1);
   const [calculatedPayment, setCalculatePayment] = useState({
@@ -21,12 +19,10 @@ export default function CalculateCredit() {
   // const [currentIndex, setCurrentIndex] = useState(0);
   const [monthGhest, setMonthGhest] = useState(12);
 
-
-  const store = useSelector(store => store.facility)
-  const dispatch = useDispatch()
+  const store = useSelector((store) => store.facility);
+  const dispatch = useDispatch();
 
   console.log(store);
-  
 
   const router = useRouter();
 
@@ -61,14 +57,14 @@ export default function CalculateCredit() {
   };
 
   useEffect(() => {
-    if(!store.selectedFacility) {
-      redirect("/get-credit")
+    if (!store.selectedFacility) {
+      redirect("/get-credit");
     }
-  }, [])
+  }, []);
 
   return (
     <>
-      <div className="relative mx-auto mt-[80px] mb-10 flex w-[90%] flex-col items-center rounded-3xl border-2 border-[#d9d9d9] px-3 py-7 md:mb-[48px] md:h-[918px] md:w-3/4 md:px-[86px] md:mt-[500px]">
+      <div className="relative mx-auto mb-10 mt-[80px] flex w-[90%] flex-col items-center rounded-3xl border-2 border-[#d9d9d9] px-3 py-7 md:mb-[48px] md:mt-[500px] md:h-[918px] md:w-3/4 md:px-[86px]">
         <div className="pb-7 md:pb-[47px] md:pt-[80px]">
           <p className="hidden text-[24px] font-bold text-[#1D2433] md:flex">
             جزئیات طرح انتخابی
@@ -111,21 +107,21 @@ export default function CalculateCredit() {
           </div>
         </div>
 
-        <div className="my-[26px] flex w-full flex-col md:flex-row md:items-center md:flex md:flex-wrap">
+        <div className="my-[26px] flex w-full flex-col md:flex md:flex-row md:flex-wrap md:items-center">
           <p>مدت بازپرداخت:</p>
 
           <div className="my-[16px] flex items-center gap-4 md:my-[50px] md:mr-[16px] md:flex md:flex-wrap md:items-center md:justify-center">
-            {
-              (store?.selectedFacility?.insatllments || []).map((item, index) => (
+            {(store?.selectedFacility?.insatllments || []).map(
+              (item, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col text-center w-[79px] cursor-pointer items-center justify-center rounded-xl p-2 text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == index? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
+                  className={`flex w-[79px] cursor-pointer flex-col items-center justify-center rounded-xl p-2 text-center text-[12px] md:w-[113px] md:text-[16px] ${monthGhest == index ? "bg-[#1D434C] text-white" : "bg-[#F0F0F1] text-[#1D434C]"} `}
                   onClick={() => setMonthGhest(index)}
                 >
                   {digitsEnToFa(item.number_of_installment)} ماهه
                 </div>
-              ))
-            }
+              ),
+            )}
           </div>
         </div>
 
@@ -148,20 +144,18 @@ export default function CalculateCredit() {
             <div className=" ">{calculatedPayment.bankPrePayment} تومان</div>
           </div>
           <div className="mb-[37px] flex w-full items-center justify-between">
-            <div className=" ">هزینه اشتراک زرمایه</div>
+            <div className=" ">هزینه اشتراک ای-وام</div>
             <div className=" ">
               {calculatedPayment.yearlySubscribePayment} تومان
             </div>
           </div>
-            {
-              /* <div className="mb-[37px] flex w-full items-center justify-between">
+          {/* <div className="mb-[37px] flex w-full items-center justify-between">
                 <div className=" ">
                   {" "}
                   <p>دریافتیِ نهایی</p>
                 </div>
                 <div className=" ">35,000,000 تومان</div>
-              </div> */
-            }
+              </div> */}
           <div className="mb-[37px] flex w-full items-center justify-between">
             <div className=" ">اقساط ماهانه</div>
             <div className=" ">{calculatedPayment.paymentPerMounth}تومان</div>
@@ -172,7 +166,12 @@ export default function CalculateCredit() {
           className="w-3/4 rounded-xl bg-[#1D434C] p-[10px] text-center text-white hover:cursor-pointer"
           onClick={() => {
             router.push("/dashboard/confirm-bank");
-            dispatch(addInAndCh({choosen_value: inputValue, id: store.selectedFacility.insatllments[monthGhest].id}))
+            dispatch(
+              addInAndCh({
+                choosen_value: inputValue,
+                id: store.selectedFacility.insatllments[monthGhest].id,
+              }),
+            );
           }}
         >
           تایید و ادامه
